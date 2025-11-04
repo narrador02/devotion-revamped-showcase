@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,9 +32,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-rajdhani font-bold tracking-wider">
-              <span className="text-primary">DEVOTION</span>
-              <span className="text-foreground">SIM</span>
+            <a href="#" className="flex items-center">
+              <img src={logo} alt="Devotion Sim Logo" className="h-12 w-auto" />
             </a>
           </div>
 
