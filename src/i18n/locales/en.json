@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "products": "Products",
+    "media": "Media",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "buyRent": "Buy / Rent"
+  },
+  "hero": {
+    "about": "ABOUT",
+    "us": "US",
+    "mission": "Our mission is to excite people who love the world of motorcycling by creating",
+    "highPerformance": "high-performance simulators",
+    "missionEnd": "that deliver authentic circuit sensations.",
+    "exploreProducts": "Explore Products",
+    "contactUs": "Contact Us"
+  },
+  "products": {
+    "sectionTitle": "Our",
+    "sectionTitleHighlight": "Features",
+    "sectionSubtitle": "Experience the perfect blend of technology, passion, and global racing culture",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Experience authentic 2-axis motion with lean angles up to 54° and full wheelie control.",
+      "features": {
+        "axis": "2-axis movement system",
+        "lean": "Lean up to 54° angles",
+        "wheelie": "Wheelie & suspension control",
+        "compatible": "Compatible with all motorcycle games"
+      }
+    },
+    "withLove": {
+      "title": "With Love",
+      "description": "Crafted with passion by motorcycling enthusiasts for the racing community worldwide.",
+      "features": {
+        "handcrafted": "Handcrafted attention to detail",
+        "premium": "Premium materials and components",
+        "community": "Community-driven development",
+        "updates": "Regular content updates"
+      }
+    },
+    "global": {
+      "title": "Global",
+      "description": "Experience tracks from around the world and compete with riders across the globe.",
+      "features": {
+        "circuits": "International circuit collection",
+        "multiplayer": "Online multiplayer races",
+        "leaderboards": "Global leaderboards",
+        "multilanguage": "Multi-language support"
+      }
+    }
+  },
+  "footer": {
+    "description": "Creating high-performance motorcycle simulators that bring the thrill of the circuit to enthusiasts worldwide.",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "copyright": "DevotionSim. All rights reserved."
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  }
+}

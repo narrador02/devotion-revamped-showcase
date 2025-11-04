@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import { useTranslation } from "react-i18next";
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,10 +18,10 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { name: "Products", href: "#products" },
-    { name: "Media", href: "#media" },
-    { name: "About Us", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: t('nav.products'), href: "#products" },
+    { name: t('nav.media'), href: "#media" },
+    { name: t('nav.aboutUs'), href: "#about" },
+    { name: t('nav.contact'), href: "#contact" },
   ];
 
   return (
@@ -50,7 +52,7 @@ const Navigation = () => {
               </a>
             ))}
             <Button variant="default" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold">
-              Buy / Rent
+              {t('nav.buyRent')}
             </Button>
           </div>
 
@@ -78,7 +80,7 @@ const Navigation = () => {
                 </a>
               ))}
               <Button variant="default" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold w-full">
-                Buy / Rent
+                {t('nav.buyRent')}
               </Button>
             </div>
           </div>

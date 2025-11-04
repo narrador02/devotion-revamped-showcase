@@ -3,43 +3,46 @@ import { Zap, Heart, Globe } from "lucide-react";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
+import { useTranslation } from "react-i18next";
 
 const Products = () => {
+  const { t } = useTranslation();
+  
   const products = [
     {
-      title: "TIME ATTACK",
-      description: "Experience authentic 2-axis motion with lean angles up to 54° and full wheelie control.",
+      title: t('products.timeAttack.title'),
+      description: t('products.timeAttack.description'),
       icon: <Zap className="text-white" size={28} />,
       image: product1,
       features: [
-        "2-axis movement system",
-        "Lean up to 54° angles",
-        "Wheelie & suspension control",
-        "Compatible with all motorcycle games"
+        t('products.timeAttack.features.axis'),
+        t('products.timeAttack.features.lean'),
+        t('products.timeAttack.features.wheelie'),
+        t('products.timeAttack.features.compatible')
       ]
     },
     {
-      title: "With Love",
-      description: "Crafted with passion by motorcycling enthusiasts for the racing community worldwide.",
+      title: t('products.withLove.title'),
+      description: t('products.withLove.description'),
       icon: <Heart className="text-white" size={28} />,
       image: product2,
       features: [
-        "Handcrafted attention to detail",
-        "Premium materials and components",
-        "Community-driven development",
-        "Regular content updates"
+        t('products.withLove.features.handcrafted'),
+        t('products.withLove.features.premium'),
+        t('products.withLove.features.community'),
+        t('products.withLove.features.updates')
       ]
     },
     {
-      title: "Global",
-      description: "Experience tracks from around the world and compete with riders across the globe.",
+      title: t('products.global.title'),
+      description: t('products.global.description'),
       icon: <Globe className="text-white" size={28} />,
       image: product3,
       features: [
-        "International circuit collection",
-        "Online multiplayer races",
-        "Global leaderboards",
-        "Multi-language support"
+        t('products.global.features.circuits'),
+        t('products.global.features.multiplayer'),
+        t('products.global.features.leaderboards'),
+        t('products.global.features.multilanguage')
       ]
     }
   ];
@@ -50,11 +53,11 @@ const Products = () => {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-rajdhani font-bold mb-4">
-            <span className="text-foreground">Our </span>
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Features</span>
+            <span className="text-foreground">{t('products.sectionTitle')} </span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('products.sectionTitleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-            Experience the perfect blend of technology, passion, and global racing culture
+            {t('products.sectionSubtitle')}
           </p>
         </div>
 

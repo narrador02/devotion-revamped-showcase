@@ -1,6 +1,8 @@
 import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -14,32 +16,32 @@ const Footer = () => {
               <span className="text-foreground">SIM</span>
             </h3>
             <p className="text-muted-foreground font-inter text-sm leading-relaxed">
-              Creating high-performance motorcycle simulators that bring the thrill of the circuit to enthusiasts worldwide.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">Quick Links</h4>
+            <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               <li>
                 <a href="#products" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  Products
+                  {t('nav.products')}
                 </a>
               </li>
               <li>
                 <a href="#media" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  Media
+                  {t('nav.media')}
                 </a>
               </li>
               <li>
                 <a href="#about" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  About Us
+                  {t('nav.aboutUs')}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  Contact
+                  {t('nav.contact')}
                 </a>
               </li>
             </ul>
@@ -47,7 +49,7 @@ const Footer = () => {
 
           {/* Social Media */}
           <div>
-            <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">Follow Us</h4>
+            <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">{t('footer.followUs')}</h4>
             <div className="flex space-x-4">
               <a 
                 href="#" 
@@ -84,7 +86,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border text-center">
           <p className="text-muted-foreground font-inter text-sm">
-            © {currentYear} DevotionSim. All rights reserved.
+            © {currentYear} {t('footer.copyright')}
           </p>
         </div>
       </div>

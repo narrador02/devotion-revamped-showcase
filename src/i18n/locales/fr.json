@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "products": "Produits",
+    "media": "Médias",
+    "aboutUs": "À Propos",
+    "contact": "Contact",
+    "buyRent": "Acheter / Louer"
+  },
+  "hero": {
+    "about": "À PROPOS",
+    "us": "DE NOUS",
+    "mission": "Notre mission est de passionner les amoureux du monde de la moto en créant des",
+    "highPerformance": "simulateurs haute performance",
+    "missionEnd": "qui offrent des sensations authentiques de circuit.",
+    "exploreProducts": "Explorer les Produits",
+    "contactUs": "Nous Contacter"
+  },
+  "products": {
+    "sectionTitle": "Nos",
+    "sectionTitleHighlight": "Fonctionnalités",
+    "sectionSubtitle": "Découvrez le mélange parfait de technologie, passion et culture de course mondiale",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Découvrez un mouvement authentique à 2 axes avec des angles d'inclinaison jusqu'à 54° et un contrôle total des wheeling.",
+      "features": {
+        "axis": "Système de mouvement à 2 axes",
+        "lean": "Inclinaison jusqu'à 54° d'angle",
+        "wheelie": "Contrôle du wheeling et suspension",
+        "compatible": "Compatible avec tous les jeux de moto"
+      }
+    },
+    "withLove": {
+      "title": "Avec Amour",
+      "description": "Conçu avec passion par des passionnés de moto pour la communauté de course du monde entier.",
+      "features": {
+        "handcrafted": "Attention artisanale aux détails",
+        "premium": "Matériaux et composants premium",
+        "community": "Développement par la communauté",
+        "updates": "Mises à jour régulières du contenu"
+      }
+    },
+    "global": {
+      "title": "Global",
+      "description": "Découvrez des circuits du monde entier et affrontez des pilotes de tous les continents.",
+      "features": {
+        "circuits": "Collection de circuits internationaux",
+        "multiplayer": "Courses multijoueur en ligne",
+        "leaderboards": "Classements mondiaux",
+        "multilanguage": "Support multilingue"
+      }
+    }
+  },
+  "footer": {
+    "description": "Création de simulateurs de moto haute performance qui apportent le frisson du circuit aux passionnés du monde entier.",
+    "quickLinks": "Liens Rapides",
+    "followUs": "Suivez-nous",
+    "copyright": "DevotionSim. Tous droits réservés."
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oups ! Page non trouvée",
+    "returnHome": "Retour à l'Accueil"
+  }
+}
