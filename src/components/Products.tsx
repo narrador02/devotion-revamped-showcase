@@ -7,15 +7,15 @@ import product3 from "@/assets/product-3.jpg";
 const Products = () => {
   const products = [
     {
-      title: "Challenges",
-      description: "Push your limits with realistic circuit challenges that test your skills and precision.",
+      title: "TIME ATTACK",
+      description: "Experience authentic 2-axis motion with lean angles up to 54° and full wheelie control.",
       icon: <Zap className="text-white" size={28} />,
       image: product1,
       features: [
-        "Advanced motion simulation technology",
-        "Multiple difficulty levels",
-        "Real-time performance analytics",
-        "Customizable track conditions"
+        "2-axis movement system",
+        "Lean up to 54° angles",
+        "Wheelie & suspension control",
+        "Compatible with all motorcycle games"
       ]
     },
     {
