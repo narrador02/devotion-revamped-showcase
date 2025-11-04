@@ -33,7 +33,7 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#" className="flex items-center">
-              <img src={logo} alt="Devotion Sim Logo" className="h-12 w-auto" />
+              <img src={logo} alt="Devotion Sim Logo" className="h-24 w-auto" />
             </a>
           </div>
 
