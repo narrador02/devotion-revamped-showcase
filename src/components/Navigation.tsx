@@ -28,10 +28,10 @@ const Navigation = () => {
         isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 pt-4">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 mt-4">
             <a href="#" className="flex items-center">
               <img src={logo} alt="Devotion Sim Logo" className="h-24 w-auto" />
             </a>
