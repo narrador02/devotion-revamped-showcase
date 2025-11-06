@@ -1,10 +1,11 @@
 {
   "nav": {
+    "home": "Inicio",
     "products": "Simuladores",
-    "media": "Media",
+    "reviews": "Reseñas",
     "aboutUs": "Sobre Nosotros",
     "contact": "Contacto",
-    "buyRent": "Comprar / Alquilar"
+    "rentPurchase": "Alquilar / Comprar"
   },
   "hero": {
     "about": "SOBRE",
@@ -78,6 +79,38 @@
     "quickLinks": "Enlaces Rápidos",
     "followUs": "Síguenos",
     "copyright": "DevotionSim. Todos los derechos reservados."
+  },
+  "reviews": {
+    "title": "Reseñas de Clientes",
+    "subtitle": "Lo que dicen nuestros clientes sobre su experiencia con DevotionSim"
+  },
+  "rentPurchase": {
+    "title": "Obtén tu Simulador",
+    "subtitle": "Completa el formulario y nos pondremos en contacto contigo pronto",
+    "form": {
+      "name": "Nombre",
+      "city": "Ciudad",
+      "country": "País",
+      "phone": "Número de teléfono",
+      "phonePlaceholder": "Ej: +34 657 624 319",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "Ej: ejemplo@gmail.com",
+      "howKnowUs": "¿Cómo nos conociste?",
+      "enterpriseOrPrivate": "Empresa o particular",
+      "enterprise": "Empresa",
+      "private": "Particular",
+      "publicOrPrivate": "Uso público o privado",
+      "public": "Público",
+      "rentOrBuy": "Alquilar o comprar",
+      "rent": "Alquilar",
+      "buy": "Comprar",
+      "comment": "Comentario",
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "success": "¡Formulario enviado con éxito!",
+      "error": "Error al enviar el formulario. Por favor, inténtalo de nuevo.",
+      "required": "Este campo es obligatorio"
+    }
   },
   "notFound": {
     "title": "404",

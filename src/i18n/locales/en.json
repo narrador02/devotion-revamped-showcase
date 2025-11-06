@@ -1,10 +1,11 @@
 {
   "nav": {
+    "home": "Home",
     "products": "Simuladores",
-    "media": "Media",
+    "reviews": "Reviews",
     "aboutUs": "About Us",
     "contact": "Contact",
-    "buyRent": "Buy / Rent"
+    "rentPurchase": "Rent / Purchase"
   },
   "hero": {
     "about": "ABOUT",
@@ -78,6 +79,38 @@
     "quickLinks": "Quick Links",
     "followUs": "Follow Us",
     "copyright": "DevotionSim. All rights reserved."
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "subtitle": "What our customers say about their DevotionSim experience"
+  },
+  "rentPurchase": {
+    "title": "Get Your Simulator",
+    "subtitle": "Fill out the form below and we'll get back to you soon",
+    "form": {
+      "name": "Name",
+      "city": "City",
+      "country": "Country",
+      "phone": "Phone number",
+      "phonePlaceholder": "Ex: +34 657 624 319",
+      "email": "Email",
+      "emailPlaceholder": "Ex: example@gmail.com",
+      "howKnowUs": "How did you know us?",
+      "enterpriseOrPrivate": "Enterprise or private",
+      "enterprise": "Enterprise",
+      "private": "Private",
+      "publicOrPrivate": "Public use or private",
+      "public": "Public",
+      "rentOrBuy": "Rent or buy",
+      "rent": "Rent",
+      "buy": "Buy",
+      "comment": "Comment",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Form submitted successfully!",
+      "error": "Error submitting form. Please try again.",
+      "required": "This field is required"
+    }
   },
   "notFound": {
     "title": "404",
