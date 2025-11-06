@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
 import Footer from "@/components/Footer";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
         <Products />
       </main>
       <Footer />
+      <LanguageSwitcher />
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   title: string;
@@ -8,10 +10,17 @@ interface ProductCardProps {
   image: string;
   features: string[];
   delay?: number;
+  productId: string;
 }
 
-const ProductCard = ({ title, description, icon, image, features, delay = 0 }: ProductCardProps) => {
+const ProductCard = ({ title, description, icon, image, features, delay = 0, productId }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate(`/simuladores#${productId}`);
+  };
 
   return (
     <div
@@ -53,9 +62,10 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0 }: P
         </ul>
 
         <Button 
+          onClick={handleLearnMore}
           className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold transition-all duration-300"
         >
-          Learn More
+          {t('products.learnMore')}
         </Button>
       </div>
 

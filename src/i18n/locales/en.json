@@ -1,6 +1,6 @@
 {
   "nav": {
-    "products": "Products",
+    "products": "Simuladores",
     "media": "Media",
     "aboutUs": "About Us",
     "contact": "Contact",
@@ -19,34 +19,57 @@
     "sectionTitle": "Our",
     "sectionTitleHighlight": "Features",
     "sectionSubtitle": "Experience the perfect blend of technology, passion, and global racing culture",
+    "learnMore": "Learn More",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Experience authentic 2-axis motion with lean angles up to 54° and full wheelie control.",
+      "fullDescription": "The Time Attack model gives you the experience of two movement axis. The first axis is for the leaning and the second one is for the front suspension and wheelie control. Yes, you can be wheeleing all day long.",
       "features": {
         "axis": "2-axis movement system",
         "lean": "Lean up to 54° angles",
         "wheelie": "Wheelie & suspension control",
         "compatible": "Compatible with all motorcycle games"
+      },
+      "specs": {
+        "type": "Official MotoGP Simulator",
+        "weight": "250kg",
+        "dimensions": "2.30m x 80cm (without pedals) 1.50m width with pedals",
+        "transport": "4 wheels on the platform for easy transportation"
       }
     },
-    "withLove": {
-      "title": "With Love",
-      "description": "Crafted with passion by motorcycling enthusiasts for the racing community worldwide.",
+    "slady": {
+      "title": "SLADY",
+      "description": "Master the art of drifting with our 3-axis system that adds rear wheel sliding control.",
+      "fullDescription": "The Slady model takes you to another level, applying this third sliding axis, you will manage the sliding dose leaving every single corner. A part from the wheelie and lean axis, the fun will be increased further more.",
       "features": {
-        "handcrafted": "Handcrafted attention to detail",
-        "premium": "Premium materials and components",
-        "community": "Community-driven development",
-        "updates": "Regular content updates"
+        "axis": "3-axis movement system",
+        "lean": "Lean up to 54° angles",
+        "drift": "3rd axis: Rear wheel drift",
+        "compatible": "Compatible with all motorcycle games"
+      },
+      "specs": {
+        "type": "Official MotoGP Simulator",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (without pedals) 1.50m width with pedals",
+        "transport": "4 wheels on the platform for easy transportation"
       }
     },
-    "global": {
-      "title": "Global",
-      "description": "Experience tracks from around the world and compete with riders across the globe.",
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "The ultimate experience with 4-axis motion including forward/backward movement based on acceleration.",
+      "fullDescription": "The Top Gun is the bike. If the three axis were not enough for you, this one will be a holly experience, adding the velocity axis which means that depending on the velocity or braking level, it moves forward or reverse. The total immersion has arrived.",
       "features": {
-        "circuits": "International circuit collection",
-        "multiplayer": "Online multiplayer races",
-        "leaderboards": "Global leaderboards",
-        "multilanguage": "Multi-language support"
+        "axis": "4-axis movement system",
+        "lean": "Lean up to 54° angles",
+        "drift": "3rd axis: Rear wheel drift",
+        "velocity": "4th axis: Controls the movement when accelerating and braking",
+        "compatible": "Compatible with all motorcycle games"
+      },
+      "specs": {
+        "type": "Official MotoGP Simulator",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (without pedals) 1.50m width with pedals",
+        "transport": "4 wheels on the platform for easy transportation"
       }
     }
   },

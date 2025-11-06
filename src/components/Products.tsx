@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import { Zap, Heart, Globe } from "lucide-react";
+import { Zap, Gauge, Rocket } from "lucide-react";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
@@ -10,6 +10,7 @@ const Products = () => {
   
   const products = [
     {
+      id: "timeattack",
       title: t('products.timeAttack.title'),
       description: t('products.timeAttack.description'),
       icon: <Zap className="text-white" size={28} />,
@@ -22,27 +23,30 @@ const Products = () => {
       ]
     },
     {
-      title: t('products.withLove.title'),
-      description: t('products.withLove.description'),
-      icon: <Heart className="text-white" size={28} />,
+      id: "slady",
+      title: t('products.slady.title'),
+      description: t('products.slady.description'),
+      icon: <Gauge className="text-white" size={28} />,
       image: product2,
       features: [
-        t('products.withLove.features.handcrafted'),
-        t('products.withLove.features.premium'),
-        t('products.withLove.features.community'),
-        t('products.withLove.features.updates')
+        t('products.slady.features.axis'),
+        t('products.slady.features.lean'),
+        t('products.slady.features.drift'),
+        t('products.slady.features.compatible')
       ]
     },
     {
-      title: t('products.global.title'),
-      description: t('products.global.description'),
-      icon: <Globe className="text-white" size={28} />,
+      id: "topgun",
+      title: t('products.topGun.title'),
+      description: t('products.topGun.description'),
+      icon: <Rocket className="text-white" size={28} />,
       image: product3,
       features: [
-        t('products.global.features.circuits'),
-        t('products.global.features.multiplayer'),
-        t('products.global.features.leaderboards'),
-        t('products.global.features.multilanguage')
+        t('products.topGun.features.axis'),
+        t('products.topGun.features.lean'),
+        t('products.topGun.features.drift'),
+        t('products.topGun.features.velocity'),
+        t('products.topGun.features.compatible')
       ]
     }
   ];
@@ -65,8 +69,9 @@ const Products = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product, index) => (
             <ProductCard
-              key={product.title}
+              key={product.id}
               {...product}
+              productId={product.id}
               delay={index * 150}
             />
           ))}

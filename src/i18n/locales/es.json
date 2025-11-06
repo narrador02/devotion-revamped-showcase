@@ -1,6 +1,6 @@
 {
   "nav": {
-    "products": "Productos",
+    "products": "Simuladores",
     "media": "Media",
     "aboutUs": "Sobre Nosotros",
     "contact": "Contacto",
@@ -19,34 +19,57 @@
     "sectionTitle": "Nuestras",
     "sectionTitleHighlight": "Características",
     "sectionSubtitle": "Experimenta la combinación perfecta de tecnología, pasión y cultura de carreras global",
+    "learnMore": "Saber Más",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Experimenta movimiento auténtico de 2 ejes con ángulos de inclinación de hasta 54° y control total del caballito.",
+      "fullDescription": "El modelo Time Attack te da la experiencia de dos ejes de movimiento. El primer eje es para la inclinación y el segundo es para la suspensión delantera y el control del caballito. Sí, puedes hacer caballitos todo el día.",
       "features": {
         "axis": "Sistema de movimiento de 2 ejes",
         "lean": "Inclinación hasta 54° de ángulo",
         "wheelie": "Control de caballito y suspensión",
         "compatible": "Compatible con todos los juegos de motos"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "250kg",
+        "dimensions": "2.30m x 80cm (sin pedales) 1.50m de ancho con pedales",
+        "transport": "4 ruedas en la plataforma para fácil transporte"
       }
     },
-    "withLove": {
-      "title": "Con Amor",
-      "description": "Elaborado con pasión por entusiastas del motociclismo para la comunidad de carreras en todo el mundo.",
+    "slady": {
+      "title": "SLADY",
+      "description": "Domina el arte del deslizamiento con nuestro sistema de 3 ejes que añade control de deslizamiento de la rueda trasera.",
+      "fullDescription": "El modelo Slady te lleva a otro nivel, aplicando este tercer eje deslizante, controlarás la dosis de deslizamiento en cada curva. Además del caballito y el eje de inclinación, la diversión se incrementará aún más.",
       "features": {
-        "handcrafted": "Atención artesanal al detalle",
-        "premium": "Materiales y componentes premium",
-        "community": "Desarrollo impulsado por la comunidad",
-        "updates": "Actualizaciones regulares de contenido"
+        "axis": "Sistema de movimiento de 3 ejes",
+        "lean": "Inclinación hasta 54° de ángulo",
+        "drift": "3er eje: Deslizamiento de rueda trasera",
+        "compatible": "Compatible con todos los juegos de motos"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (sin pedales) 1.50m de ancho con pedales",
+        "transport": "4 ruedas en la plataforma para fácil transporte"
       }
     },
-    "global": {
-      "title": "Global",
-      "description": "Experimenta pistas de todo el mundo y compite con pilotos de todo el planeta.",
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "La experiencia definitiva con movimiento de 4 ejes incluyendo movimiento adelante/atrás basado en la aceleración.",
+      "fullDescription": "El Top Gun es la moto. Si los tres ejes no fueron suficientes para ti, este será una experiencia sagrada, añadiendo el eje de velocidad que significa que dependiendo del nivel de velocidad o frenado, se mueve hacia adelante o hacia atrás. La inmersión total ha llegado.",
       "features": {
-        "circuits": "Colección de circuitos internacionales",
-        "multiplayer": "Carreras multijugador en línea",
-        "leaderboards": "Clasificaciones globales",
-        "multilanguage": "Soporte multiidioma"
+        "axis": "Sistema de movimiento de 4 ejes",
+        "lean": "Inclinación hasta 54° de ángulo",
+        "drift": "3er eje: Deslizamiento de rueda trasera",
+        "velocity": "4to eje: Controla el movimiento al acelerar y frenar",
+        "compatible": "Compatible con todos los juegos de motos"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (sin pedales) 1.50m de ancho con pedales",
+        "transport": "4 ruedas en la plataforma para fácil transporte"
       }
     }
   },

@@ -1,6 +1,6 @@
 {
   "nav": {
-    "products": "Produits",
+    "products": "Simulateurs",
     "media": "Médias",
     "aboutUs": "À Propos",
     "contact": "Contact",
@@ -19,34 +19,57 @@
     "sectionTitle": "Nos",
     "sectionTitleHighlight": "Fonctionnalités",
     "sectionSubtitle": "Découvrez le mélange parfait de technologie, passion et culture de course mondiale",
+    "learnMore": "En Savoir Plus",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Découvrez un mouvement authentique à 2 axes avec des angles d'inclinaison jusqu'à 54° et un contrôle total des wheeling.",
+      "fullDescription": "Le modèle Time Attack vous offre l'expérience de deux axes de mouvement. Le premier axe est pour l'inclinaison et le second pour la suspension avant et le contrôle du wheeling. Oui, vous pouvez faire des wheelings toute la journée.",
       "features": {
         "axis": "Système de mouvement à 2 axes",
         "lean": "Inclinaison jusqu'à 54° d'angle",
         "wheelie": "Contrôle du wheeling et suspension",
         "compatible": "Compatible avec tous les jeux de moto"
+      },
+      "specs": {
+        "type": "Simulateur Officiel MotoGP",
+        "weight": "250kg",
+        "dimensions": "2.30m x 80cm (sans pédales) 1.50m de largeur avec pédales",
+        "transport": "4 roues sur la plateforme pour un transport facile"
       }
     },
-    "withLove": {
-      "title": "Avec Amour",
-      "description": "Conçu avec passion par des passionnés de moto pour la communauté de course du monde entier.",
+    "slady": {
+      "title": "SLADY",
+      "description": "Maîtrisez l'art du drift avec notre système à 3 axes qui ajoute le contrôle du glissement de la roue arrière.",
+      "fullDescription": "Le modèle Slady vous emmène à un autre niveau, en appliquant ce troisième axe de glissement, vous gérerez la dose de glissement dans chaque virage. En plus du wheeling et de l'axe d'inclinaison, le plaisir sera encore plus accru.",
       "features": {
-        "handcrafted": "Attention artisanale aux détails",
-        "premium": "Matériaux et composants premium",
-        "community": "Développement par la communauté",
-        "updates": "Mises à jour régulières du contenu"
+        "axis": "Système de mouvement à 3 axes",
+        "lean": "Inclinaison jusqu'à 54° d'angle",
+        "drift": "3ème axe : Drift de la roue arrière",
+        "compatible": "Compatible avec tous les jeux de moto"
+      },
+      "specs": {
+        "type": "Simulateur Officiel MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (sans pédales) 1.50m de largeur avec pédales",
+        "transport": "4 roues sur la plateforme pour un transport facile"
       }
     },
-    "global": {
-      "title": "Global",
-      "description": "Découvrez des circuits du monde entier et affrontez des pilotes de tous les continents.",
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "L'expérience ultime avec mouvement à 4 axes incluant le mouvement avant/arrière basé sur l'accélération.",
+      "fullDescription": "Le Top Gun est la moto. Si les trois axes ne suffisaient pas pour vous, celui-ci sera une expérience sacrée, ajoutant l'axe de vélocité qui signifie qu'en fonction du niveau de vitesse ou de freinage, il se déplace vers l'avant ou vers l'arrière. L'immersion totale est arrivée.",
       "features": {
-        "circuits": "Collection de circuits internationaux",
-        "multiplayer": "Courses multijoueur en ligne",
-        "leaderboards": "Classements mondiaux",
-        "multilanguage": "Support multilingue"
+        "axis": "Système de mouvement à 4 axes",
+        "lean": "Inclinaison jusqu'à 54° d'angle",
+        "drift": "3ème axe : Drift de la roue arrière",
+        "velocity": "4ème axe : Contrôle le mouvement lors de l'accélération et du freinage",
+        "compatible": "Compatible avec tous les jeux de moto"
+      },
+      "specs": {
+        "type": "Simulateur Officiel MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (sans pédales) 1.50m de largeur avec pédales",
+        "transport": "4 roues sur la plateforme pour un transport facile"
       }
     }
   },
