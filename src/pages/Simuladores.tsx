@@ -1,14 +1,18 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useTranslation } from "react-i18next";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel";
 import { Zap, Gauge, Rocket } from "lucide-react";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Simuladores = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const [api, setApi] = useState<CarouselApi>();
 
   const products = [
     {
@@ -53,6 +57,18 @@ const Simuladores = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!api) return;
+    
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      const productIndex = products.findIndex(p => p.id === hash);
+      if (productIndex !== -1) {
+        api.scrollTo(productIndex);
+      }
+    }
+  }, [api, location.hash]);
+
   return (
     <div className="min-h-screen bg-background font-inter">
       <Navigation />
@@ -64,7 +80,7 @@ const Simuladores = () => {
             </h1>
           </div>
 
-          <Carousel className="w-full max-w-6xl mx-auto">
+          <Carousel setApi={setApi} className="w-full max-w-6xl mx-auto">
             <CarouselContent>
               {products.map((product) => (
                 <CarouselItem key={product.id}>
