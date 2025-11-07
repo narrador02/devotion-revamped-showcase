@@ -3,6 +3,7 @@
     "home": "Accueil",
     "products": "Simulateurs",
     "reviews": "Avis",
+    "events": "Événements",
     "aboutUs": "À Propos",
     "contact": "Contact",
     "rentPurchase": "Louer / Acheter"
@@ -82,7 +83,23 @@
   },
   "reviews": {
     "title": "Avis Clients",
-    "subtitle": "Ce que disent nos clients de leur expérience DevotionSim"
+    "subtitle": "Ce que disent nos clients de leur expérience DevotionSim",
+    "tabs": {
+      "professionals": "Pilotes Professionnels",
+      "customers": "Clients d'Événements"
+    },
+    "professionals": {
+      "title": "Pilotes Professionnels",
+      "subtitle": "Découvrez les pilotes professionnels qui s'entraînent avec nos simulateurs"
+    },
+    "customers": {
+      "title": "Clients d'Événements",
+      "subtitle": "Avis de clients qui ont vécu l'expérience de nos simulateurs lors d'événements"
+    }
+  },
+  "events": {
+    "title": "Événements",
+    "subtitle": "Rejoignez-nous aux prochains événements de moto et découvrez nos simulateurs"
   },
   "rentPurchase": {
     "title": "Obtenez votre Simulateur",

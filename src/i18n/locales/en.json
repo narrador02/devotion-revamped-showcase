@@ -3,6 +3,7 @@
     "home": "Home",
     "products": "Simuladores",
     "reviews": "Reviews",
+    "events": "Events",
     "aboutUs": "About Us",
     "contact": "Contact",
     "rentPurchase": "Rent / Purchase"
@@ -82,7 +83,23 @@
   },
   "reviews": {
     "title": "Customer Reviews",
-    "subtitle": "What our customers say about their DevotionSim experience"
+    "subtitle": "What our customers say about their DevotionSim experience",
+    "tabs": {
+      "professionals": "Professional Riders",
+      "customers": "Event Customers"
+    },
+    "professionals": {
+      "title": "Professional Riders",
+      "subtitle": "Hear from professional riders who train with our simulators"
+    },
+    "customers": {
+      "title": "Event Customers",
+      "subtitle": "Reviews from customers who experienced our simulators at events"
+    }
+  },
+  "events": {
+    "title": "Events",
+    "subtitle": "Join us at upcoming motorcycle events and experience our simulators"
   },
   "rentPurchase": {
     "title": "Get Your Simulator",
