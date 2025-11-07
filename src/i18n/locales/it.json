@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Simulatori",
+    "reviews": "Recensioni",
+    "events": "Eventi",
+    "aboutUs": "Chi Siamo",
+    "contact": "Contatto",
+    "rentPurchase": "Noleggio / Acquisto"
+  },
+  "hero": {
+    "about": "CHI",
+    "us": "SIAMO",
+    "mission": "La nostra missione è entusiasmare le persone che amano il mondo del motociclismo creando",
+    "highPerformance": "simulatori ad alte prestazioni",
+    "missionEnd": "che offrono sensazioni autentiche da circuito.",
+    "exploreProducts": "Esplora i Prodotti",
+    "contactUs": "Contattaci"
+  },
+  "products": {
+    "sectionTitle": "Le Nostre",
+    "sectionTitleHighlight": "Caratteristiche",
+    "sectionSubtitle": "Sperimenta la perfetta combinazione di tecnologia, passione e cultura delle corse mondiali",
+    "learnMore": "Scopri di Più",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Sperimenta il movimento autentico a 2 assi con angoli di inclinazione fino a 54° e controllo completo dell'impennata.",
+      "fullDescription": "Il modello Time Attack ti offre l'esperienza di due assi di movimento. Il primo asse è per l'inclinazione e il secondo per la sospensione anteriore e il controllo dell'impennata. Sì, puoi fare impennate tutto il giorno.",
+      "features": {
+        "axis": "Sistema di movimento a 2 assi",
+        "lean": "Inclinazione fino a 54° di angolo",
+        "wheelie": "Controllo impennata e sospensione",
+        "compatible": "Compatibile con tutti i giochi di moto"
+      },
+      "specs": {
+        "type": "Simulatore Ufficiale MotoGP",
+        "weight": "250kg",
+        "dimensions": "2.30m x 80cm (senza pedali) 1.50m larghezza con pedali",
+        "transport": "4 ruote sulla piattaforma per un facile trasporto"
+      }
+    },
+    "slady": {
+      "title": "SLADY",
+      "description": "Padroneggia l'arte della derapata con il nostro sistema a 3 assi che aggiunge il controllo dello slittamento della ruota posteriore.",
+      "fullDescription": "Il modello Slady ti porta a un altro livello, applicando questo terzo asse di slittamento, gestirai la dose di slittamento uscendo da ogni curva. Oltre all'impennata e all'asse di inclinazione, il divertimento aumenterà ulteriormente.",
+      "features": {
+        "axis": "Sistema di movimento a 3 assi",
+        "lean": "Inclinazione fino a 54° di angolo",
+        "drift": "3° asse: Derapata ruota posteriore",
+        "compatible": "Compatibile con tutti i giochi di moto"
+      },
+      "specs": {
+        "type": "Simulatore Ufficiale MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (senza pedali) 1.50m larghezza con pedali",
+        "transport": "4 ruote sulla piattaforma per un facile trasporto"
+      }
+    },
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "L'esperienza definitiva con movimento a 4 assi incluso movimento avanti/indietro basato sull'accelerazione.",
+      "fullDescription": "Il Top Gun è la moto. Se i tre assi non erano abbastanza per te, questo sarà un'esperienza sacra, aggiungendo l'asse della velocità che significa che a seconda della velocità o del livello di frenata, si muove avanti o indietro. L'immersione totale è arrivata.",
+      "features": {
+        "axis": "Sistema di movimento a 4 assi",
+        "lean": "Inclinazione fino a 54° di angolo",
+        "drift": "3° asse: Derapata ruota posteriore",
+        "velocity": "4° asse: Controlla il movimento durante accelerazione e frenata",
+        "compatible": "Compatibile con tutti i giochi di moto"
+      },
+      "specs": {
+        "type": "Simulatore Ufficiale MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (senza pedali) 1.50m larghezza con pedali",
+        "transport": "4 ruote sulla piattaforma per un facile trasporto"
+      }
+    }
+  },
+  "footer": {
+    "description": "Creazione di simulatori di moto ad alte prestazioni che portano il brivido del circuito agli appassionati di tutto il mondo.",
+    "quickLinks": "Link Rapidi",
+    "followUs": "Seguici",
+    "copyright": "DevotionSim. Tutti i diritti riservati."
+  },
+  "reviews": {
+    "title": "Recensioni dei Clienti",
+    "subtitle": "Cosa dicono i nostri clienti della loro esperienza DevotionSim",
+    "tabs": {
+      "professionals": "Piloti Professionisti",
+      "customers": "Clienti Eventi"
+    },
+    "professionals": {
+      "title": "Piloti Professionisti",
+      "subtitle": "Ascolta i piloti professionisti che si allenano con i nostri simulatori"
+    },
+    "customers": {
+      "title": "Clienti Eventi",
+      "subtitle": "Recensioni di clienti che hanno provato i nostri simulatori agli eventi"
+    }
+  },
+  "events": {
+    "title": "Eventi",
+    "subtitle": "Unisciti a noi nei prossimi eventi motociclistici e prova i nostri simulatori",
+    "tabs": {
+      "upcoming": "Prossimi Eventi",
+      "past": "Eventi Passati"
+    },
+    "upcoming": {
+      "title": "Prossimi Eventi",
+      "subtitle": "Scopri dove potrai provare i nostri simulatori prossimamente"
+    },
+    "past": {
+      "title": "Eventi Passati",
+      "subtitle": "Eventi in cui abbiamo mostrato i nostri simulatori"
+    }
+  },
+  "rentPurchase": {
+    "title": "Ottieni il Tuo Simulatore",
+    "subtitle": "Compila il modulo qui sotto e ti risponderemo presto",
+    "form": {
+      "name": "Nome",
+      "city": "Città",
+      "country": "Paese",
+      "phone": "Numero di telefono",
+      "phonePlaceholder": "Es: +39 333 1234567",
+      "email": "Email",
+      "emailPlaceholder": "Es: esempio@gmail.com",
+      "howKnowUs": "Come ci hai conosciuto?",
+      "enterpriseOrPrivate": "Azienda o privato",
+      "enterprise": "Azienda",
+      "private": "Privato",
+      "publicOrPrivate": "Uso pubblico o privato",
+      "public": "Pubblico",
+      "rentOrBuy": "Noleggio o acquisto",
+      "rent": "Noleggio",
+      "buy": "Acquisto",
+      "comment": "Commento",
+      "send": "Invia",
+      "sending": "Invio in corso...",
+      "success": "Modulo inviato con successo!",
+      "error": "Errore nell'invio del modulo. Riprova.",
+      "required": "Questo campo è obbligatorio"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Ops! Pagina non trovata",
+    "returnHome": "Torna alla Home"
+  }
+}

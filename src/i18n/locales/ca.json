@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Inici",
+    "products": "Simuladors",
+    "reviews": "Ressenyes",
+    "events": "Esdeveniments",
+    "aboutUs": "Sobre Nosaltres",
+    "contact": "Contacte",
+    "rentPurchase": "Llogar / Comprar"
+  },
+  "hero": {
+    "about": "SOBRE",
+    "us": "NOSALTRES",
+    "mission": "La nostra missió és emocionar les persones que estimen el món del motociclisme creant",
+    "highPerformance": "simuladors d'alt rendiment",
+    "missionEnd": "que ofereixen sensacions autèntiques de circuit.",
+    "exploreProducts": "Explorar Productes",
+    "contactUs": "Contacta'ns"
+  },
+  "products": {
+    "sectionTitle": "Les Nostres",
+    "sectionTitleHighlight": "Característiques",
+    "sectionSubtitle": "Experimenta la combinació perfecta de tecnologia, passió i cultura de curses mundial",
+    "learnMore": "Més Informació",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Experimenta moviment autèntic de 2 eixos amb angles d'inclinació de fins a 54° i control complet de cavallets.",
+      "fullDescription": "El model Time Attack et dóna l'experiència de dos eixos de moviment. El primer eix és per a la inclinació i el segon per a la suspensió davantera i el control del cavallet. Sí, pots fer cavallets tot el dia.",
+      "features": {
+        "axis": "Sistema de moviment de 2 eixos",
+        "lean": "Inclinació fins a 54° d'angle",
+        "wheelie": "Control de cavallet i suspensió",
+        "compatible": "Compatible amb tots els jocs de motos"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "250kg",
+        "dimensions": "2.30m x 80cm (sense pedals) 1.50m d'amplada amb pedals",
+        "transport": "4 rodes a la plataforma per a transport fàcil"
+      }
+    },
+    "slady": {
+      "title": "SLADY",
+      "description": "Domina l'art del derrapatge amb el nostre sistema de 3 eixos que afegeix control de lliscament de la roda posterior.",
+      "fullDescription": "El model Slady et porta a un altre nivell, aplicant aquest tercer eix de lliscament, gestionaràs la dosi de lliscament sortint de cada corba. A més del cavallet i l'eix d'inclinació, la diversió augmentarà encara més.",
+      "features": {
+        "axis": "Sistema de moviment de 3 eixos",
+        "lean": "Inclinació fins a 54° d'angle",
+        "drift": "3r eix: Derrapatge roda posterior",
+        "compatible": "Compatible amb tots els jocs de motos"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (sense pedals) 1.50m d'amplada amb pedals",
+        "transport": "4 rodes a la plataforma per a transport fàcil"
+      }
+    },
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "L'experiència definitiva amb moviment de 4 eixos incloent moviment endavant/enrere basat en l'acceleració.",
+      "fullDescription": "El Top Gun és la moto. Si els tres eixos no eren suficients per a tu, aquest serà una experiència sagrada, afegint l'eix de velocitat que significa que depenent de la velocitat o el nivell de frenada, es mou endavant o enrere. La immersió total ha arribat.",
+      "features": {
+        "axis": "Sistema de moviment de 4 eixos",
+        "lean": "Inclinació fins a 54° d'angle",
+        "drift": "3r eix: Derrapatge roda posterior",
+        "velocity": "4t eix: Controla el moviment quan s'accelera i es frena",
+        "compatible": "Compatible amb tots els jocs de motos"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (sense pedals) 1.50m d'amplada amb pedals",
+        "transport": "4 rodes a la plataforma per a transport fàcil"
+      }
+    }
+  },
+  "footer": {
+    "description": "Creant simuladors de motos d'alt rendiment que porten l'emoció del circuit als entusiastes de tot el món.",
+    "quickLinks": "Enllaços Ràpids",
+    "followUs": "Segueix-nos",
+    "copyright": "DevotionSim. Tots els drets reservats."
+  },
+  "reviews": {
+    "title": "Ressenyes de Clients",
+    "subtitle": "El que diuen els nostres clients sobre la seva experiència DevotionSim",
+    "tabs": {
+      "professionals": "Pilots Professionals",
+      "customers": "Clients d'Esdeveniments"
+    },
+    "professionals": {
+      "title": "Pilots Professionals",
+      "subtitle": "Escolta pilots professionals que s'entrenen amb els nostres simuladors"
+    },
+    "customers": {
+      "title": "Clients d'Esdeveniments",
+      "subtitle": "Ressenyes de clients que van experimentar els nostres simuladors en esdeveniments"
+    }
+  },
+  "events": {
+    "title": "Esdeveniments",
+    "subtitle": "Uneix-te a nosaltres en els propers esdeveniments de motociclisme i experimenta els nostres simuladors",
+    "tabs": {
+      "upcoming": "Propers Esdeveniments",
+      "past": "Esdeveniments Passats"
+    },
+    "upcoming": {
+      "title": "Propers Esdeveniments",
+      "subtitle": "Descobreix on podràs experimentar els nostres simuladors properament"
+    },
+    "past": {
+      "title": "Esdeveniments Passats",
+      "subtitle": "Esdeveniments on vam mostrar els nostres simuladors"
+    }
+  },
+  "rentPurchase": {
+    "title": "Aconsegueix el Teu Simulador",
+    "subtitle": "Omple el formulari a continuació i et respondrem aviat",
+    "form": {
+      "name": "Nom",
+      "city": "Ciutat",
+      "country": "País",
+      "phone": "Telèfon",
+      "phonePlaceholder": "Ex: +34 657 624 319",
+      "email": "Correu electrònic",
+      "emailPlaceholder": "Ex: exemple@gmail.com",
+      "howKnowUs": "Com ens vas conèixer?",
+      "enterpriseOrPrivate": "Empresa o particular",
+      "enterprise": "Empresa",
+      "private": "Particular",
+      "publicOrPrivate": "Ús públic o privat",
+      "public": "Públic",
+      "rentOrBuy": "Llogar o comprar",
+      "rent": "Llogar",
+      "buy": "Comprar",
+      "comment": "Comentari",
+      "send": "Enviar",
+      "sending": "Enviant...",
+      "success": "Formulari enviat correctament!",
+      "error": "Error enviant el formulari. Si us plau, torna-ho a intentar.",
+      "required": "Aquest camp és obligatori"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Ups! Pàgina no trobada",
+    "returnHome": "Tornar a Inici"
+  }
+}

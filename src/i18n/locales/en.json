@@ -99,7 +99,19 @@
   },
   "events": {
     "title": "Events",
-    "subtitle": "Join us at upcoming motorcycle events and experience our simulators"
+    "subtitle": "Join us at upcoming motorcycle events and experience our simulators",
+    "tabs": {
+      "upcoming": "Upcoming Events",
+      "past": "Past Events"
+    },
+    "upcoming": {
+      "title": "Upcoming Events",
+      "subtitle": "See where you can experience our simulators next"
+    },
+    "past": {
+      "title": "Past Events",
+      "subtitle": "Events where we showcased our simulators"
+    }
   },
   "rentPurchase": {
     "title": "Get Your Simulator",

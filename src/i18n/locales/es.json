@@ -99,7 +99,19 @@
   },
   "events": {
     "title": "Eventos",
-    "subtitle": "Únete a nosotros en los próximos eventos de motociclismo y experimenta nuestros simuladores"
+    "subtitle": "Únete a nosotros en los próximos eventos de motociclismo y experimenta nuestros simuladores",
+    "tabs": {
+      "upcoming": "Próximos Eventos",
+      "past": "Eventos Pasados"
+    },
+    "upcoming": {
+      "title": "Próximos Eventos",
+      "subtitle": "Descubre dónde podrás experimentar nuestros simuladores próximamente"
+    },
+    "past": {
+      "title": "Eventos Pasados",
+      "subtitle": "Eventos donde mostramos nuestros simuladores"
+    }
   },
   "rentPurchase": {
     "title": "Obtén tu Simulador",

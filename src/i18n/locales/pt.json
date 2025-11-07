@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Início",
+    "products": "Simuladores",
+    "reviews": "Avaliações",
+    "events": "Eventos",
+    "aboutUs": "Sobre Nós",
+    "contact": "Contato",
+    "rentPurchase": "Alugar / Comprar"
+  },
+  "hero": {
+    "about": "SOBRE",
+    "us": "NÓS",
+    "mission": "Nossa missão é emocionar pessoas que amam o mundo do motociclismo criando",
+    "highPerformance": "simuladores de alto desempenho",
+    "missionEnd": "que entregam sensações autênticas de circuito.",
+    "exploreProducts": "Explorar Produtos",
+    "contactUs": "Entre em Contato"
+  },
+  "products": {
+    "sectionTitle": "Nossas",
+    "sectionTitleHighlight": "Características",
+    "sectionSubtitle": "Experimente a combinação perfeita de tecnologia, paixão e cultura de corridas global",
+    "learnMore": "Saiba Mais",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Experimente movimento autêntico de 2 eixos com ângulos de inclinação até 54° e controle completo de empinada.",
+      "fullDescription": "O modelo Time Attack oferece a experiência de dois eixos de movimento. O primeiro eixo é para a inclinação e o segundo para a suspensão dianteira e controle de empinada. Sim, você pode empinar o dia todo.",
+      "features": {
+        "axis": "Sistema de movimento de 2 eixos",
+        "lean": "Inclinação até 54° de ângulo",
+        "wheelie": "Controle de empinada e suspensão",
+        "compatible": "Compatível com todos os jogos de moto"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "250kg",
+        "dimensions": "2,30m x 80cm (sem pedais) 1,50m largura com pedais",
+        "transport": "4 rodas na plataforma para transporte fácil"
+      }
+    },
+    "slady": {
+      "title": "SLADY",
+      "description": "Domine a arte de derrapar com nosso sistema de 3 eixos que adiciona controle de deslizamento da roda traseira.",
+      "fullDescription": "O modelo Slady leva você a outro nível, aplicando este terceiro eixo de deslizamento, você gerenciará a dose de deslizamento saindo de cada curva. Além da empinada e do eixo de inclinação, a diversão aumentará ainda mais.",
+      "features": {
+        "axis": "Sistema de movimento de 3 eixos",
+        "lean": "Inclinação até 54° de ângulo",
+        "drift": "3º eixo: Derrapagem da roda traseira",
+        "compatible": "Compatível com todos os jogos de moto"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "280kg",
+        "dimensions": "2,30m x 80cm (sem pedais) 1,50m largura com pedais",
+        "transport": "4 rodas na plataforma para transporte fácil"
+      }
+    },
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "A experiência definitiva com movimento de 4 eixos incluindo movimento para frente/trás baseado na aceleração.",
+      "fullDescription": "O Top Gun é a moto. Se os três eixos não eram suficientes para você, este será uma experiência sagrada, adicionando o eixo de velocidade o que significa que dependendo da velocidade ou nível de frenagem, ele se move para frente ou para trás. A imersão total chegou.",
+      "features": {
+        "axis": "Sistema de movimento de 4 eixos",
+        "lean": "Inclinação até 54° de ângulo",
+        "drift": "3º eixo: Derrapagem da roda traseira",
+        "velocity": "4º eixo: Controla o movimento ao acelerar e frear",
+        "compatible": "Compatível com todos os jogos de moto"
+      },
+      "specs": {
+        "type": "Simulador Oficial MotoGP",
+        "weight": "280kg",
+        "dimensions": "2,30m x 80cm (sem pedais) 1,50m largura com pedais",
+        "transport": "4 rodas na plataforma para transporte fácil"
+      }
+    }
+  },
+  "footer": {
+    "description": "Criando simuladores de moto de alto desempenho que trazem a emoção do circuito para entusiastas em todo o mundo.",
+    "quickLinks": "Links Rápidos",
+    "followUs": "Siga-nos",
+    "copyright": "DevotionSim. Todos os direitos reservados."
+  },
+  "reviews": {
+    "title": "Avaliações de Clientes",
+    "subtitle": "O que nossos clientes dizem sobre sua experiência DevotionSim",
+    "tabs": {
+      "professionals": "Pilotos Profissionais",
+      "customers": "Clientes de Eventos"
+    },
+    "professionals": {
+      "title": "Pilotos Profissionais",
+      "subtitle": "Ouça pilotos profissionais que treinam com nossos simuladores"
+    },
+    "customers": {
+      "title": "Clientes de Eventos",
+      "subtitle": "Avaliações de clientes que experimentaram nossos simuladores em eventos"
+    }
+  },
+  "events": {
+    "title": "Eventos",
+    "subtitle": "Junte-se a nós em próximos eventos de motociclismo e experimente nossos simuladores",
+    "tabs": {
+      "upcoming": "Próximos Eventos",
+      "past": "Eventos Passados"
+    },
+    "upcoming": {
+      "title": "Próximos Eventos",
+      "subtitle": "Descubra onde você poderá experimentar nossos simuladores em breve"
+    },
+    "past": {
+      "title": "Eventos Passados",
+      "subtitle": "Eventos onde mostramos nossos simuladores"
+    }
+  },
+  "rentPurchase": {
+    "title": "Obtenha Seu Simulador",
+    "subtitle": "Preencha o formulário abaixo e entraremos em contato em breve",
+    "form": {
+      "name": "Nome",
+      "city": "Cidade",
+      "country": "País",
+      "phone": "Número de telefone",
+      "phonePlaceholder": "Ex: +351 912 345 678",
+      "email": "E-mail",
+      "emailPlaceholder": "Ex: exemplo@gmail.com",
+      "howKnowUs": "Como nos conheceu?",
+      "enterpriseOrPrivate": "Empresa ou particular",
+      "enterprise": "Empresa",
+      "private": "Particular",
+      "publicOrPrivate": "Uso público ou privado",
+      "public": "Público",
+      "rentOrBuy": "Alugar ou comprar",
+      "rent": "Alugar",
+      "buy": "Comprar",
+      "comment": "Comentário",
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "success": "Formulário enviado com sucesso!",
+      "error": "Erro ao enviar formulário. Por favor, tente novamente.",
+      "required": "Este campo é obrigatório"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Ops! Página não encontrada",
+    "returnHome": "Voltar para Início"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "products": "Simulatoren",
+    "reviews": "Bewertungen",
+    "events": "Veranstaltungen",
+    "aboutUs": "Über Uns",
+    "contact": "Kontakt",
+    "rentPurchase": "Mieten / Kaufen"
+  },
+  "hero": {
+    "about": "ÜBER",
+    "us": "UNS",
+    "mission": "Unsere Mission ist es, Menschen zu begeistern, die die Welt des Motorradsports lieben, indem wir",
+    "highPerformance": "Hochleistungssimulatoren",
+    "missionEnd": "schaffen, die authentische Rennstreckensensationen bieten.",
+    "exploreProducts": "Produkte Erkunden",
+    "contactUs": "Kontaktieren Sie Uns"
+  },
+  "products": {
+    "sectionTitle": "Unsere",
+    "sectionTitleHighlight": "Funktionen",
+    "sectionSubtitle": "Erleben Sie die perfekte Mischung aus Technologie, Leidenschaft und globaler Rennkultur",
+    "learnMore": "Mehr Erfahren",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Erleben Sie authentische 2-Achsen-Bewegung mit Neigungswinkeln bis zu 54° und vollständiger Wheelie-Kontrolle.",
+      "fullDescription": "Das Time Attack-Modell bietet Ihnen das Erlebnis von zwei Bewegungsachsen. Die erste Achse ist für die Neigung und die zweite für die Vorderradfederung und Wheelie-Kontrolle. Ja, Sie können den ganzen Tag Wheelies machen.",
+      "features": {
+        "axis": "2-Achsen-Bewegungssystem",
+        "lean": "Neigung bis zu 54° Winkel",
+        "wheelie": "Wheelie & Federungskontrolle",
+        "compatible": "Kompatibel mit allen Motorradspielen"
+      },
+      "specs": {
+        "type": "Offizieller MotoGP Simulator",
+        "weight": "250kg",
+        "dimensions": "2,30m x 80cm (ohne Pedale) 1,50m Breite mit Pedalen",
+        "transport": "4 Räder auf der Plattform für einfachen Transport"
+      }
+    },
+    "slady": {
+      "title": "SLADY",
+      "description": "Meistern Sie die Kunst des Driftens mit unserem 3-Achsen-System, das die Kontrolle über das Rutschen des Hinterrads hinzufügt.",
+      "fullDescription": "Das Slady-Modell bringt Sie auf ein anderes Level, indem es diese dritte Rutschachse anwendet. Sie kontrollieren die Rutschdosis beim Verlassen jeder Kurve. Neben dem Wheelie und der Neigungsachse wird der Spaß noch weiter zunehmen.",
+      "features": {
+        "axis": "3-Achsen-Bewegungssystem",
+        "lean": "Neigung bis zu 54° Winkel",
+        "drift": "3. Achse: Hinterrad-Drift",
+        "compatible": "Kompatibel mit allen Motorradspielen"
+      },
+      "specs": {
+        "type": "Offizieller MotoGP Simulator",
+        "weight": "280kg",
+        "dimensions": "2,30m x 80cm (ohne Pedale) 1,50m Breite mit Pedalen",
+        "transport": "4 Räder auf der Plattform für einfachen Transport"
+      }
+    },
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "Das ultimative Erlebnis mit 4-Achsen-Bewegung einschließlich Vorwärts-/Rückwärtsbewegung basierend auf Beschleunigung.",
+      "fullDescription": "Der Top Gun ist das Motorrad. Wenn die drei Achsen nicht genug für Sie waren, wird dies ein heiliges Erlebnis sein, mit Hinzufügung der Geschwindigkeitsachse, was bedeutet, dass es sich je nach Geschwindigkeit oder Bremsniveau vorwärts oder rückwärts bewegt. Die totale Immersion ist angekommen.",
+      "features": {
+        "axis": "4-Achsen-Bewegungssystem",
+        "lean": "Neigung bis zu 54° Winkel",
+        "drift": "3. Achse: Hinterrad-Drift",
+        "velocity": "4. Achse: Steuert die Bewegung beim Beschleunigen und Bremsen",
+        "compatible": "Kompatibel mit allen Motorradspielen"
+      },
+      "specs": {
+        "type": "Offizieller MotoGP Simulator",
+        "weight": "280kg",
+        "dimensions": "2,30m x 80cm (ohne Pedale) 1,50m Breite mit Pedalen",
+        "transport": "4 Räder auf der Plattform für einfachen Transport"
+      }
+    }
+  },
+  "footer": {
+    "description": "Hochleistungs-Motorradsimulatoren schaffen, die den Nervenkitzel der Rennstrecke zu Enthusiasten weltweit bringen.",
+    "quickLinks": "Schnelllinks",
+    "followUs": "Folgen Sie Uns",
+    "copyright": "DevotionSim. Alle Rechte vorbehalten."
+  },
+  "reviews": {
+    "title": "Kundenbewertungen",
+    "subtitle": "Was unsere Kunden über ihre DevotionSim-Erfahrung sagen",
+    "tabs": {
+      "professionals": "Professionelle Fahrer",
+      "customers": "Event-Kunden"
+    },
+    "professionals": {
+      "title": "Professionelle Fahrer",
+      "subtitle": "Hören Sie von professionellen Fahrern, die mit unseren Simulatoren trainieren"
+    },
+    "customers": {
+      "title": "Event-Kunden",
+      "subtitle": "Bewertungen von Kunden, die unsere Simulatoren bei Veranstaltungen erlebt haben"
+    }
+  },
+  "events": {
+    "title": "Veranstaltungen",
+    "subtitle": "Begleiten Sie uns bei kommenden Motorradveranstaltungen und erleben Sie unsere Simulatoren",
+    "tabs": {
+      "upcoming": "Kommende Veranstaltungen",
+      "past": "Vergangene Veranstaltungen"
+    },
+    "upcoming": {
+      "title": "Kommende Veranstaltungen",
+      "subtitle": "Entdecken Sie, wo Sie unsere Simulatoren demnächst erleben können"
+    },
+    "past": {
+      "title": "Vergangene Veranstaltungen",
+      "subtitle": "Veranstaltungen, bei denen wir unsere Simulatoren präsentiert haben"
+    }
+  },
+  "rentPurchase": {
+    "title": "Holen Sie Sich Ihren Simulator",
+    "subtitle": "Füllen Sie das Formular unten aus und wir melden uns bald bei Ihnen",
+    "form": {
+      "name": "Name",
+      "city": "Stadt",
+      "country": "Land",
+      "phone": "Telefonnummer",
+      "phonePlaceholder": "z.B.: +49 151 12345678",
+      "email": "E-Mail",
+      "emailPlaceholder": "z.B.: beispiel@gmail.com",
+      "howKnowUs": "Wie haben Sie von uns erfahren?",
+      "enterpriseOrPrivate": "Unternehmen oder privat",
+      "enterprise": "Unternehmen",
+      "private": "Privat",
+      "publicOrPrivate": "Öffentliche oder private Nutzung",
+      "public": "Öffentlich",
+      "rentOrBuy": "Mieten oder kaufen",
+      "rent": "Mieten",
+      "buy": "Kaufen",
+      "comment": "Kommentar",
+      "send": "Senden",
+      "sending": "Wird gesendet...",
+      "success": "Formular erfolgreich gesendet!",
+      "error": "Fehler beim Senden des Formulars. Bitte versuchen Sie es erneut.",
+      "required": "Dieses Feld ist erforderlich"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Hoppla! Seite nicht gefunden",
+    "returnHome": "Zurück zur Startseite"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Simulatoren",
+    "reviews": "Reviews",
+    "events": "Evenementen",
+    "aboutUs": "Over Ons",
+    "contact": "Contact",
+    "rentPurchase": "Huren / Kopen"
+  },
+  "hero": {
+    "about": "OVER",
+    "us": "ONS",
+    "mission": "Onze missie is om mensen die van de motorwereld houden te enthousiasmeren door het creëren van",
+    "highPerformance": "hoogwaardige simulatoren",
+    "missionEnd": "die authentieke circuitsensaties leveren.",
+    "exploreProducts": "Producten Verkennen",
+    "contactUs": "Neem Contact Op"
+  },
+  "products": {
+    "sectionTitle": "Onze",
+    "sectionTitleHighlight": "Kenmerken",
+    "sectionSubtitle": "Ervaar de perfecte mix van technologie, passie en wereldwijde racecultuur",
+    "learnMore": "Meer Informatie",
+    "timeAttack": {
+      "title": "TIME ATTACK",
+      "description": "Ervaar authentieke 2-assige beweging met hellingshoeken tot 54° en volledige wheelie-controle.",
+      "fullDescription": "Het Time Attack-model geeft je de ervaring van twee bewegingsassen. De eerste as is voor het leunen en de tweede voor de voorvering en wheelie-controle. Ja, je kunt de hele dag wheelies doen.",
+      "features": {
+        "axis": "2-assig bewegingssysteem",
+        "lean": "Leunen tot 54° hoek",
+        "wheelie": "Wheelie & vering controle",
+        "compatible": "Compatible met alle motorspellen"
+      },
+      "specs": {
+        "type": "Officiële MotoGP Simulator",
+        "weight": "250kg",
+        "dimensions": "2.30m x 80cm (zonder pedalen) 1.50m breedte met pedalen",
+        "transport": "4 wielen op het platform voor eenvoudig transport"
+      }
+    },
+    "slady": {
+      "title": "SLADY",
+      "description": "Beheers de kunst van het driften met ons 3-assig systeem dat controle over het slippen van het achterwiel toevoegt.",
+      "fullDescription": "Het Slady-model brengt je naar een ander niveau, door deze derde slip-as toe te passen, beheers je de slip-dosis bij het verlaten van elke bocht. Naast de wheelie en leun-as, zal het plezier nog verder toenemen.",
+      "features": {
+        "axis": "3-assig bewegingssysteem",
+        "lean": "Leunen tot 54° hoek",
+        "drift": "3e as: Achterwiel drift",
+        "compatible": "Compatible met alle motorspellen"
+      },
+      "specs": {
+        "type": "Officiële MotoGP Simulator",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (zonder pedalen) 1.50m breedte met pedalen",
+        "transport": "4 wielen op het platform voor eenvoudig transport"
+      }
+    },
+    "topGun": {
+      "title": "TOP GUN",
+      "description": "De ultieme ervaring met 4-assige beweging inclusief voor-/achterwaartse beweging op basis van acceleratie.",
+      "fullDescription": "De Top Gun is de motor. Als de drie assen niet genoeg voor je waren, zal dit een heilige ervaring zijn, met toevoeging van de snelheidsas wat betekent dat afhankelijk van de snelheid of het remniveau, het vooruit of achteruit beweegt. De totale immersie is gearriveerd.",
+      "features": {
+        "axis": "4-assig bewegingssysteem",
+        "lean": "Leunen tot 54° hoek",
+        "drift": "3e as: Achterwiel drift",
+        "velocity": "4e as: Regelt de beweging bij accelereren en remmen",
+        "compatible": "Compatible met alle motorspellen"
+      },
+      "specs": {
+        "type": "Officiële MotoGP Simulator",
+        "weight": "280kg",
+        "dimensions": "2.30m x 80cm (zonder pedalen) 1.50m breedte met pedalen",
+        "transport": "4 wielen op het platform voor eenvoudig transport"
+      }
+    }
+  },
+  "footer": {
+    "description": "Het creëren van hoogwaardige motorsimulators die de sensatie van het circuit naar liefhebbers over de hele wereld brengen.",
+    "quickLinks": "Snelle Links",
+    "followUs": "Volg Ons",
+    "copyright": "DevotionSim. Alle rechten voorbehouden."
+  },
+  "reviews": {
+    "title": "Klantrecensies",
+    "subtitle": "Wat onze klanten zeggen over hun DevotionSim-ervaring",
+    "tabs": {
+      "professionals": "Professionele Rijders",
+      "customers": "Evenement Klanten"
+    },
+    "professionals": {
+      "title": "Professionele Rijders",
+      "subtitle": "Luister naar professionele rijders die trainen met onze simulatoren"
+    },
+    "customers": {
+      "title": "Evenement Klanten",
+      "subtitle": "Reviews van klanten die onze simulatoren op evenementen hebben ervaren"
+    }
+  },
+  "events": {
+    "title": "Evenementen",
+    "subtitle": "Sluit je bij ons aan op aankomende motorevenementen en ervaar onze simulatoren",
+    "tabs": {
+      "upcoming": "Aankomende Evenementen",
+      "past": "Voorbije Evenementen"
+    },
+    "upcoming": {
+      "title": "Aankomende Evenementen",
+      "subtitle": "Ontdek waar je onze simulatoren binnenkort kunt ervaren"
+    },
+    "past": {
+      "title": "Voorbije Evenementen",
+      "subtitle": "Evenementen waar we onze simulatoren hebben getoond"
+    }
+  },
+  "rentPurchase": {
+    "title": "Krijg Jouw Simulator",
+    "subtitle": "Vul het formulier hieronder in en we nemen snel contact met je op",
+    "form": {
+      "name": "Naam",
+      "city": "Stad",
+      "country": "Land",
+      "phone": "Telefoonnummer",
+      "phonePlaceholder": "Bijv: +31 6 12345678",
+      "email": "E-mail",
+      "emailPlaceholder": "Bijv: voorbeeld@gmail.com",
+      "howKnowUs": "Hoe heb je ons leren kennen?",
+      "enterpriseOrPrivate": "Bedrijf of privé",
+      "enterprise": "Bedrijf",
+      "private": "Privé",
+      "publicOrPrivate": "Openbaar gebruik of privé",
+      "public": "Openbaar",
+      "rentOrBuy": "Huren of kopen",
+      "rent": "Huren",
+      "buy": "Kopen",
+      "comment": "Opmerking",
+      "send": "Verzenden",
+      "sending": "Verzenden...",
+      "success": "Formulier succesvol verzonden!",
+      "error": "Fout bij het verzenden van het formulier. Probeer het opnieuw.",
+      "required": "Dit veld is verplicht"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oeps! Pagina niet gevonden",
+    "returnHome": "Terug naar Home"
+  }
+}

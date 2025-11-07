@@ -99,7 +99,19 @@
   },
   "events": {
     "title": "Événements",
-    "subtitle": "Rejoignez-nous aux prochains événements de moto et découvrez nos simulateurs"
+    "subtitle": "Rejoignez-nous lors des prochains événements moto et découvrez nos simulateurs",
+    "tabs": {
+      "upcoming": "Événements à venir",
+      "past": "Événements passés"
+    },
+    "upcoming": {
+      "title": "Événements à venir",
+      "subtitle": "Découvrez où vous pourrez essayer nos simulateurs prochainement"
+    },
+    "past": {
+      "title": "Événements passés",
+      "subtitle": "Événements où nous avons présenté nos simulateurs"
+    }
   },
   "rentPurchase": {
     "title": "Obtenez votre Simulateur",

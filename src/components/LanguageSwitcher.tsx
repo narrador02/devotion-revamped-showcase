@@ -15,6 +15,11 @@ const LanguageSwitcher = () => {
     { code: "en", label: "English" },
     { code: "es", label: "Español" },
     { code: "fr", label: "Français" },
+    { code: "ca", label: "Català" },
+    { code: "nl", label: "Nederlands" },
+    { code: "it", label: "Italiano" },
+    { code: "de", label: "Deutsch" },
+    { code: "pt", label: "Português" },
   ];
 
   const changeLanguage = (lng: string) => {
