@@ -9,8 +9,8 @@
     "rentPurchase": "Rent / Purchase"
   },
   "hero": {
+    "simulator": "Simulator",
     "motoGP": "MOTO GP",
-    "simulator": "SIMULATOR",
     "mission": "Our mission is to excite people who love the world of motorcycling by creating",
     "highPerformance": "high-performance simulators",
     "missionEnd": "that deliver authentic circuit sensations.",
