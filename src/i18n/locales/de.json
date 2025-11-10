@@ -9,8 +9,9 @@
     "rentPurchase": "Mieten / Kaufen"
   },
   "hero": {
-    "simulator": "Simulator",
-    "motoGP": "MOTO GP",
+    "title": "MotoGP-Simulator",
+    "titlePart1": "MotoGP",
+    "titlePart2": "Simulator",
     "mission": "Unsere Mission ist es, Menschen zu begeistern, die die Welt des Motorradsports lieben, indem wir",
     "highPerformance": "Hochleistungssimulatoren",
     "missionEnd": "schaffen, die authentische Rennstreckensensationen bieten.",
