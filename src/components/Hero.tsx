@@ -24,8 +24,8 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 pt-20 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-rajdhani font-bold mb-6 leading-tight">
-            <span className="text-foreground">{t('hero.about')}</span>{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('hero.us')}</span>
+            <span className="text-foreground">{t('hero.motoGP')}</span>{" "}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('hero.simulator')}</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-foreground/80 mb-12 font-inter max-w-3xl mx-auto leading-relaxed">
