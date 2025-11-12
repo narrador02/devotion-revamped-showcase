@@ -127,14 +127,12 @@ const Reviews = () => {
       <Footer />
       <LanguageSwitcher />
       
-      {selectedVideo && (
-        <VideoModal
-          isOpen={!!selectedVideo}
-          onClose={() => setSelectedVideo(null)}
-          videoId={selectedVideo.videoId}
-          title={selectedVideo.name}
-        />
-      )}
+      <VideoModal
+        isOpen={!!selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+        videoId={selectedVideo?.videoId || ""}
+        title={selectedVideo?.name || ""}
+      />
     </div>
   );
 };
