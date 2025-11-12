@@ -57,14 +57,27 @@ const RentPurchase = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      console.log(values);
+      const response = await fetch('https://formspree.io/f/xgvrveqe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
       toast({
-        title: t('rentPurchase.form.success'),
+        title: "Thank you! We'll contact you soon.",
+        description: t('rentPurchase.form.success'),
       });
       form.reset();
     } catch (error) {
       toast({
-        title: t('rentPurchase.form.error'),
+        title: "Something went wrong. Please try again later.",
+        description: t('rentPurchase.form.error'),
         variant: "destructive",
       });
     } finally {
