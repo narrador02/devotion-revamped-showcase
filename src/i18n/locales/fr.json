@@ -96,7 +96,8 @@
     "customers": {
       "title": "Clients d'Événements",
       "subtitle": "Avis de clients qui ont vécu l'expérience de nos simulateurs lors d'événements"
-    }
+    },
+    "showMore": "Afficher plus de vidéos"
   },
   "events": {
     "title": "Événements",

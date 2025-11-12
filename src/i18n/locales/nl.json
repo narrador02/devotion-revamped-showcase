@@ -96,7 +96,8 @@
     "customers": {
       "title": "Evenement Klanten",
       "subtitle": "Reviews van klanten die onze simulatoren op evenementen hebben ervaren"
-    }
+    },
+    "showMore": "Toon meer video's"
   },
   "events": {
     "title": "Evenementen",

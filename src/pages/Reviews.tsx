@@ -1,13 +1,50 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Users } from "lucide-react";
+import VideoCard from "@/components/VideoCard";
+import VideoModal from "@/components/VideoModal";
+import { Button } from "@/components/ui/button";
+
+interface Video {
+  id: string;
+  videoId: string;
+  name: string;
+}
+
+const professionalVideos: Video[] = [
+  { id: "1", videoId: "nQbrjsr0yiU", name: "Professional Rider 1" },
+  { id: "2", videoId: "nQbrjsr0yiU", name: "Professional Rider 2" },
+  { id: "3", videoId: "nQbrjsr0yiU", name: "Professional Rider 3" },
+  { id: "4", videoId: "nQbrjsr0yiU", name: "Professional Rider 4" },
+  { id: "5", videoId: "nQbrjsr0yiU", name: "Professional Rider 5" },
+  { id: "6", videoId: "nQbrjsr0yiU", name: "Professional Rider 6" },
+  { id: "7", videoId: "nQbrjsr0yiU", name: "Professional Rider 7" },
+  { id: "8", videoId: "nQbrjsr0yiU", name: "Professional Rider 8" },
+];
+
+const customerVideos: Video[] = [
+  { id: "1", videoId: "nQbrjsr0yiU", name: "Event Client 1" },
+  { id: "2", videoId: "nQbrjsr0yiU", name: "Event Client 2" },
+  { id: "3", videoId: "nQbrjsr0yiU", name: "Event Client 3" },
+  { id: "4", videoId: "nQbrjsr0yiU", name: "Event Client 4" },
+  { id: "5", videoId: "nQbrjsr0yiU", name: "Event Client 5" },
+  { id: "6", videoId: "nQbrjsr0yiU", name: "Event Client 6" },
+  { id: "7", videoId: "nQbrjsr0yiU", name: "Event Client 7" },
+  { id: "8", videoId: "nQbrjsr0yiU", name: "Event Client 8" },
+];
 
 const Reviews = () => {
   const { t } = useTranslation();
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const [showMoreProfessionals, setShowMoreProfessionals] = useState(false);
+  const [showMoreCustomers, setShowMoreCustomers] = useState(false);
+
+  const visibleProfessionalVideos = showMoreProfessionals ? professionalVideos : professionalVideos.slice(0, 6);
+  const visibleCustomerVideos = showMoreCustomers ? customerVideos : customerVideos.slice(0, 6);
 
   return (
     <div className="min-h-screen bg-background">
@@ -23,7 +60,7 @@ const Reviews = () => {
             </p>
           </div>
           
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <Tabs defaultValue="professionals" className="w-full">
               <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
                 <TabsTrigger value="professionals" className="flex items-center gap-2">
@@ -37,41 +74,51 @@ const Reviews = () => {
               </TabsList>
 
               <TabsContent value="professionals" className="space-y-8">
-                <Card className="border-primary/20 bg-card/50 backdrop-blur">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 font-rajdhani text-3xl">
-                      <Trophy className="h-6 w-6 text-primary" />
-                      {t('reviews.professionals.title')}
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      {t('reviews.professionals.subtitle')}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-center text-muted-foreground py-8">
-                      Coming soon...
-                    </p>
-                  </CardContent>
-                </Card>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {visibleProfessionalVideos.map((video) => (
+                    <VideoCard
+                      key={video.id}
+                      videoId={video.videoId}
+                      title={video.name}
+                      onClick={() => setSelectedVideo(video)}
+                    />
+                  ))}
+                </div>
+                {!showMoreProfessionals && professionalVideos.length > 6 && (
+                  <div className="flex justify-center mt-8">
+                    <Button
+                      onClick={() => setShowMoreProfessionals(true)}
+                      variant="outline"
+                      className="border-primary/40 hover:bg-primary/10"
+                    >
+                      {t('reviews.showMore')}
+                    </Button>
+                  </div>
+                )}
               </TabsContent>
 
               <TabsContent value="customers" className="space-y-8">
-                <Card className="border-primary/20 bg-card/50 backdrop-blur">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 font-rajdhani text-3xl">
-                      <Users className="h-6 w-6 text-primary" />
-                      {t('reviews.customers.title')}
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      {t('reviews.customers.subtitle')}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-center text-muted-foreground py-8">
-                      Coming soon...
-                    </p>
-                  </CardContent>
-                </Card>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {visibleCustomerVideos.map((video) => (
+                    <VideoCard
+                      key={video.id}
+                      videoId={video.videoId}
+                      title={video.name}
+                      onClick={() => setSelectedVideo(video)}
+                    />
+                  ))}
+                </div>
+                {!showMoreCustomers && customerVideos.length > 6 && (
+                  <div className="flex justify-center mt-8">
+                    <Button
+                      onClick={() => setShowMoreCustomers(true)}
+                      variant="outline"
+                      className="border-primary/40 hover:bg-primary/10"
+                    >
+                      {t('reviews.showMore')}
+                    </Button>
+                  </div>
+                )}
               </TabsContent>
             </Tabs>
           </div>
@@ -79,6 +126,15 @@ const Reviews = () => {
       </main>
       <Footer />
       <LanguageSwitcher />
+      
+      {selectedVideo && (
+        <VideoModal
+          isOpen={!!selectedVideo}
+          onClose={() => setSelectedVideo(null)}
+          videoId={selectedVideo.videoId}
+          title={selectedVideo.name}
+        />
+      )}
     </div>
   );
 };
