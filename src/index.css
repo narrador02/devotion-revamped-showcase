@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 10 90% 55%;
+    --primary: 0 85% 62%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 20 100% 50%;
+    --secondary: 5 90% 58%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 10 85% 50%;
+    --accent: 0 80% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,13 +34,13 @@ All colors MUST be HSL.
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 10 90% 55%;
+    --ring: 0 85% 62%;
 
     --radius: 0.75rem;
     
     /* Racing theme colors */
-    --racing-red: 0 85% 60%;
-    --racing-orange: 20 100% 55%;
+    --racing-red: 0 85% 62%;
+    --racing-red-accent: 5 90% 58%;
     --racing-dark: 0 0% 8%;
     --racing-gray: 0 0% 25%;
     
