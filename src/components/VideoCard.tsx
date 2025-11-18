@@ -7,8 +7,27 @@ interface VideoCardProps {
   onClick: () => void;
 }
 
+const extractVideoId = (input: string) => {
+  try {
+    // Caso 1: URL estilo shorts
+    if (input.includes("shorts")) {
+      return input.split("/shorts/")[1].split("?")[0];
+    }
+    // Caso 2: URL normal
+    if (input.includes("youtube.com") || input.includes("youtu.be")) {
+      const url = new URL(input);
+      return url.searchParams.get("v") || input.split("/").pop();
+    }
+    // Caso 3: ya es un ID
+    return input;
+  } catch {
+    return input;
+  }
+};
+
 const VideoCard = ({ videoId, title, onClick }: VideoCardProps) => {
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const id = extractVideoId(videoId);
+  const thumbnailUrl = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 
   return (
     <Card 

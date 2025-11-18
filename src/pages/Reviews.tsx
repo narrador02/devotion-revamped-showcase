@@ -27,7 +27,7 @@ const professionalVideos: Video[] = [
 ];
 
 const customerVideos: Video[] = [
-  { id: "1", videoId: "nQbrjsr0yiU", name: "Event Client 1" },
+  { id: "1", videoId: "GANm4vmbvEA", name: "Trabajador Ducati" },
   { id: "2", videoId: "nQbrjsr0yiU", name: "Event Client 2" },
   { id: "3", videoId: "nQbrjsr0yiU", name: "Event Client 3" },
   { id: "4", videoId: "nQbrjsr0yiU", name: "Event Client 4" },
