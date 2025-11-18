@@ -27,11 +27,11 @@ const professionalVideos: Video[] = [
 ];
 
 const customerVideos: Video[] = [
-  { id: "1", videoId: "GANm4vmbvEA", name: "Trabajador Ducati" },
-  { id: "2", videoId: "nQbrjsr0yiU", name: "Event Client 2" },
-  { id: "3", videoId: "nQbrjsr0yiU", name: "Event Client 3" },
-  { id: "4", videoId: "nQbrjsr0yiU", name: "Event Client 4" },
-  { id: "5", videoId: "nQbrjsr0yiU", name: "Event Client 5" },
+  { id: "1", videoId: "GANm4vmbvEA", name: "Trabajador de Ducati Corse" },
+  { id: "2", videoId: "lJYINxTIHeM", name: "Lorenzo Trastevere, World Champion Yamaha E-Sports" },
+  { id: "3", videoId: "nQbrjsr0yiU", name: "Event Client 4" },
+  { id: "4", videoId: "nQbrjsr0yiU", name: "Event Client 5" },
+  { id: "5", videoId: "pDb6BUL9PcI", name: "Massimo, Rider de Ducati Corse " },
   { id: "6", videoId: "nQbrjsr0yiU", name: "Event Client 6" },
   { id: "7", videoId: "nQbrjsr0yiU", name: "Event Client 7" },
   { id: "8", videoId: "nQbrjsr0yiU", name: "Event Client 8" },
