@@ -141,6 +141,16 @@
       "success": "Formulier succesvol verzonden!",
       "error": "Fout bij het verzenden van het formulier. Probeer het opnieuw.",
       "required": "Dit veld is verplicht"
+    },
+    "benefits": {
+      "quality": "Premium Kwaliteit",
+      "qualityDesc": "Industriële componenten gebouwd voor 24/7 gebruik.",
+      "shipping": "Wereldwijde Verzending",
+      "shippingDesc": "Veilige levering en installatie wereldwijd.",
+      "support": "Expert Ondersteuning",
+      "supportDesc": "Technische assistentie van ons engineeringteam.",
+      "warranty": "Garantie Inbegrepen",
+      "warrantyDesc": "Volledige dekking voor uw gemoedsrust."
     }
   },
   "notFound": {

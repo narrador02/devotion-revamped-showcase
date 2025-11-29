@@ -35,13 +35,18 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
+                <a href="/about" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
                   {t('nav.aboutUs')}
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
+                <a href="/contact" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
                   {t('nav.contact')}
+                </a>
+              </li>
+              <li>
+                <a href="/virtual-reality" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
+                  VR Experience
                 </a>
               </li>
             </ul>
@@ -51,29 +56,29 @@ const Footer = () => {
           <div>
             <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">{t('footer.followUs')}</h4>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
                 aria-label="Facebook"
               >
                 <Facebook size={18} className="text-foreground hover:text-primary" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
                 aria-label="Twitter"
               >
                 <Twitter size={18} className="text-foreground hover:text-primary" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram size={18} className="text-foreground hover:text-primary" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-card border border-border hover:border-primary hover:bg-primary/10 flex items-center justify-center transition-all duration-300"
                 aria-label="YouTube"
               >

@@ -17,8 +17,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { CheckCircle2, ShieldCheck, Truck, Headphones } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const RentPurchase = () => {
   const { t } = useTranslation();
@@ -70,14 +73,13 @@ const RentPurchase = () => {
       }
 
       toast({
-        title: "Thank you! We'll contact you soon.",
-        description: t('rentPurchase.form.success'),
+        title: t('rentPurchase.form.success'),
+        description: t('contactPage.form.sentDesc'),
       });
       form.reset();
     } catch (error) {
       toast({
-        title: "Something went wrong. Please try again later.",
-        description: t('rentPurchase.form.error'),
+        title: t('rentPurchase.form.error'),
         variant: "destructive",
       });
     } finally {
@@ -85,239 +87,259 @@ const RentPurchase = () => {
     }
   };
 
+  const benefits = [
+    {
+      icon: <ShieldCheck className="w-6 h-6 text-primary" />,
+      title: t('rentPurchase.benefits.quality'),
+      description: t('rentPurchase.benefits.qualityDesc')
+    },
+    {
+      icon: <Truck className="w-6 h-6 text-primary" />,
+      title: t('rentPurchase.benefits.shipping'),
+      description: t('rentPurchase.benefits.shippingDesc')
+    },
+    {
+      icon: <Headphones className="w-6 h-6 text-primary" />,
+      title: t('rentPurchase.benefits.support'),
+      description: t('rentPurchase.benefits.supportDesc')
+    },
+    {
+      icon: <CheckCircle2 className="w-6 h-6 text-primary" />,
+      title: t('rentPurchase.benefits.warranty'),
+      description: t('rentPurchase.benefits.warrantyDesc')
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-inter">
+      <Helmet>
+        <title>{t('rentPurchase.title')} | DevotionSim</title>
+        <meta name="description" content={t('rentPurchase.subtitle')} />
+      </Helmet>
       <Navigation />
-      <main className="pt-32 pb-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold font-rajdhani mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+
+      <div className="flex flex-col lg:flex-row min-h-screen pt-20">
+        {/* Left Side - Visuals & Info */}
+        <div className="lg:w-5/12 bg-muted/30 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10 max-w-lg mx-auto lg:mx-0"
+          >
+            <h1 className="text-4xl lg:text-5xl font-rajdhani font-bold mb-6 text-foreground">
               {t('rentPurchase.title')}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
               {t('rentPurchase.subtitle')}
             </p>
-          </div>
 
-          <div className="max-w-2xl mx-auto bg-card p-8 rounded-lg shadow-lg border border-border">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.name')} *</FormLabel>
-                      <FormControl>
-                        <Input {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.city')} *</FormLabel>
-                      <FormControl>
-                        <Input {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="country"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.country')} *</FormLabel>
-                      <FormControl>
-                        <Input {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.phone')} *</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder={t('rentPurchase.form.phonePlaceholder')} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.email')} *</FormLabel>
-                      <FormControl>
-                        <Input {...field} type="email" placeholder={t('rentPurchase.form.emailPlaceholder')} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="howKnowUs"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.howKnowUs')}</FormLabel>
-                      <FormControl>
-                        <Input {...field} className="bg-background" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="enterpriseOrPrivate"
-                  render={({ field }) => (
-                    <FormItem className="space-y-3">
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.enterpriseOrPrivate')} *</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex space-x-4"
-                        >
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="enterprise" />
-                            </FormControl>
-                            <FormLabel className="font-normal cursor-pointer">
-                              {t('rentPurchase.form.enterprise')}
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="private" />
-                            </FormControl>
-                            <FormLabel className="font-normal cursor-pointer">
-                              {t('rentPurchase.form.private')}
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="publicOrPrivate"
-                  render={({ field }) => (
-                    <FormItem className="space-y-3">
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.publicOrPrivate')} *</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex space-x-4"
-                        >
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="public" />
-                            </FormControl>
-                            <FormLabel className="font-normal cursor-pointer">
-                              {t('rentPurchase.form.public')}
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="private" />
-                            </FormControl>
-                            <FormLabel className="font-normal cursor-pointer">
-                              {t('rentPurchase.form.private')}
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="rentOrBuy"
-                  render={({ field }) => (
-                    <FormItem className="space-y-3">
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.rentOrBuy')} *</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex space-x-4"
-                        >
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="rent" />
-                            </FormControl>
-                            <FormLabel className="font-normal cursor-pointer">
-                              {t('rentPurchase.form.rent')}
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="buy" />
-                            </FormControl>
-                            <FormLabel className="font-normal cursor-pointer">
-                              {t('rentPurchase.form.buy')}
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="comment"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">{t('rentPurchase.form.comment')}</FormLabel>
-                      <FormControl>
-                        <Textarea {...field} className="bg-background min-h-[100px]" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-                  disabled={isSubmitting}
+            <div className="space-y-8">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+                  className="flex items-start gap-4"
                 >
-                  {isSubmitting ? t('rentPurchase.form.sending') : t('rentPurchase.form.send')}
-                </Button>
-              </form>
-            </Form>
-          </div>
+                  <div className="p-3 rounded-xl bg-background border border-border shadow-sm shrink-0">
+                    {benefit.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-foreground">{benefit.title}</h3>
+                    <p className="text-muted-foreground">{benefit.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <Footer />
+
+        {/* Right Side - Form */}
+        <div className="lg:w-7/12 p-8 lg:p-12 bg-background flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="max-w-2xl mx-auto w-full"
+          >
+            <div className="bg-card p-8 rounded-2xl border border-border shadow-lg">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('rentPurchase.form.name')} *</FormLabel>
+                          <FormControl>
+                            <Input {...field} className="h-11" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('rentPurchase.form.email')} *</FormLabel>
+                          <FormControl>
+                            <Input {...field} type="email" placeholder={t('rentPurchase.form.emailPlaceholder')} className="h-11" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('rentPurchase.form.phone')} *</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder={t('rentPurchase.form.phonePlaceholder')} className="h-11" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="city"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t('rentPurchase.form.city')} *</FormLabel>
+                          <FormControl>
+                            <Input {...field} className="h-11" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('rentPurchase.form.country')} *</FormLabel>
+                        <FormControl>
+                          <Input {...field} className="h-11" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-muted/30 rounded-xl border border-border/50">
+                    <FormField
+                      control={form.control}
+                      name="rentOrBuy"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel className="font-semibold">{t('rentPurchase.form.rentOrBuy')} *</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex gap-4"
+                            >
+                              <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="rent" />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer hover:text-primary transition-colors">
+                                  {t('rentPurchase.form.rent')}
+                                </FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="buy" />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer hover:text-primary transition-colors">
+                                  {t('rentPurchase.form.buy')}
+                                </FormLabel>
+                              </FormItem>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="enterpriseOrPrivate"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel className="font-semibold">{t('rentPurchase.form.enterpriseOrPrivate')} *</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex gap-4"
+                            >
+                              <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="enterprise" />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer hover:text-primary transition-colors">
+                                  {t('rentPurchase.form.enterprise')}
+                                </FormLabel>
+                              </FormItem>
+                              <FormItem className="flex items-center space-x-2 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem value="private" />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer hover:text-primary transition-colors">
+                                  {t('rentPurchase.form.private')}
+                                </FormLabel>
+                              </FormItem>
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="comment"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('rentPurchase.form.comment')}</FormLabel>
+                        <FormControl>
+                          <Textarea {...field} className="min-h-[120px] resize-none" placeholder="Tell us more about your needs..." />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button
+                    type="submit"
+                    className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/25"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? t('rentPurchase.form.sending') : t('rentPurchase.form.send')}
+                  </Button>
+                </form>
+              </Form>
+            </div>
+          </motion.div>
+        </div>
+      </div>
       <LanguageSwitcher />
     </div>
   );

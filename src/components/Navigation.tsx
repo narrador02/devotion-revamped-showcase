@@ -22,7 +22,10 @@ const Navigation = () => {
   const navLinks = [
     { name: t('nav.home'), path: "/" },
     { name: t('nav.products'), path: "/simuladores" },
+    { name: t('nav.vr'), path: "/virtual-reality" },
     { name: t('nav.reviews'), path: "/reviews" },
+    { name: t('nav.aboutUs'), path: "/about" },
+    { name: t('nav.contact'), path: "/contact" },
     { name: t('nav.events'), path: "/events" },
     { name: t('nav.rentPurchase'), path: "/rent-purchase" },
   ];
@@ -31,9 +34,8 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">

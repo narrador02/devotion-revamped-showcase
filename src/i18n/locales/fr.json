@@ -141,6 +141,16 @@
       "success": "Formulaire soumis avec succès!",
       "error": "Erreur lors de l'envoi du formulaire. Veuillez réessayer.",
       "required": "Ce champ est obligatoire"
+    },
+    "benefits": {
+      "quality": "Qualité Premium",
+      "qualityDesc": "Composants de qualité industrielle conçus pour un fonctionnement 24/7.",
+      "shipping": "Livraison Mondiale",
+      "shippingDesc": "Livraison sécurisée et installation dans le monde entier.",
+      "support": "Support Expert",
+      "supportDesc": "Assistance technique de notre équipe d'ingénierie.",
+      "warranty": "Garantie Incluse",
+      "warrantyDesc": "Couverture complète pour votre tranquillité d'esprit."
     }
   },
   "notFound": {

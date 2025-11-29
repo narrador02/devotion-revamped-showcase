@@ -59,7 +59,7 @@ const Simuladores = () => {
 
   useEffect(() => {
     if (!api) return;
-    
+
     const hash = location.hash.replace('#', '');
     if (hash) {
       const productIndex = products.findIndex(p => p.id === hash);
@@ -107,7 +107,7 @@ const Simuladores = () => {
                       <p className="text-lg text-muted-foreground font-inter leading-relaxed">
                         {product.description}
                       </p>
-                      
+
                       {/* Features List */}
                       <div className="space-y-3">
                         <h3 className="text-2xl font-rajdhani font-semibold text-foreground">

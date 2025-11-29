@@ -141,6 +141,16 @@
       "success": "Form submitted successfully!",
       "error": "Error submitting form. Please try again.",
       "required": "This field is required"
+    },
+    "benefits": {
+      "quality": "Premium Quality",
+      "qualityDesc": "Industrial-grade components built for 24/7 operation.",
+      "shipping": "Global Shipping",
+      "shippingDesc": "Secure delivery and installation worldwide.",
+      "support": "Expert Support",
+      "supportDesc": "Technical assistance from our engineering team.",
+      "warranty": "Warranty Included",
+      "warrantyDesc": "Comprehensive coverage for peace of mind."
     }
   },
   "notFound": {

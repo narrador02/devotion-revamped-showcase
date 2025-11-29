@@ -141,6 +141,16 @@
       "success": "Formulari enviat correctament!",
       "error": "Error enviant el formulari. Si us plau, torna-ho a intentar.",
       "required": "Aquest camp és obligatori"
+    },
+    "benefits": {
+      "quality": "Qualitat Premium",
+      "qualityDesc": "Components de grau industrial construïts per a operació 24/7.",
+      "shipping": "Enviament Global",
+      "shippingDesc": "Lliurament segur i instal·lació arreu del món.",
+      "support": "Suport Expert",
+      "supportDesc": "Assistència tècnica del nostre equip d'enginyeria.",
+      "warranty": "Garantia Inclosa",
+      "warrantyDesc": "Cobertura completa per a la seva tranquil·litat."
     }
   },
   "notFound": {

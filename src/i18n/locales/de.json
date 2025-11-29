@@ -141,6 +141,16 @@
       "success": "Formular erfolgreich gesendet!",
       "error": "Fehler beim Senden des Formulars. Bitte versuchen Sie es erneut.",
       "required": "Dieses Feld ist erforderlich"
+    },
+    "benefits": {
+      "quality": "Premium-Qualität",
+      "qualityDesc": "Industriekomponenten für 24/7-Betrieb gebaut.",
+      "shipping": "Weltweiter Versand",
+      "shippingDesc": "Sichere Lieferung und Installation weltweit.",
+      "support": "Experten-Support",
+      "supportDesc": "Technische Unterstützung von unserem Engineering-Team.",
+      "warranty": "Garantie Inklusive",
+      "warrantyDesc": "Umfassende Abdeckung für Ihre Sicherheit."
     }
   },
   "notFound": {
