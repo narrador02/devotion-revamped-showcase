@@ -3,17 +3,6 @@
     "home": "Home",
     "products": "Simuladores",
     "reviews": "Reviews",
-    "events": "Events",
-    "aboutUs": "About Us",
-    "contact": "Contact",
-    "rentPurchase": "Rent / Purchase",
-    "vr": "VR Experience"
-  },
-  "hero": {
-    "title": "MotoGP Simulator",
-    "titlePart1": "MotoGP",
-    "titlePart2": "Simulator",
-    "mission": "Our mission is to excite people who love the world of motorcycling by creating",
     "highPerformance": "high-performance simulators",
     "missionEnd": "that deliver authentic circuit sensations.",
     "exploreProducts": "Explore Products",
@@ -226,9 +215,104 @@
     },
     "schools": {
       "title": "Driving Schools",
-      "desc": "Safe and efficient training for students. Teach correct posture and bike control in a controlled environment.",
-      "learnMore": "Learn More"
+      "desc": "Safe and efficient training for students. Teach correct posture and bike control in a controlled environment."
     },
     "learnMore": "Learn More"
+  },
+  "vr_page": {
+    "hero": {
+      "title": "VR EXPERIENCE",
+      "subtitle": "Immersive simulation compatible with MotoGP and all modern games",
+      "cta": "Discover the Experience"
+    },
+    "sensations": {
+      "title": "Riding Sensations",
+      "speed": {
+        "title": "Speed & Acceleration",
+        "desc": "Feel the real thrust of the bike when opening the throttle fully."
+      },
+      "lean": {
+        "title": "Cornering Lean",
+        "desc": "Lean up to 54° with total confidence and millimeter precision."
+      },
+      "vibration": {
+        "title": "Vibrations & G-Force",
+        "desc": "Every bump, curb, and braking is transmitted to your body."
+      },
+      "sound": {
+        "title": "Surround Sound",
+        "desc": "The roar of the engine and the wind surround you completely."
+      }
+    },
+    "immersion": {
+      "title": "Immersive VR Experience",
+      "description": "Forget screens. With our VR technology, you are INSIDE the circuit. The perception of speed and distance is absolute.",
+      "features": {
+        "env360": {
+          "title": "360º Environment",
+          "desc": "Look wherever you want, you are the rider."
+        },
+        "spatialAudio": {
+          "title": "Spatial Audio",
+          "desc": "Locate your rivals just by sound."
+        },
+        "naturalInteraction": {
+          "title": "Natural Interaction",
+          "desc": "Your movements control the action instinctively."
+        }
+      }
+    },
+    "compatibility": {
+      "title": "Total Compatibility",
+      "description": "Our simulators are designed to work with the most demanding titles on the market.",
+      "badges": {
+        "motogp": "MotoGP Games",
+        "racing": "Modern Racing",
+        "sims": "Pro Simulators"
+      }
+    },
+    "howItWorks": {
+      "title": "How the experience feels",
+      "steps": {
+        "1": {
+          "title": "Prepare",
+          "desc": "Put on the VR headset and controllers."
+        },
+        "2": {
+          "title": "Configure",
+          "desc": "Choose circuit, bike, and game mode."
+        },
+        "3": {
+          "title": "Compete",
+          "desc": "Lean, accelerate, and fight for every corner."
+        }
+      }
+    },
+    "useCases": {
+      "title": "Applications & Use Cases",
+      "cards": {
+        "events": {
+          "title": "Events & Fairs",
+          "desc": "Attract crowds with an unforgettable experience."
+        },
+        "centers": {
+          "title": "Leisure Centers",
+          "desc": "High profitability for arcades and gaming zones."
+        },
+        "marketing": {
+          "title": "Marketing",
+          "desc": "Brand activations that leave a mark."
+        },
+        "training": {
+          "title": "Training",
+          "desc": "Safe practice for developing riders."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to feel the speed?",
+      "button": "Request Demo",
+      "link": "See technical specs"
+    }
   }
 }

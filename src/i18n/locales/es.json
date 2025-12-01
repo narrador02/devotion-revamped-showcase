@@ -225,10 +225,103 @@
       "desc": "La experiencia de juego definitiva. Siente la adrenalina de MotoGP en casa. Desafía a amigos y compite en línea."
     },
     "schools": {
-      "title": "Escuelas de Conducción",
-      "desc": "Entrenamiento seguro y eficiente para estudiantes. Enseña la postura correcta y el control de la moto en un entorno controlado.",
       "learnMore": "Saber Más"
+    }
+  },
+  "vr_page": {
+    "hero": {
+      "title": "EXPERIENCIA VR",
+      "subtitle": "Simulación inmersiva compatible con MotoGP y todos los juegos modernos",
+      "cta": "Descubre la Experiencia"
     },
-    "learnMore": "Saber Más"
+    "sensations": {
+      "title": "Sensaciones al Pilotar",
+      "speed": {
+        "title": "Velocidad y Aceleración",
+        "desc": "Siente el empuje real de la moto al abrir gas a fondo."
+      },
+      "lean": {
+        "title": "Inclinación en Curva",
+        "desc": "Túmbate hasta 54° con total confianza y precisión milimétrica."
+      },
+      "vibration": {
+        "title": "Vibraciones y Fuerza G",
+        "desc": "Cada bache, piano y frenada se transmite a tu cuerpo."
+      },
+      "sound": {
+        "title": "Sonido Envolvente",
+        "desc": "El rugido del motor y el viento te rodean por completo."
+      }
+    },
+    "immersion": {
+      "title": "Experiencia Inmersiva en VR",
+      "description": "Olvídate de las pantallas. Con nuestra tecnología VR, estás DENTRO del circuito. La percepción de velocidad y distancia es absoluta.",
+      "features": {
+        "env360": {
+          "title": "Entorno 360º",
+          "desc": "Mira hacia donde quieras, eres el piloto."
+        },
+        "spatialAudio": {
+          "title": "Audio Espacial",
+          "desc": "Localiza a tus rivales solo por el sonido."
+        },
+        "naturalInteraction": {
+          "title": "Interacción Natural",
+          "desc": "Tus movimientos controlan la acción instintivamente."
+        }
+      }
+    },
+    "compatibility": {
+      "title": "Compatibilidad Total",
+      "description": "Nuestros simuladores están diseñados para funcionar con los títulos más exigentes del mercado.",
+      "badges": {
+        "motogp": "Juegos MotoGP",
+        "racing": "Racing Moderno",
+        "sims": "Simuladores Pro"
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo se vive la experiencia",
+      "steps": {
+        "1": {
+          "title": "Prepárate",
+          "desc": "Te colocas el casco VR y los mandos."
+        },
+        "2": {
+          "title": "Configura",
+          "desc": "Eliges circuito, moto y modo de juego."
+        },
+        "3": {
+          "title": "Compite",
+          "desc": "Inclinas, aceleras y luchas por cada curva."
+        }
+      }
+    },
+    "useCases": {
+      "title": "Aplicaciones y Casos de Uso",
+      "cards": {
+        "events": {
+          "title": "Eventos y Ferias",
+          "desc": "Atrae multitudes con una experiencia inolvidable."
+        },
+        "centers": {
+          "title": "Centros de Ocio",
+          "desc": "Rentabilidad alta para arcades y zonas gaming."
+        },
+        "marketing": {
+          "title": "Marketing",
+          "desc": "Activaciones de marca que dejan huella."
+        },
+        "training": {
+          "title": "Entrenamiento",
+          "desc": "Práctica segura para pilotos en desarrollo."
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Listo para sentir la velocidad?",
+      "button": "Solicitar Demo",
+      "link": "Ver especificaciones técnicas"
+    }
   }
 }
