@@ -6,7 +6,8 @@
     "events": "Evenementen",
     "aboutUs": "Over Ons",
     "contact": "Contact",
-    "rentPurchase": "Huren / Kopen"
+    "rentPurchase": "Huren / Kopen",
+    "vr": "VR Ervaring"
   },
   "hero": {
     "title": "MotoGP Simulator",
@@ -157,5 +158,77 @@
     "title": "404",
     "message": "Oeps! Pagina niet gevonden",
     "returnHome": "Terug naar Home"
+  },
+  "about": {
+    "title": "Over",
+    "subtitle": "DevotionSim",
+    "description": "Geboren uit een passie voor racen en een toewijding aan technische excellentie.",
+    "missionTitle": "Onze Missie",
+    "missionText1": "Bij DevotionSim overbruggen we de kloof tussen virtueel racen en echte fysica. Onze missie is om professionele rijders en enthousiastelingen de meest realistische trainingstools te bieden.",
+    "missionText2": "We geloven dat simulatie niet alleen een spel is—het is een cruciaal hulpmiddel voor ontwikkeling, veiligheid en prestatieverbetering.",
+    "values": {
+      "innovation": "Innovatie",
+      "innovationDesc": "Voortdurend de grenzen van bewegingstechnologie verleggen.",
+      "quality": "Kwaliteit",
+      "qualityDesc": "Industriële componenten voor 24/7 duurzaamheid.",
+      "passion": "Passie",
+      "passionDesc": "Gebouwd door rijders, voor rijders."
+    }
+  },
+  "contactPage": {
+    "title": "Contact",
+    "subtitle": "Opnemen",
+    "description": "Klaar om de ultieme simulatie te ervaren? We zijn hier om te helpen.",
+    "getInTouch": "Neem Contact Op",
+    "form": {
+      "name": "Naam",
+      "email": "E-mail",
+      "subject": "Onderwerp",
+      "message": "Bericht",
+      "send": "Bericht Verzenden",
+      "sent": "Bericht Verzonden",
+      "sentDesc": "We nemen zo snel mogelijk contact met u op."
+    }
+  },
+  "vr": {
+    "title": "VOORBIJ DE REALITEIT",
+    "subtitle": "Stap het circuit binnen. Voel elke bocht. Totale onderdompeling met VR-integratie.",
+    "cta": "Verken Compatibiliteit",
+    "features": {
+      "universal": "Universele Ondersteuning",
+      "universalDesc": "Compatibel met alle grote VR-headsets, waaronder Meta Quest, HTC Vive en Valve Index.",
+      "gameReady": "Klaar voor Spelen",
+      "gameReadyDesc": "Naadloze integratie met MotoGP™-serie, Ride 4 en Assetto Corsa.",
+      "zeroLatency": "Nul Latentie",
+      "zeroLatencyDesc": "Geoptimaliseerde telemetrie voor lag-vrije synchronisatie tussen beweging en beelden."
+    },
+    "immersion": {
+      "title": "Voel de",
+      "highlight": "Snelheid",
+      "description": "Onze eigen software vertaalt elke hobbel, bocht en versnelling direct naar het chassis van de simulator. In combinatie met VR wordt je brein misleid te geloven dat je echt op het circuit bent.",
+      "telemetry": "Real-time telemetrieverwerking",
+      "audio": "Ruimtelijke audio-integratie",
+      "haptic": "Haptische feedbackondersteuning"
+    }
+  },
+  "useCases": {
+    "title": "Voor wie is",
+    "highlight": "DevotionSim",
+    "suffix": "?",
+    "subtitle": "Veelzijdigheid ontmoet prestaties. Kies je pad.",
+    "professional": {
+      "title": "Professionele Training",
+      "desc": "Voor professionele rijders die spiergeheugen moeten trainen, nieuwe circuits moeten leren en zonder risico moeten herstellen van blessures."
+    },
+    "entertainment": {
+      "title": "Entertainment",
+      "desc": "De ultieme game-ervaring. Voel de adrenaline van MotoGP thuis. Daag vrienden uit en race online."
+    },
+    "schools": {
+      "title": "Rijscholen",
+      "desc": "Veilige en efficiënte training voor studenten. Leer de juiste houding en motorcontrole in een gecontroleerde omgeving.",
+      "learnMore": "Meer Informatie"
+    },
+    "learnMore": "Meer Informatie"
   }
 }

@@ -6,7 +6,8 @@
     "events": "Eventi",
     "aboutUs": "Chi Siamo",
     "contact": "Contatto",
-    "rentPurchase": "Noleggio / Acquisto"
+    "rentPurchase": "Noleggio / Acquisto",
+    "vr": "Esperienza VR"
   },
   "hero": {
     "title": "Simulatore MotoGP",
@@ -157,5 +158,77 @@
     "title": "404",
     "message": "Ops! Pagina non trovata",
     "returnHome": "Torna alla Home"
+  },
+  "about": {
+    "title": "Chi",
+    "subtitle": "Siamo",
+    "description": "Nato da una passione per le corse e una dedizione all'eccellenza ingegneristica.",
+    "missionTitle": "La Nostra Missione",
+    "missionText1": "In DevotionSim, colmiamo il divario tra le corse virtuali e la fisica del mondo reale. La nostra missione è fornire ai piloti professionisti e agli appassionati gli strumenti di allenamento più realistici disponibili.",
+    "missionText2": "Crediamo che la simulazione non sia solo un gioco, è uno strumento cruciale per lo sviluppo, la sicurezza e il miglioramento delle prestazioni.",
+    "values": {
+      "innovation": "Innovazione",
+      "innovationDesc": "Spingendo costantemente i confini della tecnologia di movimento.",
+      "quality": "Qualità",
+      "qualityDesc": "Componenti di grado industriale per una durata 24/7.",
+      "passion": "Passione",
+      "passionDesc": "Creato da piloti, per piloti."
+    }
+  },
+  "contactPage": {
+    "title": "Contatta",
+    "subtitle": "Noi",
+    "description": "Pronto a vivere la simulazione definitiva? Siamo qui per aiutare.",
+    "getInTouch": "Mettiti in Contatto",
+    "form": {
+      "name": "Nome",
+      "email": "Email",
+      "subject": "Oggetto",
+      "message": "Messaggio",
+      "send": "Invia Messaggio",
+      "sent": "Messaggio Inviato",
+      "sentDesc": "Ti risponderemo il prima possibile."
+    }
+  },
+  "vr": {
+    "title": "OLTRE LA REALTÀ",
+    "subtitle": "Entra nel circuito. Senti ogni curva. Immersione totale con integrazione VR.",
+    "cta": "Esplora Compatibilità",
+    "features": {
+      "universal": "Supporto Universale",
+      "universalDesc": "Compatibile con tutti i principali visori VR inclusi Meta Quest, HTC Vive e Valve Index.",
+      "gameReady": "Pronto per il Gioco",
+      "gameReadyDesc": "Integrazione perfetta con la serie MotoGP™, Ride 4 e Assetto Corsa.",
+      "zeroLatency": "Zero Latenza",
+      "zeroLatencyDesc": "Telemetria ottimizzata per sincronizzazione senza lag tra movimento e immagini."
+    },
+    "immersion": {
+      "title": "Senti la",
+      "highlight": "Velocità",
+      "description": "Il nostro software proprietario traduce ogni dosso, curva e accelerazione direttamente al telaio del simulatore. Quando combinato con la VR, il tuo cervello è ingannato credendo di essere veramente in pista.",
+      "telemetry": "Elaborazione telemetria in tempo reale",
+      "audio": "Integrazione audio spaziale",
+      "haptic": "Supporto feedback tattile"
+    }
+  },
+  "useCases": {
+    "title": "Per chi è",
+    "highlight": "DevotionSim",
+    "suffix": "?",
+    "subtitle": "La versatilità incontra le prestazioni. Scegli il tuo percorso.",
+    "professional": {
+      "title": "Allenamento Professionale",
+      "desc": "Per piloti professionisti che devono allenare la memoria muscolare, imparare nuovi circuiti e recuperare da infortuni senza rischi."
+    },
+    "entertainment": {
+      "title": "Intrattenimento",
+      "desc": "L'esperienza di gioco definitiva. Senti l'adrenalina della MotoGP a casa. Sfida gli amici e competi online."
+    },
+    "schools": {
+      "title": "Scuole Guida",
+      "desc": "Allenamento sicuro ed efficiente per studenti. Insegna la postura corretta e il controllo della moto in un ambiente controllato.",
+      "learnMore": "Scopri di Più"
+    },
+    "learnMore": "Scopri di Più"
   }
 }

@@ -6,7 +6,8 @@
     "events": "Events",
     "aboutUs": "About Us",
     "contact": "Contact",
-    "rentPurchase": "Rent / Purchase"
+    "rentPurchase": "Rent / Purchase",
+    "vr": "VR Experience"
   },
   "hero": {
     "title": "MotoGP Simulator",
@@ -157,5 +158,77 @@
     "title": "404",
     "message": "Oops! Page not found",
     "returnHome": "Return to Home"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "DevotionSim",
+    "description": "Born from a passion for racing and a dedication to engineering excellence.",
+    "missionTitle": "Our Mission",
+    "missionText1": "At DevotionSim, we bridge the gap between virtual racing and real-world physics. Our mission is to provide professional riders and enthusiasts with the most realistic training tools available.",
+    "missionText2": "We believe that simulation isn't just a game—it's a crucial tool for development, safety, and performance improvement.",
+    "values": {
+      "innovation": "Innovation",
+      "innovationDesc": "Constantly pushing the boundaries of motion technology.",
+      "quality": "Quality",
+      "qualityDesc": "Industrial-grade components for 24/7 durability.",
+      "passion": "Passion",
+      "passionDesc": "Built by riders, for riders."
+    }
+  },
+  "contactPage": {
+    "title": "Contact",
+    "subtitle": "Us",
+    "description": "Ready to experience the ultimate simulation? We're here to help.",
+    "getInTouch": "Get In Touch",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sent": "Message Sent",
+      "sentDesc": "We'll get back to you as soon as possible."
+    }
+  },
+  "vr": {
+    "title": "BEYOND REALITY",
+    "subtitle": "Step into the circuit. Feel every turn. Total immersion with VR integration.",
+    "cta": "Explore Compatibility",
+    "features": {
+      "universal": "Universal Support",
+      "universalDesc": "Compatible with all major VR headsets including Meta Quest, HTC Vive, and Valve Index.",
+      "gameReady": "Game Ready",
+      "gameReadyDesc": "Seamless integration with MotoGP™ series, Ride 4, and Assetto Corsa.",
+      "zeroLatency": "Zero Latency",
+      "zeroLatencyDesc": "Optimized telemetry for lag-free sync between motion and visuals."
+    },
+    "immersion": {
+      "title": "Feel the",
+      "highlight": "Speed",
+      "description": "Our proprietary software translates every bump, turn, and acceleration directly to the simulator chassis. When combined with VR, your brain is tricked into believing you're truly on the track.",
+      "telemetry": "Real-time telemetry processing",
+      "audio": "Spatial audio integration",
+      "haptic": "Haptic feedback support"
+    }
+  },
+  "useCases": {
+    "title": "Who is",
+    "highlight": "DevotionSim",
+    "suffix": " for?",
+    "subtitle": "Versatility meets performance. Choose your path.",
+    "professional": {
+      "title": "Professional Training",
+      "desc": "For professional riders who need to train muscle memory, learn new tracks, and recover from injuries without risk."
+    },
+    "entertainment": {
+      "title": "Entertainment",
+      "desc": "The ultimate gaming experience. Feel the adrenaline of MotoGP at home. Challenge friends and compete online."
+    },
+    "schools": {
+      "title": "Driving Schools",
+      "desc": "Safe and efficient training for students. Teach correct posture and bike control in a controlled environment.",
+      "learnMore": "Learn More"
+    },
+    "learnMore": "Learn More"
   }
 }
