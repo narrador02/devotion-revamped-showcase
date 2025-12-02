@@ -46,7 +46,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="/virtual-reality" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  VR Experience
+                  {t('footer.vrExperience')}
                 </a>
               </li>
             </ul>
