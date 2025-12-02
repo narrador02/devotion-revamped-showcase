@@ -1,8 +1,20 @@
 {
   "nav": {
     "home": "Home",
-    "products": "Simuladores",
+    "products": "Simulators",
     "reviews": "Reviews",
+    "events": "Events",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "rentPurchase": "Rent / Buy",
+    "vr": "VR Experience",
+    "media": "Media"
+  },
+  "hero": {
+    "title": "MotoGP Simulator",
+    "titlePart1": "MotoGP",
+    "titlePart2": "Simulator",
+    "mission": "Our mission is to excite people who love the motorcycle world by creating",
     "highPerformance": "high-performance simulators",
     "missionEnd": "that deliver authentic circuit sensations.",
     "exploreProducts": "Explore Products",
@@ -13,6 +25,24 @@
     "sectionTitleHighlight": "Features",
     "sectionSubtitle": "Experience the perfect blend of technology, passion, and global racing culture",
     "learnMore": "Learn More",
+    "compareModels": "Compare Models",
+    "viewModels": "View Models",
+    "modelComparison": "Model Comparison",
+    "feature": "Feature",
+    "movementSystem": "Movement System",
+    "bestFor": "Best For",
+    "weight": "Weight",
+    "leanAngle": "Lean Angle",
+    "upTo54": "Up to 54°",
+    "keyFeatures": "Key Features",
+    "type": "Type",
+    "system": "System",
+    "ctaTitle": "Ready to Experience the Thrill?",
+    "ctaSubtitle": "Contact us to learn more about our simulators or to schedule a demo.",
+    "viewPricing": "View Pricing",
+    "bestForEvents": "Events & Entertainment",
+    "bestForSchools": "Schools & Training",
+    "bestForPro": "Professional Training",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Experience authentic 2-axis motion with lean angles up to 54° and full wheelie control.",
@@ -70,7 +100,8 @@
     "description": "Creating high-performance motorcycle simulators that bring the thrill of the circuit to enthusiasts worldwide.",
     "quickLinks": "Quick Links",
     "followUs": "Follow Us",
-    "copyright": "DevotionSim. All rights reserved."
+    "copyright": "DevotionSim. All rights reserved.",
+    "vrExperience": "VR Experience"
   },
   "reviews": {
     "title": "Customer Reviews",
@@ -90,6 +121,20 @@
     "showMore": "Show more videos"
   },
   "events": {
+    "title": "Events",
+    "subtitle": "Join us at upcoming motorcycle events and experience our simulators",
+    "tabs": {
+      "upcoming": "Upcoming Events",
+      "past": "Past Events"
+    },
+    "upcoming": {
+      "title": "Upcoming Events",
+      "subtitle": "Discover where you'll be able to experience our simulators soon"
+    },
+    "past": {
+      "title": "Past Events",
+      "subtitle": "Events where we showcased our simulators"
+    },
     "hero": {
       "title": "Events and Grand Prix Where We've Been",
       "subtitle": "Motorcycle simulators and VR experiences present at MotoGP and other international events"
@@ -102,7 +147,22 @@
       "title": "Want our simulator at your next event?",
       "subtitle": "Discover how we can make your event an unforgettable experience",
       "button": "Request information"
-    }
+    },
+    "filters": {
+      "all": "All",
+      "motogp": "MotoGP",
+      "corporate": "Corporate Events",
+      "expo": "Fairs / Expos"
+    },
+    "metrics": {
+      "grandPrix": "Grand Prix",
+      "totalEvents": "Total Events",
+      "participants": "Participants",
+      "since": "Since"
+    },
+    "noEvents": "No events in this category",
+    "grandPrix": "Grand Prix",
+    "partnership": "MotoGP Partnership"
   },
   "rentPurchase": {
     "title": "Get Your Simulator",
@@ -125,6 +185,7 @@
       "rent": "Rent",
       "buy": "Buy",
       "comment": "Comment",
+      "commentPlaceholder": "Tell us more about your needs...",
       "send": "Send",
       "sending": "Sending...",
       "success": "Form submitted successfully!",
@@ -154,6 +215,7 @@
     "missionTitle": "Our Mission",
     "missionText1": "At DevotionSim, we bridge the gap between virtual racing and real-world physics. Our mission is to provide professional riders and enthusiasts with the most realistic training tools available.",
     "missionText2": "We believe that simulation isn't just a game—it's a crucial tool for development, safety, and performance improvement.",
+    "missionPlaceholder": "Mission Image / Graphic",
     "values": {
       "innovation": "Innovation",
       "innovationDesc": "Constantly pushing the boundaries of motion technology.",
@@ -168,11 +230,17 @@
     "subtitle": "Us",
     "description": "Ready to experience the ultimate simulation? We're here to help.",
     "getInTouch": "Get In Touch",
+    "location": "Madrid, Spain",
+    "globalShipping": "Global Shipping Available",
     "form": {
       "name": "Name",
+      "namePlaceholder": "John Doe",
       "email": "Email",
+      "emailPlaceholder": "john@example.com",
       "subject": "Subject",
+      "subjectPlaceholder": "Product Inquiry",
       "message": "Message",
+      "messagePlaceholder": "Tell us about your needs...",
       "send": "Send Message",
       "sent": "Message Sent",
       "sentDesc": "We'll get back to you as soon as possible."
@@ -259,7 +327,8 @@
           "title": "Natural Interaction",
           "desc": "Your movements control the action instinctively."
         }
-      }
+      },
+      "placeholder": "Visual Placeholder"
     },
     "compatibility": {
       "title": "Total Compatibility",
@@ -268,7 +337,8 @@
         "motogp": "MotoGP Games",
         "racing": "Modern Racing",
         "sims": "Pro Simulators"
-      }
+      },
+      "logoPlaceholder": "LOGO GAME"
     },
     "howItWorks": {
       "title": "How the experience feels",

@@ -117,10 +117,10 @@ const Events = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filters = [
-    { id: 'all' as const, label: 'Todos' },
-    { id: 'motogp' as const, label: 'MotoGP' },
-    { id: 'corporate' as const, label: 'Eventos Corporativos' },
-    { id: 'expo' as const, label: 'Ferias / Expos' }
+    { id: 'all' as const, label: t('events.filters.all') },
+    { id: 'motogp' as const, label: t('events.filters.motogp') },
+    { id: 'corporate' as const, label: t('events.filters.corporate') },
+    { id: 'expo' as const, label: t('events.filters.expo') }
   ];
 
   const filteredEvents = selectedFilter === 'all'
@@ -175,10 +175,10 @@ const Events = () => {
 
           {/* Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-12">
-            <CountUpMetric end={380} prefix="+" label="Grandes Premios" />
-            <CountUpMetric end={470} prefix="+" label="Eventos Totales" />
-            <CountUpMetric end={28000} prefix="+" label="Participantes" />
-            <CountUpMetric end={2017} label="Desde" />
+            <CountUpMetric end={380} prefix="+" label={t('events.metrics.grandPrix')} />
+            <CountUpMetric end={470} prefix="+" label={t('events.metrics.totalEvents')} />
+            <CountUpMetric end={28000} prefix="+" label={t('events.metrics.participants')} />
+            <CountUpMetric end={2017} label={t('events.metrics.since')} />
           </div>
 
           {/* Scroll indicator */}
@@ -238,7 +238,7 @@ const Events = () => {
 
           {filteredEvents.length === 0 && (
             <div className="text-center py-20 text-gray-500">
-              <p>No hay eventos en esta categoría</p>
+              <p>{t('events.noEvents')}</p>
             </div>
           )}
         </div>
@@ -257,7 +257,7 @@ const Events = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-red-500" />
-              <span className="text-sm font-medium text-red-400">MotoGP Partnership</span>
+              <span className="text-sm font-medium text-red-400">{t('events.partnership')}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold font-rajdhani mb-4">
               {t('events.motogp.title')}
@@ -280,7 +280,7 @@ const Events = () => {
                   className="flex-shrink-0 w-48 p-6 bg-white/5 border border-white/10 rounded-xl hover:border-red-500/50 transition-all cursor-pointer"
                 >
                   <div className="text-2xl font-bold font-rajdhani text-white mb-2">{gp}</div>
-                  <div className="text-sm text-gray-400">Gran Premio</div>
+                  <div className="text-sm text-gray-400">{t('events.grandPrix')}</div>
                 </motion.div>
               ))}
             </div>

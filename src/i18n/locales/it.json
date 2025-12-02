@@ -7,7 +7,8 @@
     "aboutUs": "Chi Siamo",
     "contact": "Contatto",
     "rentPurchase": "Noleggio / Acquisto",
-    "vr": "Esperienza VR"
+    "vr": "Esperienza VR",
+    "media": "Media"
   },
   "hero": {
     "title": "Simulatore MotoGP",
@@ -24,6 +25,24 @@
     "sectionTitleHighlight": "Caratteristiche",
     "sectionSubtitle": "Sperimenta la perfetta combinazione di tecnologia, passione e cultura delle corse mondiali",
     "learnMore": "Scopri di Più",
+    "compareModels": "Confronta Modelli",
+    "viewModels": "Vedi Modelli",
+    "modelComparison": "Confronto Modelli",
+    "feature": "Caratteristica",
+    "movementSystem": "Sistema di Movimento",
+    "bestFor": "Ideale Per",
+    "weight": "Peso",
+    "leanAngle": "Angolo di Inclinazione",
+    "upTo54": "Fino a 54°",
+    "keyFeatures": "Caratteristiche Chiave",
+    "type": "Tipo",
+    "system": "Sistema",
+    "ctaTitle": "Pronto a Vivere il Brivido?",
+    "ctaSubtitle": "Contattaci per saperne di più sui nostri simulatori o per prenotare una demo.",
+    "viewPricing": "Vedi Prezzi",
+    "bestForEvents": "Eventi e Intrattenimento",
+    "bestForSchools": "Scuole Guida e Formazione",
+    "bestForPro": "Allenamento Professionale",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Sperimenta il movimento autentico a 2 assi con angoli di inclinazione fino a 54° e controllo completo dell'impennata.",
@@ -81,7 +100,8 @@
     "description": "Creazione di simulatori di moto ad alte prestazioni che portano il brivido del circuito agli appassionati di tutto il mondo.",
     "quickLinks": "Link Rapidi",
     "followUs": "Seguici",
-    "copyright": "DevotionSim. Tutti i diritti riservati."
+    "copyright": "DevotionSim. Tutti i diritti riservati.",
+    "vrExperience": "Esperienza VR"
   },
   "reviews": {
     "title": "Recensioni dei Clienti",
@@ -114,7 +134,35 @@
     "past": {
       "title": "Eventi Passati",
       "subtitle": "Eventi in cui abbiamo mostrato i nostri simulatori"
-    }
+    },
+    "hero": {
+      "title": "Eventi e Gran Premi Dove Siamo Stati",
+      "subtitle": "Simulatori moto ed esperienze VR presenti al MotoGP e altri eventi internazionali"
+    },
+    "motogp": {
+      "title": "Presenza costante al Campionato Mondiale MotoGP",
+      "subtitle": "Siamo presenti a tutti i Gran Premi MotoGP europei, offrendo esperienze VR a migliaia di fan"
+    },
+    "cta": {
+      "title": "Vuoi il nostro simulatore al tuo prossimo evento?",
+      "subtitle": "Scopri come possiamo rendere il tuo evento indimenticabile",
+      "button": "Richiedi informazioni"
+    },
+    "filters": {
+      "all": "Tutti",
+      "motogp": "MotoGP",
+      "corporate": "Eventi Aziendali",
+      "expo": "Fiere / Expo"
+    },
+    "metrics": {
+      "grandPrix": "Gran Premi",
+      "totalEvents": "Eventi Totali",
+      "participants": "Partecipanti",
+      "since": "Dal"
+    },
+    "noEvents": "Nessun evento in questa categoria",
+    "grandPrix": "Gran Premio",
+    "partnership": "Partnership MotoGP"
   },
   "rentPurchase": {
     "title": "Ottieni il Tuo Simulatore",
@@ -137,6 +185,7 @@
       "rent": "Noleggio",
       "buy": "Acquisto",
       "comment": "Commento",
+      "commentPlaceholder": "Raccontaci di più sulle tue esigenze...",
       "send": "Invia",
       "sending": "Invio in corso...",
       "success": "Modulo inviato con successo!",
@@ -166,6 +215,7 @@
     "missionTitle": "La Nostra Missione",
     "missionText1": "In DevotionSim, colmiamo il divario tra le corse virtuali e la fisica del mondo reale. La nostra missione è fornire ai piloti professionisti e agli appassionati gli strumenti di allenamento più realistici disponibili.",
     "missionText2": "Crediamo che la simulazione non sia solo un gioco, è uno strumento cruciale per lo sviluppo, la sicurezza e il miglioramento delle prestazioni.",
+    "missionPlaceholder": "Immagine / Grafica Missione",
     "values": {
       "innovation": "Innovazione",
       "innovationDesc": "Spingendo costantemente i confini della tecnologia di movimento.",
@@ -180,11 +230,17 @@
     "subtitle": "Noi",
     "description": "Pronto a vivere la simulazione definitiva? Siamo qui per aiutare.",
     "getInTouch": "Mettiti in Contatto",
+    "location": "Madrid, Spagna",
+    "globalShipping": "Spedizione Globale Disponibile",
     "form": {
       "name": "Nome",
+      "namePlaceholder": "Mario Rossi",
       "email": "Email",
+      "emailPlaceholder": "mario@esempio.com",
       "subject": "Oggetto",
+      "subjectPlaceholder": "Richiesta Prodotto",
       "message": "Messaggio",
+      "messagePlaceholder": "Parlaci delle tue esigenze...",
       "send": "Invia Messaggio",
       "sent": "Messaggio Inviato",
       "sentDesc": "Ti risponderemo il prima possibile."
@@ -226,9 +282,106 @@
     },
     "schools": {
       "title": "Scuole Guida",
-      "desc": "Allenamento sicuro ed efficiente per studenti. Insegna la postura corretta e il controllo della moto in un ambiente controllato.",
-      "learnMore": "Scopri di Più"
+      "desc": "Allenamento sicuro ed efficiente per studenti. Insegna la postura corretta e il controllo della moto in un ambiente controllato."
     },
     "learnMore": "Scopri di Più"
+  },
+  "vr_page": {
+    "hero": {
+      "title": "ESPERIENZA VR",
+      "subtitle": "Simulazione immersiva compatibile con MotoGP e tutti i giochi moderni",
+      "cta": "Scopri l'Esperienza"
+    },
+    "sensations": {
+      "title": "Sensazioni di Guida",
+      "speed": {
+        "title": "Velocità e Accelerazione",
+        "desc": "Senti la vera spinta della moto quando apri il gas al massimo."
+      },
+      "lean": {
+        "title": "Inclinazione in Curva",
+        "desc": "Inclinati fino a 54° con totale fiducia e precisione millimetrica."
+      },
+      "vibration": {
+        "title": "Vibrazioni e Forza G",
+        "desc": "Ogni dosso, cordolo e frenata viene trasmesso al tuo corpo."
+      },
+      "sound": {
+        "title": "Suono Surround",
+        "desc": "Il rombo del motore e il vento ti circondano completamente."
+      }
+    },
+    "immersion": {
+      "title": "Esperienza VR Immersiva",
+      "description": "Dimentica gli schermi. Con la nostra tecnologia VR, sei DENTRO il circuito. La percezione di velocità e distanza è assoluta.",
+      "features": {
+        "env360": {
+          "title": "Ambiente 360º",
+          "desc": "Guarda dove vuoi, tu sei il pilota."
+        },
+        "spatialAudio": {
+          "title": "Audio Spaziale",
+          "desc": "Localizza i tuoi rivali solo dal suono."
+        },
+        "naturalInteraction": {
+          "title": "Interazione Naturale",
+          "desc": "I tuoi movimenti controllano l'azione istintivamente."
+        }
+      },
+      "placeholder": "Segnaposto Visivo"
+    },
+    "compatibility": {
+      "title": "Compatibilità Totale",
+      "description": "I nostri simulatori sono progettati per funzionare con i titoli più esigenti sul mercato.",
+      "badges": {
+        "motogp": "Giochi MotoGP",
+        "racing": "Racing Moderno",
+        "sims": "Simulatori Pro"
+      },
+      "logoPlaceholder": "LOGO GIOCO"
+    },
+    "howItWorks": {
+      "title": "Come si vive l'esperienza",
+      "steps": {
+        "1": {
+          "title": "Preparati",
+          "desc": "Indossa il visore VR e i controller."
+        },
+        "2": {
+          "title": "Configura",
+          "desc": "Scegli circuito, moto e modalità di gioco."
+        },
+        "3": {
+          "title": "Competi",
+          "desc": "Inclinati, accelera e lotta per ogni curva."
+        }
+      }
+    },
+    "useCases": {
+      "title": "Applicazioni e Casi d'Uso",
+      "cards": {
+        "events": {
+          "title": "Eventi e Fiere",
+          "desc": "Attira folle con un'esperienza indimenticabile."
+        },
+        "centers": {
+          "title": "Centri di Svago",
+          "desc": "Alta redditività per arcade e zone gaming."
+        },
+        "marketing": {
+          "title": "Marketing",
+          "desc": "Attivazioni di brand che lasciano il segno."
+        },
+        "training": {
+          "title": "Allenamento",
+          "desc": "Pratica sicura per piloti in sviluppo."
+        }
+      }
+    },
+    "cta": {
+      "title": "Pronto a sentire la velocità?",
+      "button": "Richiedi Demo",
+      "link": "Vedi specifiche tecniche"
+    }
   }
 }

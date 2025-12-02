@@ -7,7 +7,8 @@
     "aboutUs": "Sobre Nosotros",
     "contact": "Contacto",
     "rentPurchase": "Alquilar / Comprar",
-    "vr": "Experiencia VR"
+    "vr": "Experiencia VR",
+    "media": "Media"
   },
   "hero": {
     "title": "Simulador MotoGP",
@@ -24,6 +25,24 @@
     "sectionTitleHighlight": "Características",
     "sectionSubtitle": "Experimenta la combinación perfecta de tecnología, pasión y cultura de carreras global",
     "learnMore": "Saber Más",
+    "compareModels": "Comparar Modelos",
+    "viewModels": "Ver Modelos",
+    "modelComparison": "Comparación de Modelos",
+    "feature": "Característica",
+    "movementSystem": "Sistema de Movimiento",
+    "bestFor": "Ideal Para",
+    "weight": "Peso",
+    "leanAngle": "Ángulo de Inclinación",
+    "upTo54": "Hasta 54°",
+    "keyFeatures": "Características Clave",
+    "type": "Tipo",
+    "system": "Sistema",
+    "ctaTitle": "¿Listo para Sentir la Emoción?",
+    "ctaSubtitle": "Contáctanos para saber más sobre nuestros simuladores o para programar una demo.",
+    "viewPricing": "Ver Precios",
+    "bestForEvents": "Eventos y Entretenimiento",
+    "bestForSchools": "Autoescuelas y Formación",
+    "bestForPro": "Entrenamiento Profesional",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Experimenta movimiento auténtico de 2 ejes con ángulos de inclinación de hasta 54° y control total del caballito.",
@@ -81,7 +100,8 @@
     "description": "Creando simuladores de motos de alto rendimiento que llevan la emoción del circuito a entusiastas de todo el mundo.",
     "quickLinks": "Enlaces Rápidos",
     "followUs": "Síguenos",
-    "copyright": "DevotionSim. Todos los derechos reservados."
+    "copyright": "DevotionSim. Todos los derechos reservados.",
+    "vrExperience": "Experiencia VR"
   },
   "reviews": {
     "title": "Reseñas de Clientes",
@@ -114,7 +134,35 @@
     "past": {
       "title": "Eventos Pasados",
       "subtitle": "Eventos donde mostramos nuestros simuladores"
-    }
+    },
+    "hero": {
+      "title": "Eventos y Grandes Premios Donde Hemos Estado",
+      "subtitle": "Simuladores de moto y experiencias VR presentes en MotoGP y otros eventos internacionales"
+    },
+    "motogp": {
+      "title": "Presencia constante en el Campeonato Mundial de MotoGP",
+      "subtitle": "Estamos presentes en todos los Grandes Premios de MotoGP en Europa, ofreciendo experiencias VR a miles de aficionados"
+    },
+    "cta": {
+      "title": "¿Quieres nuestro simulador en tu próximo evento?",
+      "subtitle": "Descubre cómo podemos hacer de tu evento una experiencia inolvidable",
+      "button": "Solicitar información"
+    },
+    "filters": {
+      "all": "Todos",
+      "motogp": "MotoGP",
+      "corporate": "Eventos Corporativos",
+      "expo": "Ferias / Expos"
+    },
+    "metrics": {
+      "grandPrix": "Grandes Premios",
+      "totalEvents": "Eventos Totales",
+      "participants": "Participantes",
+      "since": "Desde"
+    },
+    "noEvents": "No hay eventos en esta categoría",
+    "grandPrix": "Gran Premio",
+    "partnership": "Colaboración MotoGP"
   },
   "rentPurchase": {
     "title": "Obtén tu Simulador",
@@ -137,6 +185,7 @@
       "rent": "Alquilar",
       "buy": "Comprar",
       "comment": "Comentario",
+      "commentPlaceholder": "Cuéntanos más sobre tus necesidades...",
       "send": "Enviar",
       "sending": "Enviando...",
       "success": "¡Formulario enviado con éxito!",
@@ -166,6 +215,7 @@
     "missionTitle": "Nuestra Misión",
     "missionText1": "En DevotionSim, cerramos la brecha entre las carreras virtuales y la física del mundo real. Nuestra misión es proporcionar a los pilotos profesionales y entusiastas las herramientas de entrenamiento más realistas disponibles.",
     "missionText2": "Creemos que la simulación no es solo un juego, es una herramienta crucial para el desarrollo, la seguridad y la mejora del rendimiento.",
+    "missionPlaceholder": "Imagen / Gráfico de Misión",
     "values": {
       "innovation": "Innovación",
       "innovationDesc": "Empujando constantemente los límites de la tecnología de movimiento.",
@@ -180,11 +230,17 @@
     "subtitle": "con Nosotros",
     "description": "¿Listo para experimentar la simulación definitiva? Estamos aquí para ayudar.",
     "getInTouch": "Ponte en Contacto",
+    "location": "Madrid, España",
+    "globalShipping": "Envío Global Disponible",
     "form": {
       "name": "Nombre",
+      "namePlaceholder": "Juan Pérez",
       "email": "Correo electrónico",
+      "emailPlaceholder": "juan@ejemplo.com",
       "subject": "Asunto",
+      "subjectPlaceholder": "Consulta de Producto",
       "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos sobre tus necesidades...",
       "send": "Enviar Mensaje",
       "sent": "Mensaje Enviado",
       "sentDesc": "Nos pondremos en contacto contigo lo antes posible."
@@ -225,8 +281,10 @@
       "desc": "La experiencia de juego definitiva. Siente la adrenalina de MotoGP en casa. Desafía a amigos y compite en línea."
     },
     "schools": {
-      "learnMore": "Saber Más"
-    }
+      "title": "Autoescuelas",
+      "desc": "Entrenamiento seguro y eficiente para estudiantes. Enseña la postura correcta y el control de la moto en un entorno controlado."
+    },
+    "learnMore": "Saber Más"
   },
   "vr_page": {
     "hero": {
@@ -269,7 +327,8 @@
           "title": "Interacción Natural",
           "desc": "Tus movimientos controlan la acción instintivamente."
         }
-      }
+      },
+      "placeholder": "Marcador Visual"
     },
     "compatibility": {
       "title": "Compatibilidad Total",
@@ -278,7 +337,8 @@
         "motogp": "Juegos MotoGP",
         "racing": "Racing Moderno",
         "sims": "Simuladores Pro"
-      }
+      },
+      "logoPlaceholder": "LOGO JUEGO"
     },
     "howItWorks": {
       "title": "Cómo se vive la experiencia",

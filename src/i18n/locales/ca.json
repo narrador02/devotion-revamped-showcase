@@ -7,7 +7,8 @@
     "aboutUs": "Sobre Nosaltres",
     "contact": "Contacte",
     "rentPurchase": "Llogar / Comprar",
-    "vr": "Experiència VR"
+    "vr": "Experiència VR",
+    "media": "Media"
   },
   "hero": {
     "title": "Simulador MotoGP",
@@ -24,6 +25,24 @@
     "sectionTitleHighlight": "Característiques",
     "sectionSubtitle": "Experimenta la combinació perfecta de tecnologia, passió i cultura de curses mundial",
     "learnMore": "Més Informació",
+    "compareModels": "Comparar Models",
+    "viewModels": "Veure Models",
+    "modelComparison": "Comparació de Models",
+    "feature": "Característica",
+    "movementSystem": "Sistema de Moviment",
+    "bestFor": "Ideal Per",
+    "weight": "Pes",
+    "leanAngle": "Angle d'Inclinació",
+    "upTo54": "Fins a 54°",
+    "keyFeatures": "Característiques Clau",
+    "type": "Tipus",
+    "system": "Sistema",
+    "ctaTitle": "Preparat per Sentir l'Emoció?",
+    "ctaSubtitle": "Contacta'ns per saber més sobre els nostres simuladors o per programar una demo.",
+    "viewPricing": "Veure Preus",
+    "bestForEvents": "Esdeveniments i Entreteniment",
+    "bestForSchools": "Autoescoles i Formació",
+    "bestForPro": "Entrenament Professional",
     "timeAttack": {
       "title": "TIME ATTACK",
       "description": "Experimenta moviment autèntic de 2 eixos amb angles d'inclinació de fins a 54° i control complet de cavallets.",
@@ -81,7 +100,8 @@
     "description": "Creant simuladors de motos d'alt rendiment que porten l'emoció del circuit als entusiastes de tot el món.",
     "quickLinks": "Enllaços Ràpids",
     "followUs": "Segueix-nos",
-    "copyright": "DevotionSim. Tots els drets reservats."
+    "copyright": "DevotionSim. Tots els drets reservats.",
+    "vrExperience": "Experiència VR"
   },
   "reviews": {
     "title": "Ressenyes de Clients",
@@ -114,7 +134,35 @@
     "past": {
       "title": "Esdeveniments Passats",
       "subtitle": "Esdeveniments on vam mostrar els nostres simuladors"
-    }
+    },
+    "hero": {
+      "title": "Esdeveniments i Grans Premis On Hem Estat",
+      "subtitle": "Simuladors de moto i experiències VR presents al MotoGP i altres esdeveniments internacionals"
+    },
+    "motogp": {
+      "title": "Presència constant al Campionat Mundial de MotoGP",
+      "subtitle": "Som presents a tots els Grans Premis de MotoGP a Europa, oferint experiències VR a milers d'aficionats"
+    },
+    "cta": {
+      "title": "Vols el nostre simulador al teu proper event?",
+      "subtitle": "Descobreix com podem fer del teu event una experiència inoblidable",
+      "button": "Sol·licitar informació"
+    },
+    "filters": {
+      "all": "Tots",
+      "motogp": "MotoGP",
+      "corporate": "Events Corporatius",
+      "expo": "Fires / Expos"
+    },
+    "metrics": {
+      "grandPrix": "Grans Premis",
+      "totalEvents": "Events Totals",
+      "participants": "Participants",
+      "since": "Des de"
+    },
+    "noEvents": "No hi ha esdeveniments en aquesta categoria",
+    "grandPrix": "Gran Premi",
+    "partnership": "Col·laboració MotoGP"
   },
   "rentPurchase": {
     "title": "Aconsegueix el Teu Simulador",
@@ -137,6 +185,7 @@
       "rent": "Llogar",
       "buy": "Comprar",
       "comment": "Comentari",
+      "commentPlaceholder": "Explica'ns més sobre les teves necessitats...",
       "send": "Enviar",
       "sending": "Enviant...",
       "success": "Formulari enviat correctament!",
@@ -166,6 +215,7 @@
     "missionTitle": "La Nostra Missió",
     "missionText1": "A DevotionSim, tanquem la bretxa entre les curses virtuals i la física del món real. La nostra missió és proporcionar als pilots professionals i entusiastes les eines d'entrenament més realistes disponibles.",
     "missionText2": "Creiem que la simulació no és només un joc, és una eina crucial per al desenvolupament, la seguretat i la millora del rendiment.",
+    "missionPlaceholder": "Imatge / Gràfic Missió",
     "values": {
       "innovation": "Innovació",
       "innovationDesc": "Empenyent constantment els límits de la tecnologia de moviment.",
@@ -180,11 +230,17 @@
     "subtitle": "amb Nosaltres",
     "description": "A punt per experimentar la simulació definitiva? Estem aquí per ajudar.",
     "getInTouch": "Posa't en Contacte",
+    "location": "Madrid, Espanya",
+    "globalShipping": "Enviament Global Disponible",
     "form": {
       "name": "Nom",
+      "namePlaceholder": "Joan García",
       "email": "Correu electrònic",
+      "emailPlaceholder": "joan@exemple.com",
       "subject": "Assumpte",
+      "subjectPlaceholder": "Consulta de Producte",
       "message": "Missatge",
+      "messagePlaceholder": "Explica'ns les teves necessitats...",
       "send": "Enviar Missatge",
       "sent": "Missatge Enviat",
       "sentDesc": "Ens posarem en contacte amb tu el més aviat possible."
@@ -226,9 +282,106 @@
     },
     "schools": {
       "title": "Autoescoles",
-      "desc": "Entrenament segur i eficient per a estudiants. Ensenya postura correcta i control de la moto en un entorn controlat.",
-      "learnMore": "Saber Més"
+      "desc": "Entrenament segur i eficient per a estudiants. Ensenya postura correcta i control de la moto en un entorn controlat."
     },
     "learnMore": "Saber Més"
+  },
+  "vr_page": {
+    "hero": {
+      "title": "EXPERIÈNCIA VR",
+      "subtitle": "Simulació immersiva compatible amb MotoGP i tots els jocs moderns",
+      "cta": "Descobreix l'Experiència"
+    },
+    "sensations": {
+      "title": "Sensacions al Pilotar",
+      "speed": {
+        "title": "Velocitat i Acceleració",
+        "desc": "Sent l'empenta real de la moto quan obres gas a fons."
+      },
+      "lean": {
+        "title": "Inclinació en Corba",
+        "desc": "Inclina't fins a 54° amb total confiança i precisió mil·limètrica."
+      },
+      "vibration": {
+        "title": "Vibracions i Força G",
+        "desc": "Cada sotrac, piano i frenada es transmet al teu cos."
+      },
+      "sound": {
+        "title": "So Envoltant",
+        "desc": "El rugit del motor i el vent t'envolten completament."
+      }
+    },
+    "immersion": {
+      "title": "Experiència Immersiva en VR",
+      "description": "Oblida les pantalles. Amb la nostra tecnologia VR, estàs DINS del circuit. La percepció de velocitat i distància és absoluta.",
+      "features": {
+        "env360": {
+          "title": "Entorn 360º",
+          "desc": "Mira on vulguis, ets el pilot."
+        },
+        "spatialAudio": {
+          "title": "Àudio Espacial",
+          "desc": "Localitza els teus rivals només pel so."
+        },
+        "naturalInteraction": {
+          "title": "Interacció Natural",
+          "desc": "Els teus moviments controlen l'acció instintivament."
+        }
+      },
+      "placeholder": "Marcador Visual"
+    },
+    "compatibility": {
+      "title": "Compatibilitat Total",
+      "description": "Els nostres simuladors estan dissenyats per funcionar amb els títols més exigents del mercat.",
+      "badges": {
+        "motogp": "Jocs MotoGP",
+        "racing": "Racing Modern",
+        "sims": "Simuladors Pro"
+      },
+      "logoPlaceholder": "LOGO JOC"
+    },
+    "howItWorks": {
+      "title": "Com es viu l'experiència",
+      "steps": {
+        "1": {
+          "title": "Prepara't",
+          "desc": "Et poses el casc VR i els comandaments."
+        },
+        "2": {
+          "title": "Configura",
+          "desc": "Tries circuit, moto i mode de joc."
+        },
+        "3": {
+          "title": "Competeix",
+          "desc": "Inclina, accelera i lluita per cada corba."
+        }
+      }
+    },
+    "useCases": {
+      "title": "Aplicacions i Casos d'Ús",
+      "cards": {
+        "events": {
+          "title": "Esdeveniments i Fires",
+          "desc": "Atrau multituds amb una experiència inoblidable."
+        },
+        "centers": {
+          "title": "Centres d'Oci",
+          "desc": "Alta rendibilitat per a arcades i zones gaming."
+        },
+        "marketing": {
+          "title": "Màrqueting",
+          "desc": "Activacions de marca que deixen empremta."
+        },
+        "training": {
+          "title": "Entrenament",
+          "desc": "Pràctica segura per a pilots en desenvolupament."
+        }
+      }
+    },
+    "cta": {
+      "title": "A punt per sentir la velocitat?",
+      "button": "Sol·licitar Demo",
+      "link": "Veure especificacions tècniques"
+    }
   }
 }
