@@ -90,19 +90,18 @@
     "showMore": "Show more videos"
   },
   "events": {
-    "title": "Events",
-    "subtitle": "Join us at upcoming motorcycle events and experience our simulators",
-    "tabs": {
-      "upcoming": "Upcoming Events",
-      "past": "Past Events"
+    "hero": {
+      "title": "Events and Grand Prix Where We've Been",
+      "subtitle": "Motorcycle simulators and VR experiences present at MotoGP and other international events"
     },
-    "upcoming": {
-      "title": "Upcoming Events",
-      "subtitle": "See where you can experience our simulators next"
+    "motogp": {
+      "title": "Constant presence at the MotoGP World Championship",
+      "subtitle": "We are present at all European MotoGP Grand Prix, offering VR experiences to thousands of fans"
     },
-    "past": {
-      "title": "Past Events",
-      "subtitle": "Events where we showcased our simulators"
+    "cta": {
+      "title": "Want our simulator at your next event?",
+      "subtitle": "Discover how we can make your event an unforgettable experience",
+      "button": "Request information"
     }
   },
   "rentPurchase": {

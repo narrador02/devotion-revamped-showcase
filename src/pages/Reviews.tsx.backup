@@ -59,17 +59,17 @@ const Reviews = () => {
               {t('reviews.subtitle')}
             </p>
           </div>
-
+          
           <div className="max-w-7xl mx-auto">
-            <Tabs defaultValue="customers" className="w-full">
+            <Tabs defaultValue="professionals" className="w-full">
               <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-                <TabsTrigger value="customers" className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
-                  {t('reviews.tabs.customers')}
-                </TabsTrigger>
                 <TabsTrigger value="professionals" className="flex items-center gap-2">
                   <Trophy className="h-4 w-4" />
                   {t('reviews.tabs.professionals')}
+                </TabsTrigger>
+                <TabsTrigger value="customers" className="flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  {t('reviews.tabs.customers')}
                 </TabsTrigger>
               </TabsList>
 
@@ -126,7 +126,7 @@ const Reviews = () => {
       </main>
       <Footer />
       <LanguageSwitcher />
-
+      
       <VideoModal
         isOpen={!!selectedVideo}
         onClose={() => setSelectedVideo(null)}
