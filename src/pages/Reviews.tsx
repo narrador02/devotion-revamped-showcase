@@ -13,28 +13,29 @@ interface Video {
   id: string;
   videoId: string;
   name: string;
+  quote?: string;
 }
 
 const professionalVideos: Video[] = [
-  { id: "1", videoId: "nQbrjsr0yiU", name: "Professional Rider 1" },
-  { id: "2", videoId: "nQbrjsr0yiU", name: "Professional Rider 2" },
-  { id: "3", videoId: "nQbrjsr0yiU", name: "Professional Rider 3" },
-  { id: "4", videoId: "nQbrjsr0yiU", name: "Professional Rider 4" },
-  { id: "5", videoId: "nQbrjsr0yiU", name: "Professional Rider 5" },
-  { id: "6", videoId: "nQbrjsr0yiU", name: "Professional Rider 6" },
-  { id: "7", videoId: "nQbrjsr0yiU", name: "Professional Rider 7" },
-  { id: "8", videoId: "nQbrjsr0yiU", name: "Professional Rider 8" },
+  { id: "1", videoId: "nQbrjsr0yiU", name: "Professional Rider 1", quote: "" },
+  { id: "2", videoId: "nQbrjsr0yiU", name: "Professional Rider 2", quote: "" },
+  { id: "3", videoId: "nQbrjsr0yiU", name: "Professional Rider 3", quote: "" },
+  { id: "4", videoId: "nQbrjsr0yiU", name: "Professional Rider 4", quote: "" },
+  { id: "5", videoId: "nQbrjsr0yiU", name: "Professional Rider 5", quote: "" },
+  { id: "6", videoId: "nQbrjsr0yiU", name: "Professional Rider 6", quote: "" },
+  { id: "7", videoId: "nQbrjsr0yiU", name: "Professional Rider 7", quote: "" },
+  { id: "8", videoId: "nQbrjsr0yiU", name: "Professional Rider 8", quote: "" },
 ];
 
 const customerVideos: Video[] = [
-  { id: "1", videoId: "GANm4vmbvEA", name: "Trabajador de Ducati Corse" },
-  { id: "2", videoId: "lJYINxTIHeM", name: "Lorenzo Trastevere, World Champion Yamaha E-Sports" },
-  { id: "3", videoId: "nQbrjsr0yiU", name: "Event Client 4" },
-  { id: "4", videoId: "nQbrjsr0yiU", name: "Event Client 5" },
-  { id: "5", videoId: "pDb6BUL9PcI", name: "Massimo, Rider de Ducati Corse " },
-  { id: "6", videoId: "nQbrjsr0yiU", name: "Event Client 6" },
-  { id: "7", videoId: "nQbrjsr0yiU", name: "Event Client 7" },
-  { id: "8", videoId: "nQbrjsr0yiU", name: "Event Client 8" },
+  { id: "1", videoId: "wH-2DUYxKPw", name: "Cliente evento MotoGP", quote: "En la moto estás haciendo físico" },
+  { id: "2", videoId: "GANm4vmbvEA", name: "Trabajador de Ducati Corse", quote: "Lo más parecido a rodar en circuito" },
+  { id: "3", videoId: "lJYINxTIHeM", name: "Lorenzo, Campeón Yamaha E-Sports", quote: "La experiencia más inmersiva de mi vida" },
+  { id: "4", videoId: "t-9W3vr339A", name: "Cliente evento MotoGP", quote: "Tengo una R6 y esto es exquisito" },
+  { id: "5", videoId: "AN1V352BxDw", name: "Andrea Saveri, Campeón Ducati E-Sports", quote: "Realmente sientes la velocidad" },
+  { id: "6", videoId: "pDb6BUL9PcI", name: "Massimo, Rider Ducati Corse ", quote: "Es una experiencia bellísima" },
+  { id: "7", videoId: "9qjBymWBjwg", name: "Australian Rider", quote: "Sentimiento de adrenalina increíble, ¡compra una!" },
+  { id: "8", videoId: "_zz-fnpKgno", name: "Cliente Gran Premio", quote: "Muy parecido a rodar en circuito" },
 ];
 
 const Reviews = () => {
@@ -80,6 +81,7 @@ const Reviews = () => {
                       key={video.id}
                       videoId={video.videoId}
                       title={video.name}
+                      quote={video.quote}
                       onClick={() => setSelectedVideo(video)}
                     />
                   ))}
@@ -104,6 +106,7 @@ const Reviews = () => {
                       key={video.id}
                       videoId={video.videoId}
                       title={video.name}
+                      quote={video.quote}
                       onClick={() => setSelectedVideo(video)}
                     />
                   ))}

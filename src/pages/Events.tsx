@@ -178,7 +178,7 @@ const Events = () => {
             <CountUpMetric end={380} prefix="+" label={t('events.metrics.grandPrix')} />
             <CountUpMetric end={470} prefix="+" label={t('events.metrics.totalEvents')} />
             <CountUpMetric end={28000} prefix="+" label={t('events.metrics.participants')} />
-            <CountUpMetric end={2017} label={t('events.metrics.since')} />
+            <CountUpMetric end={2018} label={t('events.metrics.since')} />
           </div>
 
           {/* Scroll indicator */}

@@ -229,9 +229,44 @@
     "title": "Contatta",
     "subtitle": "Noi",
     "description": "Pronto a vivere la simulazione definitiva? Siamo qui per aiutare.",
+    "heroSubtitle": "Pronto a portare la simulazione definitiva al tuo evento, azienda o circuito? Siamo qui per aiutarti.",
     "getInTouch": "Mettiti in Contatto",
     "location": "Madrid, Spagna",
     "globalShipping": "Spedizione Globale Disponibile",
+    "whatsappMessage": "Puoi anche scriverci su WhatsApp o chiamarci direttamente.",
+    "privacyMessage": "Non condivideremo mai i tuoi dati con terze parti.",
+    "trustBadges": {
+      "response": "Risposta in meno di 24 ore",
+      "quote": "Preventivo senza impegno",
+      "international": "Eventi e spedizioni internazionali"
+    },
+    "whatToExpect": {
+      "title": "Cosa puoi aspettarti contattandoci?",
+      "point1": "Consulenza personalizzata in base al tuo tipo di evento o azienda.",
+      "point2": "Raccomandazioni sul simulatore e sul contenuto più adatto.",
+      "point3": "Informazioni chiare su prezzi, logistica e tempistiche.",
+      "point4": "Supporto prima, durante e dopo l'evento."
+    },
+    "socialProof": {
+      "title": "Hanno già fiducia nei nostri simulatori",
+      "clients": [
+        "Gran Premi MotoGP",
+        "Eventi Aziendali",
+        "Fiere Internazionali",
+        "Circuiti Professionali"
+      ]
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "q1": "Quanto tempo impiegate a rispondere?",
+      "a1": "Normalmente rispondiamo entro 24 ore.",
+      "q2": "Potete spedire o montare il simulatore fuori dalla Spagna?",
+      "a2": "Sì, studiamo la logistica in base al tuo paese o città.",
+      "q3": "Posso noleggiare il simulatore solo per un giorno o un weekend?",
+      "a3": "Offriamo opzioni flessibili per eventi, fiere e promozioni.",
+      "q4": "Vendete anche simulatori?",
+      "a4": "Sì, possiamo consigliarti sull'acquisto e la configurazione ideale."
+    },
     "form": {
       "name": "Nome",
       "namePlaceholder": "Mario Rossi",

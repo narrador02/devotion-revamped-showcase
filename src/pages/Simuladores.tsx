@@ -15,6 +15,7 @@ const Simuladores = () => {
   const { t } = useTranslation();
   const [showComparison, setShowComparison] = useState(false);
 
+
   const products = [
     {
       id: "timeattack",

@@ -179,12 +179,53 @@
     "title": "Contact",
     "subtitle": "Opnemen",
     "description": "Klaar om de ultieme simulatie te ervaren? We zijn hier om te helpen.",
+    "heroSubtitle": "Klaar om de ultieme simulatie naar uw evenement, bedrijf of circuit te brengen? We zijn hier om u te helpen.",
     "getInTouch": "Neem Contact Op",
+    "location": "Madrid, Spanje",
+    "globalShipping": "Wereldwijde Verzending Beschikbaar",
+    "whatsappMessage": "U kunt ons ook via WhatsApp schrijven of direct bellen.",
+    "privacyMessage": "We zullen uw gegevens nooit met derden delen.",
+    "trustBadges": {
+      "response": "Reactie binnen 24 uur",
+      "quote": "Vrijblijvende offerte",
+      "international": "Internationale evenementen en verzending"
+    },
+    "whatToExpect": {
+      "title": "Wat kunt u verwachten bij contact?",
+      "point1": "Persoonlijk advies op basis van uw type evenement of bedrijf.",
+      "point2": "Aanbevelingen over de meest geschikte simulator en content.",
+      "point3": "Duidelijke informatie over prijzen, logistiek en tijdslijnen.",
+      "point4": "Ondersteuning voor, tijdens en na het evenement."
+    },
+    "socialProof": {
+      "title": "Zij vertrouwden al op onze simulatoren",
+      "clients": [
+        "MotoGP Grand Prix",
+        " Zakelijke Evenementen",
+        "Internationale Beurzen",
+        "Professionele Circuits"
+      ]
+    },
+    "faq": {
+      "title": "Veelgestelde Vragen",
+      "q1": "Hoe lang duurt het voordat u antwoordt?",
+      "a1": "We reageren normaal gesproken binnen 24 uur.",
+      "q2": "Kunt u de siulator buiten Spanje verzenden of installeren?",
+      "a2": "Ja, we bestuderen de logistiek volgens uw land of stad.",
+      "q3": "Kan ik de simulator huren voor slechts één dag of weekend?",
+      "a3": "We offer flexibele opties voor evenementen, beurzen en promocampagnes.",
+      "q4": "Verkopen jullie ook simulatoren?",
+      "a4": "Ja, we kunnen u adviseren over de ideale aankoop en configuratie."
+    },
     "form": {
       "name": "Naam",
+      "namePlaceholder": "Jan Jansen",
       "email": "E-mail",
+      "emailPlaceholder": "jan@voorbeeld.nl",
       "subject": "Onderwerp",
+      "subjectPlaceholder": "Productaanvraag",
       "message": "Bericht",
+      "messagePlaceholder": "Vertel ons over uw behoeften...",
       "send": "Bericht Verzenden",
       "sent": "Bericht Verzonden",
       "sentDesc": "We nemen zo snel mogelijk contact met u op."

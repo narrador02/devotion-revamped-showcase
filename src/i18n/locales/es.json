@@ -229,9 +229,44 @@
     "title": "Contacta",
     "subtitle": "con Nosotros",
     "description": "¿Listo para experimentar la simulación definitiva? Estamos aquí para ayudar.",
+    "heroSubtitle": "¿Listo para llevar la simulación definitiva a tu evento, negocio o circuito? Estamos aquí para ayudarte.",
     "getInTouch": "Ponte en Contacto",
     "location": "Madrid, España",
     "globalShipping": "Envío Global Disponible",
+    "whatsappMessage": "También puedes escribirnos por WhatsApp o llamarnos directamente.",
+    "privacyMessage": "Nunca compartiremos tus datos con terceros.",
+    "trustBadges": {
+      "response": "Respuesta en menos de 24 horas",
+      "quote": "Presupuesto sin compromiso",
+      "international": "Eventos y envíos internacionales"
+    },
+    "whatToExpect": {
+      "title": "¿Qué puedes esperar al escribirnos?",
+      "point1": "Asesoramiento personalizado según tu tipo de evento o negocio.",
+      "point2": "Recomendaciones sobre el simulador y el contenido más adecuado.",
+      "point3": "Información clara sobre precios, logística y tiempos.",
+      "point4": "Soporte antes, durante y después del evento."
+    },
+    "socialProof": {
+      "title": "Ya han confiado en nuestros simuladores",
+      "clients": [
+        "Grandes Premios de MotoGP",
+        "Eventos Corporativos",
+        "Ferias Internacionales",
+        "Circuitos Profesionales"
+      ]
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "¿Cuánto tardáis en responder?",
+      "a1": "Normalmente respondemos en menos de 24 horas.",
+      "q2": "¿Podéis enviar o montar el simulador fuera de España?",
+      "a2": "Sí, estudiamos la logística según tu país o ciudad.",
+      "q3": "¿Puedo alquilar el simulador solo para un día o fin de semana?",
+      "a3": "Ofrecemos opciones flexibles para eventos, ferias y promociones.",
+      "q4": "¿También vendéis simuladores?",
+      "a4": "Sí, podemos asesorarte en la compra y configuración ideal."
+    },
     "form": {
       "name": "Nombre",
       "namePlaceholder": "Juan Pérez",
@@ -280,9 +315,13 @@
       "title": "Entretenimiento",
       "desc": "La experiencia de juego definitiva. Siente la adrenalina de MotoGP en casa. Desafía a amigos y compite en línea."
     },
-    "schools": {
-      "title": "Autoescuelas",
-      "desc": "Entrenamiento seguro y eficiente para estudiantes. Enseña la postura correcta y el control de la moto en un entorno controlado."
+    "events": {
+      "title": "Eventos y Marketing",
+      "desc": "Una atracción única para ferias, stands y activaciones de marca. Atrae público, genera interacción y ofrece una experiencia inmersiva inolvidable."
+    },
+    "leisure": {
+      "title": "Centros de Ocio",
+      "desc": "Ideal para arcades, centros de entretenimiento y espacios recreativos que buscan ofrecer una experiencia de simulación de motos emocionante y envolvente."
     },
     "learnMore": "Saber Más"
   },

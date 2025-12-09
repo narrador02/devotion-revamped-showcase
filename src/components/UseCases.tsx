@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Trophy, Gamepad2, GraduationCap } from "lucide-react";
+import { Trophy, Gamepad2, Megaphone, Joystick } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -23,11 +23,18 @@ const UseCases = () => {
             color: "text-primary"
         },
         {
-            icon: <GraduationCap size={40} />,
-            title: t('useCases.schools.title'),
-            description: t('useCases.schools.desc'),
-            link: "/simuladores#schools",
-            color: "text-blue-500"
+            icon: <Megaphone size={40} />,
+            title: t('useCases.events.title'),
+            description: t('useCases.events.desc'),
+            link: "/events",
+            color: "text-purple-500"
+        },
+        {
+            icon: <Joystick size={40} />,
+            title: t('useCases.leisure.title'),
+            description: t('useCases.leisure.desc'),
+            link: "/simuladores#leisure",
+            color: "text-green-500"
         }
     ];
 
@@ -45,24 +52,24 @@ const UseCases = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {cases.map((item, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.2, duration: 0.5 }}
-                            className="group relative p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            className="group relative p-6 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full"
                         >
                             <div className={`mb-6 ${item.color} p-4 bg-background/50 rounded-full w-fit group-hover:scale-110 transition-transform`}>
                                 {item.icon}
                             </div>
-                            <h3 className="text-2xl font-rajdhani font-bold mb-4 text-foreground">{item.title}</h3>
-                            <p className="text-muted-foreground mb-8 leading-relaxed">
+                            <h3 className="text-xl font-rajdhani font-bold mb-3 text-foreground">{item.title}</h3>
+                            <p className="text-muted-foreground mb-6 leading-relaxed text-sm flex-grow">
                                 {item.description}
                             </p>
-                            <Link to={item.link}>
+                            <Link to={item.link} className="mt-auto">
                                 <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-white transition-colors">
                                     {t('useCases.learnMore')}
                                 </Button>

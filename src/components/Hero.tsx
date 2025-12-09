@@ -2,14 +2,22 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-bg-new.jpg";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { t } = useTranslation();
-  
+
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <div 
+      <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${heroImage})`,
@@ -27,7 +35,7 @@ const Hero = () => {
             <span className="text-foreground">{t('hero.titlePart1')}</span>{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('hero.titlePart2')}</span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-foreground/80 mb-12 font-inter max-w-3xl mx-auto leading-relaxed">
             {t('hero.mission')}{" "}
             <span className="text-primary font-semibold">{t('hero.highPerformance')}</span>{" "}
@@ -35,25 +43,23 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold text-lg px-8 h-14 animate-glow-pulse"
+            <Button
+              size="lg"
+              onClick={scrollToProducts}
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold text-lg px-8 h-12 animate-glow-pulse w-full sm:w-auto min-w-[200px]"
             >
               {t('hero.exploreProducts')}
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-rajdhani font-semibold text-lg px-8 h-14"
-            >
-              {t('hero.contactUs')}
-            </Button>
+            <Link to="/contact" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-rajdhani font-semibold text-lg px-8 h-12 w-full min-w-[200px]"
+              >
+                {t('hero.contactUs')}
+              </Button>
+            </Link>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronDown className="text-primary" size={32} />
         </div>
       </div>
     </section>

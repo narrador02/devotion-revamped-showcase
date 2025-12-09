@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Move3d, Activity, Volume2, Globe, Headphones, HandMetal, CheckCircle2, Calendar, Gamepad, Presentation, GraduationCap } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SpeedLines from "@/components/SpeedLines";
+import motogp25Logo from "@/assets/motogp25.png";
 
 const VirtualReality = () => {
     const { t } = useTranslation();
@@ -234,10 +235,23 @@ const VirtualReality = () => {
                         ))}
                     </div>
 
-                    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 opacity-30">
-                        {[1, 2, 3, 4].map((i) => (
-                            <div key={i} className="h-20 bg-white/5 rounded-lg flex items-center justify-center border border-white/5">
-                                <span className="text-xs text-gray-500">LOGO GAME {i}</span>
+                    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {[
+                            { name: "Assetto Corsa", logo: "" },
+                            { name: "iRacing", logo: "" },
+                            { name: "F1 23", logo: "" },
+                            { name: "MotoGP 25", logo: motogp25Logo }
+                        ].map((game, idx) => (
+                            <div key={idx} className="h-24 bg-white/5 rounded-xl flex items-center justify-center border border-white/5 hover:border-white/20 hover:bg-white/10 transition-all duration-300 group">
+                                {game.logo ? (
+                                    <img
+                                        src={game.logo}
+                                        alt={game.name}
+                                        className="max-h-16 max-w-[80%] object-contain opacity-50 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
+                                    />
+                                ) : (
+                                    <span className="text-sm text-gray-500 font-rajdhani font-bold">{game.name}</span>
+                                )}
                             </div>
                         ))}
                     </div>

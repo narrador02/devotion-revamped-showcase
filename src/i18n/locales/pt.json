@@ -179,12 +179,53 @@
     "title": "Contate",
     "subtitle": "Nos",
     "description": "Pronto para experimentar a simulação definitiva? Estamos aqui para ajudar.",
+    "heroSubtitle": "Pronto para levar a simulação definitiva ao seu evento, empresa ou circuito? Estamos aqui para ajudá-lo.",
     "getInTouch": "Entre em Contato",
+    "location": "Madrid, Espanha",
+    "globalShipping": "Envio Global Disponível",
+    "whatsappMessage": "Você também pode nos escrever no WhatsApp ou ligar diretamente.",
+    "privacyMessage": "Nunca compartilharemos seus dados com terceiros.",
+    "trustBadges": {
+      "response": "Resposta em menos de 24 horas",
+      "quote": "Orçamento sem compromisso",
+      "international": "Eventos e envios internacionais"
+    },
+    "whatToExpect": {
+      "title": "O que você pode esperar ao entrar em contato?",
+      "point1": "Consultoria personalizada com base no seu tipo de evento ou empresa.",
+      "point2": "Recomendações sobre o simulador e conteúdo mais adequado.",
+      "point3": "Informações claras sobre preços, logística e prazos.",
+      "point4": "Suporte antes, durante e após o evento."
+    },
+    "socialProof": {
+      "title": "Eles já confiaram em nossos simuladores",
+      "clients": [
+        "Grand Prix da MotoGP",
+        "Eventos Corporativos",
+        "Feiras Internacionais",
+        "Circuitos Profissionais"
+      ]
+    },
+    "faq": {
+      "title": "Perguntas Frequentes",
+      "q1": "Quanto tempo vocês levam para responder?",
+      "a1": "Normalmente respondemos em menos de 24 horas.",
+      "q2": "Vocês podem enviar ou montar o simulador fora da Espanha?",
+      "a2": "Sim, estudamos a logística de acordo com seu país ou cidade.",
+      "q3": "Posso alugar o simulador apenas por um dia ou fim de semana?",
+      "a3": "Oferecemos opções flexíveis para eventos, feiras e promoções.",
+      "q4": "Vocês também vendem simuladores?",
+      "a4": "Sim, podemos aconselhá-lo sobre a compra e configuração ideal."
+    },
     "form": {
       "name": "Nome",
+      "namePlaceholder": "João Silva",
       "email": "Email",
+      "emailPlaceholder": "joao@exemplo.com",
       "subject": "Assunto",
+      "subjectPlaceholder": "Consulta sobre Produto",
       "message": "Mensagem",
+      "messagePlaceholder": "Conte-nos sobre suas necessidades...",
       "send": "Enviar Mensagem",
       "sent": "Mensagem Enviada",
       "sentDesc": "Entraremos em contato o mais breve possível."

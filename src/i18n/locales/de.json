@@ -229,9 +229,44 @@
     "title": "Kontaktieren Sie",
     "subtitle": "Uns",
     "description": "Bereit für die ultimative Simulation? Wir sind hier, um zu helfen.",
+    "heroSubtitle": "Bereit, die ultimative Simulation zu Ihrer Veranstaltung, Ihrem Unternehmen oder Ihrer Rennstrecke zu bringen? Wir sind hier, um Ihnen zu helfen.",
     "getInTouch": "Nehmen Sie Kontakt auf",
     "location": "Madrid, Spanien",
     "globalShipping": "Weltweiter Versand Verfügbar",
+    "whatsappMessage": "Sie können uns auch per WhatsApp schreiben oder direkt anrufen.",
+    "privacyMessage": "Wir werden Ihre Daten niemals an Dritte weitergeben.",
+    "trustBadges": {
+      "response": "Antwort in weniger als 24 Stunden",
+      "quote": "Unverbindliches Angebot",
+      "international": "Internationale Veranstaltungen und Versand"
+    },
+    "whatToExpect": {
+      "title": "Was können Sie erwarten, wenn Sie uns kontaktieren?",
+      "point1": "Persönliche Beratung basierend auf Ihrer Art von Veranstaltung oder Geschäft.",
+      "point2": "Empfehlungen zum am besten geeigneten Simulator und Inhalt.",
+      "point3": "Klare Informationen über Preise, Logistik und Zeitpläne.",
+      "point4": "Unterstützung vor, während und nach der Veranstaltung."
+    },
+    "socialProof": {
+      "title": "Sie haben bereits unseren Simulatoren vertraut",
+      "clients": [
+        "MotoGP Grand Prix",
+        "Firmenveranstaltungen",
+        "Internationale Messen",
+        "Professionelle Rennstrecken"
+      ]
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "q1": "Wie lange dauert es, bis Sie antworten?",
+      "a1": "Wir antworten normalerweise innerhalb von 24 Stunden.",
+      "q2": "Können Sie den Simulator außerhalb Spaniens versenden oder installieren?",
+      "a2": "Ja, wir prüfen die Logistik entsprechend Ihrem Land oder Ihrer Stadt.",
+      "q3": "Kann ich den Simulator nur für einen Tag oder ein Wochenende mieten?",
+      "a3": "Wir bieten flexible Optionen für Veranstaltungen, Messen und Promotionen.",
+      "q4": "Verkaufen Sie auch Simulatoren?",
+      "a4": "Ja, wir können Sie beim idealen Kauf und Konfiguration beraten."
+    },
     "form": {
       "name": "Name",
       "namePlaceholder": "Max Mustermann",

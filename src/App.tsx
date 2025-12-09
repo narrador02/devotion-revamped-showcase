@@ -10,6 +10,7 @@ import Events from "./pages/Events";
 import RentPurchase from "./pages/RentPurchase";
 import NotFound from "./pages/NotFound";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollToTop from "@/components/ScrollToTop";
 import { HelmetProvider } from "react-helmet-async";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -25,6 +26,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/simuladores" element={<Simuladores />} />

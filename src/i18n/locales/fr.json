@@ -229,9 +229,44 @@
     "title": "Contactez",
     "subtitle": "Nous",
     "description": "Prêt à vivre la simulation ultime? Nous sommes là pour vous aider.",
+    "heroSubtitle": "Prêt à apporter la simulation ultime à votre événement, entreprise ou circuit? Nous sommes là pour vous aider.",
     "getInTouch": "Entrer en Contact",
     "location": "Madrid, Espagne",
     "globalShipping": "Livraison Mondiale Disponible",
+    "whatsappMessage": "Vous pouvez également nous écrire sur WhatsApp ou nous appeler directement.",
+    "privacyMessage": "Nous ne partagerons jamais vos données avec des tiers.",
+    "trustBadges": {
+      "response": "Réponse en moins de 24 heures",
+      "quote": "Devis sans engagement",
+      "international": "Événements et expéditions internationaux"
+    },
+    "whatToExpect": {
+      "title": "Que pouvez-vous attendre en nous contactant?",
+      "point1": "Conseils personnalisés selon votre type d'événement ou d'entreprise.",
+      "point2": "Recommandations sur le simulateur et le contenu les plus adaptés.",
+      "point3": "Informations claires sur les prix, la logistique et les délais.",
+      "point4": "Support avant, pendant et après l'événement."
+    },
+    "socialProof": {
+      "title": "Ils ont déjà fait confiance à nos simulateurs",
+      "clients": [
+        "Grands Prix MotoGP",
+        "Événements d'Entreprise",
+        "Salons Internationaux",
+        "Circuits Professionnels"
+      ]
+    },
+    "faq": {
+      "title": "Questions Fréquemment Posées",
+      "q1": "Combien de temps mettez-vous pour répondre?",
+      "a1": "Nous répondons normalement dans les 24 heures.",
+      "q2": "Pouvez-vous expédier ou installer le simulateur hors d'Espagne?",
+      "a2": "Oui, nous étudions la logistique selon votre pays ou votre ville.",
+      "q3": "Puis-je louer le simulateur pour un seul jour ou un weekend?",
+      "a3": "Nous offrons des options flexibles pour les événements, salons et promotions.",
+      "q4": "Vendez-vous également des simulateurs?",
+      "a4": "Oui, nous pouvons vous conseiller sur l'achat et la configuration idéale."
+    },
     "form": {
       "name": "Nom",
       "namePlaceholder": "Jean Dupont",

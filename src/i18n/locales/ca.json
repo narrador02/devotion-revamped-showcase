@@ -229,9 +229,44 @@
     "title": "Contacta",
     "subtitle": "amb Nosaltres",
     "description": "A punt per experimentar la simulació definitiva? Estem aquí per ajudar.",
+    "heroSubtitle": "A punt per portar la simulació definitiva al teu event, negoci o circuit? Estem aquí per ajudar-te.",
     "getInTouch": "Posa't en Contacte",
     "location": "Madrid, Espanya",
     "globalShipping": "Enviament Global Disponible",
+    "whatsappMessage": "També pots escriure'ns per WhatsApp o trucar-nos directament.",
+    "privacyMessage": "Mai compartirem les teves dades amb tercers.",
+    "trustBadges": {
+      "response": "Resposta en menys de 24 hores",
+      "quote": "Pressupost sense compromís",
+      "international": "Esdeveniments i enviaments internacionals"
+    },
+    "whatToExpect": {
+      "title": "Què pots esperar en contactar-nos?",
+      "point1": "Assessorament personalitzat segons el teu tipus d'event o negoci.",
+      "point2": "Recomanacions sobre el simulador i el contingut més adequat.",
+      "point3": "Informació clara sobre preus, logística i terminis.",
+      "point4": "Suport abans, durant i després de l'esdeveniment."
+    },
+    "socialProof": {
+      "title": "Ja han confiat en els nostres simuladors",
+      "clients": [
+        "Grans Premis de MotoGP",
+        "Esdeveniments Corporatius",
+        "Fires Internacionals",
+        "Circuits Professionals"
+      ]
+    },
+    "faq": {
+      "title": "Preguntes Freqüents",
+      "q1": "Quant tardeu a respondre?",
+      "a1": "Normalment responem en menys de 24 hores.",
+      "q2": "Podeu enviar o muntar el simulador fora d'Espanya?",
+      "a2": "Sí, estudiem la logística segons el teu país o ciutat.",
+      "q3": "Puc llogar el simulador només per un dia o cap de setmana?",
+      "a3": "Oferim opcions flexibles per a esdeveniments, fires i promocions.",
+      "q4": "També veneu simuladors?",
+      "a4": "Sí, podem assessorar-te en la compra i configuració ideal."
+    },
     "form": {
       "name": "Nom",
       "namePlaceholder": "Joan García",

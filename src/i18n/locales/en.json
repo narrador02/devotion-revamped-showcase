@@ -229,9 +229,44 @@
     "title": "Contact",
     "subtitle": "Us",
     "description": "Ready to experience the ultimate simulation? We're here to help.",
+    "heroSubtitle": "Ready to bring the ultimate simulation to your event, business, or circuit? We're here to help you.",
     "getInTouch": "Get In Touch",
     "location": "Madrid, Spain",
     "globalShipping": "Global Shipping Available",
+    "whatsappMessage": "You can also write to us on WhatsApp or call us directly.",
+    "privacyMessage": "We will never share your data with third parties.",
+    "trustBadges": {
+      "response": "Response in less than 24 hours",
+      "quote": "No-obligation quote",
+      "international": "International events and shipping"
+    },
+    "whatToExpect": {
+      "title": "What can you expect when contacting us?",
+      "point1": "Personalized advice based on your type of event or business.",
+      "point2": "Recommendations on the most suitable simulator and content.",
+      "point3": "Clear information about pricing, logistics, and timelines.",
+      "point4": "Support before, during, and after the event."
+    },
+    "socialProof": {
+      "title": "They have already trusted our simulators",
+      "clients": [
+        "MotoGP Grand Prix",
+        "Corporate Events",
+        "International Fairs",
+        "Professional Circuits"
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How long does it take you to respond?",
+      "a1": "We normally respond within 24 hours.",
+      "q2": "Can you ship or install the simulator outside Spain?",
+      "a2": "Yes, we study the logistics according to your country or city.",
+      "q3": "Can I rent the simulator for just one day or weekend?",
+      "a3": "We offer flexible options for events, fairs, and promotions.",
+      "q4": "Do you also sell simulators?",
+      "a4": "Yes, we can advise you on the ideal purchase and configuration."
+    },
     "form": {
       "name": "Name",
       "namePlaceholder": "John Doe",
@@ -280,9 +315,13 @@
       "title": "Entertainment",
       "desc": "The ultimate gaming experience. Feel the adrenaline of MotoGP at home. Challenge friends and compete online."
     },
-    "schools": {
-      "title": "Driving Schools",
-      "desc": "Safe and efficient training for students. Teach correct posture and bike control in a controlled environment."
+    "events": {
+      "title": "Events & Marketing",
+      "desc": "A unique attraction for fairs, booths, and brand activations. Attracts crowds, generates interaction, and offers an unforgettable immersive experience."
+    },
+    "leisure": {
+      "title": "Leisure Centers",
+      "desc": "Ideal for arcades, entertainment centers, and recreational spaces looking to offer an exciting and immersive motorcycle simulation experience."
     },
     "learnMore": "Learn More"
   },

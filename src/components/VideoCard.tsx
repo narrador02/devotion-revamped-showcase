@@ -2,8 +2,8 @@ import { Play, Quote } from "lucide-react";
 
 interface VideoCardProps {
   videoId: string;
-  title: string; // Author/Name
-  quote?: string; // The catchy phrase
+  title: string; // Author/Name (Small text at bottom)
+  quote?: string; // Main text (Big text)
   onClick: () => void;
   className?: string;
 }
@@ -48,30 +48,30 @@ const VideoCard = ({ videoId, title, quote, onClick, className }: VideoCardProps
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-80" />
 
-      {/* Content Container */}
-      <div className="absolute inset-0 p-4 flex flex-col justify-between">
-
-        {/* Top: Play Button */}
-        <div className="flex justify-end">
-          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-110">
-            <Play className="w-4 h-4 text-white fill-white" />
-          </div>
+      {/* Play Button - Centered Absolutely */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none pb-8">
+        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 transform scale-50 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
+          <Play className="w-5 h-5 text-white fill-white ml-0.5" />
         </div>
+      </div>
 
-        {/* Bottom: Text Content */}
-        <div className="transform translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-          <Quote className="w-5 h-5 text-red-500 mb-2 opacity-0 -translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-75" />
+      {/* Content Container - Bottom Aligned */}
+      <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
 
-          <h3 className="text-base md:text-lg font-rajdhani font-bold text-white leading-tight mb-2 line-clamp-2 drop-shadow-lg">
-            {quote || title}
-          </h3>
+        {/* Quote icon */}
+        <Quote className="w-4 h-4 text-red-500 mb-1 opacity-0 -translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-75" />
 
-          <div className="flex items-center gap-2">
-            <div className="h-0.5 w-3 bg-red-500 rounded-full" />
-            <p className="text-xs font-semibold text-white tracking-wide drop-shadow-md">
-              {quote ? title : "Watch Video"}
-            </p>
-          </div>
+        {/* Quote text (Big) - 1 Line Only */}
+        <h3 className="text-base md:text-lg font-rajdhani font-bold text-white leading-tight mb-2 truncate drop-shadow-lg w-full">
+          {quote}
+        </h3>
+
+        {/* Red line and Name (Small) */}
+        <div className="flex items-center gap-2">
+          <div className="h-0.5 w-1.5 bg-red-500 rounded-full shrink-0" />
+          <p className="text-xs font-semibold text-white tracking-wide drop-shadow-md truncate opacity-90">
+            {title}
+          </p>
         </div>
       </div>
 
