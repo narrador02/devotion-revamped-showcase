@@ -2,6 +2,7 @@
 import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Trophy, Users } from "lucide-react";
@@ -49,6 +50,12 @@ const Reviews = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={t('seo.reviews.title')}
+        description={t('seo.reviews.description')}
+        keywords={t('seo.reviews.keywords')}
+        path="/reviews"
+      />
       <Navigation />
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4">

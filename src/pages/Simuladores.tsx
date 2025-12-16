@@ -9,6 +9,8 @@ import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+import { seoConfig } from "@/config/seoConfig";
 import { useState } from "react";
 
 const Simuladores = () => {
@@ -95,8 +97,23 @@ const Simuladores = () => {
     }
   ];
 
+  // Structured data for products
+  const structuredData = [
+    seoConfig.products.timeAttack,
+    seoConfig.products.slady,
+    seoConfig.products.topGun,
+  ];
+
   return (
     <div className="min-h-screen bg-background font-inter">
+      <SEO
+        title={t('seo.simulators.title')}
+        description={t('seo.simulators.description')}
+        keywords={t('seo.simulators.keywords')}
+        path="/simuladores"
+        type="product"
+        structuredData={structuredData}
+      />
       <Helmet>
         <title>{t('nav.products')} | DevotionSim</title>
         <meta name="description" content={t('products.sectionSubtitle')} />

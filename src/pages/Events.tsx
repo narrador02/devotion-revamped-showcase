@@ -6,6 +6,7 @@ import { ChevronDown, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import SEO from "@/components/SEO";
 import SpeedLines from "@/components/SpeedLines";
 import CountUpMetric from "@/components/CountUpMetric";
 import EventCard from "@/components/EventCard";
@@ -149,6 +150,12 @@ const Events = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-inter">
+      <SEO
+        title={t('seo.events.title')}
+        description={t('seo.events.description')}
+        keywords={t('seo.events.keywords')}
+        path="/events"
+      />
       <Navigation />
 
       {/* HERO SECTION */}

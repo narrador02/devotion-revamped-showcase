@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,12 @@ const VirtualReality = () => {
 
     return (
         <div ref={containerRef} className="min-h-screen bg-black text-white font-inter overflow-x-hidden selection:bg-cyan-500/30">
+            <SEO
+                title={t('seo.vr.title')}
+                description={t('seo.vr.description')}
+                keywords={t('seo.vr.keywords')}
+                path="/virtual-reality"
+            />
             <Helmet>
                 <title>{t('vr_page.hero.title')} | DevotionSim</title>
                 <meta name="description" content={t('vr_page.hero.subtitle')} />

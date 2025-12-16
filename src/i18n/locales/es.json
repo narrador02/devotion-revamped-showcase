@@ -422,5 +422,52 @@
       "button": "Solicitar Demo",
       "link": "Ver especificaciones técnicas"
     }
+  },
+  "seo": {
+    "site": {
+      "name": "DevotionSim",
+      "tagline": "Simuladores Premium de Motos",
+      "defaultDescription": "Experimenta la emoción de las carreras profesionales de MotoGP con los simuladores de motos de alto rendimiento de DevotionSim. Simuladores oficiales de MotoGP para entrenamiento, entretenimiento y eventos."
+    },
+    "home": {
+      "title": "DevotionSim | Simuladores Profesionales MotoGP y Experiencia de Carreras",
+      "description": "Descubre simuladores premium de motos con sistemas de movimiento de hasta 4 ejes. Simuladores oficiales de MotoGP para entrenamiento profesional, centros de entretenimiento y eventos. Experimenta sensaciones auténticas de circuito.",
+      "keywords": "simulador de motos, simulador motogp, simulador de carreras, simulador de moto, entrenamiento profesional, carreras VR, simulador de movimiento, entrenamiento de circuito, devotionsim"
+    },
+    "simulators": {
+      "title": "Simuladores de Motos | Modelos Time Attack, Slady y Top Gun",
+      "description": "Explora nuestra gama de simuladores profesionales de motos: Time Attack (2 ejes), Slady (3 ejes con deslizamiento), y Top Gun (4 ejes movimiento completo). Construidos para operación 24/7 con ángulos de inclinación hasta 54°.",
+      "keywords": "simulador time attack, simulador slady, simulador top gun, simulador 2 ejes, simulador drift 3 ejes, simulador movimiento 4 ejes, simulador carreras profesional"
+    },
+    "reviews": {
+      "title": "Reseñas de Clientes y Testimonios | Experiencia DevotionSim",
+      "description": "Mira testimonios en vídeo de pilotos profesionales de MotoGP y clientes de eventos. Descubre por qué miles confían en DevotionSim para la experiencia de simulación de motos más realista.",
+      "keywords": "reseñas clientes, testimonios pilotos profesionales, pilotos motogp, reseñas simulador, comentarios clientes, testimonios eventos"
+    },
+    "events": {
+      "title": "Eventos y Grandes Premios MotoGP | Presencia Mundial DevotionSim",
+      "description": "DevotionSim en Grandes Premios de MotoGP y eventos internacionales. Más de 380+ Grandes Premios, 470+ eventos totales y 28,000+ participantes desde 2018. Lleva emoción a tu próximo evento.",
+      "keywords": "eventos motogp, grandes premios, eventos de motos, alquiler simulador, activación eventos, eventos corporativos, ferias, fan zone"
+    },
+    "rentPurchase": {
+      "title": "Alquiler o Compra de Simuladores de Motos | Consigue tu DevotionSim",
+      "description": "Opciones flexibles de alquiler y compra para simuladores de motos DevotionSim. Envío mundial, instalación experta y garantía completa. Perfecto para negocios, eventos y centros de entretenimiento.",
+      "keywords": "comprar simulador motos, alquilar simulador, compra simulador, alquiler simulador, envío mundial, simulador negocio, equipo centro entretenimiento"
+    },
+    "about": {
+      "title": "Sobre DevotionSim | Pasión por las Carreras y Excelencia en Ingeniería",
+      "description": "Conoce la misión de DevotionSim de unir las carreras virtuales y la física del mundo real. Construido por pilotos para pilotos, creamos las herramientas de entrenamiento de motos más realistas disponibles.",
+      "keywords": "sobre devotionsim, misión empresa, pasión carreras, excelencia ingeniería, fabricante simuladores, herramientas entrenamiento profesional"
+    },
+    "contact": {
+      "title": "Contacto | DevotionSim - Consultas Simuladores Profesionales",
+      "description": "Ponte en contacto con DevotionSim para consultas sobre simuladores, alquileres para eventos o información de compra. Ubicados en Madrid, España con envío mundial. Respuesta garantizada en 24 horas.",
+      "keywords": "contacto devotionsim, consulta simulador, información alquiler, consulta compra, envío mundial, madrid españa, soporte cliente"
+    },
+    "vr": {
+      "title": "Experiencia VR | Carreras Inmersivas MotoGP con Realidad Virtual",
+      "description": "Inmersión total con simuladores de motos compatibles con VR. Compatible con Meta Quest, HTC Vive, Valve Index. Experimenta MotoGP, Ride 4 y Assetto Corsa en realidad virtual impresionante.",
+      "keywords": "simulador vr motos, carreras realidad virtual, compatible meta quest, motogp vr, carreras inmersivas, gaming vr, carreras 360 grados"
+    }
   }
 }

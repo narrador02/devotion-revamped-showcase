@@ -25,28 +25,13 @@ const Footer = () => {
             <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#products" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
+                <a href="/simuladores" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
                   {t('nav.products')}
-                </a>
-              </li>
-              <li>
-                <a href="#media" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  {t('nav.media')}
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  {t('nav.aboutUs')}
                 </a>
               </li>
               <li>
                 <a href="/contact" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
                   {t('nav.contact')}
-                </a>
-              </li>
-              <li>
-                <a href="/virtual-reality" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
-                  {t('footer.vrExperience')}
                 </a>
               </li>
             </ul>

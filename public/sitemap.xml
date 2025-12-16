@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://devotionsim.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/"/>
+  </url>
+
+  <!-- Simulators Page -->
+  <url>
+    <loc>https://devotionsim.com/simuladores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/simuladores?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/simuladores?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/simuladores?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/simuladores?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/simuladores?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/simuladores?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/simuladores?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/simuladores?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/simuladores"/>
+  </url>
+
+  <!-- Reviews Page -->
+  <url>
+    <loc>https://devotionsim.com/reviews</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/reviews?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/reviews?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/reviews?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/reviews?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/reviews?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/reviews?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/reviews?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/reviews?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/reviews"/>
+  </url>
+
+  <!-- Events Page -->
+  <url>
+    <loc>https://devotionsim.com/events</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/events?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/events?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/events?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/events?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/events?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/events?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/events?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/events?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/events"/>
+  </url>
+
+  <!-- Rent/Purchase Page -->
+  <url>
+    <loc>https://devotionsim.com/rent-purchase</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/rent-purchase?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/rent-purchase?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/rent-purchase?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/rent-purchase?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/rent-purchase?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/rent-purchase?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/rent-purchase?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/rent-purchase?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/rent-purchase"/>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://devotionsim.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/about?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/about?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/about?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/about?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/about?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/about?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/about?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/about?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/about"/>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://devotionsim.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/contact?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/contact?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/contact?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/contact?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/contact?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/contact?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/contact?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/contact?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/contact"/>
+  </url>
+
+  <!-- VR Experience Page -->
+  <url>
+    <loc>https://devotionsim.com/virtual-reality</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://devotionsim.com/virtual-reality?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://devotionsim.com/virtual-reality?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://devotionsim.com/virtual-reality?lang=ca"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://devotionsim.com/virtual-reality?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://devotionsim.com/virtual-reality?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://devotionsim.com/virtual-reality?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://devotionsim.com/virtual-reality?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://devotionsim.com/virtual-reality?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://devotionsim.com/virtual-reality"/>
+  </url>
+
+</urlset>

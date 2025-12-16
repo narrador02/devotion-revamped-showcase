@@ -22,6 +22,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ShieldCheck, Truck, Headphones } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 
 const RentPurchase = () => {
   const { t } = useTranslation();
@@ -112,6 +113,12 @@ const RentPurchase = () => {
 
   return (
     <div className="min-h-screen bg-background font-inter">
+      <SEO
+        title={t('seo.rentPurchase.title')}
+        description={t('seo.rentPurchase.description')}
+        keywords={t('seo.rentPurchase.keywords')}
+        path="/rent-purchase"
+      />
       <Helmet>
         <title>{t('rentPurchase.title')} | DevotionSim</title>
         <meta name="description" content={t('rentPurchase.subtitle')} />

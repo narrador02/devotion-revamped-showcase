@@ -9,28 +9,28 @@ const UseCases = () => {
 
     const cases = [
         {
-            icon: <Trophy size={40} />,
+            icon: <Trophy className="w-8 h-8 md:w-10 md:h-10" />,
             title: t('useCases.professional.title'),
             description: t('useCases.professional.desc'),
             link: "/simuladores#professional",
             color: "text-yellow-500"
         },
         {
-            icon: <Gamepad2 size={40} />,
+            icon: <Gamepad2 className="w-8 h-8 md:w-10 md:h-10" />,
             title: t('useCases.entertainment.title'),
             description: t('useCases.entertainment.desc'),
             link: "/simuladores#entertainment",
             color: "text-primary"
         },
         {
-            icon: <Megaphone size={40} />,
+            icon: <Megaphone className="w-8 h-8 md:w-10 md:h-10" />,
             title: t('useCases.events.title'),
             description: t('useCases.events.desc'),
             link: "/events",
             color: "text-purple-500"
         },
         {
-            icon: <Joystick size={40} />,
+            icon: <Joystick className="w-8 h-8 md:w-10 md:h-10" />,
             title: t('useCases.leisure.title'),
             description: t('useCases.leisure.desc'),
             link: "/simuladores#leisure",
@@ -59,14 +59,14 @@ const UseCases = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="group relative p-6 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full"
+                            transition={{ delay: index * 0.1, duration: 0.3 }}
+                            className="group relative p-6 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl md:hover:-translate-y-2 flex flex-col min-h-[320px] md:h-full"
                         >
-                            <div className={`mb-6 ${item.color} p-4 bg-background/50 rounded-full w-fit group-hover:scale-110 transition-transform`}>
+                            <div className={`mb-6 ${item.color} p-3 md:p-4 bg-background/50 rounded-full w-fit group-hover:scale-110 transition-transform`}>
                                 {item.icon}
                             </div>
                             <h3 className="text-xl font-rajdhani font-bold mb-3 text-foreground">{item.title}</h3>
-                            <p className="text-muted-foreground mb-6 leading-relaxed text-sm flex-grow">
+                            <p className="text-muted-foreground mb-6 leading-relaxed text-sm flex-grow min-h-[80px]">
                                 {item.description}
                             </p>
                             <Link to={item.link} className="mt-auto">

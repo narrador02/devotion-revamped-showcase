@@ -34,15 +34,26 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen
+          ? "bg-background/95 backdrop-blur-md shadow-lg"
+          : "md:bg-transparent bg-background/95 backdrop-blur-md shadow-lg"
         }`}
     >
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 animate-fade-in md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0 mt-4">
             <Link to="/" className="flex items-center">
-              <img src={logo} alt="Devotion Sim Logo" className="h-24 w-auto" />
+              <img src={logo} alt="Devotion Sim Logo" className="h-18 md:h-24 w-auto" />
             </Link>
           </div>
 
@@ -62,22 +73,27 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-foreground p-2 relative z-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? (
+              <X size={28} className="text-white drop-shadow-lg" strokeWidth={2.5} />
+            ) : (
+              <Menu size={24} />
+            )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-6 animate-fade-in relative z-50 bg-background/98 backdrop-blur-lg rounded-b-2xl shadow-2xl border-b border-border/50">
+            <div className="flex flex-col space-y-1">
               {filteredNavLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="font-inter text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
+                  className="font-inter text-base font-medium text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 py-3 px-4 block min-h-[44px] flex items-center rounded-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}

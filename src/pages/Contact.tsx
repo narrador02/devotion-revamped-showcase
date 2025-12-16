@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle, Globe, Settings, FileText, Headphones, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,12 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen bg-background font-inter">
+            <SEO
+                title={t('seo.contact.title')}
+                description={t('seo.contact.description')}
+                keywords={t('seo.contact.keywords')}
+                path="/contact"
+            />
             <Helmet>
                 <title>{t('contactPage.title')} {t('contactPage.subtitle')} | DevotionSim</title>
                 <meta name="description" content={t('contactPage.description')} />

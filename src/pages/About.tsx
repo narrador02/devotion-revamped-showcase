@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -10,6 +11,12 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background font-inter">
+      <SEO
+        title={t('seo.about.title')}
+        description={t('seo.about.description')}
+        keywords={t('seo.about.keywords')}
+        path="/about"
+      />
       <Helmet>
         <title>About Us | DevotionSim</title>
         <meta name="description" content="Learn about the passion and engineering behind DevotionSim's professional motorcycle simulators." />
@@ -51,12 +58,20 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-card p-8 rounded-2xl border border-border shadow-xl"
+              className="bg-card p-2 rounded-2xl border border-border shadow-xl overflow-hidden"
             >
-              {/* Placeholder for an image or graphic */}
-              <div className="aspect-video bg-muted/20 rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground">Mission Image / Graphic</span>
-              </div>
+              {/* Google Maps Embed - Carrer dels Almogavers 209, Barcelona */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.4826453847743!2d2.1899584!3d41.3979937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2f7c8b3c4f5%3A0x5c5e5c5e5c5e5c5e!2sCarrer%20dels%20Almog%C3%A0vers%2C%20209%2C%2008018%20Barcelona%2C%20Spain!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                width="100%"
+                height="350"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="DevotionSim Location - Barcelona"
+                className="rounded-lg"
+              />
             </motion.div>
           </div>
 

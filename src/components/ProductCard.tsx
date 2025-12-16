@@ -30,28 +30,27 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-48 md:h-64 overflow-hidden">
         <img
           src={image}
           alt={title}
-          className={`w-full h-full object-cover transition-transform duration-700 ${
-            isHovered ? "scale-110" : "scale-100"
-          }`}
+          className={`w-full h-full object-cover object-center transition-transform duration-700 ${isHovered ? "scale-110" : "scale-100"
+            }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"></div>
-        
+
         {/* Icon Overlay */}
-        <div className="absolute top-6 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:scale-110">
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:scale-110">
           {icon}
         </div>
       </div>
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-2xl font-rajdhani font-bold mb-3 text-foreground">{title}</h3>
-        <p className="text-muted-foreground font-inter mb-4 leading-relaxed">{description}</p>
+        <h3 className="text-2xl font-rajdhani font-bold mb-4 md:mb-3 text-foreground">{title}</h3>
+        <p className="text-muted-foreground font-inter mb-6 md:mb-4 leading-relaxed">{description}</p>
 
-        <Button 
+        <Button
           onClick={handleLearnMore}
           className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold transition-all duration-300"
         >
@@ -59,11 +58,10 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
         </Button>
       </div>
 
-      {/* Glow Effect on Hover */}
+      {/* Glow Effect on Hover - Disabled on mobile touch devices */}
       <div
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
-          isHovered ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-500 hidden md:block ${isHovered ? "opacity-100" : "opacity-0"
+          }`}
         style={{
           background: "radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.2), transparent 60%)",
         }}

@@ -2,24 +2,38 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+import { useTranslation } from "react-i18next";
 import UseCases from "@/components/UseCases";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import SpeedLinesBackground from "@/components/SpeedLinesBackground";
+import { seoConfig } from "@/config/seoConfig";
 
 const Index = () => {
+  const { t } = useTranslation();
+
+  // Structured data for Organization and Products
+  const structuredData = [
+    seoConfig.organization,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: t('seo.home.title'),
+      description: t('seo.home.description'),
+      url: seoConfig.siteUrl,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background font-inter relative">
-      <Helmet>
-        <title>DevotionSim | Professional Motorcycle Simulators</title>
-        <meta name="description" content="Experience the thrill of the circuit with our high-performance motorcycle simulators. Perfect for training, entertainment, and events." />
-      </Helmet>
+      <SEO
+        title={t('seo.home.title')}
+        description={t('seo.home.description')}
+        keywords={t('seo.home.keywords')}
+        path="/"
+        structuredData={structuredData}
+      />
 
-      {/* Dynamic Speed Lines Background */}
-      <SpeedLinesBackground />
-
-      {/* Content with higher z-index */}
-      <div className="relative z-10">
+      <div className="relative">
         <Navigation />
         <main>
           <Hero />

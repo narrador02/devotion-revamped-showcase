@@ -422,5 +422,52 @@
       "button": "Request Demo",
       "link": "See technical specs"
     }
+  },
+  "seo": {
+    "site": {
+      "name": "DevotionSim",
+      "tagline": "Premium Motorcycle Simulators",
+      "defaultDescription": "Experience the thrill of professional MotoGP racing with DevotionSim's high-performance motorcycle simulators. Official MotoGP simulators for training, entertainment, and events."
+    },
+    "home": {
+      "title": "DevotionSim | Professional MotoGP Simulators & Racing Experience",
+      "description": "Discover premium motorcycle simulators with up to 4-axis motion systems. Official MotoGP simulators for professional training, entertainment centers, and events. Experience authentic circuit sensations.",
+      "keywords": "motorcycle simulator, motogp simulator, racing simulator, bike simulator, professional training, VR racing, motion simulator, circuit training, devotionsim"
+    },
+    "simulators": {
+      "title": "Motorcycle Simulators | Time Attack, Slady & Top Gun Models",
+      "description": "Explore our range of professional motorcycle simulators: Time Attack (2-axis), Slady (3-axis drift), and Top Gun (4-axis complete motion). Built for 24/7 operation with lean angles up to 54°.",
+      "keywords": "time attack simulator, slady simulator, top gun simulator, 2-axis motorcycle simulator, 3-axis drift simulator, 4-axis motion simulator, professional racing simulator"
+    },
+    "reviews": {
+      "title": "Customer Reviews & Testimonials | DevotionSim Experience",
+      "description": "Watch video testimonials from professional MotoGP riders and event customers. See why thousands trust DevotionSim for the most realistic motorcycle simulation experience.",
+      "keywords": "customer reviews, professional riders testimonials, motogp riders, simulator reviews, customer feedback, event testimonials"
+    },
+    "events": {
+      "title": "Events & MotoGP Grand Prix | DevotionSim Presence Worldwide",
+      "description": "DevotionSim at MotoGP Grand Prix and international events. Over 380+ Grand Prix, 470+ total events, and 28,000+ participants since 2018. Bring excitement to your next event.",
+      "keywords": "motogp events, grand prix, motorcycle events, simulator rental, event activation, corporate events, trade shows, fan zone"
+    },
+    "rentPurchase": {
+      "title": "Rent or Buy Motorcycle Simulators | Get Your DevotionSim",
+      "description": "Flexible rental and purchase options for DevotionSim motorcycle simulators. Global shipping, expert installation, and comprehensive warranty. Perfect for businesses, events, and entertainment centers.",
+      "keywords": "buy motorcycle simulator, rent simulator, simulator purchase, simulator rental, global shipping, business simulator, entertainment center equipment"
+    },
+    "about": {
+      "title": "About DevotionSim | Passion for Racing & Engineering Excellence",
+      "description": "Learn about DevotionSim's mission to bridge virtual racing and real-world physics. Built by riders for riders, we create the most realistic motorcycle training tools available.",
+      "keywords": "about devotionsim, company mission, racing passion, engineering excellence, simulator manufacturer, professional training tools"
+    },
+    "contact": {
+      "title": "Contact Us | DevotionSim - Professional Simulator Inquiries",
+      "description": "Get in touch with DevotionSim for simulator inquiries, event rentals, or purchase information. Based in Madrid, Spain with global shipping. Response within 24 hours guaranteed.",
+      "keywords": "contact devotionsim, simulator inquiry, rental information, purchase inquiry, global shipping, madrid spain, customer support"
+    },
+    "vr": {
+      "title": "VR Experience | Immersive MotoGP Racing with Virtual Reality",
+      "description": "Total immersion with VR-compatible motorcycle simulators. Compatible with Meta Quest, HTC Vive, Valve Index. Experience MotoGP, Ride 4, and Assetto Corsa in stunning virtual reality.",
+      "keywords": "vr motorcycle simulator, virtual reality racing, meta quest compatible, motogp vr, immersive racing, vr gaming, 360 degree racing"
+    }
   }
 }

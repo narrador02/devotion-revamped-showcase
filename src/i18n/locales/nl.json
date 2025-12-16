@@ -271,5 +271,52 @@
       "learnMore": "Meer Informatie"
     },
     "learnMore": "Meer Informatie"
+  },
+  "seo": {
+    "site": {
+      "name": "DevotionSim",
+      "tagline": "Premium Motorsimulators",
+      "defaultDescription": "Ervaar de sensatie van professioneel MotoGP-racen met DevotionSim's hoogpresterende motorsimulators. Officiële MotoGP-simulators voor training, entertainment en evenementen."
+    },
+    "home": {
+      "title": "DevotionSim | Professionele MotoGP-simulators & Race-ervaring",
+      "description": "Ontdek premium motorsimulators met bewegingssystemen tot 4 assen. Officiële MotoGP-simulators voor professionele training, entertainmentcentra en evenementen. Ervaar authentieke circuit sensaties.",
+      "keywords": "motorsimulator, motogp simulator, racesimulator, motor simulator, professionele training, VR racen, bewegingssimulator, circuit training, devotionsim"
+    },
+    "simulators": {
+      "title": "Motorsimulators | Time Attack, Slady & Top Gun Modellen",
+      "description": "Verken ons assortiment professionele motorsimulators: Time Attack (2-assen), Slady (3-assen met drift), en Top Gun (4-assen volledige beweging). Gebouwd voor 24/7 gebruik met hellingshoeken tot 54°.",
+      "keywords": "time attack simulator, slady simulator, top gun simulator, 2-assen simulator, 3-assen drift simulator, 4-assen bewegingssimulator, professionele racesimulator"
+    },
+    "reviews": {
+      "title": "Klantbeoordelingen & Getuigenissen | DevotionSim Ervaring",
+      "description": "Bekijk video getuigenissen van professionele MotoGP-coureurs en evenementklanten. Ontdek waarom duizenden DevotionSim vertrouwen voor de meest realistische motorsimulatie-ervaring.",
+      "keywords": "klantbeoordelingen, getuigenissen professionele coureurs, motogp coureurs, simulatorbeoordelingen, klantfeedback, evenement getuigenissen"
+    },
+    "events": {
+      "title": "Evenementen & MotoGP Grand Prix | DevotionSim Wereldwijde Aanwezigheid",
+      "description": "DevotionSim bij MotoGP Grand Prix en internationale evenementen. Meer dan 380+ Grand Prix, 470+ totale evenementen en 28.000+ deelnemers sinds 2018. Breng spanning naar uw volgende evenement.",
+      "keywords": "motogp evenementen, grand prix, motor evenementen, simulator verhuur, evenement activatie, bedrijfsevenementen, beurzen, fan zone"
+    },
+    "rentPurchase": {
+      "title": "Huur of Koop Motorsimulators | Krijg uw DevotionSim",
+      "description": "Flexibele verhuur- en aankoopopties voor DevotionSim motorsimulators. Wereldwijde verzending, professionele installatie en volledige garantie. Perfect voor bedrijven, evenementen en entertainmentcentra.",
+      "keywords": "motorsimulator kopen, simulator huren, simulator aankoop, simulator verhuur, wereldwijde verzending, zakelijke simulator, entertainmentcentrum apparatuur"
+    },
+    "about": {
+      "title": "Over DevotionSim | Passie voor Racen & Engineering Excellence",
+      "description": "Leer over DevotionSim's missie om virtueel racen en echte fysica te verbinden. Gebouwd door coureurs voor coureurs, creëren we de meest realistische motortrainingstools die beschikbaar zijn.",
+      "keywords": "over devotionsim, bedrijfsmissie, race passie, engineering excellentie, simulator fabrikant, professionele trainingstools"
+    },
+    "contact": {
+      "title": "Contact | DevotionSim - Professionele Simulator Vragen",
+      "description": "Neem contact op met DevotionSim voor simulator vragen, evenement verhuur of aankoop informatie. Gevestigd in Madrid, Spanje met wereldwijde verzending. Gegarandeerde reactie binnen 24 uur.",
+      "keywords": "contact devotionsim, simulator vraag, verhuurinformatie, aankoop vraag, wereldwijde verzending, madrid spanje, klantenondersteuning"
+    },
+    "vr": {
+      "title": "VR-ervaring | Meeslepend MotoGP-racen met Virtual Reality",
+      "description": "Totale immersie met VR-compatibele motorsimulators. Compatibel met Meta Quest, HTC Vive, Valve Index. Ervaar MotoGP, Ride 4 en Assetto Corsa in verbluffende virtual reality.",
+      "keywords": "vr motorsimulator, virtual reality racen, meta quest compatibel, motogp vr, meeslepend racen, vr gaming, 360 graden racen"
+    }
   }
 }
