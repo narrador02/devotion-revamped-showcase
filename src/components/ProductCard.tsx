@@ -40,7 +40,7 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"></div>
 
         {/* Icon Overlay */}
-        <div className="absolute top-4 right-4 md:top-6 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:scale-110">
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full bg-black border-2 border-primary flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:scale-110">
           {icon}
         </div>
       </div>
@@ -52,7 +52,8 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
 
         <Button
           onClick={handleLearnMore}
-          className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold transition-all duration-300"
+          variant="outline"
+          className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-rajdhani font-semibold transition-all duration-300"
         >
           {t('products.learnMore')}
         </Button>

@@ -22,7 +22,7 @@
   },
   "products": {
     "sectionTitle": "Unsere",
-    "sectionTitleHighlight": "Funktionen",
+    "sectionTitleHighlight": "Simulatoren",
     "sectionSubtitle": "Erleben Sie die perfekte Mischung aus Technologie, Leidenschaft und globaler Rennkultur",
     "learnMore": "Mehr Erfahren",
     "compareModels": "Modelle Vergleichen",
@@ -375,12 +375,16 @@
       },
       "logoPlaceholder": "LOGO SPIEL"
     },
+    "headsets": {
+      "title": "Unterstützte Virtual Reality Headsets",
+      "subtitle": "Die besten VR-Brillen auf dem Markt und die besten Simulatoren arbeiten zusammen... was könnte schiefgehen?"
+    },
     "howItWorks": {
       "title": "Wie sich das Erlebnis anfühlt",
       "steps": {
         "1": {
           "title": "Vorbereiten",
-          "desc": "Setzen Sie das VR-Headset und die Controller auf."
+          "desc": "Setzen Sie den VR-Controller auf und greifen Sie den Lenker."
         },
         "2": {
           "title": "Konfigurieren",
@@ -393,7 +397,7 @@
       }
     },
     "useCases": {
-      "title": "Anwendungen & Use Cases",
+      "title": "Gemacht um zu Beeindrucken",
       "cards": {
         "events": {
           "title": "Events & Messen",
@@ -413,10 +417,25 @@
         }
       }
     },
+    "customization": {
+      "badge": "Unbegrenzte Anpassung",
+      "title1": "Ihre Marke.",
+      "title2": "Ihr Simulator.",
+      "subtitle": "Von MotoGP-Repliken bis hin zu kompletten Markenübernahmen — wir verwandeln den Simulator in eine visuelle Ikone, die alle sprachlos macht.",
+      "features": {
+        "replica": "MotoGP & SBK Repliken",
+        "branding": "Vollständiges Corporate Branding",
+        "events": "Event-spezifische Designs",
+        "impact": "Maximale visuelle Wirkung"
+      },
+      "label1": "Individuelle Farben & Grafiken",
+      "label2": "Sponsor-Integration",
+      "cta": "Erstellen Sie Ihren Simulator"
+    },
     "cta": {
       "title": "Bereit, die Geschwindigkeit zu spüren?",
       "button": "Demo Anfordern",
-      "link": "Technische Spezifikationen ansehen"
+      "link": "Unsere Simulatoren ansehen"
     }
   },
   "seo": {

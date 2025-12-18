@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const Products = () => {
   const { t } = useTranslation();
-  
+
   const products = [
     {
       id: "timeattack",
@@ -52,7 +52,7 @@ const Products = () => {
   ];
 
   return (
-    <section id="products" className="py-20 bg-gradient-to-b from-background to-background/50">
+    <section id="products" className="pt-10 pb-20 md:py-10 bg-gradient-to-b from-background to-background/50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
@@ -60,7 +60,7 @@ const Products = () => {
             <span className="text-foreground">{t('products.sectionTitle')} </span>
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('products.sectionTitleHighlight')}</span>
           </h2>
-          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground font-inter max-w-4xl mx-auto">
             {t('products.sectionSubtitle')}
           </p>
         </div>

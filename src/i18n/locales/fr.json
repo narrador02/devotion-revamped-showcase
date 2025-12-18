@@ -22,7 +22,7 @@
   },
   "products": {
     "sectionTitle": "Nos",
-    "sectionTitleHighlight": "Fonctionnalités",
+    "sectionTitleHighlight": "Simulateurs",
     "sectionSubtitle": "Découvrez le mélange parfait de technologie, passion et culture de course mondiale",
     "learnMore": "En Savoir Plus",
     "compareModels": "Comparer les Modèles",
@@ -375,12 +375,16 @@
       },
       "logoPlaceholder": "LOGO JEU"
     },
+    "headsets": {
+      "title": "Casques de Réalité Virtuelle Compatibles",
+      "subtitle": "Les meilleures lunettes VR du marché et les meilleurs simulateurs travaillant ensemble... que pourrait-il mal tourner?"
+    },
     "howItWorks": {
       "title": "Comment se vit l'expérience",
       "steps": {
         "1": {
           "title": "Préparez-vous",
-          "desc": "Mettez le casque VR et les contrôleurs."
+          "desc": "Mettez le contrôleur VR et saisissez le guidon."
         },
         "2": {
           "title": "Configurez",
@@ -393,7 +397,7 @@
       }
     },
     "useCases": {
-      "title": "Applications et Cas d'Usage",
+      "title": "Fait pour Impressionner",
       "cards": {
         "events": {
           "title": "Événements et Salons",
@@ -413,10 +417,25 @@
         }
       }
     },
+    "customization": {
+      "badge": "Personnalisation Sans Limites",
+      "title1": "Votre Marque.",
+      "title2": "Votre Simulateur.",
+      "subtitle": "Des répliques MotoGP aux prises de contrôle de marque complètes — nous transformons le simulateur en une icône visuelle qui laisse tout le monde sans voix.",
+      "features": {
+        "replica": "Répliques MotoGP & SBK",
+        "branding": "Branding Corporate Complet",
+        "events": "Designs Spécifiques aux Événements",
+        "impact": "Impact Visuel Maximum"
+      },
+      "label1": "Couleurs & Graphiques Personnalisés",
+      "label2": "Intégration des Sponsors",
+      "cta": "Créez Votre Simulateur"
+    },
     "cta": {
       "title": "Prêt à ressentir la vitesse?",
       "button": "Demander une Démo",
-      "link": "Voir les spécifications techniques"
+      "link": "Voir nos simulateurs"
     }
   },
   "seo": {

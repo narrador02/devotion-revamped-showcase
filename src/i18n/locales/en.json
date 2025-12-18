@@ -22,7 +22,7 @@
   },
   "products": {
     "sectionTitle": "Our",
-    "sectionTitleHighlight": "Features",
+    "sectionTitleHighlight": "Simulators",
     "sectionSubtitle": "Experience the perfect blend of technology, passion, and global racing culture",
     "learnMore": "Learn More",
     "compareModels": "Compare Models",
@@ -94,6 +94,86 @@
         "dimensions": "2.30m x 80cm (without pedals) 1.50m width with pedals",
         "transport": "4 wheels on the platform for easy transportation"
       }
+    },
+    "options": {
+      "vr": {
+        "name": "VR Integration",
+        "desc": "Native support for major VR headsets (Quest, Vive, etc.)"
+      },
+      "branding": {
+        "name": "Custom Branding",
+        "desc": "Custom colors and logos for events."
+      },
+      "title": "Available Options",
+      "noOptions": "No options currently available for this model."
+    },
+    "specs": {
+      "sharedTitle": "Shared Specs",
+      "modelTitle": "Model Specs",
+      "dimensionsLabel": "Dimensions",
+      "dimensionsValue": "2.30m x 80cm",
+      "transportLabel": "Transport",
+      "transportValue": "4 integrated retractable wheels",
+      "type": "Type",
+      "weight": "Weight",
+      "leanAngle": "Lean Angle",
+      "upTo54": "Up to 54°"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "specs": "Specs",
+      "options": "Options"
+    },
+    "comparison": {
+      "title": "Compare Models",
+      "axes": "Axes",
+      "maxLean": "Max Lean",
+      "wheelie": "Wheelie Control",
+      "rearSlide": "Rear Slide Axis",
+      "surge": "Surge (Acceleration)",
+      "yes": "Yes",
+      "no": "No",
+      "close": "Close"
+    },
+    "trust": {
+      "title": "Designed for",
+      "events": "Events & Entertainment",
+      "schools": "Schools & Training",
+      "pro": "Professional Practice"
+    },
+    "customization": {
+      "title": "Customization & Branding",
+      "description": "Adapt the simulator to your brand or event identity.",
+      "replica": "Replica liveries inspired by MotoGP/SBK",
+      "corporate": "Full corporate branding",
+      "event": "Themed wraps for events",
+      "cta": "See customization options"
+    },
+    "customizationPremium": {
+      "badge": "Unlimited Customization",
+      "title1": "Your Brand.",
+      "title2": "Your Simulator.",
+      "subtitle": "From MotoGP replicas to full brand takeovers — we turn the simulator into a visual icon that leaves everyone speechless.",
+      "features": {
+        "replica": "MotoGP & SBK Replicas",
+        "branding": "Full Corporate Branding",
+        "events": "Event-Specific Designs",
+        "impact": "Maximum Visual Impact"
+      },
+      "label1": "Custom Colors & Graphics",
+      "label2": "Sponsor Integration",
+      "cta": "Create Your Simulator"
+    },
+    "specsPage": {
+      "title": "Technical Specifications",
+      "subtitle": "Complete details of our simulator range.",
+      "viewFullSpecs": "View full specs",
+      "filters": "Filters",
+      "allModels": "All Models"
+    },
+    "cta": {
+      "bookDemo": "Book a Demo",
+      "contact": "Contact"
     }
   },
   "footer": {
@@ -379,12 +459,16 @@
       },
       "logoPlaceholder": "LOGO GAME"
     },
+    "headsets": {
+      "title": "Virtual Reality Headsets Supported",
+      "subtitle": "The best VR glasses on the market and the best simulators working together... what could go wrong?"
+    },
     "howItWorks": {
       "title": "How the experience feels",
       "steps": {
         "1": {
           "title": "Prepare",
-          "desc": "Put on the VR headset and controllers."
+          "desc": "Put on the VR controller and grab the handlebars."
         },
         "2": {
           "title": "Configure",
@@ -397,7 +481,7 @@
       }
     },
     "useCases": {
-      "title": "Applications & Use Cases",
+      "title": "Made to Impress",
       "cards": {
         "events": {
           "title": "Events & Fairs",
@@ -417,10 +501,25 @@
         }
       }
     },
+    "customization": {
+      "badge": "Unlimited Customization",
+      "title1": "Your Brand.",
+      "title2": "Your Simulator.",
+      "subtitle": "From MotoGP replicas to full brand takeovers — we turn the simulator into a visual icon that leaves everyone speechless.",
+      "features": {
+        "replica": "MotoGP & SBK Replicas",
+        "branding": "Full Corporate Branding",
+        "events": "Event-Specific Designs",
+        "impact": "Maximum Visual Impact"
+      },
+      "label1": "Custom Colors & Graphics",
+      "label2": "Sponsor Integration",
+      "cta": "Create Your Simulator"
+    },
     "cta": {
       "title": "Ready to feel the speed?",
       "button": "Request Demo",
-      "link": "See technical specs"
+      "link": "See our simulators"
     }
   },
   "seo": {

@@ -21,8 +21,8 @@
     "contactUs": "Contáctanos"
   },
   "products": {
-    "sectionTitle": "Nuestras",
-    "sectionTitleHighlight": "Características",
+    "sectionTitle": "Nuestros",
+    "sectionTitleHighlight": "Simuladores",
     "sectionSubtitle": "Experimenta la combinación perfecta de tecnología, pasión y cultura de carreras global",
     "learnMore": "Saber Más",
     "compareModels": "Comparar Modelos",
@@ -30,11 +30,11 @@
     "modelComparison": "Comparación de Modelos",
     "feature": "Característica",
     "movementSystem": "Sistema de Movimiento",
-    "bestFor": "Ideal Para",
+    "bestFor": "Ideal para",
     "weight": "Peso",
     "leanAngle": "Ángulo de Inclinación",
     "upTo54": "Hasta 54°",
-    "keyFeatures": "Características Clave",
+    "keyFeatures": "Características Principales",
     "type": "Tipo",
     "system": "Sistema",
     "ctaTitle": "¿Listo para Sentir la Emoción?",
@@ -94,6 +94,86 @@
         "dimensions": "2.30m x 80cm (sin pedales) 1.50m de ancho con pedales",
         "transport": "4 ruedas en la plataforma para fácil transporte"
       }
+    },
+    "options": {
+      "vr": {
+        "name": "Integración VR",
+        "desc": "Soporte nativo para cascos VR principales (Quest, Vive, etc.)"
+      },
+      "branding": {
+        "name": "Branding Personalizado",
+        "desc": "Personalización de colores y logotipos para eventos."
+      },
+      "title": "Opciones Disponibles",
+      "noOptions": "No hay opciones disponibles actualmente para este modelo."
+    },
+    "specs": {
+      "sharedTitle": "Especificaciones Compartidas",
+      "modelTitle": "Especificaciones del Modelo",
+      "dimensionsLabel": "Dimensiones",
+      "dimensionsValue": "2.30m x 80cm",
+      "transportLabel": "Transporte",
+      "transportValue": "4 ruedas retráctiles integradas",
+      "type": "Tipo",
+      "weight": "Peso",
+      "leanAngle": "Ángulo de Inclinación",
+      "upTo54": "Hasta 54°"
+    },
+    "tabs": {
+      "overview": "Visión General",
+      "specs": "Especificaciones",
+      "options": "Opciones"
+    },
+    "comparison": {
+      "title": "Comparar Modelos",
+      "axes": "Ejes",
+      "maxLean": "Inclinación Máx.",
+      "wheelie": "Control de Wheelie",
+      "rearSlide": "Eje de Derrape Trasero",
+      "surge": "Surge (Aceleración)",
+      "yes": "Sí",
+      "no": "No",
+      "close": "Cerrar"
+    },
+    "trust": {
+      "title": "Diseñado para",
+      "events": "Eventos y Entretenimiento",
+      "schools": "Escuelas y Formación",
+      "pro": "Práctica Profesional"
+    },
+    "customization": {
+      "title": "Personalización y Branding",
+      "description": "Adapta el simulador a la identidad de tu marca o evento.",
+      "replica": "Diseños réplica inspirados en MotoGP/SBK",
+      "corporate": "Branding corporativo completo",
+      "event": "Vinilados temáticos para eventos",
+      "cta": "Ver opciones de personalización"
+    },
+    "customizationPremium": {
+      "badge": "Personalización Sin Límites",
+      "title1": "Tu Marca.",
+      "title2": "Tu Simulador.",
+      "subtitle": "Desde réplicas de MotoGP hasta branding corporativo completo — convertimos el simulador en un icono visual que deja a todos sin palabras.",
+      "features": {
+        "replica": "Réplicas MotoGP y SBK",
+        "branding": "Branding Corporativo Total",
+        "events": "Diseños para Eventos",
+        "impact": "Máximo Impacto Visual"
+      },
+      "label1": "Colores y Gráficos Personalizados",
+      "label2": "Integración de Sponsors",
+      "cta": "Crea Tu Simulador"
+    },
+    "specsPage": {
+      "title": "Especificaciones Técnicas",
+      "subtitle": "Detalles completos de nuestra gama de simuladores.",
+      "viewFullSpecs": "Ver especificaciones completas",
+      "filters": "Filtros",
+      "allModels": "Todos los Modelos"
+    },
+    "cta": {
+      "bookDemo": "Reservar Demo",
+      "contact": "Contactar"
     }
   },
   "footer": {
@@ -379,12 +459,16 @@
       },
       "logoPlaceholder": "LOGO JUEGO"
     },
+    "headsets": {
+      "title": "Cascos de Realidad Virtual Compatibles",
+      "subtitle": "Las mejores gafas VR del mercado y los mejores simuladores trabajando juntos... ¿qué podría salir mal?"
+    },
     "howItWorks": {
       "title": "Cómo se vive la experiencia",
       "steps": {
         "1": {
           "title": "Prepárate",
-          "desc": "Te colocas el casco VR y los mandos."
+          "desc": "Te colocas el mando VR y coges el manillar."
         },
         "2": {
           "title": "Configura",
@@ -397,7 +481,7 @@
       }
     },
     "useCases": {
-      "title": "Aplicaciones y Casos de Uso",
+      "title": "Hecho para Impresionar",
       "cards": {
         "events": {
           "title": "Eventos y Ferias",
@@ -417,10 +501,25 @@
         }
       }
     },
+    "customization": {
+      "badge": "Personalización Sin Límites",
+      "title1": "Tu Marca.",
+      "title2": "Tu Simulador.",
+      "subtitle": "Desde réplicas de MotoGP hasta branding corporativo completo — convertimos el simulador en un icono visual que deja a todos sin palabras.",
+      "features": {
+        "replica": "Réplicas MotoGP y SBK",
+        "branding": "Branding Corporativo Total",
+        "events": "Diseños para Eventos",
+        "impact": "Máximo Impacto Visual"
+      },
+      "label1": "Colores y Gráficos Personalizados",
+      "label2": "Integración de Sponsors",
+      "cta": "Crea Tu Simulador"
+    },
     "cta": {
       "title": "¿Listo para sentir la velocidad?",
       "button": "Solicitar Demo",
-      "link": "Ver especificaciones técnicas"
+      "link": "Ver nuestros simuladores"
     }
   },
   "seo": {

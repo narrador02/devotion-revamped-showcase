@@ -65,7 +65,7 @@ const Contact = () => {
                             <h1 className="text-5xl md:text-6xl font-rajdhani font-bold mb-6">
                                 <span className="text-foreground">{t('contactPage.title')}</span> <span className="text-primary">{t('contactPage.subtitle')}</span>
                             </h1>
-                            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                            <p className="text-xl text-muted-foreground max-w-5xl mx-auto">
                                 {t('contactPage.heroSubtitle')}
                             </p>
                         </motion.div>

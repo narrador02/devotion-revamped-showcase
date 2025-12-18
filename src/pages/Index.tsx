@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import UseCases from "@/components/UseCases";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { seoConfig } from "@/config/seoConfig";
+import CustomizationSection from "@/components/simulators/CustomizationSection";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -39,6 +40,7 @@ const Index = () => {
           <Hero />
           <UseCases />
           <Products />
+          <CustomizationSection />
         </main>
         <Footer />
         <LanguageSwitcher />
@@ -48,3 +50,4 @@ const Index = () => {
 };
 
 export default Index;
+

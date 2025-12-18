@@ -21,8 +21,8 @@
     "contactUs": "Contacta'ns"
   },
   "products": {
-    "sectionTitle": "Les Nostres",
-    "sectionTitleHighlight": "Característiques",
+    "sectionTitle": "Els Nostres",
+    "sectionTitleHighlight": "Simuladors",
     "sectionSubtitle": "Experimenta la combinació perfecta de tecnologia, passió i cultura de curses mundial",
     "learnMore": "Més Informació",
     "compareModels": "Comparar Models",
@@ -375,12 +375,16 @@
       },
       "logoPlaceholder": "LOGO JOC"
     },
+    "headsets": {
+      "title": "Cascos de Realitat Virtual Compatibles",
+      "subtitle": "Les millors ulleres VR del mercat i els millors simuladors treballant junts... què podria sortir malament?"
+    },
     "howItWorks": {
       "title": "Com es viu l'experiència",
       "steps": {
         "1": {
           "title": "Prepara't",
-          "desc": "Et poses el casc VR i els comandaments."
+          "desc": "Et poses el comandament VR i agafes el manillar."
         },
         "2": {
           "title": "Configura",
@@ -393,7 +397,7 @@
       }
     },
     "useCases": {
-      "title": "Aplicacions i Casos d'Ús",
+      "title": "Fet per Impressionar",
       "cards": {
         "events": {
           "title": "Esdeveniments i Fires",
@@ -413,10 +417,25 @@
         }
       }
     },
+    "customization": {
+      "badge": "Personalització Sense Límits",
+      "title1": "La Teva Marca.",
+      "title2": "El Teu Simulador.",
+      "subtitle": "Des de rèpliques de MotoGP fins a branding corporatiu complet — convertim el simulador en una icona visual que deixa a tothom sense paraules.",
+      "features": {
+        "replica": "Rèpliques MotoGP i SBK",
+        "branding": "Branding Corporatiu Total",
+        "events": "Dissenys per a Esdeveniments",
+        "impact": "Màxim Impacte Visual"
+      },
+      "label1": "Colors i Gràfics Personalitzats",
+      "label2": "Integració d'Sponsors",
+      "cta": "Crea el Teu Simulador"
+    },
     "cta": {
       "title": "A punt per sentir la velocitat?",
       "button": "Sol·licitar Demo",
-      "link": "Veure especificacions tècniques"
+      "link": "Veure els nostres simuladors"
     }
   },
   "seo": {

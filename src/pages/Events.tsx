@@ -175,7 +175,7 @@ const Events = () => {
                 {t('events.hero.title')}
               </span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-400 max-w-5xl mx-auto leading-relaxed">
               {t('events.hero.subtitle')}
             </p>
           </motion.div>

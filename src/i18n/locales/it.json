@@ -21,8 +21,8 @@
     "contactUs": "Contattaci"
   },
   "products": {
-    "sectionTitle": "Le Nostre",
-    "sectionTitleHighlight": "Caratteristiche",
+    "sectionTitle": "I Nostri",
+    "sectionTitleHighlight": "Simulatori",
     "sectionSubtitle": "Sperimenta la perfetta combinazione di tecnologia, passione e cultura delle corse mondiali",
     "learnMore": "Scopri di Più",
     "compareModels": "Confronta Modelli",
@@ -375,12 +375,16 @@
       },
       "logoPlaceholder": "LOGO GIOCO"
     },
+    "headsets": {
+      "title": "Visori di Realtà Virtuale Supportati",
+      "subtitle": "I migliori occhiali VR sul mercato e i migliori simulatori che lavorano insieme... cosa potrebbe andare storto?"
+    },
     "howItWorks": {
       "title": "Come si vive l'esperienza",
       "steps": {
         "1": {
           "title": "Preparati",
-          "desc": "Indossa il visore VR e i controller."
+          "desc": "Indossa il controller VR e afferra il manubrio."
         },
         "2": {
           "title": "Configura",
@@ -393,7 +397,7 @@
       }
     },
     "useCases": {
-      "title": "Applicazioni e Casi d'Uso",
+      "title": "Fatto per Impressionare",
       "cards": {
         "events": {
           "title": "Eventi e Fiere",
@@ -413,10 +417,25 @@
         }
       }
     },
+    "customization": {
+      "badge": "Personalizzazione Senza Limiti",
+      "title1": "Il Tuo Brand.",
+      "title2": "Il Tuo Simulatore.",
+      "subtitle": "Dalle repliche MotoGP ai takeover completi del marchio — trasformiamo il simulatore in un'icona visiva che lascia tutti senza fiato.",
+      "features": {
+        "replica": "Repliche MotoGP e SBK",
+        "branding": "Branding Aziendale Completo",
+        "events": "Design per Eventi Specifici",
+        "impact": "Massimo Impatto Visivo"
+      },
+      "label1": "Colori e Grafiche Personalizzate",
+      "label2": "Integrazione Sponsor",
+      "cta": "Crea il Tuo Simulatore"
+    },
     "cta": {
       "title": "Pronto a sentire la velocità?",
       "button": "Richiedi Demo",
-      "link": "Vedi specifiche tecniche"
+      "link": "Vedi i nostri simulatori"
     }
   },
   "seo": {

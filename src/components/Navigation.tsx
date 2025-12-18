@@ -22,11 +22,11 @@ const Navigation = () => {
   const navLinks = [
     { name: t('nav.home'), path: "/" },
     { name: t('nav.products'), path: "/simuladores" },
-    { name: t('nav.vr'), path: "/virtual-reality" },
     { name: t('nav.reviews'), path: "/reviews" },
+    { name: t('nav.events'), path: "/events" },
     { name: t('nav.aboutUs'), path: "/about" },
     { name: t('nav.contact'), path: "/contact" },
-    { name: t('nav.events'), path: "/events" },
+    { name: t('nav.vr'), path: "/virtual-reality" },
     { name: t('nav.rentPurchase'), path: "/rent-purchase" },
   ];
 
@@ -35,8 +35,8 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen
-          ? "bg-background/95 backdrop-blur-md shadow-lg"
-          : "md:bg-transparent bg-background/95 backdrop-blur-md shadow-lg"
+        ? "bg-background/95 backdrop-blur-md shadow-lg"
+        : "md:bg-transparent bg-background/95 backdrop-blur-md shadow-lg"
         }`}
     >
       {/* Mobile Menu Backdrop */}
@@ -53,7 +53,15 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0 mt-4">
             <Link to="/" className="flex items-center">
-              <img src={logo} alt="Devotion Sim Logo" className="h-18 md:h-24 w-auto" />
+              <div className="relative z-50
+                    px-3 py-2
+                    rounded-lg">
+                <img
+                  src={logo}
+                  alt="Devotion Sim Logo"
+                  className="h-16 md:h-24 w-auto"
+                />
+              </div>
             </Link>
           </div>
 

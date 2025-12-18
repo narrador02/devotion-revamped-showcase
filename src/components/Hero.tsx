@@ -41,19 +41,19 @@ const Hero = () => {
             {t('hero.missionEnd')}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 md:mb-16">
+          <div className="flex flex-row items-center justify-center gap-3 mb-4 md:mb-16">
             <Button
               size="lg"
               onClick={scrollToProducts}
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold text-base md:text-lg px-6 md:px-8 h-11 md:h-12 w-full sm:w-auto sm:min-w-[200px] shadow-lg"
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 font-rajdhani font-semibold text-sm md:text-lg px-4 md:px-8 h-11 md:h-12 w-auto sm:min-w-[200px] shadow-lg"
             >
               {t('hero.exploreProducts')}
             </Button>
-            <Link to="/contact" className="w-full sm:w-auto">
+            <Link to="/contact" className="w-auto">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-rajdhani font-semibold text-base md:text-lg px-6 md:px-8 h-11 md:h-12 w-full sm:min-w-[200px]"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-rajdhani font-semibold text-sm md:text-lg px-8 md:px-8 h-11 md:h-12 w-auto sm:min-w-[200px]"
               >
                 {t('hero.contactUs')}
               </Button>
