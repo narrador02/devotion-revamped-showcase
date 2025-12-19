@@ -86,19 +86,19 @@
   "reviews": {
     "title": "Avaliações de Clientes",
     "subtitle": "O que nossos clientes dizem sobre sua experiência DevotionSim",
-    "tabs": {
-      "professionals": "Pilotos Profissionais",
-      "customers": "Clientes de Eventos"
+    "tabs": { "professionals": "Pilotos Profissionais", "customers": "Clientes de Eventos" },
+    "professionals": { "title": "Pilotos Profissionais", "subtitle": "Ouça pilotos profissionais que treinam com nossos simuladores" },
+    "customers": { "title": "Clientes de Eventos", "subtitle": "Avaliações de clientes que experimentaram nossos simuladores em eventos" },
+    "showMore": "Mostrar mais vídeos",
+    "pilots": {
+      "badge": "Aprovação Profissional", "title": "Confiança dos Campeões", "subtitle": "Pilotos de classe mundial que confiam na DevotionSim",
+      "watchVideo": "Ver entrevista completa",
+      "bautista": { "achievements": "Campeão WorldSBK 2023", "country": "Espanha", "quote": "As sensações são incrivelmente realistas." },
+      "saveri": { "achievements": "Campeão Mundial E-Sports", "country": "Itália", "quote": "Como piloto profissional de e-sports, a precisão importa." },
+      "garcia": { "achievements": "Vencedor WorldSSP300", "country": "Espanha", "quote": "Perfeito para aprender novos circuitos." },
+      "baldassarri": { "achievements": "Vencedor Moto2", "country": "Itália", "quote": "O sistema de movimento captura a sensação de uma moto de corrida." }
     },
-    "professionals": {
-      "title": "Pilotos Profissionais",
-      "subtitle": "Ouça pilotos profissionais que treinam com nossos simuladores"
-    },
-    "customers": {
-      "title": "Clientes de Eventos",
-      "subtitle": "Avaliações de clientes que experimentaram nossos simuladores em eventos"
-    },
-    "showMore": "Mostrar mais vídeos"
+    "stats": { "professionals": "Pilotos Profissionais", "countries": "Países", "satisfaction": "Satisfação", "topLevel": "Nível de Competição" }
   },
   "events": {
     "title": "Eventos",

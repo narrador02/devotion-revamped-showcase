@@ -90,7 +90,7 @@
       },
       "specs": {
         "type": "Simulador Oficial MotoGP",
-        "weight": "280kg",
+        "weight": "300kg",
         "dimensions": "2.30m x 80cm (sin pedales) 1.50m de ancho con pedales",
         "transport": "4 ruedas en la plataforma para fácil transporte"
       }
@@ -169,7 +169,8 @@
       "subtitle": "Detalles completos de nuestra gama de simuladores.",
       "viewFullSpecs": "Ver especificaciones completas",
       "filters": "Filtros",
-      "allModels": "Todos los Modelos"
+      "allModels": "Todos los Modelos",
+      "backToSimulators": "Volver a Simuladores"
     },
     "cta": {
       "bookDemo": "Reservar Demo",
@@ -198,7 +199,39 @@
       "title": "Clientes de Eventos",
       "subtitle": "Reseñas de clientes que experimentaron nuestros simuladores en eventos"
     },
-    "showMore": "Mostrar más vídeos"
+    "showMore": "Mostrar más vídeos",
+    "pilots": {
+      "badge": "Respaldo Profesional",
+      "title": "Confianza de Campeones",
+      "subtitle": "Pilotos de clase mundial que confían en DevotionSim para entrenamiento y entretenimiento",
+      "watchVideo": "Ver entrevista completa",
+      "bautista": {
+        "achievements": "Campeón WorldSBK 2023",
+        "country": "España",
+        "quote": "Las sensaciones son increíblemente realistas. Es lo más parecido a estar en una moto real sin los riesgos."
+      },
+      "saveri": {
+        "achievements": "Campeón Mundial E-Sports",
+        "country": "Italia",
+        "quote": "Como piloto profesional de esports, la precisión importa. DevotionSim ofrece exactamente eso."
+      },
+      "garcia": {
+        "achievements": "Ganador WorldSSP300",
+        "country": "España",
+        "quote": "Perfecto para aprender nuevos circuitos y mantener la memoria muscular en temporada baja."
+      },
+      "baldassarri": {
+        "achievements": "Ganador Moto2",
+        "country": "Italia",
+        "quote": "El sistema de movimiento captura la sensación de una moto de carreras real. Ingeniería impresionante."
+      }
+    },
+    "stats": {
+      "professionals": "Pilotos Profesionales",
+      "countries": "Países",
+      "satisfaction": "Satisfacción",
+      "topLevel": "Máximo Nivel de Competición"
+    }
   },
   "events": {
     "title": "Eventos",

@@ -327,7 +327,7 @@ const RentPurchase = () => {
                       <FormItem>
                         <FormLabel>{t('rentPurchase.form.comment')}</FormLabel>
                         <FormControl>
-                          <Textarea {...field} className="min-h-[120px] resize-none" placeholder="Tell us more about your needs..." />
+                          <Textarea {...field} className="min-h-[120px] resize-none" placeholder={t('rentPurchase.form.commentPlaceholder')} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

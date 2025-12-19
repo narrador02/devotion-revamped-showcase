@@ -86,19 +86,19 @@
   "reviews": {
     "title": "Klantrecensies",
     "subtitle": "Wat onze klanten zeggen over hun DevotionSim-ervaring",
-    "tabs": {
-      "professionals": "Professionele Rijders",
-      "customers": "Evenement Klanten"
+    "tabs": { "professionals": "Professionele Rijders", "customers": "Evenement Klanten" },
+    "professionals": { "title": "Professionele Rijders", "subtitle": "Luister naar professionele rijders die trainen met onze simulatoren" },
+    "customers": { "title": "Evenement Klanten", "subtitle": "Reviews van klanten die onze simulatoren op evenementen hebben ervaren" },
+    "showMore": "Toon meer video's",
+    "pilots": {
+      "badge": "Professionele Aanbeveling", "title": "Vertrouwd door Kampioenen", "subtitle": "Wereldklasse rijders die DevotionSim vertrouwen",
+      "watchVideo": "Bekijk volledig interview",
+      "bautista": { "achievements": "WorldSBK Kampioen 2023", "country": "Spanje", "quote": "De sensaties zijn ongelooflijk realistisch." },
+      "saveri": { "achievements": "E-Sports Wereldkampioen", "country": "Italië", "quote": "Als professionele e-sport rijder telt precisie." },
+      "garcia": { "achievements": "WorldSSP300 Winnaar", "country": "Spanje", "quote": "Perfect om nieuwe circuits te leren." },
+      "baldassarri": { "achievements": "Moto2 Winnaar", "country": "Italië", "quote": "Het bewegingssysteem vangt het gevoel van een echte racefiets." }
     },
-    "professionals": {
-      "title": "Professionele Rijders",
-      "subtitle": "Luister naar professionele rijders die trainen met onze simulatoren"
-    },
-    "customers": {
-      "title": "Evenement Klanten",
-      "subtitle": "Reviews van klanten die onze simulatoren op evenementen hebben ervaren"
-    },
-    "showMore": "Toon meer video's"
+    "stats": { "professionals": "Professionele Rijders", "countries": "Landen", "satisfaction": "Tevredenheid", "topLevel": "Top Competitie" }
   },
   "events": {
     "title": "Evenementen",

@@ -1,14 +1,15 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Trophy, Users, MapPin, Award, Flag } from "lucide-react";
+import { Trophy, Users, MapPin, Award, Flag, Play, Quote, Star } from "lucide-react";
 import VideoCard from "@/components/VideoCard";
 import VideoModal from "@/components/VideoModal";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 /* =======================
    TYPES
@@ -27,13 +28,14 @@ interface ProfessionalVideo {
   competed: string;
   achievements: string;
   country: string;
+  countryFlag: string;
+  quote: string;
 }
 
 /* =======================
    DATA
 ======================= */
 
-// 👇 CLIENTES (SE QUEDA IGUAL)
 const customerVideos: CustomerVideo[] = [
   { id: "1", videoId: "wH-2DUYxKPw", name: "Cliente evento MotoGP", quote: "En la moto estás haciendo físico" },
   { id: "2", videoId: "GANm4vmbvEA", name: "Trabajador Ducati Corse", quote: "Lo más parecido a rodar en circuito" },
@@ -43,39 +45,46 @@ const customerVideos: CustomerVideo[] = [
   { id: "6", videoId: "pDb6BUL9PcI", name: "Massimo – Ducati Corse", quote: "Es una experiencia bellísima" },
 ];
 
-// 👇 PILOTOS (NUEVO DISEÑO)
 const professionalVideos: ProfessionalVideo[] = [
   {
     id: "1",
     videoId: "nQbrjsr0yiU",
     name: "Álvaro Bautista",
     competed: "WorldSBK · MotoGP",
-    achievements: "WorldSBK Champion",
-    country: "Spain",
+    achievements: "reviews.pilots.bautista.achievements",
+    country: "reviews.pilots.bautista.country",
+    countryFlag: "🇪🇸",
+    quote: "reviews.pilots.bautista.quote",
   },
   {
     id: "2",
     videoId: "nQbrjsr0yiU",
     name: "Andrea Saveri",
     competed: "Ducati E-Sports",
-    achievements: "E-Sports Champion",
-    country: "Italy",
+    achievements: "reviews.pilots.saveri.achievements",
+    country: "reviews.pilots.saveri.country",
+    countryFlag: "🇮🇹",
+    quote: "reviews.pilots.saveri.quote",
   },
   {
     id: "3",
     videoId: "nQbrjsr0yiU",
-    name: "Professional Rider 3",
-    competed: "International Championships",
-    achievements: "Multiple Podiums",
-    country: "Europe",
+    name: "Marc García",
+    competed: "WorldSSP300",
+    achievements: "reviews.pilots.garcia.achievements",
+    country: "reviews.pilots.garcia.country",
+    countryFlag: "🇪🇸",
+    quote: "reviews.pilots.garcia.quote",
   },
   {
     id: "4",
     videoId: "nQbrjsr0yiU",
-    name: "Professional Rider 4",
-    competed: "National Championships",
-    achievements: "Race Winner",
-    country: "Spain",
+    name: "Lorenzo Baldassarri",
+    competed: "MotoGP · WorldSBK",
+    achievements: "reviews.pilots.baldassarri.achievements",
+    country: "reviews.pilots.baldassarri.country",
+    countryFlag: "🇮🇹",
+    quote: "reviews.pilots.baldassarri.quote",
   },
 ];
 
@@ -127,7 +136,7 @@ const Reviews = () => {
             </TabsList>
 
             {/* =======================
-                CLIENTES (IGUAL QUE ANTES)
+                CLIENTES
             ======================= */}
             <TabsContent value="customers" className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -155,60 +164,139 @@ const Reviews = () => {
               )}
             </TabsContent>
 
+            {/* =======================
+                PILOTOS - PREMIUM DESIGN
+            ======================= */}
             <TabsContent value="professionals">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {professionalVideos.map((rider) => (
-                  <div
+              {/* Section Header */}
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <Star className="w-4 h-4 text-primary fill-primary" />
+                  <span className="text-sm font-medium text-primary">{t("reviews.pilots.badge")}</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-rajdhani font-bold mb-3">
+                  {t("reviews.pilots.title")}
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  {t("reviews.pilots.subtitle")}
+                </p>
+              </div>
+
+              {/* Premium Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {professionalVideos.map((rider, index) => (
+                  <motion.div
                     key={rider.id}
-                    className="group flex flex-col md:flex-row items-stretch rounded-xl border border-border bg-card hover:border-primary/40 transition-all"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    className="group relative bg-gradient-to-br from-card via-card to-muted/30 rounded-2xl border border-border/60 overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(239,68,68,0.1)]"
                   >
-                    {/* VIDEO / IMAGE */}
-                    <button
-                      onClick={() => setSelectedVideo({ videoId: rider.videoId, name: rider.name })}
-                      className="relative md:w-[38%] aspect-video overflow-hidden rounded-t-xl md:rounded-l-xl md:rounded-tr-none bg-black"
-                    >
-                      <img
-                        src={`https://img.youtube.com/vi/${rider.videoId}/hqdefault.jpg`}
-                        alt={rider.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-lg">
-                          ▶
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* INFO */}
-                    <div className="flex-1 p-6 flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-lg font-bold text-foreground mb-3">
-                          {rider.name}
-                        </h3>
-
-                        <div className="space-y-2 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <Flag className="w-4 h-4 text-primary" />
-                            <span>{rider.competed}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Award className="w-4 h-4 text-primary" />
-                            <span>{rider.achievements}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-primary" />
-                            <span>{rider.country}</span>
+                    {/* Decorative elements */}
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
+                    <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-2xl" />
+                    
+                    <div className="relative flex flex-col md:flex-row">
+                      {/* Video Thumbnail */}
+                      <button
+                        onClick={() => setSelectedVideo({ videoId: rider.videoId, name: rider.name })}
+                        className="relative md:w-2/5 aspect-video md:aspect-[4/5] overflow-hidden"
+                      >
+                        <img
+                          src={`https://img.youtube.com/vi/${rider.videoId}/maxresdefault.jpg`}
+                          alt={rider.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent md:bg-gradient-to-r md:from-transparent md:via-black/20 md:to-black/60" />
+                        
+                        {/* Play Button */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+                            <Play className="w-7 h-7 text-white fill-white ml-1" />
                           </div>
                         </div>
-                      </div>
 
-                      <div className="mt-5 text-sm text-primary font-medium">
-                        Watch professional feedback →
+                        {/* Country Flag Badge */}
+                        <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
+                          <span className="text-lg">{rider.countryFlag}</span>
+                          <span className="text-xs text-white/90 font-medium">{t(rider.country)}</span>
+                        </div>
+                      </button>
+
+                      {/* Content */}
+                      <div className="flex-1 p-6 md:p-8 flex flex-col justify-between relative z-10">
+                        {/* Header */}
+                        <div>
+                          <div className="flex items-start justify-between mb-4">
+                            <div>
+                              <h3 className="text-2xl font-rajdhani font-bold text-foreground mb-1">
+                                {rider.name}
+                              </h3>
+                              <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                                <Flag className="w-3.5 h-3.5" />
+                                <span>{rider.competed}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Achievement Badge */}
+                          <div className="flex items-center gap-2 mb-6">
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20">
+                              <Award className="w-4 h-4 text-amber-500" />
+                              <span className="text-sm font-medium text-amber-600 dark:text-amber-400">
+                                {t(rider.achievements)}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Quote */}
+                          <div className="relative">
+                            <Quote className="absolute -top-2 -left-1 w-8 h-8 text-primary/20" />
+                            <p className="text-muted-foreground italic pl-6 leading-relaxed">
+                              "{t(rider.quote)}"
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* CTA */}
+                        <div className="mt-6 pt-4 border-t border-border/40">
+                          <button
+                            onClick={() => setSelectedVideo({ videoId: rider.videoId, name: rider.name })}
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors group/link"
+                          >
+                            {t("reviews.pilots.watchVideo")}
+                            <span className="inline-block transition-transform group-hover/link:translate-x-1">→</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
+
+              {/* Bottom Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+              >
+                {[
+                  { value: "50+", labelKey: "reviews.stats.professionals" },
+                  { value: "12", labelKey: "reviews.stats.countries" },
+                  { value: "100%", labelKey: "reviews.stats.satisfaction" },
+                  { value: "WorldSBK", labelKey: "reviews.stats.topLevel" },
+                ].map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="text-center p-6 rounded-xl bg-muted/30 border border-border/50"
+                  >
+                    <div className="text-3xl font-rajdhani font-bold text-primary mb-1">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
+                  </div>
+                ))}
+              </motion.div>
             </TabsContent>
           </Tabs>
         </div>
