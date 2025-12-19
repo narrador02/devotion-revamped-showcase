@@ -90,7 +90,7 @@
       },
       "specs": {
         "type": "Official MotoGP Simulator",
-        "weight": "280kg",
+        "weight": "300kg",
         "dimensions": "2.30m x 80cm (without pedals) 1.50m width with pedals",
         "transport": "4 wheels on the platform for easy transportation"
       }
@@ -169,7 +169,8 @@
       "subtitle": "Complete details of our simulator range.",
       "viewFullSpecs": "View full specs",
       "filters": "Filters",
-      "allModels": "All Models"
+      "allModels": "All Models",
+      "backToSimulators": "Back to Simulators"
     },
     "cta": {
       "bookDemo": "Book a Demo",
@@ -198,7 +199,39 @@
       "title": "Event Customers",
       "subtitle": "Reviews from customers who experienced our simulators at events"
     },
-    "showMore": "Show more videos"
+    "showMore": "Show more videos",
+    "pilots": {
+      "badge": "Professional Endorsement",
+      "title": "Trusted by Champions",
+      "subtitle": "World-class riders who trust DevotionSim for training and entertainment",
+      "watchVideo": "Watch full interview",
+      "bautista": {
+        "achievements": "WorldSBK Champion 2023",
+        "country": "Spain",
+        "quote": "The sensations are incredibly realistic. It's the closest thing to being on a real bike without the risks."
+      },
+      "saveri": {
+        "achievements": "E-Sports World Champion",
+        "country": "Italy",
+        "quote": "As a professional esports rider, precision matters. DevotionSim delivers exactly that."
+      },
+      "garcia": {
+        "achievements": "WorldSSP300 Race Winner",
+        "country": "Spain",
+        "quote": "Perfect for learning new tracks and maintaining muscle memory during the off-season."
+      },
+      "baldassarri": {
+        "achievements": "Moto2 Race Winner",
+        "country": "Italy",
+        "quote": "The movement system captures the feeling of a real racing bike. Impressive engineering."
+      }
+    },
+    "stats": {
+      "professionals": "Professional Riders",
+      "countries": "Countries",
+      "satisfaction": "Satisfaction",
+      "topLevel": "Top Competition Level"
+    }
   },
   "events": {
     "title": "Events",

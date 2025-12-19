@@ -33,7 +33,6 @@ export const simulatorsData: SimulatorData = {
                 "products.timeAttack.features.compatible"
             ],
             image: product1,
-            // Video config - 4s seamless loop
             video: videoTimeAttack,
             poster: product1,
             videoLoop: true,
@@ -48,16 +47,15 @@ export const simulatorsData: SimulatorData = {
             weight: "products.timeAttack.specs.weight",
             axes: "products.timeAttack.features.axis",
             usage: "products.bestForEvents",
-            // Comparison Data
-            maxLean: "products.specs.upTo50", // Time Attack is usually slightly less or standard? Assuming 50/54 consistent. Using general key or specific. Let's use specific value key.
-            wheelie: "products.comparison.no",
+            maxLean: "products.specs.upTo54",
+            wheelie: "products.comparison.yes",
             rearSlide: "products.comparison.no",
             surge: "products.comparison.no",
 
             specs: [
                 { label: "products.specs.type", value: "products.timeAttack.specs.type" },
                 { label: "products.specs.weight", value: "products.timeAttack.specs.weight" },
-                { label: "products.specs.leanAngle", value: "products.specs.upTo50" }
+                { label: "products.specs.leanAngle", value: "products.specs.upTo54" }
             ]
         },
         {
@@ -72,7 +70,6 @@ export const simulatorsData: SimulatorData = {
                 "products.slady.features.compatible"
             ],
             image: product2,
-            // Video config - 2s non-loop
             video: videoSlady,
             poster: product2,
             videoLoop: false,
@@ -88,9 +85,8 @@ export const simulatorsData: SimulatorData = {
             weight: "products.slady.specs.weight",
             axes: "products.slady.features.axis",
             usage: "products.bestForSchools",
-            // Comparison Data
             maxLean: "products.specs.upTo54",
-            wheelie: "products.comparison.no",
+            wheelie: "products.comparison.yes",
             rearSlide: "products.comparison.yes",
             surge: "products.comparison.no",
 

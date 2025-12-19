@@ -90,7 +90,7 @@
       },
       "specs": {
         "type": "Simulateur Officiel MotoGP",
-        "weight": "280kg",
+        "weight": "300kg",
         "dimensions": "2.30m x 80cm (sans pédales) 1.50m de largeur avec pédales",
         "transport": "4 roues sur la plateforme pour un transport facile"
       }
@@ -118,7 +118,39 @@
       "title": "Clients d'Événements",
       "subtitle": "Avis de clients qui ont vécu l'expérience de nos simulateurs lors d'événements"
     },
-    "showMore": "Afficher plus de vidéos"
+    "showMore": "Afficher plus de vidéos",
+    "pilots": {
+      "badge": "Recommandation Professionnelle",
+      "title": "La Confiance des Champions",
+      "subtitle": "Pilotes de classe mondiale qui font confiance à DevotionSim pour l'entraînement et le divertissement",
+      "watchVideo": "Voir l'interview complète",
+      "bautista": {
+        "achievements": "Champion WorldSBK 2023",
+        "country": "Espagne",
+        "quote": "Les sensations sont incroyablement réalistes. C'est ce qui se rapproche le plus d'une vraie moto sans les risques."
+      },
+      "saveri": {
+        "achievements": "Champion du Monde E-Sports",
+        "country": "Italie",
+        "quote": "En tant que pilote e-sport professionnel, la précision compte. DevotionSim offre exactement cela."
+      },
+      "garcia": {
+        "achievements": "Vainqueur WorldSSP300",
+        "country": "Espagne",
+        "quote": "Parfait pour apprendre de nouveaux circuits et maintenir la mémoire musculaire hors saison."
+      },
+      "baldassarri": {
+        "achievements": "Vainqueur Moto2",
+        "country": "Italie",
+        "quote": "Le système de mouvement capture la sensation d'une vraie moto de course. Ingénierie impressionnante."
+      }
+    },
+    "stats": {
+      "professionals": "Pilotes Professionnels",
+      "countries": "Pays",
+      "satisfaction": "Satisfaction",
+      "topLevel": "Niveau de Compétition"
+    }
   },
   "events": {
     "title": "Événements",

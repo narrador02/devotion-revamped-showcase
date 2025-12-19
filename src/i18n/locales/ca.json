@@ -90,7 +90,7 @@
       },
       "specs": {
         "type": "Simulador Oficial MotoGP",
-        "weight": "280kg",
+        "weight": "300kg",
         "dimensions": "2.30m x 80cm (sense pedals) 1.50m d'amplada amb pedals",
         "transport": "4 rodes a la plataforma per a transport fàcil"
       }
@@ -118,7 +118,18 @@
       "title": "Clients d'Esdeveniments",
       "subtitle": "Ressenyes de clients que van experimentar els nostres simuladors en esdeveniments"
     },
-    "showMore": "Mostrar més vídeos"
+    "showMore": "Mostrar més vídeos",
+    "pilots": {
+      "badge": "Aprovació Professional",
+      "title": "Confiança dels Campions",
+      "subtitle": "Pilots de classe mundial que confien en DevotionSim per a entrenament i entreteniment",
+      "watchVideo": "Veure entrevista completa",
+      "bautista": { "achievements": "Campió WorldSBK 2023", "country": "Espanya", "quote": "Les sensacions són increïblement realistes." },
+      "saveri": { "achievements": "Campió Mundial E-Sports", "country": "Itàlia", "quote": "Com a pilot professional d'e-sports, la precisió importa." },
+      "garcia": { "achievements": "Guanyador WorldSSP300", "country": "Espanya", "quote": "Perfecte per aprendre nous circuits." },
+      "baldassarri": { "achievements": "Guanyador Moto2", "country": "Itàlia", "quote": "El sistema de moviment captura la sensació d'una moto de carreres." }
+    },
+    "stats": { "professionals": "Pilots Professionals", "countries": "Països", "satisfaction": "Satisfacció", "topLevel": "Màxim Nivell" }
   },
   "events": {
     "title": "Esdeveniments",

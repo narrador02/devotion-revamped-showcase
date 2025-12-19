@@ -27,17 +27,9 @@ i18n
     fallbackLng: 'en',
     supportedLngs: ['en', 'es', 'fr', 'ca', 'nl', 'it', 'de', 'pt'],
     detection: {
-      // Order: check browser language FIRST, then localStorage, then fallback to other methods
       order: ['navigator', 'localStorage', 'htmlTag', 'path', 'subdomain'],
-      // Look for language in these navigator properties (mobile Safari compatible)
-      lookupNavigator: ['language', 'languages'],
-      // Cache the detected language in localStorage for future visits
       caches: ['localStorage'],
-      // Check for exact match first, then partial match (e.g., es-ES -> es)
-      checkWhitelist: true,
-      // Convert language codes to lowercase for matching
       convertDetectedLanguage: (lng: string) => {
-        // Handle cases like 'es-ES' -> 'es', 'en-US' -> 'en'
         return lng.split('-')[0].toLowerCase();
       },
     },

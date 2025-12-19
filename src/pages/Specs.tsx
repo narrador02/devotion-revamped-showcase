@@ -27,16 +27,13 @@ const Specs = () => {
                     <Button asChild variant="ghost" className="mb-6">
                         <Link to="/simuladores">
                             <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back to Simulators
+                            {t('products.specsPage.backToSimulators')}
                         </Link>
                     </Button>
                     <h1 className="text-4xl md:text-5xl font-rajdhani font-bold mb-4">{t('products.specsPage.title')}</h1>
-                    <p className="text-xl text-muted-foreground mb-8">
+                    <p className="text-xl text-muted-foreground">
                         {t('products.specsPage.subtitle')}
                     </p>
-                    <Button size="lg" className="rounded-full px-8">
-                        {t('products.cta.bookDemo')}
-                    </Button>
                 </div>
 
                 {/* Comparison Block */}
