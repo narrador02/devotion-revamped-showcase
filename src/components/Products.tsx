@@ -3,6 +3,10 @@ import { Zap, Gauge, Rocket } from "lucide-react";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
+// Video imports
+import videoTimeAttack from "@/assets/eje2-wheelie.mp4";
+import videoSlady from "@/assets/eje3-desliz.mp4";
+import videoTopGun from "@/assets/eje4-aceler.mp4";
 import { useTranslation } from "react-i18next";
 
 const Products = () => {
@@ -15,6 +19,10 @@ const Products = () => {
       description: t('products.timeAttack.description'),
       icon: <Zap className="text-white" size={28} />,
       image: product1,
+      // Video config - 4s seamless loop
+      video: videoTimeAttack,
+      videoLoop: true,
+      videoPreload: "metadata" as const,
       features: [
         t('products.timeAttack.features.axis'),
         t('products.timeAttack.features.lean'),
@@ -28,6 +36,11 @@ const Products = () => {
       description: t('products.slady.description'),
       icon: <Gauge className="text-white" size={28} />,
       image: product2,
+      // Video config - 2s non-loop
+      video: videoSlady,
+      videoLoop: false,
+      videoMaxPlays: 1,
+      videoPreload: "none" as const,
       features: [
         t('products.slady.features.axis'),
         t('products.slady.features.lean'),
@@ -41,6 +54,11 @@ const Products = () => {
       description: t('products.topGun.description'),
       icon: <Rocket className="text-white" size={28} />,
       image: product3,
+      // Video config - 2s non-loop
+      video: videoTopGun,
+      videoLoop: false,
+      videoMaxPlays: 1,
+      videoPreload: "none" as const,
       features: [
         t('products.topGun.features.axis'),
         t('products.topGun.features.lean'),

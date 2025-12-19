@@ -2,18 +2,36 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import ProductVideo from "@/components/ProductVideo";
 
 interface ProductCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
-  image: string;
+  image: string; // Used as poster image
   features: string[];
   delay?: number;
   productId: string;
+  // Video properties (required)
+  video: string;
+  videoLoop?: boolean;
+  videoMaxPlays?: number;
+  videoPreload?: 'none' | 'metadata';
 }
 
-const ProductCard = ({ title, description, icon, image, features, delay = 0, productId }: ProductCardProps) => {
+const ProductCard = ({
+  title,
+  description,
+  icon,
+  image,
+  features,
+  delay = 0,
+  productId,
+  video,
+  videoLoop,
+  videoMaxPlays,
+  videoPreload
+}: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -22,6 +40,7 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
     navigate(`/simuladores#${productId}`);
   };
 
+
   return (
     <div
       className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-500 animate-slide-up"
@@ -29,18 +48,22 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image Container */}
-      <div className="relative h-48 md:h-64 overflow-hidden">
-        <img
-          src={image}
+      {/* Video Container - 1:1 aspect ratio */}
+      <div className="relative aspect-square overflow-hidden">
+        <ProductVideo
+          id={`product-${productId}`}
+          videoSrc={video!}
+          posterSrc={image}
           alt={title}
-          className={`w-full h-full object-cover object-center transition-transform duration-700 ${isHovered ? "scale-110" : "scale-100"
-            }`}
+          className="w-full h-full"
+          loop={videoLoop}
+          maxPlays={videoMaxPlays}
+          preloadMode={videoPreload}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent pointer-events-none"></div>
 
         {/* Icon Overlay */}
-        <div className="absolute top-4 right-4 md:top-6 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full bg-black border-2 border-primary flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:scale-110">
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full bg-black border-2 border-primary flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:scale-110 z-10">
           {icon}
         </div>
       </div>
@@ -72,3 +95,4 @@ const ProductCard = ({ title, description, icon, image, features, delay = 0, pro
 };
 
 export default ProductCard;
+

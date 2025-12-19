@@ -13,7 +13,6 @@ import { simulatorsData } from "@/data/simulators";
 import SimulatorCard from "@/components/simulators/SimulatorCard";
 import ModelDrawer from "@/components/simulators/ModelDrawer";
 import CompareDialog from "@/components/simulators/CompareDialog";
-import StickyCTA from "@/components/simulators/StickyCTA";
 import TrustBlock from "@/components/simulators/TrustBlock";
 import { SimulatorModel } from "@/types/simulator";
 import { Link } from "react-router-dom";
@@ -118,9 +117,9 @@ const Simuladores = () => {
       </section>
 
       {/* Quick Stats Bar */}
-      <section className="py-8 bg-muted/30 border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="py-6 md:py-8 bg-muted/30 border-y border-border">
+        <div className="container mx-auto px-2 md:px-4">
+          <div className="grid grid-cols-3 gap-2 md:gap-6">
             {simulatorsData.models.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -130,11 +129,11 @@ const Simuladores = () => {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br ${product.gradientClass} mb-3`}>
+                <div className={`inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br ${product.gradientClass} mb-2 md:mb-3`}>
                   {getIcon(product.iconName)}
                 </div>
-                <h3 className="font-rajdhani font-bold text-xl mb-1">{t(product.title)}</h3>
-                <p className="text-sm text-muted-foreground">{product.badge} System</p>
+                <h3 className="font-rajdhani font-bold text-sm md:text-xl mb-0.5 md:mb-1">{t(product.title)}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground leading-tight">{t(product.axes)}</p>
               </motion.div>
             ))}
           </div>
@@ -167,28 +166,27 @@ const Simuladores = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-rajdhani font-bold mb-6">
               {t('products.ctaTitle')}
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-muted-foreground mb-8 max-w-4xl mx-auto">
               {t('products.ctaSubtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button
+                asChild
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg rounded-full shadow-lg"
+                className="bg-primary hover:bg-primary/90 text-white px-10 py-6 text-lg rounded-full shadow-lg animate-pulse-subtle relative overflow-hidden group"
               >
-                {t('hero.contactUs')}
-                <ArrowRight className="ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="px-8 py-6 text-lg rounded-full border-2"
-              >
-                {t('products.viewPricing')}
+                <Link to="/rent-purchase">
+                  <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></span>
+                  <span className="relative z-10 flex items-center">
+                    {t('products.cta.bookDemo')}
+                    <ArrowRight className="ml-2" />
+                  </span>
+                </Link>
               </Button>
             </div>
           </motion.div>
@@ -206,13 +204,6 @@ const Simuladores = () => {
         sharedSpecs={simulatorsData.sharedSpecs}
         options={simulatorsData.options}
         onCompare={() => {
-          setIsDrawerOpen(false); // Optional: close drawer when opening compare? Or keep both? 
-          // Better UX typically to close drawer if using a centralized modal, OR stack them.
-          // But if I close drawer, 'back' flow is weird. 
-          // Stacking is fine. ShadCN dialogs usually stack safely.
-          // I'll leave drawer open but set comparison to true. 
-          // Actually, for mobile "Bottom sheet", stacking might be crowded. 
-          // Let's close drawer for clarity since compare view has all models.
           setIsDrawerOpen(false);
           setIsCompareOpen(true);
         }}
@@ -222,8 +213,6 @@ const Simuladores = () => {
         open={isCompareOpen}
         onOpenChange={setIsCompareOpen}
       />
-
-      <StickyCTA />
     </div>
   );
 };

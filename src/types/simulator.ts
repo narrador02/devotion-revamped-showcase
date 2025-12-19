@@ -29,6 +29,13 @@ export interface SimulatorModel {
     image: string | { src: string }; // Support string path or object with src
     iconName: 'Zap' | 'Gauge' | 'Rocket';
 
+    // Video properties (optional)
+    video?: string; // Path to video file
+    poster?: string; // Path to poster/thumbnail image (defaults to image if not set)
+    videoLoop?: boolean; // true = seamless loop (Time Attack), false = single play (others)
+    videoMaxPlays?: number; // Max times to play for non-loop videos (default: 1)
+    videoPreload?: 'none' | 'metadata'; // Preload strategy
+
     // Tailwind Classes (Static Map)
     colorName: string; // 'blue', 'purple', 'amber'
     gradientClass: string;

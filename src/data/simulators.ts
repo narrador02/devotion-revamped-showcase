@@ -2,6 +2,10 @@ import { SimulatorData } from "@/types/simulator";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
+// Video imports
+import videoTimeAttack from "@/assets/eje2-wheelie.mp4";
+import videoSlady from "@/assets/eje3-desliz.mp4";
+import videoTopGun from "@/assets/eje4-aceler.mp4";
 
 export const simulatorsData: SimulatorData = {
     sharedSpecs: [
@@ -29,6 +33,11 @@ export const simulatorsData: SimulatorData = {
                 "products.timeAttack.features.compatible"
             ],
             image: product1,
+            // Video config - 4s seamless loop
+            video: videoTimeAttack,
+            poster: product1,
+            videoLoop: true,
+            videoPreload: "metadata",
             iconName: "Zap",
             colorName: "blue",
             gradientClass: "from-blue-500/20 to-blue-600/5",
@@ -63,6 +72,12 @@ export const simulatorsData: SimulatorData = {
                 "products.slady.features.compatible"
             ],
             image: product2,
+            // Video config - 2s non-loop
+            video: videoSlady,
+            poster: product2,
+            videoLoop: false,
+            videoMaxPlays: 1,
+            videoPreload: "none",
             iconName: "Gauge",
             colorName: "purple",
             gradientClass: "from-purple-500/20 to-purple-600/5",
@@ -98,6 +113,12 @@ export const simulatorsData: SimulatorData = {
                 "products.topGun.features.compatible"
             ],
             image: product3,
+            // Video config - 2s non-loop
+            video: videoTopGun,
+            poster: product3,
+            videoLoop: false,
+            videoMaxPlays: 1,
+            videoPreload: "none",
             iconName: "Rocket",
             colorName: "amber",
             gradientClass: "from-amber-500/20 to-amber-600/5",

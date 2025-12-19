@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Zap, Gauge, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ProductVideo from "@/components/ProductVideo";
 
 interface SimulatorCardProps {
     model: SimulatorModel;
@@ -23,6 +24,7 @@ const SimulatorCard = ({ model, index, onLearnMore }: SimulatorCardProps) => {
 
     // Safe image handling
     const imgSrc = typeof model.image === 'string' ? model.image : model.image.src;
+    const posterSrc = model.poster ? (typeof model.poster === 'string' ? model.poster : model.poster) : imgSrc;
 
     return (
         <motion.div
@@ -33,7 +35,7 @@ const SimulatorCard = ({ model, index, onLearnMore }: SimulatorCardProps) => {
             transition={{ duration: 0.8 }}
             className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}
         >
-            {/* Image Side */}
+            {/* Image/Video Side */}
             <div className="w-full lg:w-1/2">
                 <motion.div
                     whileHover={{ scale: 1.02 }}
@@ -41,13 +43,18 @@ const SimulatorCard = ({ model, index, onLearnMore }: SimulatorCardProps) => {
                     className="relative group"
                 >
                     <div className={`absolute inset-0 bg-gradient-to-br ${model.gradientClass} rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity`} />
-                    <div className={`relative overflow-hidden rounded-3xl border-2 ${model.borderClass} shadow-2xl`}>
-                        <img
-                            src={imgSrc}
+                    <div className={`relative overflow-hidden rounded-3xl border-2 ${model.borderClass} shadow-2xl aspect-square`}>
+                        <ProductVideo
+                            id={`simulator-${model.id}`}
+                            videoSrc={model.video!}
+                            posterSrc={posterSrc}
                             alt={t(model.title)}
-                            className="w-full h-[500px] object-cover"
+                            className="w-full h-full"
+                            loop={model.videoLoop}
+                            maxPlays={model.videoMaxPlays}
+                            preloadMode={model.videoPreload}
                         />
-                        <div className={`absolute top-6 right-6 px-4 py-2 rounded-full bg-gradient-to-r ${model.gradientClass} border ${model.borderClass} backdrop-blur-sm`}>
+                        <div className={`absolute top-6 right-6 px-4 py-2 rounded-full bg-gradient-to-r ${model.gradientClass} border ${model.borderClass} backdrop-blur-sm z-10`}>
                             <span className="font-bold text-sm">{model.badge}</span>
                         </div>
                     </div>
