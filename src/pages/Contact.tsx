@@ -11,18 +11,74 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 
 const Contact = () => {
     const { t } = useTranslation();
     const { toast } = useToast();
     const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        toast({
-            title: t('contactPage.form.sent'),
-            description: t('contactPage.form.sentDesc'),
-        });
+    // Form validation schema
+    const formSchema = z.object({
+        name: z.string().min(1, { message: t('rentPurchase.form.required') }),
+        email: z.string().email({ message: t('rentPurchase.form.required') }),
+        subject: z.string().min(1, { message: t('rentPurchase.form.required') }),
+        message: z.string().min(1, { message: t('rentPurchase.form.required') }),
+    });
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+        },
+    });
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        setIsSubmitting(true);
+        try {
+            const response = await fetch('https://formspree.io/f/xgvrveqe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...values,
+                    _subject: `Contact Form: ${values.subject}`,
+                    formType: 'contact'
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit form');
+            }
+
+            toast({
+                title: t('contactPage.form.sent'),
+                description: t('contactPage.form.sentDesc'),
+            });
+            form.reset();
+        } catch (error) {
+            toast({
+                title: t('rentPurchase.form.error'),
+                variant: "destructive",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const toggleFaq = (index: number) => {
@@ -171,60 +227,99 @@ const Contact = () => {
                             className="lg:col-span-7"
                         >
                             <div className="bg-card p-8 rounded-2xl border-2 border-primary/30 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-medium text-foreground">{t('contactPage.form.name')}</label>
-                                            <Input
-                                                placeholder={t('contactPage.form.namePlaceholder')}
-                                                required
-                                                className="py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
+                                <Form {...form}>
+                                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <FormField
+                                                control={form.control}
+                                                name="name"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>{t('contactPage.form.name')} *</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                {...field}
+                                                                placeholder={t('contactPage.form.namePlaceholder')}
+                                                                className="py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name="email"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>{t('contactPage.form.email')} *</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                {...field}
+                                                                type="email"
+                                                                placeholder={t('contactPage.form.emailPlaceholder')}
+                                                                className="py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
                                             />
                                         </div>
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-medium text-foreground">{t('contactPage.form.email')}</label>
-                                            <Input
-                                                type="email"
-                                                placeholder={t('contactPage.form.emailPlaceholder')}
-                                                required
-                                                className="py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
-                                            />
+
+                                        <FormField
+                                            control={form.control}
+                                            name="subject"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t('contactPage.form.subject')} *</FormLabel>
+                                                    <FormControl>
+                                                        <Input
+                                                            {...field}
+                                                            placeholder={t('contactPage.form.subjectPlaceholder')}
+                                                            className="py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+
+                                        <FormField
+                                            control={form.control}
+                                            name="message"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t('contactPage.form.message')} *</FormLabel>
+                                                    <FormControl>
+                                                        <Textarea
+                                                            {...field}
+                                                            placeholder={t('contactPage.form.messagePlaceholder')}
+                                                            className="min-h-[150px] py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+
+                                        <div className="space-y-4">
+                                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                                <Button
+                                                    type="submit"
+                                                    disabled={isSubmitting}
+                                                    className="w-full gap-2 py-6 bg-gradient-to-r from-primary to-red-600 hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] transition-all disabled:opacity-70"
+                                                >
+                                                    <Send size={18} />
+                                                    {isSubmitting ? t('rentPurchase.form.sending') : t('contactPage.form.send')}
+                                                </Button>
+                                            </motion.div>
+                                            <p className="text-xs text-center text-muted-foreground">
+                                                {t('contactPage.privacyMessage')}
+                                            </p>
                                         </div>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium text-foreground">{t('contactPage.form.subject')}</label>
-                                        <Input
-                                            placeholder={t('contactPage.form.subjectPlaceholder')}
-                                            required
-                                            className="py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium text-foreground">{t('contactPage.form.message')}</label>
-                                        <Textarea
-                                            placeholder={t('contactPage.form.messagePlaceholder')}
-                                            className="min-h-[150px] py-4 px-5 focus:border-primary focus:shadow-[0_0_15px_rgba(239,68,68,0.3)] transition-all"
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                            <Button
-                                                type="submit"
-                                                className="w-full gap-2 py-6 bg-gradient-to-r from-primary to-red-600 hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] transition-all"
-                                            >
-                                                <Send size={18} />
-                                                {t('contactPage.form.send')}
-                                            </Button>
-                                        </motion.div>
-                                        <p className="text-xs text-center text-muted-foreground">
-                                            {t('contactPage.privacyMessage')}
-                                        </p>
-                                    </div>
-                                </form>
+                                    </form>
+                                </Form>
                             </div>
                         </motion.div>
                     </div>

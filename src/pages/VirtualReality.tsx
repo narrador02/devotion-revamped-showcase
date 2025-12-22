@@ -25,7 +25,7 @@ import { useTranslation } from "react-i18next";
 import SpeedLines from "@/components/SpeedLines";
 
 // HERO BG
-import vrBg from "@/assets/vr-img.png";
+import vrBg from "@/assets/vr-img.webp";
 import vrImmersive from "@/assets/vr-immersive.jpg";
 
 // GAMES
