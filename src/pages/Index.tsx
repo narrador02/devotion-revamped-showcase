@@ -10,17 +10,25 @@ import { seoConfig } from "@/config/seoConfig";
 import CustomizationSection from "@/components/simulators/CustomizationSection";
 
 const Index = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  // Structured data for Organization and Products
+  // Structured data for Organization, LocalBusiness, Service, and WebPage
   const structuredData = [
     seoConfig.organization,
+    seoConfig.localBusiness,
+    seoConfig.service,
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: t('seo.home.title'),
       description: t('seo.home.description'),
       url: seoConfig.siteUrl,
+      inLanguage: i18n.language,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'DevotionSim',
+        url: seoConfig.siteUrl,
+      },
     },
   ];
 

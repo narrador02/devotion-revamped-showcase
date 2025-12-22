@@ -86,19 +86,51 @@
   "reviews": {
     "title": "Avaliações de Clientes",
     "subtitle": "O que nossos clientes dizem sobre sua experiência DevotionSim",
-    "tabs": { "professionals": "Pilotos Profissionais", "customers": "Clientes de Eventos" },
-    "professionals": { "title": "Pilotos Profissionais", "subtitle": "Ouça pilotos profissionais que treinam com nossos simuladores" },
-    "customers": { "title": "Clientes de Eventos", "subtitle": "Avaliações de clientes que experimentaram nossos simuladores em eventos" },
+    "tabs": {
+      "professionals": "Pilotos Profissionais",
+      "customers": "Clientes de Eventos"
+    },
+    "professionals": {
+      "title": "Pilotos Profissionais",
+      "subtitle": "Ouça pilotos profissionais que treinam com nossos simuladores"
+    },
+    "customers": {
+      "title": "Clientes de Eventos",
+      "subtitle": "Avaliações de clientes que experimentaram nossos simuladores em eventos"
+    },
     "showMore": "Mostrar mais vídeos",
     "pilots": {
-      "badge": "Aprovação Profissional", "title": "Confiança dos Campeões", "subtitle": "Pilotos de classe mundial que confiam na DevotionSim",
+      "badge": "Aprovação Profissional",
+      "title": "Confiança dos Campeões",
+      "subtitle": "Pilotos de classe mundial que confiam na DevotionSim",
       "watchVideo": "Ver entrevista completa",
-      "bautista": { "achievements": "Campeão WorldSBK 2023", "country": "Espanha", "quote": "As sensações são incrivelmente realistas." },
-      "saveri": { "achievements": "Campeão Mundial E-Sports", "country": "Itália", "quote": "Como piloto profissional de e-sports, a precisão importa." },
-      "garcia": { "achievements": "Vencedor WorldSSP300", "country": "Espanha", "quote": "Perfeito para aprender novos circuitos." },
-      "baldassarri": { "achievements": "Vencedor Moto2", "country": "Itália", "quote": "O sistema de movimento captura a sensação de uma moto de corrida." }
+      "bautista": {
+        "achievements": "Campeão WorldSBK 2023",
+        "country": "Espanha",
+        "quote": "As sensações são incrivelmente realistas."
+      },
+      "saveri": {
+        "achievements": "Campeão Mundial E-Sports",
+        "country": "Itália",
+        "quote": "Como piloto profissional de e-sports, a precisão importa."
+      },
+      "garcia": {
+        "achievements": "Vencedor WorldSSP300",
+        "country": "Espanha",
+        "quote": "Perfeito para aprender novos circuitos."
+      },
+      "baldassarri": {
+        "achievements": "Vencedor Moto2",
+        "country": "Itália",
+        "quote": "O sistema de movimento captura a sensação de uma moto de corrida."
+      }
     },
-    "stats": { "professionals": "Pilotos Profissionais", "countries": "Países", "satisfaction": "Satisfação", "topLevel": "Nível de Competição" }
+    "stats": {
+      "professionals": "Pilotos Profissionais",
+      "countries": "Países",
+      "satisfaction": "Satisfação",
+      "topLevel": "Nível de Competição"
+    }
   },
   "events": {
     "title": "Eventos",
@@ -181,7 +213,7 @@
     "description": "Pronto para experimentar a simulação definitiva? Estamos aqui para ajudar.",
     "heroSubtitle": "Pronto para levar a simulação definitiva ao seu evento, empresa ou circuito? Estamos aqui para ajudá-lo.",
     "getInTouch": "Entre em Contato",
-    "location": "Madrid, Espanha",
+    "location": "Barcelona, Espanha",
     "globalShipping": "Envio Global Disponível",
     "whatsappMessage": "Você também pode nos escrever no WhatsApp ou ligar diretamente.",
     "privacyMessage": "Nunca compartilharemos seus dados com terceiros.",
@@ -275,8 +307,8 @@
   "seo": {
     "site": {
       "name": "DevotionSim",
-      "tagline": "Simuladores Premium de Motos",
-      "defaultDescription": "Experimente a emoção das corridas profissionais de MotoGP com os simuladores de motos de alto desempenho da DevotionSim. Simuladores oficiais MotoGP para treino, entretenimento e eventos."
+      "tagline": "Simulador Oficial MotoGP - Único na Espanha",
+      "defaultDescription": "DevotionSim é o ÚNICO simulador OFICIAL MotoGP na Espanha. Aluguel e venda de simuladores de motos profissionais para eventos, feiras, entretenimento e treino. Localizado em Barcelona."
     },
     "home": {
       "title": "DevotionSim | Simuladores Profissionais MotoGP e Experiência de Corrida",
@@ -310,8 +342,8 @@
     },
     "contact": {
       "title": "Contato | DevotionSim - Consultas Simuladores Profissionais",
-      "description": "Entre em contato com DevotionSim para consultas sobre simuladores, aluguéis para eventos ou informações de compra. Localizado em Madrid, Espanha com envio mundial. Resposta garantida em 24 horas.",
-      "keywords": "contato devotionsim, consulta simulador, informações aluguel, consulta compra, envio mundial, madrid espanha, suporte cliente"
+      "description": "Entre em contato com DevotionSim para aluguel ou compra do simulador oficial MotoGP. Localizado em Barcelona, Espanha. Envio para toda a Europa. Resposta garantida em 24 horas.",
+      "keywords": "contato devotionsim, simulador motogp barcelona, aluguel simulador espanha, contato simulador motos, orçamento simulador eventos"
     },
     "vr": {
       "title": "Experiência VR | Corridas Imersivas MotoGP com Realidade Virtual",

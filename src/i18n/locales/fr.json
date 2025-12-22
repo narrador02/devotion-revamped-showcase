@@ -263,7 +263,7 @@
     "description": "Prêt à vivre la simulation ultime? Nous sommes là pour vous aider.",
     "heroSubtitle": "Prêt à apporter la simulation ultime à votre événement, entreprise ou circuit? Nous sommes là pour vous aider.",
     "getInTouch": "Entrer en Contact",
-    "location": "Madrid, Espagne",
+    "location": "Barcelone, Espagne",
     "globalShipping": "Livraison Mondiale Disponible",
     "whatsappMessage": "Vous pouvez également nous écrire sur WhatsApp ou nous appeler directement.",
     "privacyMessage": "Nous ne partagerons jamais vos données avec des tiers.",
@@ -473,8 +473,8 @@
   "seo": {
     "site": {
       "name": "DevotionSim",
-      "tagline": "Simulateurs Premium de Moto",
-      "defaultDescription": "Vivez l'émotion des courses professionnelles MotoGP avec les simulateurs de moto haute performance de DevotionSim. Simulateurs officiels MotoGP pour l'entraînement, le divertissement et les événements."
+      "tagline": "Simulateur Officiel MotoGP - Unique en Espagne",
+      "defaultDescription": "DevotionSim est le SEUL simulateur OFFICIEL MotoGP en Espagne. Location et vente de simulateurs de moto professionnels pour événements, salons, divertissement et entraînement. Situés à Barcelone."
     },
     "home": {
       "title": "DevotionSim | Simulateurs Professionnels MotoGP et Expérience de Course",
@@ -508,8 +508,8 @@
     },
     "contact": {
       "title": "Contact | DevotionSim - Demandes Simulateurs Professionnels",
-      "description": "Contactez DevotionSim pour des demandes sur les simulateurs, locations d'événements ou informations d'achat. Basés à Madrid, Espagne avec expédition mondiale. Réponse garantie sous 24 heures.",
-      "keywords": "contact devotionsim, demande simulateur, informations location, demande achat, expédition mondiale, madrid espagne, support client"
+      "description": "Contactez DevotionSim pour la location ou l'achat du simulateur officiel MotoGP. Situés à Barcelone, Espagne. Livraison dans toute l'Europe. Réponse garantie sous 24 heures.",
+      "keywords": "contact devotionsim, simulateur motogp barcelone, location simulateur espagne, contact simulateur moto, devis simulateur événements"
     },
     "vr": {
       "title": "Expérience VR | Courses Immersives MotoGP avec Réalité Virtuelle",

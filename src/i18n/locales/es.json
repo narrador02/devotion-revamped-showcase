@@ -344,7 +344,7 @@
     "description": "¿Listo para experimentar la simulación definitiva? Estamos aquí para ayudar.",
     "heroSubtitle": "¿Listo para llevar la simulación definitiva a tu evento, negocio o circuito? Estamos aquí para ayudarte.",
     "getInTouch": "Ponte en Contacto",
-    "location": "Madrid, España",
+    "location": "Barcelona, España",
     "globalShipping": "Envío Global Disponible",
     "whatsappMessage": "También puedes escribirnos por WhatsApp o llamarnos directamente.",
     "privacyMessage": "Nunca compartiremos tus datos con terceros.",
@@ -558,48 +558,48 @@
   "seo": {
     "site": {
       "name": "DevotionSim",
-      "tagline": "Simuladores Premium de Motos",
-      "defaultDescription": "Experimenta la emoción de las carreras profesionales de MotoGP con los simuladores de motos de alto rendimiento de DevotionSim. Simuladores oficiales de MotoGP para entrenamiento, entretenimiento y eventos."
+      "tagline": "Simulador Oficial MotoGP - Único en España",
+      "defaultDescription": "DevotionSim es el ÚNICO simulador OFICIAL de MotoGP en España. Alquiler y venta de simuladores de motos profesionales para eventos, ferias, entretenimiento y entrenamiento. Ubicados en Barcelona."
     },
     "home": {
-      "title": "DevotionSim | Simuladores Profesionales MotoGP y Experiencia de Carreras",
-      "description": "Descubre simuladores premium de motos con sistemas de movimiento de hasta 4 ejes. Simuladores oficiales de MotoGP para entrenamiento profesional, centros de entretenimiento y eventos. Experimenta sensaciones auténticas de circuito.",
-      "keywords": "simulador de motos, simulador motogp, simulador de carreras, simulador de moto, entrenamiento profesional, carreras VR, simulador de movimiento, entrenamiento de circuito, devotionsim"
+      "title": "DevotionSim | Simulador Oficial MotoGP - Único en España | Alquiler y Venta",
+      "description": "ÚNICO simulador OFICIAL de MotoGP en España. Alquiler y venta de simuladores profesionales con hasta 4 ejes de movimiento. Desde Barcelona para toda Europa. Eventos, ferias y entrenamiento.",
+      "keywords": "simulador motogp, simulador motogp oficial, simulador moto españa, alquiler simulador motos, alquiler simulador motogp, simulador motos barcelona, único simulador motogp españa, simulador carreras motos, simulador motos profesional, venta simulador motos"
     },
     "simulators": {
-      "title": "Simuladores de Motos | Modelos Time Attack, Slady y Top Gun",
-      "description": "Explora nuestra gama de simuladores profesionales de motos: Time Attack (2 ejes), Slady (3 ejes con deslizamiento), y Top Gun (4 ejes movimiento completo). Construidos para operación 24/7 con ángulos de inclinación hasta 54°.",
-      "keywords": "simulador time attack, simulador slady, simulador top gun, simulador 2 ejes, simulador drift 3 ejes, simulador movimiento 4 ejes, simulador carreras profesional"
+      "title": "Simuladores de Motos MotoGP | Time Attack, Slady y Top Gun | España",
+      "description": "Simuladores oficiales MotoGP profesionales: Time Attack (2 ejes), Slady (3 ejes con drift), Top Gun (4 ejes movimiento completo). Hasta 54° de inclinación. Alquiler y venta en toda España desde Barcelona.",
+      "keywords": "simulador motogp oficial, simulador time attack, simulador slady, simulador top gun, simulador 2 ejes, simulador 3 ejes drift, simulador 4 ejes, simulador motos profesional españa"
     },
     "reviews": {
-      "title": "Reseñas de Clientes y Testimonios | Experiencia DevotionSim",
-      "description": "Mira testimonios en vídeo de pilotos profesionales de MotoGP y clientes de eventos. Descubre por qué miles confían en DevotionSim para la experiencia de simulación de motos más realista.",
-      "keywords": "reseñas clientes, testimonios pilotos profesionales, pilotos motogp, reseñas simulador, comentarios clientes, testimonios eventos"
+      "title": "Reseñas y Testimonios | Pilotos MotoGP Confían en DevotionSim",
+      "description": "Testimonios en vídeo de pilotos profesionales de MotoGP y WorldSBK. Descubre por qué campeones como Álvaro Bautista confían en DevotionSim para entrenamiento y entretenimiento.",
+      "keywords": "reseñas simulador motogp, testimonios pilotos, alvaro bautista simulador, pilotos motogp entrenamiento, simulador worldsbk, reseñas clientes eventos"
     },
     "events": {
-      "title": "Eventos y Grandes Premios MotoGP | Presencia Mundial DevotionSim",
-      "description": "DevotionSim en Grandes Premios de MotoGP y eventos internacionales. Más de 380+ Grandes Premios, 470+ eventos totales y 28,000+ participantes desde 2018. Lleva emoción a tu próximo evento.",
-      "keywords": "eventos motogp, grandes premios, eventos de motos, alquiler simulador, activación eventos, eventos corporativos, ferias, fan zone"
+      "title": "Eventos MotoGP y Grandes Premios | Simulador Oficial en España",
+      "description": "DevotionSim presente en todos los Grandes Premios de MotoGP de Europa. +380 GPs, +470 eventos, +28.000 participantes desde 2018. Alquila el simulador oficial MotoGP para tu evento.",
+      "keywords": "eventos motogp españa, grandes premios motogp, alquiler simulador eventos, simulador ferias, activación marca moto, eventos corporativos motos, fan zone motogp"
     },
     "rentPurchase": {
-      "title": "Alquiler o Compra de Simuladores de Motos | Consigue tu DevotionSim",
-      "description": "Opciones flexibles de alquiler y compra para simuladores de motos DevotionSim. Envío mundial, instalación experta y garantía completa. Perfecto para negocios, eventos y centros de entretenimiento.",
-      "keywords": "comprar simulador motos, alquilar simulador, compra simulador, alquiler simulador, envío mundial, simulador negocio, equipo centro entretenimiento"
+      "title": "Alquiler y Venta Simulador MotoGP Oficial | DevotionSim España",
+      "description": "Alquila o compra el único simulador oficial de MotoGP en España. Envío a toda Europa. Instalación profesional y garantía completa. Perfecto para eventos, negocios y centros de entretenimiento.",
+      "keywords": "comprar simulador motogp, alquilar simulador motos españa, simulador motogp precio, alquiler simulador eventos, venta simulador profesional, simulador motos barcelona"
     },
     "about": {
-      "title": "Sobre DevotionSim | Pasión por las Carreras y Excelencia en Ingeniería",
-      "description": "Conoce la misión de DevotionSim de unir las carreras virtuales y la física del mundo real. Construido por pilotos para pilotos, creamos las herramientas de entrenamiento de motos más realistas disponibles.",
-      "keywords": "sobre devotionsim, misión empresa, pasión carreras, excelencia ingeniería, fabricante simuladores, herramientas entrenamiento profesional"
+      "title": "Sobre DevotionSim | Fabricantes del Único Simulador Oficial MotoGP en España",
+      "description": "Conoce a DevotionSim, creadores del único simulador oficial de MotoGP en España. Desde Barcelona, unimos pasión por las carreras con ingeniería de precisión para pilotos y aficionados.",
+      "keywords": "sobre devotionsim, fabricante simulador motogp, empresa simuladores españa, pasión motociclismo, simulador oficial motogp barcelona"
     },
     "contact": {
-      "title": "Contacto | DevotionSim - Consultas Simuladores Profesionales",
-      "description": "Ponte en contacto con DevotionSim para consultas sobre simuladores, alquileres para eventos o información de compra. Ubicados en Madrid, España con envío mundial. Respuesta garantizada en 24 horas.",
-      "keywords": "contacto devotionsim, consulta simulador, información alquiler, consulta compra, envío mundial, madrid españa, soporte cliente"
+      "title": "Contacto DevotionSim | Simulador Oficial MotoGP Barcelona España",
+      "description": "Contacta con DevotionSim para alquiler o compra del simulador oficial MotoGP. Ubicados en Barcelona, España. Envío a toda Europa. Respuesta garantizada en 24 horas.",
+      "keywords": "contacto devotionsim, simulador motogp barcelona, alquiler simulador españa, contacto simulador motos, presupuesto simulador eventos"
     },
     "vr": {
-      "title": "Experiencia VR | Carreras Inmersivas MotoGP con Realidad Virtual",
-      "description": "Inmersión total con simuladores de motos compatibles con VR. Compatible con Meta Quest, HTC Vive, Valve Index. Experimenta MotoGP, Ride 4 y Assetto Corsa en realidad virtual impresionante.",
-      "keywords": "simulador vr motos, carreras realidad virtual, compatible meta quest, motogp vr, carreras inmersivas, gaming vr, carreras 360 grados"
+      "title": "Experiencia VR MotoGP | Simulador Realidad Virtual Inmersivo España",
+      "description": "Inmersión total con simuladores MotoGP compatibles con VR. Meta Quest, HTC Vive, Valve Index. Experimenta MotoGP, Ride 4 y Assetto Corsa en realidad virtual desde el único simulador oficial en España.",
+      "keywords": "simulador vr motogp, realidad virtual motos españa, meta quest motogp, simulador inmersivo, carreras vr 360 grados, experiencia motogp vr"
     }
   }
 }
