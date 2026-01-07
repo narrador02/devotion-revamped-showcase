@@ -516,5 +516,49 @@
       "description": "Immersió total amb simuladors MotoGP compatibles amb VR. Meta Quest, HTC Vive, Valve Index. Experimenta MotoGP, Ride 4 i Assetto Corsa en realitat virtual des de l'únic simulador oficial a Espanya.",
       "keywords": "simulador vr motogp, realitat virtual motos espanya, meta quest motogp, simulador immersiu, curses vr 360 graus, experiència motogp vr"
     }
+  },
+  "unifiedForm": {
+    "requestType": {
+      "label": "Tipus de sol·licitud",
+      "general": "Informació general",
+      "rent": "Llogar",
+      "buy": "Comprar"
+    },
+    "fields": {
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Joan García",
+      "email": "Correu electrònic",
+      "emailPlaceholder": "joan@exemple.com",
+      "phone": "Número de telèfon",
+      "phonePlaceholder": "+34 696 23 83 12",
+      "subject": "Assumpte",
+      "subjectPlaceholder": "Consulta de producte",
+      "startDate": "Data d'inici",
+      "endDate": "Data de fi",
+      "country": "País",
+      "countryPlaceholder": "Espanya",
+      "city": "Ciutat",
+      "cityPlaceholder": "Barcelona",
+      "model": "Model (opcional)",
+      "modelPlaceholder": "Selecciona un model",
+      "message": "Missatge",
+      "messagePlaceholder": "Explica'ns les teves necessitats..."
+    },
+    "models": {
+      "timeAttack": "Time Attack",
+      "slady": "Slady",
+      "topGun": "Top Gun"
+    },
+    "validation": {
+      "required": "Aquest camp és obligatori",
+      "invalidEmail": "Si us plau, introdueix un correu electrònic vàlid",
+      "invalidPhone": "Si us plau, introdueix un número de telèfon vàlid",
+      "endDateAfterStart": "La data de fi ha de ser posterior a la data d'inici"
+    },
+    "submit": "Enviar missatge",
+    "submitting": "Enviant...",
+    "success": "Missatge enviat amb èxit!",
+    "successDesc": "Ens posarem en contacte amb tu el més aviat possible.",
+    "error": "Error en enviar el missatge. Si us plau, torna-ho a intentar."
   }
 }

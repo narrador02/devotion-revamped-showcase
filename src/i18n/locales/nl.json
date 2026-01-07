@@ -350,5 +350,49 @@
       "description": "Totale immersie met VR-compatibele motorsimulators. Compatibel met Meta Quest, HTC Vive, Valve Index. Ervaar MotoGP, Ride 4 en Assetto Corsa in verbluffende virtual reality.",
       "keywords": "vr motorsimulator, virtual reality racen, meta quest compatibel, motogp vr, meeslepend racen, vr gaming, 360 graden racen"
     }
+  },
+  "unifiedForm": {
+    "requestType": {
+      "label": "Type aanvraag",
+      "general": "Algemene informatie",
+      "rent": "Huren",
+      "buy": "Kopen"
+    },
+    "fields": {
+      "fullName": "Volledige naam",
+      "fullNamePlaceholder": "Jan Jansen",
+      "email": "E-mail",
+      "emailPlaceholder": "jan@voorbeeld.nl",
+      "phone": "Telefoonnummer",
+      "phonePlaceholder": "+31 6 12345678",
+      "subject": "Onderwerp",
+      "subjectPlaceholder": "Productaanvraag",
+      "startDate": "Startdatum",
+      "endDate": "Einddatum",
+      "country": "Land",
+      "countryPlaceholder": "Nederland",
+      "city": "Stad",
+      "cityPlaceholder": "Amsterdam",
+      "model": "Model (optioneel)",
+      "modelPlaceholder": "Selecteer een model",
+      "message": "Bericht",
+      "messagePlaceholder": "Vertel ons over uw behoeften..."
+    },
+    "models": {
+      "timeAttack": "Time Attack",
+      "slady": "Slady",
+      "topGun": "Top Gun"
+    },
+    "validation": {
+      "required": "Dit veld is verplicht",
+      "invalidEmail": "Voer een geldig e-mailadres in",
+      "invalidPhone": "Voer een geldig telefoonnummer in",
+      "endDateAfterStart": "De einddatum moet na de startdatum liggen"
+    },
+    "submit": "Bericht versturen",
+    "submitting": "Verzenden...",
+    "success": "Bericht succesvol verzonden!",
+    "successDesc": "We nemen zo snel mogelijk contact met u op.",
+    "error": "Fout bij het verzenden van het bericht. Probeer het opnieuw."
   }
 }

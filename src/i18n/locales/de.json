@@ -516,5 +516,49 @@
       "description": "Totale Immersion mit VR-kompatiblen Motorradsimulatoren. Kompatibel mit Meta Quest, HTC Vive, Valve Index. Erleben Sie MotoGP, Ride 4 und Assetto Corsa in atemberaubender Virtual Reality.",
       "keywords": "vr motorradsimulator, virtual reality rennen, meta quest kompatibel, motogp vr, immersives rennen, vr gaming, 360 grad rennen"
     }
+  },
+  "unifiedForm": {
+    "requestType": {
+      "label": "Art der Anfrage",
+      "general": "Allgemeine Informationen",
+      "rent": "Mieten",
+      "buy": "Kaufen"
+    },
+    "fields": {
+      "fullName": "Vollständiger Name",
+      "fullNamePlaceholder": "Max Mustermann",
+      "email": "E-Mail",
+      "emailPlaceholder": "max@beispiel.com",
+      "phone": "Telefonnummer",
+      "phonePlaceholder": "+49 151 12345678",
+      "subject": "Betreff",
+      "subjectPlaceholder": "Produktanfrage",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "country": "Land",
+      "countryPlaceholder": "Deutschland",
+      "city": "Stadt",
+      "cityPlaceholder": "Berlin",
+      "model": "Modell (optional)",
+      "modelPlaceholder": "Wählen Sie ein Modell",
+      "message": "Nachricht",
+      "messagePlaceholder": "Erzählen Sie uns von Ihren Bedürfnissen..."
+    },
+    "models": {
+      "timeAttack": "Time Attack",
+      "slady": "Slady",
+      "topGun": "Top Gun"
+    },
+    "validation": {
+      "required": "Dieses Feld ist erforderlich",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "invalidPhone": "Bitte geben Sie eine gültige Telefonnummer ein",
+      "endDateAfterStart": "Das Enddatum muss nach dem Startdatum liegen"
+    },
+    "submit": "Nachricht senden",
+    "submitting": "Wird gesendet...",
+    "success": "Nachricht erfolgreich gesendet!",
+    "successDesc": "Wir werden uns so schnell wie möglich bei Ihnen melden.",
+    "error": "Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut."
   }
 }
