@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Simuladores from "./pages/Simuladores";
 import Reviews from "./pages/Reviews";
@@ -42,6 +42,18 @@ const App = () => (
               <Route path="/virtual-reality" element={<VirtualReality />} />
               <Route path="/specs" element={<Specs />} />
               <Route path="/customization" element={<Customization />} />
+
+              {/* Legacy URL redirects from old website */}
+              <Route path="/events/" element={<Navigate to="/events" replace />} />
+              <Route path="/riders/" element={<Navigate to="/reviews" replace />} />
+              <Route path="/videos-devotion-sim/" element={<Navigate to="/simuladores" replace />} />
+              <Route path="/es" element={<Navigate to="/" replace />} />
+              <Route path="/es/events/" element={<Navigate to="/events" replace />} />
+              <Route path="/es/contact/" element={<Navigate to="/contact" replace />} />
+              <Route path="/es/riders/" element={<Navigate to="/reviews" replace />} />
+              <Route path="/es/cookies/" element={<Navigate to="/" replace />} />
+              <Route path="/es/author/maria/" element={<Navigate to="/" replace />} />
+
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -54,3 +66,4 @@ const App = () => (
 );
 
 export default App;
+

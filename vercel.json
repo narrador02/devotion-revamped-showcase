@@ -1,0 +1,90 @@
+{
+    "redirects": [
+        {
+            "source": "/events/",
+            "destination": "/events",
+            "permanent": true
+        },
+        {
+            "source": "/riders",
+            "destination": "/reviews",
+            "permanent": true
+        },
+        {
+            "source": "/riders/",
+            "destination": "/reviews",
+            "permanent": true
+        },
+        {
+            "source": "/videos-devotion-sim",
+            "destination": "/simuladores",
+            "permanent": true
+        },
+        {
+            "source": "/videos-devotion-sim/",
+            "destination": "/simuladores",
+            "permanent": true
+        },
+        {
+            "source": "/es",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/es/",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/es/events",
+            "destination": "/events",
+            "permanent": true
+        },
+        {
+            "source": "/es/events/",
+            "destination": "/events",
+            "permanent": true
+        },
+        {
+            "source": "/es/contact",
+            "destination": "/contact",
+            "permanent": true
+        },
+        {
+            "source": "/es/contact/",
+            "destination": "/contact",
+            "permanent": true
+        },
+        {
+            "source": "/es/riders",
+            "destination": "/reviews",
+            "permanent": true
+        },
+        {
+            "source": "/es/riders/",
+            "destination": "/reviews",
+            "permanent": true
+        },
+        {
+            "source": "/es/cookies",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/es/cookies/",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/es/author/:path*",
+            "destination": "/",
+            "permanent": true
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/((?!assets/).*)",
+            "destination": "/index.html"
+        }
+    ]
+}

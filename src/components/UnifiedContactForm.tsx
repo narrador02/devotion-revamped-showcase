@@ -71,7 +71,7 @@ const UnifiedContactForm = ({
                 country: z.string().min(1, { message: t('unifiedForm.validation.required') }),
                 city: z.string().min(1, { message: t('unifiedForm.validation.required') }),
                 model: z.string().optional(),
-            }).refine((data) => data.endDate > data.startDate, {
+            }).refine((data) => data.endDate >= data.startDate, {
                 message: t('unifiedForm.validation.endDateAfterStart'),
                 path: ["endDate"],
             });
