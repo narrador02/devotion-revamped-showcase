@@ -18,7 +18,7 @@ const FeaturedOnTV = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+                    className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-12 items-center"
                 >
                     {/* Text Content - Left */}
                     <div className="order-2 lg:order-1">
