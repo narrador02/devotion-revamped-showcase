@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ExternalLink, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import hormigueroSimulator from "@/assets/hormiguero-simulator.png";
 
 const FeaturedOnTV = () => {
     const { t } = useTranslation();
@@ -67,11 +68,11 @@ const FeaturedOnTV = () => {
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-orange-500/20 rounded-2xl blur-3xl transform scale-110 opacity-50" />
 
                             {/* Image container */}
-                            <div className="relative bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-8 shadow-[0_0_40px_rgba(239,68,68,0.15)]">
+                            <div className="relative bg-card/50 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-8 shadow-[0_0_40px_rgba(239,68,68,0.15)] overflow-hidden">
                                 <img
-                                    src="/placeholder.svg"
+                                    src={hormigueroSimulator}
                                     alt={t('featuredOnTV.imageAlt')}
-                                    className="w-full h-auto max-h-48 object-contain mx-auto"
+                                    className="w-full h-auto object-cover rounded-lg shadow-sm"
                                 />
                                 {/* TV Show branding text */}
                                 <div className="text-center mt-4">
