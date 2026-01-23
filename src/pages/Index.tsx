@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import FeaturedOnTV from "@/components/FeaturedOnTV";
 import Products from "@/components/Products";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -46,6 +47,7 @@ const Index = () => {
         <Navigation />
         <main>
           <Hero />
+          <FeaturedOnTV />
           <UseCases />
           <Products />
           <CustomizationSection />
@@ -58,4 +60,5 @@ const Index = () => {
 };
 
 export default Index;
+
 

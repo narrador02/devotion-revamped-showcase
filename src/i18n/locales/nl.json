@@ -394,5 +394,11 @@
     "success": "Bericht succesvol verzonden!",
     "successDesc": "We nemen zo snel mogelijk contact met u op.",
     "error": "Fout bij het verzenden van het bericht. Probeer het opnieuw."
+  },
+  "featuredOnTV": {
+    "headline": "Gezien op El Hormiguero (Antena 3)",
+    "body": "Onze simulatoren verschenen op de nationale televisie na de opnames van de film Ídolos, tijdens het programma El Hormiguero.",
+    "cta": "Bekijk fragment",
+    "imageAlt": "El Hormiguero - Antena 3 logo"
   }
 }

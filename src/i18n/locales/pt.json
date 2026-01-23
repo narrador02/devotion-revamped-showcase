@@ -394,5 +394,11 @@
     "success": "Mensagem enviada com sucesso!",
     "successDesc": "Entraremos em contato o mais breve possível.",
     "error": "Erro ao enviar mensagem. Por favor, tente novamente."
+  },
+  "featuredOnTV": {
+    "headline": "Visto em El Hormiguero (Antena 3)",
+    "body": "Os nossos simuladores apareceram na televisão nacional após as filmagens do filme Ídolos, durante o programa El Hormiguero.",
+    "cta": "Ver clipe",
+    "imageAlt": "Logo El Hormiguero - Antena 3"
   }
 }
