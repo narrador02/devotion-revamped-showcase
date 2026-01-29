@@ -1,11 +1,6 @@
 {
     "redirects": [
         {
-            "source": "/events/",
-            "destination": "/events",
-            "permanent": true
-        },
-        {
             "source": "/riders",
             "destination": "/reviews",
             "permanent": true
@@ -33,16 +28,6 @@
         {
             "source": "/es/",
             "destination": "/",
-            "permanent": true
-        },
-        {
-            "source": "/es/events",
-            "destination": "/events",
-            "permanent": true
-        },
-        {
-            "source": "/es/events/",
-            "destination": "/events",
             "permanent": true
         },
         {

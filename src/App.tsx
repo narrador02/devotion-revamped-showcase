@@ -17,7 +17,10 @@ import Contact from "./pages/Contact";
 import VirtualReality from "./pages/VirtualReality";
 import Specs from "./pages/Specs";
 import Customization from "./pages/Customization";
+import AdminProposals from "./pages/AdminProposals";
+import Proposal from "./pages/Proposal";
 import { VideoProvider } from "@/contexts/VideoContext";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import "./i18n/config";
 
 const queryClient = new QueryClient();
@@ -35,7 +38,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/simuladores" element={<Simuladores />} />
               <Route path="/reviews" element={<Reviews />} />
-              <Route path="/events" element={<Events />} />
+              <Route path="/events" element={<ErrorBoundary><Events /></ErrorBoundary>} />
+              <Route path="/events-test" element={<ErrorBoundary><Events /></ErrorBoundary>} />
               <Route path="/rent-purchase" element={<RentPurchase />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
@@ -43,12 +47,16 @@ const App = () => (
               <Route path="/specs" element={<Specs />} />
               <Route path="/customization" element={<Customization />} />
 
+              {/* Admin routes */}
+              <Route path="/admin/proposals" element={<AdminProposals />} />
+
+              {/* Public proposal page */}
+              <Route path="/p/:id" element={<Proposal />} />
+
               {/* Legacy URL redirects from old website */}
-              <Route path="/events/" element={<Navigate to="/events" replace />} />
               <Route path="/riders/" element={<Navigate to="/reviews" replace />} />
               <Route path="/videos-devotion-sim/" element={<Navigate to="/simuladores" replace />} />
               <Route path="/es" element={<Navigate to="/" replace />} />
-              <Route path="/es/events/" element={<Navigate to="/events" replace />} />
               <Route path="/es/contact/" element={<Navigate to="/contact" replace />} />
               <Route path="/es/riders/" element={<Navigate to="/reviews" replace />} />
               <Route path="/es/cookies/" element={<Navigate to="/" replace />} />

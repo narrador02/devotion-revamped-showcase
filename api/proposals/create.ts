@@ -1,0 +1,93 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { kv } from '@vercel/kv';
+import { nanoid } from 'nanoid';
+
+interface Proposal {
+    id: string;
+    clientName: string;
+    clientLogoUrl: string;
+    personalMessage?: string;
+    pricing: {
+        basic: string;
+        professional: string;
+        complete: string;
+    };
+    notes?: string;
+    createdAt: string;
+    expiresAt: string;
+}
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    // Verify admin authentication
+    const cookies = req.cookies || {};
+    if (cookies.adminAuth !== 'true') {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { clientName, clientLogoUrl, personalMessage, pricing, notes } = req.body || {};
+
+    // Validate required fields
+    if (!clientName || typeof clientName !== 'string' || clientName.trim() === '') {
+        return res.status(400).json({ error: 'Client name is required' });
+    }
+
+    if (!clientLogoUrl || typeof clientLogoUrl !== 'string') {
+        return res.status(400).json({ error: 'Client logo is required' });
+    }
+
+    if (!pricing || typeof pricing !== 'object') {
+        return res.status(400).json({ error: 'Pricing is required' });
+    }
+
+    const { basic, professional, complete } = pricing;
+    if (!basic || !professional || !complete) {
+        return res.status(400).json({ error: 'All pricing packages are required' });
+    }
+
+    try {
+        const id = nanoid(11); // 11 chars like YouTube IDs
+        const now = new Date();
+        const expiresAt = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000); // 15 days
+
+        const proposal: Proposal = {
+            id,
+            clientName: clientName.trim(),
+            clientLogoUrl,
+            personalMessage: personalMessage?.trim() || undefined,
+            pricing: {
+                basic: basic.trim(),
+                professional: professional.trim(),
+                complete: complete.trim(),
+            },
+            notes: notes?.trim() || undefined,
+            createdAt: now.toISOString(),
+            expiresAt: expiresAt.toISOString(),
+        };
+
+        // Store proposal in KV
+        await kv.set(`proposal:${id}`, JSON.stringify(proposal), {
+            ex: 15 * 24 * 60 * 60, // 15 days TTL
+        });
+
+        // Add to recent proposals list (keep last 50)
+        await kv.lpush('proposals:list', id);
+        await kv.ltrim('proposals:list', 0, 49);
+
+        return res.status(201).json({
+            success: true,
+            proposal: {
+                id,
+                clientName: proposal.clientName,
+                createdAt: proposal.createdAt,
+                expiresAt: proposal.expiresAt,
+            },
+        });
+    } catch (error) {
+        console.error('Error creating proposal:', error);
+        return res.status(500).json({ error: 'Failed to create proposal' });
+    }
+}

@@ -1,10 +1,8 @@
 # Legacy URL redirects from old website
-/events/                    /events                 301
 /riders/                    /reviews                301
 /videos-devotion-sim/       /simuladores            301
 
 /es                         /                       301
-/es/events/                 /events                 301
 /es/contact/                /contact                301
 /es/riders/                 /reviews                301
 /es/cookies/                /                       301
