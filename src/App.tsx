@@ -7,7 +7,6 @@ import Index from "./pages/Index";
 import Simuladores from "./pages/Simuladores";
 import Reviews from "./pages/Reviews";
 import Events from "./pages/Events";
-import Eventsv2 from "./pages/Eventsv2";
 import RentPurchase from "./pages/RentPurchase";
 import NotFound from "./pages/NotFound";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -41,7 +40,6 @@ const App = () => (
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/events" element={<ErrorBoundary><Events /></ErrorBoundary>} />
               <Route path="/events-test" element={<ErrorBoundary><Events /></ErrorBoundary>} />
-              <Route path="/events-v2" element={<Eventsv2 />} />
               <Route path="/rent-purchase" element={<RentPurchase />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
