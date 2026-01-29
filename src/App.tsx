@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Simuladores from "./pages/Simuladores";
 import Reviews from "./pages/Reviews";
 import Events from "./pages/Events";
+import Eventsv2 from "./pages/Eventsv2";
 import RentPurchase from "./pages/RentPurchase";
 import NotFound from "./pages/NotFound";
 import WhatsAppButton from "@/components/WhatsAppButton";
