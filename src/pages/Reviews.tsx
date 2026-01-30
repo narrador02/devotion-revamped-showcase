@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
+import { useRouteScroll } from "@/hooks/useRouteScroll";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -99,6 +100,13 @@ const Reviews = () => {
 
   const visibleCustomers = showMoreCustomers ? customerVideos : customerVideos.slice(0, 6);
 
+  // Scroll mapping for Reviews
+  const scrollMap = {
+    '/opiniones/testimonios': 'testimonios',
+  };
+
+  useRouteScroll(scrollMap);
+
   return (
     <div className="min-h-screen bg-background">
       <SEO
@@ -110,7 +118,7 @@ const Reviews = () => {
       <Navigation />
 
       <main className="pt-32 pb-24">
-        <div className="container mx-auto px-4">
+        <div id="opiniones-hero" className="container mx-auto px-4">
 
           {/* HEADER */}
           <div className="text-center mb-16">
@@ -123,7 +131,7 @@ const Reviews = () => {
           </div>
 
           {/* TABS */}
-          <Tabs defaultValue="customers" className="max-w-7xl mx-auto">
+          <Tabs id="testimonios" defaultValue="customers" className="max-w-7xl mx-auto">
             <TabsList className="grid grid-cols-2 max-w-md mx-auto mb-14">
               <TabsTrigger value="customers" className="flex gap-2">
                 <Users className="w-4 h-4" />
@@ -196,7 +204,7 @@ const Reviews = () => {
                     {/* Decorative elements */}
                     <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
                     <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-2xl" />
-                    
+
                     <div className="relative flex flex-col md:flex-row">
                       {/* Video Thumbnail */}
                       <button
@@ -209,7 +217,7 @@ const Reviews = () => {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent md:bg-gradient-to-r md:from-transparent md:via-black/20 md:to-black/60" />
-                        
+
                         {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">

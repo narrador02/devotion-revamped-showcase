@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import { useRouteScroll } from "@/hooks/useRouteScroll";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
@@ -44,6 +45,18 @@ const Simuladores = () => {
     seoConfig.products.topGun,
   ];
 
+  // Scroll mapping for Simulators
+  // The IDs must match the div IDs below
+  const scrollMap = {
+    '/simuladores/top-gun': 'topgun',
+    '/simuladores/motogp': 'topgun', // Alias for topgun often used for MotoGP specific
+    '/simuladores/slady': 'slady',
+    '/simuladores/time-attack': 'timeattack',
+    '/simuladores/comparativa': 'comparativa',
+  };
+
+  useRouteScroll(scrollMap);
+
   return (
     <div className="min-h-screen bg-background font-inter">
       <SEO
@@ -61,7 +74,7 @@ const Simuladores = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section id="simuladores-hero" className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f12_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f12_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
@@ -141,20 +154,36 @@ const Simuladores = () => {
       </section>
 
       {/* Product Showcase */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="space-y-32">
-            {simulatorsData.models.map((product, index) => (
+      <section id="comparativa" className="py-20 hidden">
+        {/* Placeholder for anchor if needed, but comparison is a modal usually. 
+              The user requested 'Simulator comparison chart' -> id="comparativa". 
+              If comparison is a separate section in future, it goes here. 
+              For now, I will attach IDs to the CARDS themselves based on the user request order.
+              Top Gun -> id="topgun"
+              Slady -> id="slady"
+              Time Attack -> id="timeattack"
+          */}
+      </section>
+
+      <div className="py-20 container mx-auto px-4 space-y-32">
+        {simulatorsData.models.map((product, index) => {
+          // Determine ID based on product ID or content
+          let sectionId = "";
+          if (product.id === "top-gun") sectionId = "topgun";
+          else if (product.id === "slady") sectionId = "slady";
+          else if (product.id === "time-attack") sectionId = "timeattack";
+
+          return (
+            <div id={sectionId} key={product.id}>
               <SimulatorCard
-                key={product.id}
                 model={product}
                 index={index}
                 onLearnMore={handleLearnMore}
               />
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          );
+        })}
+      </div>
 
       {/* Trust Block */}
       <TrustBlock />

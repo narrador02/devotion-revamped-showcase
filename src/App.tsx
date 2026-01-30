@@ -47,6 +47,24 @@ const App = () => (
               <Route path="/specs" element={<Specs />} />
               <Route path="/customization" element={<Customization />} />
 
+              {/* Internal Route Aliases (for auto-scrolling) */}
+              {/* Homepage Sections */}
+              <Route path="/eventos" element={<Index />} />
+              <Route path="/personalizacion" element={<Index />} />
+              <Route path="/contacto" element={<Index />} />
+
+              {/* Simulator Sections */}
+              <Route path="/simuladores/motogp" element={<Simuladores />} />
+              <Route path="/simuladores/top-gun" element={<Simuladores />} />
+              <Route path="/simuladores/slady" element={<Simuladores />} />
+              <Route path="/simuladores/time-attack" element={<Simuladores />} />
+              <Route path="/simuladores/comparativa" element={<Simuladores />} />
+
+              {/* Review Sections */}
+              <Route path="/pro" element={<Navigate to="/reviews/testimonios" replace />} /> {/* Deprecated alias */}
+              <Route path="/reviews/testimonios" element={<Reviews />} />
+              <Route path="/opiniones/testimonios" element={<Reviews />} /> {/* Spanish alias */}
+
               {/* Admin routes */}
               <Route path="/admin/proposals" element={<AdminProposals />} />
 
