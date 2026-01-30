@@ -25,7 +25,7 @@ const Specs = () => {
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <Button asChild variant="ghost" className="mb-6">
-                        <Link to="/simuladores">
+                        <Link to="/simulators">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             {t('products.specsPage.backToSimulators')}
                         </Link>

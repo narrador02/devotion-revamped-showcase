@@ -25,7 +25,7 @@ const Customization = () => {
                     This page is under construction. Soon you will see our gallery of replica liveries and corporate branding options.
                 </p>
                 <Button asChild variant="outline">
-                    <Link to="/simuladores">
+                    <Link to="/simulators">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to Simulators
                     </Link>

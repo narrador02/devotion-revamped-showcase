@@ -21,7 +21,7 @@ const Navigation = () => {
 
   const navLinks = [
     { name: t('nav.home'), path: "/" },
-    { name: t('nav.products'), path: "/simuladores" },
+    { name: t('nav.products'), path: "/simulators" },
     { name: t('nav.reviews'), path: "/reviews" },
     { name: t('nav.events'), path: "/events" },
     { name: t('nav.aboutUs'), path: "/about" },

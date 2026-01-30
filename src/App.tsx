@@ -36,7 +36,7 @@ const App = () => (
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/simuladores" element={<Simuladores />} />
+              <Route path="/simulators" element={<Simuladores />} />
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/events" element={<ErrorBoundary><Events /></ErrorBoundary>} />
               <Route path="/events-test" element={<ErrorBoundary><Events /></ErrorBoundary>} />
@@ -56,7 +56,6 @@ const App = () => (
               <Route path="/contacto" element={<Index />} />
 
               {/* Simulator Sections - Renamed base route to /simulators */}
-              <Route path="/simulators" element={<Simuladores />} />
               <Route path="/simulators/motogp" element={<Simuladores />} />
               <Route path="/simulators/top-gun" element={<Simuladores />} />
               <Route path="/simulators/slady" element={<Simuladores />} />
@@ -79,7 +78,7 @@ const App = () => (
 
               {/* Legacy / Redirects */}
               <Route path="/simuladores" element={<Navigate to="/simulators" replace />} />
-              <Route path="/simuladores/*" element={<Simuladores />} /> {/* Fallback for old deep links if needed, or better direct to new ones? Let's just map old to component for now to handle scroll compatibility if desired, or redirect. User said "simuladores should be simulators". */}
+              <Route path="/simuladores/*" element={<Navigate to="/simulators" replace />} />
 
               <Route path="/pro" element={<Navigate to="/reviews/pilots" replace />} />
               <Route path="/opiniones/testimonios" element={<Reviews />} />
@@ -92,7 +91,7 @@ const App = () => (
 
               {/* Legacy URL redirects from old website */}
               <Route path="/riders/" element={<Navigate to="/reviews" replace />} />
-              <Route path="/videos-devotion-sim/" element={<Navigate to="/simuladores" replace />} />
+              <Route path="/videos-devotion-sim/" element={<Navigate to="/simulators" replace />} />
               <Route path="/es" element={<Navigate to="/" replace />} />
               <Route path="/es/contact/" element={<Navigate to="/contact" replace />} />
               <Route path="/es/riders/" element={<Navigate to="/reviews" replace />} />

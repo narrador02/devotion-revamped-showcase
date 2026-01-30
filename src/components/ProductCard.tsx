@@ -37,7 +37,7 @@ const ProductCard = ({
   const navigate = useNavigate();
 
   const handleLearnMore = () => {
-    navigate(`/simuladores#${productId}`);
+    navigate(`/simulators#${productId}`);
   };
 
 

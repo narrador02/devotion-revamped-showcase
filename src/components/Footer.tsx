@@ -25,7 +25,7 @@ const Footer = () => {
             <h4 className="font-rajdhani font-semibold text-lg mb-4 text-foreground">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/simuladores" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
+                <a href="/simulators" className="text-muted-foreground hover:text-primary transition-colors font-inter text-sm">
                   {t('nav.products')}
                 </a>
               </li>

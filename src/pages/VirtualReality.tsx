@@ -373,7 +373,7 @@ const VirtualReality = () => {
                                 </Button>
                             </Link>
 
-                            <Link to="/simuladores" className="text-gray-400 hover:text-white underline-offset-4 hover:underline">
+                            <Link to="/simulators" className="text-gray-400 hover:text-white underline-offset-4 hover:underline">
                                 {t("vr_page.cta.link")}
                             </Link>
                         </div>

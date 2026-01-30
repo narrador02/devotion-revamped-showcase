@@ -48,8 +48,13 @@ const Simuladores = () => {
   // Scroll mapping for Simulators
   // The IDs must match the div IDs below
   const scrollMap = {
+    '/simulators/top-gun': 'topgun',
+    '/simulators/motogp': 'topgun', // Alias
+    '/simulators/slady': 'slady',
+    '/simulators/time-attack': 'timeattack',
+    '/simulators/comparativa': 'comparativa',
+    // Spanish fallback (leaving for compatibility if needed, but primary is /simulators)
     '/simuladores/top-gun': 'topgun',
-    '/simuladores/motogp': 'topgun', // Alias for topgun often used for MotoGP specific
     '/simuladores/slady': 'slady',
     '/simuladores/time-attack': 'timeattack',
     '/simuladores/comparativa': 'comparativa',
@@ -63,7 +68,7 @@ const Simuladores = () => {
         title={t('seo.simulators.title')}
         description={t('seo.simulators.description')}
         keywords={t('seo.simulators.keywords')}
-        path="/simuladores"
+        path="/simulators"
         type="product"
         structuredData={structuredData}
       />
