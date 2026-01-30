@@ -150,6 +150,7 @@ const Events = () => {
   };
 
   useRouteScroll({
+    '/events': 'events-hero',
     '/events/motogp': 'motogp'
   });
 
@@ -164,7 +165,7 @@ const Events = () => {
       <Navigation />
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section id="events-hero" className="relative pt-32 pb-20 overflow-hidden">
         <SpeedLines className="opacity-20" color="#ef4444" speed={0.5} />
         <div className="absolute inset-0 bg-gradient-to-b from-red-900/10 via-black/50 to-black pointer-events-none" />
 

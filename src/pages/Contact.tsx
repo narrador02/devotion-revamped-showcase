@@ -19,6 +19,7 @@ const Contact = () => {
     };
 
     useRouteScroll({
+        '/contact': 'contact-hero',
         '/contact/questions': 'questions'
     });
 
@@ -37,7 +38,7 @@ const Contact = () => {
             <Navigation />
             <main className="pt-20">
                 {/* Hero Section with Enhanced Background */}
-                <div className="relative overflow-hidden bg-gradient-to-br from-black via-black to-primary/10">
+                <div id="contact-hero" className="relative overflow-hidden bg-gradient-to-br from-black via-black to-primary/10">
                     {/* Speed Lines Background */}
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent transform -skew-y-12"></div>

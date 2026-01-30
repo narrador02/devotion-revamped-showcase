@@ -54,6 +54,7 @@ const VirtualReality = () => {
     const bgY = useTransform(scrollYProgress, [0, 0.3], ["0%", "12%"]);
 
     useRouteScroll({
+        '/virtual-reality': 'vr-hero',
         '/virtual-reality/headsets': 'headsets'
     });
 
@@ -72,7 +73,7 @@ const VirtualReality = () => {
             <Navigation />
 
             {/* ================= HERO ================= */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            <section id="vr-hero" className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <motion.img
                         src={vrBg}

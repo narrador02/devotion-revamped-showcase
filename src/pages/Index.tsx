@@ -36,12 +36,9 @@ const Index = () => {
 
   // Scroll mapping for Homepage
   const scrollMap = {
+    '/': 'hero',
     '/our-simulators': 'simuladores',
     '/personalization': 'personalizacion',
-    // Legacy support
-    '/eventos': 'eventos',
-    '/simuladores': 'simuladores',
-    '/contacto': 'cta-final',
   };
 
   useRouteScroll(scrollMap);

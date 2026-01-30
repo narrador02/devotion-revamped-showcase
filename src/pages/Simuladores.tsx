@@ -48,16 +48,11 @@ const Simuladores = () => {
   // Scroll mapping for Simulators
   // The IDs must match the div IDs below
   const scrollMap = {
+    '/simulators': 'simuladores-hero',
     '/simulators/top-gun': 'topgun',
-    '/simulators/motogp': 'topgun', // Alias
     '/simulators/slady': 'slady',
     '/simulators/time-attack': 'timeattack',
     '/simulators/comparativa': 'comparativa',
-    // Spanish fallback (leaving for compatibility if needed, but primary is /simulators)
-    '/simuladores/top-gun': 'topgun',
-    '/simuladores/slady': 'slady',
-    '/simuladores/time-attack': 'timeattack',
-    '/simuladores/comparativa': 'comparativa',
   };
 
   useRouteScroll(scrollMap);

@@ -37,7 +37,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/simulators" element={<Simuladores />} />
-              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/reviews" element={<Navigate to="/reviews/clients" replace />} />
               <Route path="/events" element={<ErrorBoundary><Events /></ErrorBoundary>} />
               <Route path="/events-test" element={<ErrorBoundary><Events /></ErrorBoundary>} />
               <Route path="/rent-purchase" element={<RentPurchase />} />
@@ -51,12 +51,9 @@ const App = () => (
 
               {/* Homepage Sections */}
               <Route path="/our-simulators" element={<Index />} />
-              <Route path="/personalizacion" element={<Index />} />
-              <Route path="/eventos" element={<Index />} /> {/* Legacy/Fallback */}
-              <Route path="/contacto" element={<Index />} />
+              <Route path="/personalization" element={<Index />} />
 
               {/* Simulator Sections - Renamed base route to /simulators */}
-              <Route path="/simulators/motogp" element={<Simuladores />} />
               <Route path="/simulators/top-gun" element={<Simuladores />} />
               <Route path="/simulators/slady" element={<Simuladores />} />
               <Route path="/simulators/time-attack" element={<Simuladores />} />
@@ -65,7 +62,6 @@ const App = () => (
               {/* Review Sections */}
               <Route path="/reviews/clients" element={<Reviews />} />
               <Route path="/reviews/pilots" element={<Reviews />} />
-              <Route path="/reviews/testimonios" element={<Reviews />} />
 
               {/* Events Sections */}
               <Route path="/events/motogp" element={<Events />} />
@@ -80,8 +76,9 @@ const App = () => (
               <Route path="/simuladores" element={<Navigate to="/simulators" replace />} />
               <Route path="/simuladores/*" element={<Navigate to="/simulators" replace />} />
 
+              <Route path="/simulators/motogp" element={<Navigate to="/simulators/top-gun" replace />} />
+              <Route path="/simuladores/motogp" element={<Navigate to="/simulators/top-gun" replace />} />
               <Route path="/pro" element={<Navigate to="/reviews/pilots" replace />} />
-              <Route path="/opiniones/testimonios" element={<Reviews />} />
 
               {/* Admin routes */}
               <Route path="/admin/proposals" element={<AdminProposals />} />

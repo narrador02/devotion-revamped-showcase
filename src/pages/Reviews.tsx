@@ -102,7 +102,7 @@ const Reviews = () => {
 
   // Scroll mapping for Reviews
   const scrollMap = {
-    '/opiniones/testimonios': 'testimonios',
+    '/reviews': 'opiniones-hero',
     '/reviews/clients': 'clients',
     '/reviews/pilots': 'pilots',
   };
