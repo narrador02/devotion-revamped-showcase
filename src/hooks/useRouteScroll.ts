@@ -12,7 +12,6 @@ type ScrollMap = Record<string, string>;
  */
 export const useRouteScroll = (idMap: ScrollMap) => {
     const { pathname } = useLocation();
-    const navigate = useNavigate();
 
     // Track if we are currently scrolling automatically to avoid triggering URL updates
     const isAutoScrolling = useRef(false);
@@ -35,9 +34,15 @@ export const useRouteScroll = (idMap: ScrollMap) => {
     useEffect(() => {
         // Find if current path has a mapping
         // Logic: specific path match or endsWith (for flexibility)
-        const targetEntry = Object.entries(idMap).find(([path]) =>
-            pathname === path || (path !== '/' && pathname.endsWith(path)) // Avoid '/' matching everything
-        );
+        // We prioritize exact match first
+        let targetEntry = Object.entries(idMap).find(([path]) => pathname === path);
+
+        // If no exact match, try matching suffix (unless it's root '/')
+        if (!targetEntry) {
+            targetEntry = Object.entries(idMap).find(([path]) =>
+                path !== '/' && pathname.endsWith(path)
+            );
+        }
 
         const targetId = targetEntry ? targetEntry[1] : null;
 
@@ -56,8 +61,10 @@ export const useRouteScroll = (idMap: ScrollMap) => {
                             isAutoScrolling.current = false;
                         }, 1000);
                     }, 100);
-                } else if (retries < 10) {
-                    // Element not found - retry (e.g. for lazy loaded content)
+                } else if (retries < 15) {
+                    // Element not found - retry.
+                    // Retry more frequently at first, then back off? No, just linear for now.
+                    // 15 * 200 = 3000ms = 3 seconds
                     setTimeout(() => attemptScroll(retries + 1), 200);
                 } else {
                     // Give up
@@ -67,9 +74,16 @@ export const useRouteScroll = (idMap: ScrollMap) => {
 
             attemptScroll();
         } else {
-            // Standard behavior: scroll to top if path is changing and no ID match
-            // BUT only if not just changing hash/query 
-            window.scrollTo(0, 0);
+            // Standard behavior: scroll to top if path is changing and no ID match.
+            // BUT: We check if the NEW path maps to ANY ID. If not, and it's a new page load, scroll top.
+            // If we are just changing hashes in the same page, we might not want this?
+            // Actually, if 'targetId' is null, it means we navigated to a route that HAS NO SECTION MAPPING.
+            // In that case, standard ScrollToTop is desired.
+
+            // Only scroll to top if we aren't already at the top (optimization)
+            if (window.scrollY > 0) {
+                window.scrollTo(0, 0);
+            }
         }
     }, [pathname, idMap]);
 
@@ -77,62 +91,74 @@ export const useRouteScroll = (idMap: ScrollMap) => {
     // 2. Scroll -> URL Logic (ScrollSpy)
     // ---------------------------------------------------------------------------
     useEffect(() => {
-        const ids = Object.values(idMap);
-
+        // Observer callback
         const observerCallback: IntersectionObserverCallback = (entries) => {
-            if (isAutoScrolling.current) return; // Ignore updates while auto-scrolling
+            if (isAutoScrolling.current) return;
 
-            // We want to find the "most visible" element
-            // or the first one that intersects significantly
-
-            // Simple approach: check intersecting entries
+            // Find the element that is most visible in the viewport
+            // We use a specific rootMargin to detection the "active" section
             const visibleEntry = entries.find(entry => entry.isIntersecting);
 
             if (visibleEntry) {
                 const id = visibleEntry.target.id;
                 const path = reverseMap.current[id];
 
-                // If mapped path exists and it is NOT the current path, update URL
-                // We use replaceState to update URL without adding to history stack or triggering re-render/scroll
-                if (path && path !== pathname && !window.location.pathname.endsWith(path)) {
-
-                    // Update URL silently
-                    // Using router navigate() might trigger re-renders or effects
-                    // Using window.history.replaceState is safer for "silent" updates
-                    window.history.replaceState(null, '', path);
-
-                    // Note: This desyncs React Router's internal location state from window.location
-                    // This is usually fine for cosmetic URL updates, but if we want full Router sync:
-                    // navigate(path, { replace: true, state: { preventScroll: true } }); 
-                    // However, that triggers the URL->Scroll effect above.
+                // Only update if path exists, is different
+                if (path && path !== window.location.pathname) {
+                    // Check endsWith to avoid partial matches on base path if not desired,
+                    // but usually 'equal' or 'endsWith' check is fine.
+                    // The requirement: "URL updates". 
+                    // Use replaceState to be silent.
+                    try {
+                        window.history.replaceState(null, '', path);
+                    } catch (e) {
+                        // ignore security errors
+                    }
                 }
             }
         };
 
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -60% 0px', // Active when element is near top of viewport
+            // Adjust rootMargin to trigger when element is in the middle of the screen
+            // '-40% 0px -40% 0px' means the intersection area is a thin strip in the middle 20% vertical
+            rootMargin: '-40% 0px -40% 0px',
             threshold: 0
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Observe all target elements
-        const elementsToObserve: Element[] = [];
-        ids.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                observer.observe(el);
-                elementsToObserve.push(el);
-            } else {
-                // If element doesn't exist yet, we could use MutationObserver, 
-                // but simpler for now implies they should be rendered by the page content
-            }
-        });
+        // Retry logic to attach observers to elements that might render late
+        let retryCount = 0;
+        const maxRetries = 20; // Try for ~10 seconds (500ms * 20)
 
-        // Cleanup
+        const attachObservers = () => {
+            const ids = Object.values(idMap);
+            let foundAll = true;
+            let foundAny = false;
+
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    observer.observe(el);
+                    foundAny = true;
+                } else {
+                    foundAll = false;
+                }
+            });
+
+            // If we haven't found all expected elements, keep trying
+            if (!foundAll && retryCount < maxRetries) {
+                retryCount++;
+                setTimeout(attachObservers, 500);
+            }
+        };
+
+        // Start trying to attach
+        attachObservers();
+
         return () => {
             observer.disconnect();
         };
-    }, [idMap, pathname]); // Re-run if ID map changes 
+    }, [idMap]); // Removed 'pathname' dependency to prevent re-attaching/loops
 };
