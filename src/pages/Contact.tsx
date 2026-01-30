@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import UnifiedContactForm from "@/components/UnifiedContactForm";
+import { useRouteScroll } from "@/hooks/useRouteScroll";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
@@ -16,6 +17,10 @@ const Contact = () => {
     const toggleFaq = (index: number) => {
         setExpandedFaq(expandedFaq === index ? null : index);
     };
+
+    useRouteScroll({
+        '/contact/questions': 'questions'
+    });
 
     return (
         <div className="min-h-screen bg-background font-inter">
@@ -221,6 +226,7 @@ const Contact = () => {
 
                     {/* FAQ Section */}
                     <motion.div
+                        id="questions"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}

@@ -103,6 +103,8 @@ const Reviews = () => {
   // Scroll mapping for Reviews
   const scrollMap = {
     '/opiniones/testimonios': 'testimonios',
+    '/reviews/clients': 'clients',
+    '/reviews/pilots': 'pilots',
   };
 
   useRouteScroll(scrollMap);
@@ -146,7 +148,7 @@ const Reviews = () => {
             {/* =======================
                 CLIENTES
             ======================= */}
-            <TabsContent value="customers" className="space-y-10">
+            <TabsContent id="clients" value="customers" className="space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {visibleCustomers.map((video) => (
                   <VideoCard
@@ -175,7 +177,7 @@ const Reviews = () => {
             {/* =======================
                 PILOTOS - PREMIUM DESIGN
             ======================= */}
-            <TabsContent value="professionals">
+            <TabsContent id="pilots" value="professionals">
               {/* Section Header */}
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">

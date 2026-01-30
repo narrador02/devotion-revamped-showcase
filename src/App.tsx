@@ -48,22 +48,41 @@ const App = () => (
               <Route path="/customization" element={<Customization />} />
 
               {/* Internal Route Aliases (for auto-scrolling) */}
+
               {/* Homepage Sections */}
-              <Route path="/eventos" element={<Index />} />
+              <Route path="/our-simulators" element={<Index />} />
               <Route path="/personalizacion" element={<Index />} />
+              <Route path="/eventos" element={<Index />} /> {/* Legacy/Fallback */}
               <Route path="/contacto" element={<Index />} />
 
-              {/* Simulator Sections */}
-              <Route path="/simuladores/motogp" element={<Simuladores />} />
-              <Route path="/simuladores/top-gun" element={<Simuladores />} />
-              <Route path="/simuladores/slady" element={<Simuladores />} />
-              <Route path="/simuladores/time-attack" element={<Simuladores />} />
-              <Route path="/simuladores/comparativa" element={<Simuladores />} />
+              {/* Simulator Sections - Renamed base route to /simulators */}
+              <Route path="/simulators" element={<Simuladores />} />
+              <Route path="/simulators/motogp" element={<Simuladores />} />
+              <Route path="/simulators/top-gun" element={<Simuladores />} />
+              <Route path="/simulators/slady" element={<Simuladores />} />
+              <Route path="/simulators/time-attack" element={<Simuladores />} />
+              <Route path="/simulators/comparativa" element={<Simuladores />} />
 
               {/* Review Sections */}
-              <Route path="/pro" element={<Navigate to="/reviews/testimonios" replace />} /> {/* Deprecated alias */}
+              <Route path="/reviews/clients" element={<Reviews />} />
+              <Route path="/reviews/pilots" element={<Reviews />} />
               <Route path="/reviews/testimonios" element={<Reviews />} />
-              <Route path="/opiniones/testimonios" element={<Reviews />} /> {/* Spanish alias */}
+
+              {/* Events Sections */}
+              <Route path="/events/motogp" element={<Events />} />
+
+              {/* Contact Sections */}
+              <Route path="/contact/questions" element={<Contact />} />
+
+              {/* VR Sections */}
+              <Route path="/virtual-reality/headsets" element={<VirtualReality />} />
+
+              {/* Legacy / Redirects */}
+              <Route path="/simuladores" element={<Navigate to="/simulators" replace />} />
+              <Route path="/simuladores/*" element={<Simuladores />} /> {/* Fallback for old deep links if needed, or better direct to new ones? Let's just map old to component for now to handle scroll compatibility if desired, or redirect. User said "simuladores should be simulators". */}
+
+              <Route path="/pro" element={<Navigate to="/reviews/pilots" replace />} />
+              <Route path="/opiniones/testimonios" element={<Reviews />} />
 
               {/* Admin routes */}
               <Route path="/admin/proposals" element={<AdminProposals />} />

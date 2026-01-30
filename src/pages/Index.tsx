@@ -36,8 +36,11 @@ const Index = () => {
 
   // Scroll mapping for Homepage
   const scrollMap = {
+    '/our-simulators': 'simuladores',
+    '/personalization': 'personalizacion',
+    // Legacy support
     '/eventos': 'eventos',
-    '/personalizacion': 'personalizacion',
+    '/simuladores': 'simuladores',
     '/contacto': 'cta-final',
   };
 

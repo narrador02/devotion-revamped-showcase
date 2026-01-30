@@ -11,6 +11,7 @@ import SpeedLines from "@/components/SpeedLines";
 import CountUpMetric from "@/components/CountUpMetric";
 import EventCard from "@/components/EventCard";
 import EventModal from "@/components/EventModal";
+import { useRouteScroll } from "@/hooks/useRouteScroll";
 import { Button } from "@/components/ui/button";
 
 // Sample event data - replace with real data
@@ -148,6 +149,10 @@ const Events = () => {
     show: { opacity: 1, y: 0 }
   };
 
+  useRouteScroll({
+    '/events/motogp': 'motogp'
+  });
+
   return (
     <div className="min-h-screen bg-black text-white font-inter">
       <SEO
@@ -252,7 +257,7 @@ const Events = () => {
       </section>
 
       {/* MOTOGP SHOWCASE */}
-      <section className="py-20 bg-gradient-to-br from-red-950/20 to-black relative overflow-hidden">
+      <section id="motogp" className="py-20 bg-gradient-to-br from-red-950/20 to-black relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzFmMjkzNyIgc3Ryb2tlLXdpZHRoPSIuNSIgb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-30" />
 
         <div className="container mx-auto px-4 relative z-10">

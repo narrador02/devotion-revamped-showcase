@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SpeedLines from "@/components/SpeedLines";
+import { useRouteScroll } from "@/hooks/useRouteScroll";
 
 // HERO BG
 import vrBg from "@/assets/vr-img.webp";
@@ -51,6 +52,10 @@ const VirtualReality = () => {
     const heroY = useTransform(scrollYProgress, [0, 0.2], ["0%", "50%"]);
     const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
     const bgY = useTransform(scrollYProgress, [0, 0.3], ["0%", "12%"]);
+
+    useRouteScroll({
+        '/virtual-reality/headsets': 'headsets'
+    });
 
     return (
         <div
@@ -165,7 +170,7 @@ const VirtualReality = () => {
             </section>
 
             {/* ================= VR HEADSETS ================= */}
-            <section className="py-1 md:py-20 bg-black">
+            <section id="headsets" className="py-1 md:py-20 bg-black">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl md:text-4xl font-rajdhani font-bold mb-4">
                         {t("vr_page.headsets.title")}
