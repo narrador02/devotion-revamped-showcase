@@ -102,7 +102,7 @@ const Reviews = () => {
 
   // Scroll mapping for Reviews
   const scrollMap = {
-    '/reviews': 'opiniones-hero',
+    '/reviews': 'reviews-hero',
     '/reviews/clients': 'clients',
     '/reviews/pilots': 'pilots',
   };
@@ -120,7 +120,7 @@ const Reviews = () => {
       <Navigation />
 
       <main className="pt-32 pb-24">
-        <div id="opiniones-hero" className="container mx-auto px-4">
+        <div id="reviews-hero" className="container mx-auto px-4">
 
           {/* HEADER */}
           <div className="text-center mb-16">
@@ -133,7 +133,7 @@ const Reviews = () => {
           </div>
 
           {/* TABS */}
-          <Tabs id="testimonios" defaultValue="customers" className="max-w-7xl mx-auto">
+          <Tabs id="testimonials-section" defaultValue="customers" className="max-w-7xl mx-auto">
             <TabsList className="grid grid-cols-2 max-w-md mx-auto mb-14">
               <TabsTrigger value="customers" className="flex gap-2">
                 <Users className="w-4 h-4" />

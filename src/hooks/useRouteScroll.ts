@@ -120,9 +120,8 @@ export const useRouteScroll = (idMap: ScrollMap) => {
 
         const observerOptions = {
             root: null,
-            // Adjust rootMargin to trigger when element is in the middle of the screen
-            // '-40% 0px -40% 0px' means the intersection area is a thin strip in the middle 20% vertical
-            rootMargin: '-40% 0px -40% 0px',
+            // Increased sensitivity: detection zone is middle 80% of screen
+            rootMargin: '-10% 0px -10% 0px',
             threshold: 0
         };
 

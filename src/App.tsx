@@ -78,6 +78,9 @@ const App = () => (
 
               <Route path="/simulators/motogp" element={<Navigate to="/simulators/top-gun" replace />} />
               <Route path="/simuladores/motogp" element={<Navigate to="/simulators/top-gun" replace />} />
+              <Route path="/simuladores/slady" element={<Navigate to="/simulators/slady" replace />} />
+              <Route path="/simuladores/time-attack" element={<Navigate to="/simulators/time-attack" replace />} />
+              <Route path="/simuladores/comparativa" element={<Navigate to="/simulators/comparativa" replace />} />
               <Route path="/pro" element={<Navigate to="/reviews/pilots" replace />} />
 
               {/* Admin routes */}

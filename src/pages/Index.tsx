@@ -37,8 +37,8 @@ const Index = () => {
   // Scroll mapping for Homepage
   const scrollMap = {
     '/': 'hero',
-    '/our-simulators': 'simuladores',
-    '/personalization': 'personalizacion',
+    '/our-simulators': 'simulators-section',
+    '/personalization': 'personalization-section',
   };
 
   useRouteScroll(scrollMap);
@@ -58,9 +58,9 @@ const Index = () => {
         <main>
           <div id="hero"><Hero /></div>
           <div id="que-es"><FeaturedOnTV /></div>
-          <div id="eventos"><UseCases /></div>
-          <div id="simuladores"><Products /></div>
-          <div id="personalizacion"><CustomizationSection /></div>
+          <div id="events-section"><UseCases /></div>
+          <div id="simulators-section"><Products /></div>
+          <div id="personalization-section"><CustomizationSection /></div>
         </main>
         <div id="cta-final"><Footer /></div>
         <LanguageSwitcher />

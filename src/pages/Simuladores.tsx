@@ -48,7 +48,7 @@ const Simuladores = () => {
   // Scroll mapping for Simulators
   // The IDs must match the div IDs below
   const scrollMap = {
-    '/simulators': 'simuladores-hero',
+    '/simulators': 'simulators-hero',
     '/simulators/top-gun': 'topgun',
     '/simulators/slady': 'slady',
     '/simulators/time-attack': 'timeattack',
@@ -74,7 +74,7 @@ const Simuladores = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section id="simuladores-hero" className="relative pt-32 pb-20 overflow-hidden">
+      <section id="simulators-hero" className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f12_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f12_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 

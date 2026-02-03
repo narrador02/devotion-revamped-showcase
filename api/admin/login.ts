@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { kv } from '@vercel/kv';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ADMIN_PASSWORD = process.env.devotion500;
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60 * 1000; // 1 minute
 
@@ -36,19 +36,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0] || 
-             req.socket?.remoteAddress || 
-             'unknown';
+  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0] ||
+    req.socket?.remoteAddress ||
+    'unknown';
 
   // Check rate limit
   const rateLimitData = await getRateLimitData(ip);
   if (rateLimitData) {
     if (rateLimitData.count >= MAX_ATTEMPTS && Date.now() < rateLimitData.resetAt) {
       const remainingSeconds = Math.ceil((rateLimitData.resetAt - Date.now()) / 1000);
-      return res.status(429).json({ 
-        error: 'Too many attempts', 
+      return res.status(429).json({
+        error: 'Too many attempts',
         code: 'RATE_LIMITED',
-        retryAfter: remainingSeconds 
+        retryAfter: remainingSeconds
       });
     }
   }
@@ -70,7 +70,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       resetAt: Date.now() + COOLDOWN_MS
     });
 
-    return res.status(401).json({ 
+    return res.status(401).json({
       error: 'Invalid password',
       code: 'INVALID_PASSWORD',
       attemptsRemaining: Math.max(0, MAX_ATTEMPTS - newCount)
