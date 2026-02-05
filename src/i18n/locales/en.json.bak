@@ -708,40 +708,7 @@
       "actions": "Actions",
       "expired": "Expired",
       "copyLink": "Copy link",
-      "openProposal": "Open proposal",
-      "type": {
-        "rental": "Rental",
-        "purchase": "Purchase"
-      },
-      "rental": {
-        "isVIP": "VIP Client Price",
-        "basePrice": "Base Price",
-        "simulators": "Number of Simulators",
-        "transport": "Transport / Logistics",
-        "km": "Distance (km)",
-        "staff": "Technical Staff",
-        "staffCount": "Number of Staff",
-        "days": "Number of Days",
-        "travel": "Travel Expenses",
-        "hotel": "Hotel Expenses",
-        "totals": "Estimated Totals",
-        "simTotal": "Simulators",
-        "transportTotal": "Transport",
-        "staffTotal": "Staff",
-        "total": "Total Estimate"
-      },
-      "purchase": {
-        "packages": "Pricing Packages",
-        "paymentTerms": "Payment Terms",
-        "paymentTermsPlaceholder": "e.g. 50% upfront, 50% on delivery..."
-      }
-    },
-    "settings": {
-      "title": "Proposal Settings",
-      "description": "Adjust global multipliers for calculations",
-      "transport": "Transport Cost (€/km)",
-      "staff": "Staff Cost (€/day)",
-      "save": "Save Changes"
+      "openProposal": "Open proposal"
     }
   },
   "proposal": {

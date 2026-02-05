@@ -1,7 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { kv } from '@vercel/kv';
+import type { Proposal } from '@/types/proposal';
 
-interface Proposal {
+// Legacy proposal interface for backwards compatibility
+interface LegacyProposal {
     id: string;
     clientName: string;
     clientLogoUrl: string;
@@ -37,7 +39,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             });
         }
 
-        const proposal = typeof data === 'string' ? JSON.parse(data) : data as Proposal;
+        const rawProposal = typeof data === 'string' ? JSON.parse(data) : data;
+
+        // Check if it's a legacy proposal (no proposalType field)
+        const isLegacy = !rawProposal.proposalType;
+
+        let proposal: Proposal;
+
+        if (isLegacy) {
+            // Convert legacy proposal to new format (as purchase type)
+            const legacy = rawProposal as LegacyProposal;
+            proposal = {
+                id: legacy.id,
+                proposalType: 'purchase',
+                clientName: legacy.clientName,
+                clientLogoUrl: legacy.clientLogoUrl,
+                personalMessage: legacy.personalMessage,
+                purchaseDetails: {
+                    packages: legacy.pricing,
+                },
+                notes: legacy.notes,
+                createdAt: legacy.createdAt,
+                expiresAt: legacy.expiresAt,
+            };
+        } else {
+            proposal = rawProposal as Proposal;
+        }
+
         const isExpired = new Date(proposal.expiresAt) < new Date();
 
         if (isExpired) {
@@ -47,7 +75,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             });
         }
 
-        return res.status(200).json({ proposal });
+        return res.status(200).json({ proposal, isLegacy });
     } catch (error) {
         console.error('Error fetching proposal:', error);
         return res.status(500).json({ error: 'Failed to fetch proposal' });

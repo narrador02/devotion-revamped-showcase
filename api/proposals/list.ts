@@ -3,10 +3,11 @@ import { kv } from '@vercel/kv';
 
 interface Proposal {
     id: string;
+    proposalType?: 'rental' | 'purchase'; // Optional for legacy proposals
     clientName: string;
     clientLogoUrl: string;
     personalMessage?: string;
-    pricing: {
+    pricing?: {
         basic: string;
         professional: string;
         complete: string;
@@ -41,6 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         // Fetch all proposals
         const proposals: Array<{
             id: string;
+            proposalType: 'rental' | 'purchase';
             clientName: string;
             createdAt: string;
             expiresAt: string;
@@ -54,6 +56,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 const isExpired = new Date(proposal.expiresAt) < new Date();
                 proposals.push({
                     id: proposal.id,
+                    proposalType: proposal.proposalType || 'purchase', // Default legacy to purchase
                     clientName: proposal.clientName,
                     createdAt: proposal.createdAt,
                     expiresAt: proposal.expiresAt,

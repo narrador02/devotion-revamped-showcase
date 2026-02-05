@@ -1,21 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { kv } from '@vercel/kv';
 import { nanoid } from 'nanoid';
-
-interface Proposal {
-    id: string;
-    clientName: string;
-    clientLogoUrl: string;
-    personalMessage?: string;
-    pricing: {
-        basic: string;
-        professional: string;
-        complete: string;
-    };
-    notes?: string;
-    createdAt: string;
-    expiresAt: string;
-}
+import type { Proposal, ProposalType, RentalDetails, PurchaseDetails, TransportDetails, StaffDetails } from '@/types/proposal';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
@@ -24,16 +10,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // TEMPORARILY DISABLED FOR DEMO - RE-ENABLE BEFORE PRODUCTION
     /* ORIGINAL AUTH CODE - UNCOMMENT TO RE-ENABLE:
-    // Verify admin authentication
     const cookies = req.cookies || {};
     if (cookies.adminAuth !== 'true') {
         return res.status(401).json({ error: 'Unauthorized' });
     }
     */
 
-    const { clientName, clientLogoUrl, personalMessage, pricing, notes } = req.body || {};
+    const {
+        proposalType,
+        clientName,
+        clientLogoUrl,
+        personalMessage,
+        rentalDetails,
+        purchaseDetails,
+        notes
+    } = req.body || {};
 
     // Validate required fields
+    if (!proposalType || (proposalType !== 'rental' && proposalType !== 'purchase')) {
+        return res.status(400).json({ error: 'Invalid proposal type' });
+    }
+
     if (!clientName || typeof clientName !== 'string' || clientName.trim() === '') {
         return res.status(400).json({ error: 'Client name is required' });
     }
@@ -42,13 +39,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(400).json({ error: 'Client logo is required' });
     }
 
-    if (!pricing || typeof pricing !== 'object') {
-        return res.status(400).json({ error: 'Pricing is required' });
+    // Validate type-specific fields
+    if (proposalType === 'rental') {
+        if (!rentalDetails || typeof rentalDetails !== 'object') {
+            return res.status(400).json({ error: 'Rental details are required for rental proposals' });
+        }
+        if (typeof rentalDetails.basePrice !== 'number' || rentalDetails.basePrice <= 0) {
+            return res.status(400).json({ error: 'Invalid base price' });
+        }
     }
 
-    const { basic, professional, complete } = pricing;
-    if (!basic || !professional || !complete) {
-        return res.status(400).json({ error: 'All pricing packages are required' });
+    if (proposalType === 'purchase') {
+        if (!purchaseDetails || typeof purchaseDetails !== 'object') {
+            return res.status(400).json({ error: 'Purchase details are required for purchase proposals' });
+        }
+        const { packages } = purchaseDetails;
+        if (!packages || !packages.basic || !packages.professional || !packages.complete) {
+            return res.status(400).json({ error: 'All pricing packages are required' });
+        }
     }
 
     try {
@@ -58,14 +66,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         const proposal: Proposal = {
             id,
+            proposalType: proposalType as ProposalType,
             clientName: clientName.trim(),
             clientLogoUrl,
             personalMessage: personalMessage?.trim() || undefined,
-            pricing: {
-                basic: basic.trim(),
-                professional: professional.trim(),
-                complete: complete.trim(),
-            },
+            rentalDetails: proposalType === 'rental' ? rentalDetails : undefined,
+            purchaseDetails: proposalType === 'purchase' ? purchaseDetails : undefined,
             notes: notes?.trim() || undefined,
             createdAt: now.toISOString(),
             expiresAt: expiresAt.toISOString(),
@@ -84,6 +90,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             success: true,
             proposal: {
                 id,
+                proposalType: proposal.proposalType,
                 clientName: proposal.clientName,
                 createdAt: proposal.createdAt,
                 expiresAt: proposal.expiresAt,

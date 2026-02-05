@@ -1,19 +1,14 @@
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
-interface Proposal {
-    id: string;
-    clientName: string;
-    clientLogoUrl: string;
-    personalMessage?: string;
-    pricing: {
-        basic: string;
-        professional: string;
-        complete: string;
-    };
-    notes?: string;
-    createdAt: string;
-    expiresAt: string;
-}
+import { Proposal } from "@/types/proposal";
+import ProposalHeader from "./ProposalHeader";
+import RentalProposalTemplate from "./RentalProposalTemplate";
+import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
+import ProposalFooter from "./ProposalFooter";
+import ProposalPDF from "./ProposalPDF";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Download, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ProposalDisplayProps {
     proposal: Proposal;
@@ -23,93 +18,56 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
-            <div className="max-w-2xl mx-auto">
-                {/* Header with Logo */}
-                <header className="text-center mb-12">
-                    <div className="mb-6">
-                        <img
-                            src={proposal.clientLogoUrl}
-                            alt={`${proposal.clientName} logo`}
-                            className="max-h-24 mx-auto object-contain"
-                        />
-                    </div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                        {t("proposal.titleFor", { clientName: proposal.clientName })}
-                    </h1>
-                    {proposal.personalMessage && (
-                        <p className="text-lg text-gray-600 italic mt-4 max-w-lg mx-auto">
-                            "{proposal.personalMessage}"
-                        </p>
+        <div className="min-h-screen bg-gray-900 text-white font-sans selection:bg-red-500/30">
+            {/* Dynamic Background */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-black" />
+                <div className="absolute top-0 left-0 w-full h-[500px] bg-red-600/10 blur-[120px] rounded-full mix-blend-screen" />
+                <div className="absolute bottom-0 right-0 w-full h-[500px] bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen" />
+            </div>
+
+            <div className="relative z-10 max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-12">
+                {/* PDF Download Button (Floating) */}
+                <div className="fixed bottom-6 right-6 z-50">
+                    <PDFDownloadLink
+                        document={<ProposalPDF proposal={proposal} />}
+                        fileName={`DevotionSim_Proposal_${proposal.clientName.replace(/\s+/g, '_')}.pdf`}
+                    >
+                        {({ loading }) => (
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-12 w-12 rounded-full shadow-xl bg-gray-900/90 border-red-500/50 hover:bg-red-600 hover:border-red-600 transition-all duration-300"
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <Loader2 className="h-5 w-5 animate-spin text-red-500" />
+                                ) : (
+                                    <Download className="h-5 w-5 text-white" />
+                                )}
+                            </Button>
+                        )}
+                    </PDFDownloadLink>
+                </div>
+
+                {/* Header */}
+                <ProposalHeader proposal={proposal} />
+
+                {/* Main Content - Template Switcher */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                    {proposal.proposalType === 'rental' ? (
+                        <RentalProposalTemplate proposal={proposal} />
+                    ) : (
+                        <PurchaseProposalTemplate proposal={proposal} />
                     )}
-                </header>
-
-                {/* Pricing Section */}
-                <section className="mb-12">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-6 text-center">
-                        {t("proposal.pricingTitle")}
-                    </h2>
-                    <div className="grid gap-4 sm:grid-cols-3">
-                        {/* Basic Package */}
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 text-center">
-                            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
-                                {t("proposal.packBasic")}
-                            </h3>
-                            <p className="text-2xl font-bold text-gray-900">
-                                {proposal.pricing.basic}
-                            </p>
-                        </div>
-
-                        {/* Professional Package */}
-                        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 shadow-lg text-center transform sm:scale-105">
-                            <h3 className="text-sm font-medium text-red-100 uppercase tracking-wide mb-3">
-                                {t("proposal.packProfessional")}
-                            </h3>
-                            <p className="text-2xl font-bold text-white">
-                                {proposal.pricing.professional}
-                            </p>
-                        </div>
-
-                        {/* Complete Package */}
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 text-center">
-                            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
-                                {t("proposal.packComplete")}
-                            </h3>
-                            <p className="text-2xl font-bold text-gray-900">
-                                {proposal.pricing.complete}
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Additional Notes */}
-                {proposal.notes && (
-                    <section className="mb-12">
-                        <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                            {t("proposal.notesTitle")}
-                        </h2>
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                            <p className="text-gray-600 whitespace-pre-wrap">{proposal.notes}</p>
-                        </div>
-                    </section>
-                )}
+                </motion.div>
 
                 {/* Footer */}
-                <footer className="text-center text-sm text-gray-500 pt-8 border-t border-gray-200">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                        <img
-                            src="/devotion-logo.png"
-                            alt="DevotionSim"
-                            className="h-6 object-contain"
-                            onError={(e) => {
-                                // Hide if logo doesn't exist
-                                (e.target as HTMLImageElement).style.display = 'none';
-                            }}
-                        />
-                        <span className="font-semibold text-gray-700">DevotionSim</span>
-                    </div>
-                    <p>{t("proposal.footer")}</p>
-                </footer>
+                <ProposalFooter />
             </div>
         </div>
     );
