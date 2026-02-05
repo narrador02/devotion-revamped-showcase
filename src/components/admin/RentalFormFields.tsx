@@ -74,7 +74,7 @@ export default function RentalFormFields({ transportMultiplier, staffMultiplier 
             <div className="grid gap-6 md:grid-cols-2">
                 {/* Simulators */}
                 <Card className="bg-gray-800/50 border-gray-700">
-                    <CardContent className="pt-6">
+                    <CardContent className="pt-6 space-y-4">
                         <FormField
                             control={control}
                             name="numberOfSimulators"
@@ -94,6 +94,25 @@ export default function RentalFormFields({ transportMultiplier, staffMultiplier 
                                         />
                                     </FormControl>
                                     <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={control}
+                            name="numberOfDays"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-sm text-gray-400">{t("admin.proposals.rental.days")}</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="number"
+                                            min="1"
+                                            {...field}
+                                            onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                                            className="bg-gray-700 border-gray-600 text-white"
+                                        />
+                                    </FormControl>
                                 </FormItem>
                             )}
                         />
@@ -169,24 +188,7 @@ export default function RentalFormFields({ transportMultiplier, staffMultiplier 
                                 )}
                             />
 
-                            <FormField
-                                control={control}
-                                name="numberOfDays"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-xs text-gray-400">{t("admin.proposals.rental.days")}</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                type="number"
-                                                placeholder="0"
-                                                {...field}
-                                                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                                                className="bg-gray-700 border-gray-600 text-white"
-                                            />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
-                            />
+
 
                             <FormField
                                 control={control}

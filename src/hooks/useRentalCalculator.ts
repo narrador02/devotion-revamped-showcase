@@ -25,7 +25,8 @@ export function useRentalCalculator(inputs: RentalCalculatorInputs): RentalCalcu
     return useMemo(() => {
         // Simulator costs
         const simCount = inputs.numberOfSimulators || 1;
-        const simulatorSubtotal = inputs.basePrice * simCount;
+        const days = inputs.numberOfDays || 1;
+        const simulatorSubtotal = inputs.basePrice * simCount * days;
 
         // Transport costs
         const transportCost = inputs.transportKm
