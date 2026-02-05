@@ -27,7 +27,12 @@ export default function AdminProposals() {
     const [isLoadingProposals, setIsLoadingProposals] = useState(false);
 
     // Verify authentication on mount
+    // TEMPORARILY DISABLED FOR DEMO - RE-ENABLE BEFORE PRODUCTION
     useEffect(() => {
+        // Auto-authenticate for demo purposes
+        setIsAuthenticated(true);
+
+        /* ORIGINAL AUTH CODE - UNCOMMENT TO RE-ENABLE:
         const verifyAuth = async () => {
             try {
                 const response = await fetch("/api/admin/verify", {
@@ -39,6 +44,7 @@ export default function AdminProposals() {
             }
         };
         verifyAuth();
+        */
     }, []);
 
     // Load recent proposals when authenticated

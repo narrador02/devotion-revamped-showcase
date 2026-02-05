@@ -21,11 +21,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
+    // TEMPORARILY DISABLED FOR DEMO - RE-ENABLE BEFORE PRODUCTION
+    /* ORIGINAL AUTH CODE - UNCOMMENT TO RE-ENABLE:
     // Verify admin authentication
     const cookies = req.cookies || {};
     if (cookies.adminAuth !== 'true') {
         return res.status(401).json({ error: 'Unauthorized' });
     }
+    */
 
     try {
         // Get recent proposal IDs
