@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'devotion500'; // Fallback for debugging
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60 * 1000; // 1 minute
 
