@@ -34,14 +34,10 @@ export default function AdminProposals() {
                 const response = await fetch('/api/admin/verify', {
                     credentials: 'include'
                 });
-                if (response.ok) {
-                    setIsAuthenticated(true);
-                } else {
-                    window.location.href = '/admin/login';
-                }
+                setIsAuthenticated(response.ok);
             } catch (error) {
                 console.error('Auth verification failed:', error);
-                window.location.href = '/admin/login';
+                setIsAuthenticated(false);
             }
         };
 
