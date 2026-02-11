@@ -1,5 +1,4 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { kv } from '@vercel/kv';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const MAX_ATTEMPTS = 5;
@@ -12,16 +11,22 @@ interface RateLimitData {
 
 async function getRateLimitData(ip: string): Promise<RateLimitData | null> {
   try {
+    // Dynamically import KV to make it optional
+    const { kv } = await import('@vercel/kv');
     return await kv.get<RateLimitData>(`ratelimit:${ip}`);
-  } catch {
+  } catch (error) {
+    console.warn('KV not available for rate limiting:', error);
     return null;
   }
 }
 
 async function setRateLimitData(ip: string, data: RateLimitData): Promise<void> {
   try {
+    // Dynamically import KV to make it optional
+    const { kv } = await import('@vercel/kv');
     await kv.set(`ratelimit:${ip}`, data, { ex: 300 }); // 5 min TTL
-  } catch {
+  } catch (error) {
+    console.warn('KV not available for rate limiting:', error);
     // Silently fail rate limiting if KV is not available
   }
 }
