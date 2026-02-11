@@ -1,9 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
@@ -17,8 +14,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     if (!process.env.OPENAI_API_KEY) {
-        console.error('OPENAI_API_KEY not configured');
-        return res.status(500).json({ error: 'OpenAI not configured' });
+        console.error('OPENAI_API_KEY not configured in environment variables');
+        return res.status(500).json({
+            error: 'OpenAI not configured',
+            details: 'OPENAI_API_KEY is missing from Vercel environment variables'
+        });
     }
 
     const { clientName, locale = 'es' } = req.body || {};
@@ -28,6 +28,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
+        const openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY,
+        });
+
         const isSpanish = locale === 'es' || locale.startsWith('es-');
 
         const systemPrompt = isSpanish
