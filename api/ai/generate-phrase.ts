@@ -1,6 +1,4 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import OpenAI from 'openai';
-
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
@@ -13,11 +11,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    if (!process.env.OPENAI_API_KEY) {
-        console.error('OPENAI_API_KEY not configured in environment variables');
+    // Debug logging for environment variable presence (not value)
+    const hasKey = !!process.env.OPENAI_API_KEY;
+    const keyLen = process.env.OPENAI_API_KEY?.length || 0;
+
+    if (!hasKey) {
+        console.error('OPENAI_API_KEY missing');
         return res.status(500).json({
             error: 'OpenAI not configured',
-            details: 'OPENAI_API_KEY is missing from Vercel environment variables'
+            debug: { hasKey, keyLen, env: process.env.VERCEL_ENV }
         });
     }
 
@@ -28,6 +30,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
+        // Dynamically import OpenAI to prevent startup crashes
+        const { default: OpenAI } = await import('openai');
+
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
         });
@@ -69,11 +74,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
 
         return res.status(200).json({ phrase });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error generating phrase:', error);
+
+        // Return detailed error info
         return res.status(500).json({
             error: 'Failed to generate phrase',
-            message: error instanceof Error ? error.message : 'Unknown error'
+            message: error.message || 'Unknown error',
+            type: error.constructor.name,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
         });
     }
 }
