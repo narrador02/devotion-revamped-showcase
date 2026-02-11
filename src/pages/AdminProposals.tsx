@@ -27,24 +27,25 @@ export default function AdminProposals() {
     const [isLoadingProposals, setIsLoadingProposals] = useState(false);
 
     // Verify authentication on mount
-    // TEMPORARILY DISABLED FOR DEMO - RE-ENABLE BEFORE PRODUCTION
+    // Verify admin authentication
     useEffect(() => {
-        // Auto-authenticate for demo purposes
-        setIsAuthenticated(true);
-
-        /* ORIGINAL AUTH CODE - UNCOMMENT TO RE-ENABLE:
         const verifyAuth = async () => {
             try {
-                const response = await fetch("/api/admin/verify", {
-                    credentials: "include",
+                const response = await fetch('/api/admin/verify', {
+                    credentials: 'include'
                 });
-                setIsAuthenticated(response.ok);
-            } catch {
-                setIsAuthenticated(false);
+                if (response.ok) {
+                    setIsAuthenticated(true);
+                } else {
+                    window.location.href = '/admin/login';
+                }
+            } catch (error) {
+                console.error('Auth verification failed:', error);
+                window.location.href = '/admin/login';
             }
         };
+
         verifyAuth();
-        */
     }, []);
 
     // Load recent proposals when authenticated
