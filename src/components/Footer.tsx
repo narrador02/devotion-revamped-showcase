@@ -1,5 +1,6 @@
 import { Instagram, Youtube } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { memo } from "react";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -92,4 +93,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

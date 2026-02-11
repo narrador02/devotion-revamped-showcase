@@ -1,5 +1,6 @@
 
 import { simulatorsData } from "@/data/simulators";
+import { SimulatorModel } from "@/types/simulator";
 import { useTranslation } from "react-i18next";
 import { Check, X } from "lucide-react";
 
@@ -19,11 +20,11 @@ const ComparisonTable = ({ className }: ComparisonTableProps) => {
         { key: "usage", label: "products.bestFor" },
     ];
 
-    const getFeatureValue = (model: any, featureKey: string) => {
-        const val = model[featureKey];
+    const getFeatureValue = (model: SimulatorModel, featureKey: string) => {
+        const val = model[featureKey as keyof SimulatorModel];
         if (val === "products.comparison.yes") return <Check className="text-green-500 mx-auto" size={20} />;
         if (val === "products.comparison.no") return <X className="text-muted-foreground/30 mx-auto" size={20} />;
-        return <span className="text-sm font-medium">{t(val)}</span>;
+        return <span className="text-sm font-medium">{t(String(val))}</span>;
     };
 
     return (

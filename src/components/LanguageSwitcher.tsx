@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { memo } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,4 +55,4 @@ const LanguageSwitcher = () => {
   );
 };
 
-export default LanguageSwitcher;
+export default memo(LanguageSwitcher);

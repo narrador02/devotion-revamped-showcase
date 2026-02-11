@@ -247,6 +247,7 @@ const Contact = () => {
                                     className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-colors"
                                 >
                                     <button
+                                        type="button"
                                         onClick={() => toggleFaq(num)}
                                         className="w-full flex items-center justify-between p-6 text-left hover:bg-card/80 transition-colors"
                                     >

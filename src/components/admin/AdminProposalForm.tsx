@@ -210,43 +210,97 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         setIsSubmitting(true);
 
         try {
-            const payload: any = {
-                proposalType: values.proposalType,
-                clientName: values.clientName,
-                clientLogoUrl: logoUrl,
-                personalMessage: values.personalMessage || undefined,
-                notes: values.notes || undefined,
-            };
+            interface BasePayload {
+                proposalType: "rental" | "purchase";
+                clientName: string;
+                clientLogoUrl: string;
+                personalMessage?: string;
+                notes?: string;
+            }
+
+            interface RentalPayload extends BasePayload {
+                proposalType: "rental";
+                rentalDetails: {
+                    basePrice: number;
+                    isVIP: boolean;
+                    numberOfSimulators: number;
+                    transport?: {
+                        kilometers: number;
+                        pricePerKm: number;
+                        totalCost: number;
+                    };
+                    staff?: {
+                        numberOfStaff?: number;
+                        numberOfDays?: number;
+                        pricePerStaffDay: number;
+                        travelExpenses?: number;
+                        hotelExpenses?: number;
+                        totalCost: number;
+                    };
+                    subtotal: number;
+                    total: number;
+                };
+            }
+
+            interface PurchasePayload extends BasePayload {
+                proposalType: "purchase";
+                purchaseDetails: {
+                    packages: {
+                        basic: string;
+                        professional: string;
+                        complete: string;
+                    };
+                    paymentTerms?: string;
+                };
+            }
+
+            type ProposalPayload = RentalPayload | PurchasePayload;
+
+            let payload: ProposalPayload;
 
             if (values.proposalType === "rental") {
-                payload.rentalDetails = {
-                    basePrice: values.isVIP ? 550 : 750,
-                    isVIP: values.isVIP,
-                    numberOfSimulators: values.numberOfSimulators,
-                    transport: values.transportKm ? {
-                        kilometers: values.transportKm,
-                        pricePerKm: settings.transportMultiplier,
-                        totalCost: rentalTotals.transportCost
-                    } : undefined,
-                    staff: (values.numberOfStaff || values.numberOfDays) ? {
-                        numberOfStaff: values.numberOfStaff,
-                        numberOfDays: values.numberOfDays,
-                        pricePerStaffDay: settings.staffMultiplier,
-                        travelExpenses: values.staffTravel,
-                        hotelExpenses: values.staffHotel,
-                        totalCost: rentalTotals.staffTotalCost
-                    } : undefined,
-                    subtotal: rentalTotals.simulatorSubtotal,
-                    total: rentalTotals.grandTotal
+                payload = {
+                    proposalType: "rental",
+                    clientName: values.clientName,
+                    clientLogoUrl: logoUrl,
+                    personalMessage: values.personalMessage || undefined,
+                    notes: values.notes || undefined,
+                    rentalDetails: {
+                        basePrice: values.isVIP ? 550 : 750,
+                        isVIP: values.isVIP,
+                        numberOfSimulators: values.numberOfSimulators,
+                        transport: values.transportKm ? {
+                            kilometers: values.transportKm,
+                            pricePerKm: settings.transportMultiplier,
+                            totalCost: rentalTotals.transportCost
+                        } : undefined,
+                        staff: (values.numberOfStaff || values.numberOfDays) ? {
+                            numberOfStaff: values.numberOfStaff,
+                            numberOfDays: values.numberOfDays,
+                            pricePerStaffDay: settings.staffMultiplier,
+                            travelExpenses: values.staffTravel,
+                            hotelExpenses: values.staffHotel,
+                            totalCost: rentalTotals.staffTotalCost
+                        } : undefined,
+                        subtotal: rentalTotals.simulatorSubtotal,
+                        total: rentalTotals.grandTotal
+                    }
                 };
             } else {
-                payload.purchaseDetails = {
-                    packages: {
-                        basic: values.purchasePricingBasic,
-                        professional: values.purchasePricingProfessional,
-                        complete: values.purchasePricingComplete,
-                    },
-                    paymentTerms: values.paymentTerms || undefined
+                payload = {
+                    proposalType: "purchase",
+                    clientName: values.clientName,
+                    clientLogoUrl: logoUrl,
+                    personalMessage: values.personalMessage || undefined,
+                    notes: values.notes || undefined,
+                    purchaseDetails: {
+                        packages: {
+                            basic: values.purchasePricingBasic || "",
+                            professional: values.purchasePricingProfessional || "",
+                            complete: values.purchasePricingComplete || "",
+                        },
+                        paymentTerms: values.paymentTerms || undefined
+                    }
                 };
             }
 
