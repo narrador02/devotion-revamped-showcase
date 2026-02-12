@@ -5,37 +5,35 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Verify admin authentication
-    const cookies = req.cookies || {};
-    if (cookies.adminAuth !== 'true') {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    // Debug logging for environment variable presence (not value)
-    const hasKey = !!process.env.OPENAI_API_KEY;
-    const keyLen = process.env.OPENAI_API_KEY?.length || 0;
-
-    if (!hasKey) {
-        console.error('OPENAI_API_KEY missing');
-        return res.status(500).json({
-            error: 'OpenAI not configured',
-            debug: { hasKey, keyLen, env: process.env.VERCEL_ENV }
-        });
-    }
-
-    const { clientName, locale = 'es' } = req.body || {};
-
-    if (!clientName || typeof clientName !== 'string') {
-        return res.status(400).json({ error: 'Client name is required' });
-    }
-
     try {
-        // Dynamically import OpenAI to prevent startup crashes
-        const { default: OpenAI } = await import('openai');
+        // Verify admin authentication
+        const cookies = req.cookies || {};
+        if (cookies.adminAuth !== 'true') {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
 
-        const openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
-        });
+        // Check API configuration
+        const apiKey = process.env.OPENAI_API_KEY;
+        const hasKey = !!apiKey;
+        const keyLen = apiKey?.length || 0;
+
+        if (!hasKey) {
+            console.error('OPENAI_API_KEY missing');
+            return res.status(500).json({
+                error: 'OpenAI not configured',
+                debug: {
+                    env: process.env.VERCEL_ENV,
+                    hasKey: false,
+                    keyLen
+                }
+            });
+        }
+
+        const { clientName, locale = 'es' } = req.body || {};
+
+        if (!clientName || typeof clientName !== 'string') {
+            return res.status(400).json({ error: 'Client name is required' });
+        }
 
         const isSpanish = locale === 'es' || locale.startsWith('es-');
 
@@ -57,32 +55,45 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             ? `Genera una frase de captación personalizada para la empresa: "${clientName}". La frase debe hacer que quieran saber más sobre cómo nuestros simuladores pueden beneficiar su negocio.`
             : `Generate a personalized hook phrase for the company: "${clientName}". The phrase should make them want to learn more about how our simulators can benefit their business.`;
 
-        const completion = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: userPrompt },
-            ],
-            max_tokens: 100,
-            temperature: 0.8,
+        // Use native fetch instead of OpenAI library to avoid package dependency issues
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: userPrompt }
+                ],
+                max_tokens: 100,
+                temperature: 0.8
+            })
         });
 
-        const phrase = completion.choices[0]?.message?.content?.trim();
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            console.error('OpenAI API Error:', errorData);
+            throw new Error(`OpenAI API error: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const phrase = data.choices?.[0]?.message?.content?.trim();
 
         if (!phrase) {
-            throw new Error('No phrase generated');
+            throw new Error('No phrase generated from OpenAI response');
         }
 
         return res.status(200).json({ phrase });
-    } catch (error: any) {
-        console.error('Error generating phrase:', error);
 
-        // Return detailed error info
+    } catch (error: any) {
+        console.error('Handler critical error:', error);
         return res.status(500).json({
             error: 'Failed to generate phrase',
             message: error.message || 'Unknown error',
-            type: error.constructor.name,
-            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+            type: error.constructor.name
         });
     }
 }
