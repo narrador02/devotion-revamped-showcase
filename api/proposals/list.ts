@@ -1,5 +1,4 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { kv } from '@vercel/kv';
 
 interface Proposal {
     id: string;
@@ -22,18 +21,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // TEMPORARILY DISABLED FOR DEMO - RE-ENABLE BEFORE PRODUCTION
-    /* ORIGINAL AUTH CODE - UNCOMMENT TO RE-ENABLE:
-    // Verify admin authentication
-    const cookies = req.cookies || {};
-    if (cookies.adminAuth !== 'true') {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-    */
-
     try {
+        // Dynamically import KV
+        const { kv } = await import('@vercel/kv');
+
         // Get recent proposal IDs
-        const proposalIds = await kv.lrange('proposals:list', 0, 9) as string[];
+        // lrange returns Promise<string[]>
+        const proposalIds = await kv.lrange('proposals:list', 0, 9);
 
         if (!proposalIds || proposalIds.length === 0) {
             return res.status(200).json({ proposals: [] });

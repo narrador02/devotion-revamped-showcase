@@ -1,6 +1,19 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { nanoid } from 'nanoid';
-import type { Proposal, ProposalType } from '../../src/types/proposal';
+
+// Define minimal local interface to avoid import issues
+interface Proposal {
+    id: string;
+    proposalType: 'rental' | 'purchase';
+    clientName: string;
+    clientLogoUrl: string;
+    personalMessage?: string;
+    rentalDetails?: any;
+    purchaseDetails?: any;
+    notes?: string;
+    createdAt: string;
+    expiresAt: string;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
@@ -56,7 +69,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         const proposal: Proposal = {
             id,
-            proposalType: proposalType as ProposalType,
+            proposalType: proposalType as 'rental' | 'purchase',
             clientName: clientName.trim(),
             clientLogoUrl,
             personalMessage: personalMessage?.trim() || undefined,
