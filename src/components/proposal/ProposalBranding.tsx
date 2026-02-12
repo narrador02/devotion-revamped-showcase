@@ -48,10 +48,6 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
                                 </li>
                                 <li className="flex items-center gap-2 text-gray-300">
                                     <Check className="w-4 h-4 text-green-500" />
-                                    <span>{t("proposal.branding.billboards", "In-Game Billboards")}</span>
-                                </li>
-                                <li className="flex items-center gap-2 text-gray-300">
-                                    <Check className="w-4 h-4 text-green-500" />
                                     <span>{t("proposal.branding.ui", "Branded UI Overlay")}</span>
                                 </li>
                             </ul>

@@ -74,9 +74,6 @@ export default function ProposalVR() {
                         />
                         {/* Overlay removed as requested */}
                     </div>
-                    <div className="mt-4 text-center">
-                        <p className="text-red-400 font-medium tracking-wide">{t("proposal.vr.edition", "Enterprise Edition")}</p>
-                    </div>
                 </motion.div>
             </div>
         </div>

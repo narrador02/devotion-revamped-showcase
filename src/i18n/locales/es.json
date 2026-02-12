@@ -715,8 +715,8 @@
       "settings": {
         "title": "Configuración Global",
         "description": "Ajusta los multiplicadores de costes para todas las nuevas propuestas.",
-        "transportRate": "Tarifa Transporte (€/km)",
-        "staffRate": "Tarifa Personal (€/día)",
+        "transport": "Tarifa Transporte (€/km)",
+        "staff": "Tarifa Personal (€/día)",
         "save": "Guardar Cambios",
         "saving": "Guardan..."
       },

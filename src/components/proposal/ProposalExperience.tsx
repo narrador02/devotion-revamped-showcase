@@ -72,7 +72,7 @@ export default function ProposalExperience() {
                                         loop
                                         muted
                                         playsInline
-                                        className="w-full h-full object-contain bg-black transition-transform duration-700 group-hover:scale-105"
+                                        className="w-full h-full object-cover bg-black transition-transform duration-700 group-hover:scale-105"
                                     />
                                     <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent z-20">
                                         <div className="flex items-center gap-3 mb-2">

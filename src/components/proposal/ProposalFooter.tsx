@@ -20,6 +20,7 @@ export default function ProposalFooter() {
                         onClick={handleContact}
                         size="lg"
                         className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-bold px-12 py-8 text-xl shadow-[0_0_30px_rgba(220,38,38,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_50px_rgba(220,38,38,0.8)] uppercase tracking-wider animate-pulse hover:animate-none"
+                        style={{ animationDuration: '3s' }}
                     >
                         {t("proposal.acceptOffer", "Accept Proposal")}
                     </Button>
@@ -28,14 +29,9 @@ export default function ProposalFooter() {
 
             <div className="border-t border-gray-800 pt-8 text-center space-y-4">
                 <img
-                    src="/devotion-logo-white.png"
+                    src="/logo.png"
                     alt="DevotionSim"
-                    className="h-10 mx-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
-                    onError={(e) => {
-                        // Fallback if white logo doesn't exist, use standard logic but invert brightness if needed
-                        e.currentTarget.src = "/devotion-logo.png";
-                        e.currentTarget.className = "h-10 mx-auto brightness-0 invert opacity-80 hover:opacity-100 transition-all";
-                    }}
+                    className="h-10 mx-auto brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300"
                 />
                 <p className="text-sm text-gray-500">
                     © {new Date().getFullYear()} DevotionSim. All rights reserved.

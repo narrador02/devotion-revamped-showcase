@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PhraseGenerator from "./PhraseGenerator";
 import ProposalSettingsDialog from "./ProposalSettingsDialog";
 import RentalFormFields from "./RentalFormFields";
@@ -79,7 +79,7 @@ type FormValues = z.infer<typeof formSchema>;
 export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps) {
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [logoFile, setLogoFile] = useState<File | null>(null);
+    // logoFile removed as unused
     const [logoPreview, setLogoPreview] = useState<string | null>(null);
     const [logoUrl, setLogoUrl] = useState<string | null>(null);
     const [isUploading, setIsUploading] = useState(false);
@@ -154,7 +154,6 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
             return;
         }
 
-        setLogoFile(file);
         setUploadError(null);
 
         // Create preview
@@ -175,7 +174,6 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         } catch (err) {
             console.error("Upload error:", err);
             setUploadError(t("admin.proposals.uploadError"));
-            setLogoFile(null);
             setLogoPreview(null);
         } finally {
             setIsUploading(false);
@@ -193,7 +191,6 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
     };
 
     const removeFile = () => {
-        setLogoFile(null);
         setLogoPreview(null);
         setLogoUrl(null);
         if (fileInputRef.current) {
@@ -372,8 +369,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                         <TabsTrigger value="rental" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
                                             {t("admin.proposals.type.rental")}
                                         </TabsTrigger>
-                                        <TabsTrigger value="purchase" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
-                                            {t("admin.proposals.type.purchase")}
+                                        <TabsTrigger value="purchase" disabled className="opacity-50 cursor-not-allowed data-[state=active]:bg-red-600 data-[state=active]:text-white">
+                                            {t("admin.proposals.type.purchase")} (Disabled)
                                         </TabsTrigger>
                                     </TabsList>
                                 </Tabs>

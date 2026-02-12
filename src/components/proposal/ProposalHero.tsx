@@ -26,7 +26,7 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 <img
                     src={heroImg}
                     alt="Simulation Experience"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                 />
             </div>
 

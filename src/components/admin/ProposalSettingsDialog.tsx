@@ -85,9 +85,9 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] bg-gray-900 text-white border-gray-800">
                 <DialogHeader>
-                    <DialogTitle>{t("admin.settings.title", "Proposal Settings")}</DialogTitle>
+                    <DialogTitle>{t("admin.proposals.settings.title", "Proposal Settings")}</DialogTitle>
                     <DialogDescription className="text-gray-400">
-                        {t("admin.settings.description", "Adjust global multipliers for calculations.")}
+                        {t("admin.proposals.settings.description", "Adjust global multipliers for calculations.")}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -99,7 +99,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="transport" className="text-right col-span-2">
-                                {t("admin.settings.transport", "Transport (€/km)")}
+                                {t("admin.proposals.settings.transport", "Transport (€/km)")}
                             </Label>
                             <Input
                                 id="transport"
@@ -112,7 +112,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="staff" className="text-right col-span-2">
-                                {t("admin.settings.staff", "Staff (€/day)")}
+                                {t("admin.proposals.settings.staff", "Staff (€/day)")}
                             </Label>
                             <Input
                                 id="staff"
@@ -133,7 +133,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                     >
                         {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                         <Save className="mr-2 h-4 w-4" />
-                        {t("admin.settings.save", "Save Changes")}
+                        {t("admin.proposals.settings.save", "Save Changes")}
                     </Button>
                 </DialogFooter>
             </DialogContent>
