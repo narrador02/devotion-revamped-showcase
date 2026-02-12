@@ -788,6 +788,57 @@
     "notesTitle": "Notas",
     "footer": "Simuladores de motos de alto rendimiento",
     "expiredTitle": "Enlace Caducado",
-    "expiredMessage": "Este enlace de propuesta ha expirado o no es válido. Por favor, contacta con nosotros para más información."
+    "expiredMessage": "Este enlace de propuesta ha expirado o no es válido. Por favor, contacta con nosotros para más información.",
+    "hero": {
+      "preparedFor": "Propuesta preparada exclusivamente para",
+      "subtitle": "Descubre la experiencia de simulación definitiva para tu evento."
+    },
+    "experience": {
+      "title": "La Experiencia Devotion",
+      "subtitle": "Tecnología de simulación de grado profesional adaptada a tu evento.",
+      "realism": {
+        "title": "Realismo",
+        "subtitle": "Física y Retroalimentación"
+      },
+      "immersion": {
+        "title": "Inmersión",
+        "subtitle": "VR y Sonido Envolvente"
+      },
+      "competition": {
+        "title": "Competición",
+        "subtitle": "Telemetría en Vivo"
+      }
+    },
+    "vr": {
+      "badge": "Inmersión Next Gen",
+      "title": "Realidad Virtual",
+      "titleHighlight": "Como Nunca Antes",
+      "description": "Entra en el casco de un piloto profesional. Nuestra integración VR proporciona una percepción de profundidad y velocidad inigualable.",
+      "resolution": "Resolución 4K",
+      "resDesc": "Óptica cristalina para máximo realismo",
+      "refresh": "120Hz Tasa de Refresco",
+      "refreshDesc": "Movimiento suave sin mareos",
+      "headset": "Meta Quest 3 / HP Reverb G2",
+      "edition": "Edición Enterprise",
+      "availability": "Consúltanos por la disponibilidad de nuestras gafas VR"
+    },
+    "branding": {
+      "optional": "Add-on Opcional",
+      "title": "Integración de Marca Personalizada",
+      "description": "Maximiza el impacto de tu marca. Vinilamos el chasis del simulador con tu identidad corporativa e integramos tus logotipos directamente en el software de simulación.",
+      "vinyl": "Vinilado Completo del Chasis",
+      "billboards": "Vallas Publicitarias en el Juego",
+      "ui": "Interfaz de Usuario con Branding",
+      "addToProposal": "Añadir a la Propuesta",
+      "applied": "APLICADO AL TOTAL",
+      "lineItem": "Branding Personalizado y Vinilos",
+      "examples": {
+        "title": "Ejemplos de Personalización",
+        "subtitle": "Inspírate con algunos de nuestros trabajos recientes"
+      }
+    },
+    "details": {
+      "title": "Tu Propuesta Personalizada"
+    }
   }
 }

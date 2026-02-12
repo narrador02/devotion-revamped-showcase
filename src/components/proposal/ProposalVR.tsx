@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Headset, Play, Sparkles } from "lucide-react";
+import vrImmersive from "@/assets/vr-immersive.jpg";
 
 export default function ProposalVR() {
     const { t } = useTranslation();
@@ -20,36 +21,36 @@ export default function ProposalVR() {
                         <div className="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center border border-red-600/20">
                             <Headset className="w-6 h-6 text-red-500" />
                         </div>
-                        <span className="text-red-500 font-semibold tracking-wider uppercase text-sm">Next Gen Immersion</span>
+                        <span className="text-red-500 font-semibold tracking-wider uppercase text-sm">
+                            {t("proposal.vr.badge", "Next Gen Immersion")}
+                        </span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                        Virtual Reality <br />
+                        {t("proposal.vr.title", "Virtual Reality")} <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                            Like Never Before
+                            {t("proposal.vr.titleHighlight", "Like Never Before")}
                         </span>
                     </h2>
 
                     <p className="text-gray-400 text-lg leading-relaxed">
-                        Step inside the helmet of a professional rider. Our VR integration provides
-                        unmatched depth perception and speed sensation, creating an adrenaline
-                        rush that flat screens simply cannot match.
+                        {t("proposal.vr.description", "Step inside the helmet of a professional rider. Our VR integration provides unmatched depth perception and speed sensation.")}
                     </p>
 
                     <div className="grid grid-cols-2 gap-6 pt-4">
                         <div className="space-y-2">
                             <div className="flex items-center gap-2 text-white font-medium">
                                 <Sparkles className="w-4 h-4 text-red-500" />
-                                4K Resolution
+                                {t("proposal.vr.resolution", "4K Resolution")}
                             </div>
-                            <p className="text-sm text-gray-500">Crystal clear optics for maximum realism</p>
+                            <p className="text-sm text-gray-500">{t("proposal.vr.resDesc", "Crystal clear optics")}</p>
                         </div>
                         <div className="space-y-2">
                             <div className="flex items-center gap-2 text-white font-medium">
                                 <Play className="w-4 h-4 text-red-500" />
-                                120Hz Refresh Rate
+                                {t("proposal.vr.refresh", "120Hz Refresh Rate")}
                             </div>
-                            <p className="text-sm text-gray-500">Butter smooth motion without motion sickness</p>
+                            <p className="text-sm text-gray-500">{t("proposal.vr.refreshDesc", "Butter smooth motion")}</p>
                         </div>
                     </div>
                 </motion.div>
@@ -62,13 +63,17 @@ export default function ProposalVR() {
                 >
                     <div className="absolute inset-0 bg-gradient-to-tr from-red-600/20 to-transparent blur-3xl -z-10" />
                     <div className="relative aspect-square rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm shadow-2xl">
-                        {/* Placeholder for VR image - using a stylized abstract representation since checking for specific image assets is out of scope for this quick iteration */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <Headset className="w-32 h-32 text-gray-800" />
-                        </div>
+                        <img
+                            src={vrImmersive}
+                            alt="VR Experience"
+                            className="w-full h-full object-cover"
+                        />
                         <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black to-transparent">
-                            <p className="text-white font-medium">Meta Quest 3 / HP Reverb G2</p>
-                            <p className="text-red-400 text-sm">Enterprise Edition</p>
+                            <p className="text-white font-medium">{t("proposal.vr.headset", "Meta Quest 3")}</p>
+                            <p className="text-red-400 text-sm">{t("proposal.vr.edition", "Enterprise Edition")}</p>
+                            <p className="text-gray-400 text-xs mt-2 italic">
+                                {t("proposal.vr.availability", "Consult us for VR headset availability")}
+                            </p>
                         </div>
                     </div>
                 </motion.div>

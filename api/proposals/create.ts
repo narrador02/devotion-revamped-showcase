@@ -1,7 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { kv } from '@vercel/kv';
 import { nanoid } from 'nanoid';
-import type { Proposal, ProposalType, RentalDetails, PurchaseDetails, TransportDetails, StaffDetails } from '@/types/proposal';
+import type { Proposal, ProposalType } from '@/types/proposal';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
@@ -42,18 +41,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (!rentalDetails || typeof rentalDetails !== 'object') {
             return res.status(400).json({ error: 'Rental details are required for rental proposals' });
         }
-        if (typeof rentalDetails.basePrice !== 'number' || rentalDetails.basePrice <= 0) {
-            return res.status(400).json({ error: 'Invalid base price' });
-        }
     }
 
     if (proposalType === 'purchase') {
         if (!purchaseDetails || typeof purchaseDetails !== 'object') {
             return res.status(400).json({ error: 'Purchase details are required for purchase proposals' });
-        }
-        const { packages } = purchaseDetails;
-        if (!packages || !packages.basic || !packages.professional || !packages.complete) {
-            return res.status(400).json({ error: 'All pricing packages are required' });
         }
     }
 
@@ -75,6 +67,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             expiresAt: expiresAt.toISOString(),
         };
 
+        // Dynamically import KV
+        const { kv } = await import('@vercel/kv');
+
         // Store proposal in KV
         await kv.set(`proposal:${id}`, JSON.stringify(proposal), {
             ex: 15 * 24 * 60 * 60, // 15 days TTL
@@ -94,8 +89,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 expiresAt: proposal.expiresAt,
             },
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error creating proposal:', error);
-        return res.status(500).json({ error: 'Failed to create proposal' });
+        return res.status(500).json({
+            error: 'Failed to create proposal',
+            message: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
     }
 }

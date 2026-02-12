@@ -13,22 +13,22 @@ export default function ProposalExperience() {
     const experiences = [
         {
             id: 1,
-            title: "Realism",
-            subtitle: "Physics & Feedback",
+            title: t("proposal.experience.realism.title", "Realism"),
+            subtitle: t("proposal.experience.realism.subtitle", "Physics & Feedback"),
             video: videoTimeAttack,
             icon: Gauge,
         },
         {
             id: 2,
-            title: "Immersion",
-            subtitle: "VR & Surround",
+            title: t("proposal.experience.immersion.title", "Immersion"),
+            subtitle: t("proposal.experience.immersion.subtitle", "VR & Surround"),
             video: videoSlady,
             icon: Flag,
         },
         {
             id: 3,
-            title: "Competition",
-            subtitle: "Live Telemetry",
+            title: t("proposal.experience.competition.title", "Competition"),
+            subtitle: t("proposal.experience.competition.subtitle", "Live Telemetry"),
             video: videoTopGun,
             icon: Trophy,
         },
@@ -64,7 +64,7 @@ export default function ProposalExperience() {
                             transition={{ delay: index * 0.2 }}
                         >
                             <Card className="bg-gray-900 overflow-hidden border-gray-800 hover:border-red-600/50 transition-colors group">
-                                <div className="relative aspect-[4/5] overflow-hidden">
+                                <div className="relative aspect-[4/5] overflow-hidden bg-black">
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
                                     <video
                                         src={exp.video}
@@ -72,7 +72,7 @@ export default function ProposalExperience() {
                                         loop
                                         muted
                                         playsInline
-                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-contain"
                                     />
                                     <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent z-20">
                                         <div className="flex items-center gap-3 mb-2">
