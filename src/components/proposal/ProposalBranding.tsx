@@ -93,11 +93,7 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
                         <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10" />
                         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10" />
 
-                        <div className="text-center mb-6">
-                            <span className="text-gray-500 text-sm uppercase tracking-widest">
-                                {t("proposal.branding.examples.subtitle", "Recent Customization Examples")}
-                            </span>
-                        </div>
+                        {/* Subtitle removed as requested */}
 
                         <div className="flex overflow-hidden">
                             <motion.div
@@ -107,11 +103,11 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
                                 style={{ width: "max-content" }}
                             >
                                 {[...brandingImages, ...brandingImages].map((img, i) => (
-                                    <div key={i} className="relative w-64 h-40 rounded-lg overflow-hidden shrink-0 border border-gray-800 group">
+                                    <div key={i} className="relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group">
                                         <img
                                             src={img}
                                             alt="Custom Branding Example"
-                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                            className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
                                         />
                                     </div>
                                 ))}

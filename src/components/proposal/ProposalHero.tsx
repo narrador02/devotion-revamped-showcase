@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ArrowDown } from "lucide-react";
-import videoBg from "@/assets/eje4-aceler.mp4";
+import heroImg from "@/assets/hero-motorcycle.png";
 
 interface ProposalHeroProps {
     clientName: string;
@@ -19,22 +19,19 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
     };
 
     return (
-        <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-            {/* Video Background */}
+        <div className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-gray-900">
+            {/* Image Background (Replaces Video) */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-black/60 z-10" />
-                <video
-                    src={videoBg}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
+                <div className="absolute inset-0 bg-black/40 z-10" />
+                <img
+                    src={heroImg}
+                    alt="Simulation Experience"
+                    className="w-full h-full object-contain"
                 />
             </div>
 
             {/* Content */}
-            <div className="relative z-20 text-center space-y-8 px-4 max-w-4xl mx-auto">
+            <div className="relative z-20 text-center space-y-8 px-4 max-w-4xl mx-auto mt-20">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}

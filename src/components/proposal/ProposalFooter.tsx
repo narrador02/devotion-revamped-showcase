@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail } from "lucide-react";
 
 export default function ProposalFooter() {
     const { t } = useTranslation();
@@ -20,29 +19,23 @@ export default function ProposalFooter() {
                     <Button
                         onClick={handleContact}
                         size="lg"
-                        className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-6 text-lg shadow-lg shadow-red-600/20 transition-all hover:scale-105"
+                        className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-bold px-12 py-8 text-xl shadow-[0_0_30px_rgba(220,38,38,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_50px_rgba(220,38,38,0.8)] uppercase tracking-wider animate-pulse hover:animate-none"
                     >
                         {t("proposal.acceptOffer", "Accept Proposal")}
-                        <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-
-                    <Button
-                        variant="outline"
-                        size="lg"
-                        onClick={handleContact}
-                        className="w-full sm:w-auto border-gray-700 text-white hover:bg-white/5 hover:text-white px-8 py-6 text-lg"
-                    >
-                        {t("proposal.contactUs", "Contact Us")}
-                        <Mail className="ml-2 w-5 h-5" />
                     </Button>
                 </div>
             </div>
 
             <div className="border-t border-gray-800 pt-8 text-center space-y-4">
                 <img
-                    src="/devotion-logo.png"
+                    src="/devotion-logo-white.png"
                     alt="DevotionSim"
-                    className="h-8 mx-auto opacity-50 grayscale hover:grayscale-0 transition-all duration-300"
+                    className="h-10 mx-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    onError={(e) => {
+                        // Fallback if white logo doesn't exist, use standard logic but invert brightness if needed
+                        e.currentTarget.src = "/devotion-logo.png";
+                        e.currentTarget.className = "h-10 mx-auto brightness-0 invert opacity-80 hover:opacity-100 transition-all";
+                    }}
                 />
                 <p className="text-sm text-gray-500">
                     © {new Date().getFullYear()} DevotionSim. All rights reserved.

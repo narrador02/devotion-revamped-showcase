@@ -37,7 +37,7 @@ export default function ProposalVR() {
                         {t("proposal.vr.description", "Step inside the helmet of a professional rider. Our VR integration provides unmatched depth perception and speed sensation.")}
                     </p>
 
-                    <div className="grid grid-cols-2 gap-6 pt-4">
+                    <div className="grid grid-cols-2 gap-6 pt-4 border-t border-gray-800">
                         <div className="space-y-2">
                             <div className="flex items-center gap-2 text-white font-medium">
                                 <Sparkles className="w-4 h-4 text-red-500" />
@@ -53,6 +53,10 @@ export default function ProposalVR() {
                             <p className="text-sm text-gray-500">{t("proposal.vr.refreshDesc", "Butter smooth motion")}</p>
                         </div>
                     </div>
+
+                    <p className="text-gray-500 text-sm italic pt-4">
+                        {t("proposal.vr.availability", "Consult us for VR headset availability")}
+                    </p>
                 </motion.div>
 
                 <motion.div
@@ -62,19 +66,16 @@ export default function ProposalVR() {
                     className="relative"
                 >
                     <div className="absolute inset-0 bg-gradient-to-tr from-red-600/20 to-transparent blur-3xl -z-10" />
-                    <div className="relative aspect-square rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm shadow-2xl">
+                    <div className="relative aspect-square rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm shadow-2xl group">
                         <img
                             src={vrImmersive}
                             alt="VR Experience"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black to-transparent">
-                            <p className="text-white font-medium">{t("proposal.vr.headset", "Meta Quest 3")}</p>
-                            <p className="text-red-400 text-sm">{t("proposal.vr.edition", "Enterprise Edition")}</p>
-                            <p className="text-gray-400 text-xs mt-2 italic">
-                                {t("proposal.vr.availability", "Consult us for VR headset availability")}
-                            </p>
-                        </div>
+                        {/* Overlay removed as requested */}
+                    </div>
+                    <div className="mt-4 text-center">
+                        <p className="text-red-400 font-medium tracking-wide">{t("proposal.vr.edition", "Enterprise Edition")}</p>
                     </div>
                 </motion.div>
             </div>
