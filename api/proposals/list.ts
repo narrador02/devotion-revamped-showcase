@@ -1,67 +1,58 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-interface Proposal {
-    id: string;
-    proposalType?: 'rental' | 'purchase'; // Optional for legacy proposals
-    clientName: string;
-    clientLogoUrl: string;
-    personalMessage?: string;
-    pricing?: {
-        basic: string;
-        professional: string;
-        complete: string;
-    };
-    notes?: string;
-    createdAt: string;
-    expiresAt: string;
-}
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'GET') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
-        // Dynamically import KV
+        // 1. Debug: Check Environment Variables
+        if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+            throw new Error('Missing KV Environment Variables');
+        }
+
+        // 2. Dynamically import KV
         const { kv } = await import('@vercel/kv');
 
-        // Get recent proposal IDs
-        // lrange returns Promise<string[]>
+        // 3. Simple Operation to test connection
         const proposalIds = await kv.lrange('proposals:list', 0, 9);
 
         if (!proposalIds || proposalIds.length === 0) {
             return res.status(200).json({ proposals: [] });
         }
 
-        // Fetch all proposals
-        const proposals: Array<{
-            id: string;
-            proposalType: 'rental' | 'purchase';
-            clientName: string;
-            createdAt: string;
-            expiresAt: string;
-            isExpired: boolean;
-        }> = [];
+        const proposals: any[] = [];
 
         for (const id of proposalIds) {
             const data = await kv.get(`proposal:${id}`);
             if (data) {
-                const proposal = typeof data === 'string' ? JSON.parse(data) : data as Proposal;
-                const isExpired = new Date(proposal.expiresAt) < new Date();
-                proposals.push({
-                    id: proposal.id,
-                    proposalType: proposal.proposalType || 'purchase', // Default legacy to purchase
-                    clientName: proposal.clientName,
-                    createdAt: proposal.createdAt,
-                    expiresAt: proposal.expiresAt,
-                    isExpired,
-                });
+                // Handle potential string vs object response
+                const proposal = typeof data === 'string' ? JSON.parse(data) : data as any;
+
+                if (proposal && proposal.id) {
+                    proposals.push({
+                        id: proposal.id,
+                        proposalType: proposal.proposalType || 'purchase',
+                        clientName: proposal.clientName,
+                        createdAt: proposal.createdAt,
+                        expiresAt: proposal.expiresAt,
+                        isExpired: new Date(proposal.expiresAt) < new Date(),
+                    });
+                }
             }
         }
 
         return res.status(200).json({ proposals });
-    } catch (error) {
-        console.error('Error fetching proposals:', error);
-        return res.status(500).json({ error: 'Failed to fetch proposals' });
+
+    } catch (error: any) {
+        console.error('LIST API ERROR:', error);
+        return res.status(500).json({
+            error: 'Failed to fetch proposals',
+            details: error.message,
+            env_check: {
+                has_url: !!process.env.KV_REST_API_URL,
+                has_token: !!process.env.KV_REST_API_TOKEN
+            }
+        });
     }
 }

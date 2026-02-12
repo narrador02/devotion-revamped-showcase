@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { nanoid } from 'nanoid';
+import crypto from 'crypto';
 
 // Define minimal local interface to avoid import issues
 interface Proposal {
@@ -16,54 +16,46 @@ interface Proposal {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+    // Enable CORS for testing if needed, though usually same-origin
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Verify admin authentication
-    const cookies = req.cookies || {};
-    if (cookies.adminAuth !== 'true') {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const {
-        proposalType,
-        clientName,
-        clientLogoUrl,
-        personalMessage,
-        rentalDetails,
-        purchaseDetails,
-        notes
-    } = req.body || {};
-
-    // Validate required fields
-    if (!proposalType || (proposalType !== 'rental' && proposalType !== 'purchase')) {
-        return res.status(400).json({ error: 'Invalid proposal type' });
-    }
-
-    if (!clientName || typeof clientName !== 'string' || clientName.trim() === '') {
-        return res.status(400).json({ error: 'Client name is required' });
-    }
-
-    if (!clientLogoUrl || typeof clientLogoUrl !== 'string') {
-        return res.status(400).json({ error: 'Client logo is required' });
-    }
-
-    // Validate type-specific fields
-    if (proposalType === 'rental') {
-        if (!rentalDetails || typeof rentalDetails !== 'object') {
-            return res.status(400).json({ error: 'Rental details are required for rental proposals' });
-        }
-    }
-
-    if (proposalType === 'purchase') {
-        if (!purchaseDetails || typeof purchaseDetails !== 'object') {
-            return res.status(400).json({ error: 'Purchase details are required for purchase proposals' });
-        }
-    }
-
     try {
-        const id = nanoid(11); // 11 chars like YouTube IDs
+        // 1. Debug: Check Environment Variables
+        if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+            throw new Error('Missing Vercel KV Environment Variables (KV_REST_API_URL or KV_REST_API_TOKEN)');
+        }
+
+        const {
+            proposalType,
+            clientName,
+            clientLogoUrl,
+            personalMessage,
+            rentalDetails,
+            purchaseDetails,
+            notes
+        } = req.body || {};
+
+        // 2. Validate required fields
+        if (!proposalType || (proposalType !== 'rental' && proposalType !== 'purchase')) {
+            return res.status(400).json({ error: 'Invalid proposal type' });
+        }
+
+        if (!clientName) return res.status(400).json({ error: 'Client name is required' });
+        if (!clientLogoUrl) return res.status(400).json({ error: 'Client logo is required' });
+
+        // 3. Generate ID using native crypto (no external deps)
+        const id = crypto.randomUUID().slice(0, 11); // Shorten UUID for URL friendliness
         const now = new Date();
         const expiresAt = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000); // 15 days
 
@@ -80,15 +72,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             expiresAt: expiresAt.toISOString(),
         };
 
-        // Dynamically import KV
+        // 4. Dynamically import KV inside handler
         const { kv } = await import('@vercel/kv');
 
-        // Store proposal in KV
+        // 5. Store proposal
         await kv.set(`proposal:${id}`, JSON.stringify(proposal), {
             ex: 15 * 24 * 60 * 60, // 15 days TTL
         });
 
-        // Add to recent proposals list (keep last 50)
+        // 6. Add to list
         await kv.lpush('proposals:list', id);
         await kv.ltrim('proposals:list', 0, 49);
 
@@ -98,16 +90,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 id,
                 proposalType: proposal.proposalType,
                 clientName: proposal.clientName,
-                createdAt: proposal.createdAt,
-                expiresAt: proposal.expiresAt,
             },
         });
+
     } catch (error: any) {
-        console.error('Error creating proposal:', error);
+        console.error('CRITICAL API ERROR:', error);
+        // Return detailed error for debugging
         return res.status(500).json({
-            error: 'Failed to create proposal',
-            message: error.message,
-            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+            error: 'Server Error',
+            details: error.message,
+            stack: error.stack, // Helpful for debugging
+            env_check: {
+                has_url: !!process.env.KV_REST_API_URL,
+                has_token: !!process.env.KV_REST_API_TOKEN
+            }
         });
     }
 }
