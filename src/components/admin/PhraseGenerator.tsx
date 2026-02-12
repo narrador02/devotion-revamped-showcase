@@ -40,7 +40,12 @@ export default function PhraseGenerator({ clientName, onSelectPhrase, disabled }
             });
 
             if (!response.ok) {
-                throw new Error("Failed to generate phrase");
+                const data = await response.json().catch(() => ({}));
+                console.error("API Error details:", data);
+                if (data.error === 'OpenAI not configured') {
+                    throw new Error(t("admin.proposals.openaiNotConfigured"));
+                }
+                throw new Error(data.message || data.error || "Failed to generate phrase");
             }
 
             const data = await response.json();
@@ -48,9 +53,9 @@ export default function PhraseGenerator({ clientName, onSelectPhrase, disabled }
             if (data.phrase) {
                 setSuggestions(prev => [...prev, data.phrase]);
             }
-        } catch (err) {
+        } catch (err: any) {
             console.error("Error generating phrase:", err);
-            setError(t("admin.proposals.phraseError"));
+            setError(err.message || t("admin.proposals.phraseError"));
         } finally {
             setIsLoading(false);
         }
