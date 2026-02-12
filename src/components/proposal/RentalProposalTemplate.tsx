@@ -6,13 +6,17 @@ import { Proposal } from "@/types/proposal";
 
 interface RentalProposalTemplateProps {
     proposal: Proposal;
+    showBranding?: boolean;
+    brandingPrice?: number;
 }
 
-export default function RentalProposalTemplate({ proposal }: RentalProposalTemplateProps) {
+export default function RentalProposalTemplate({ proposal, showBranding = false, brandingPrice = 550 }: RentalProposalTemplateProps) {
     const { t } = useTranslation();
     const { rentalDetails } = proposal;
 
     if (!rentalDetails) return null;
+
+    const finalTotal = rentalDetails.total + (showBranding ? brandingPrice : 0);
 
     const features = [
         t("proposal.features.setup", "Full setup & installation"),
@@ -33,7 +37,7 @@ export default function RentalProposalTemplate({ proposal }: RentalProposalTempl
                         </h3>
                         <div className="flex items-center justify-center gap-2">
                             <span className="text-5xl sm:text-7xl font-bold text-white tracking-tight">
-                                {rentalDetails.total.toLocaleString("es-ES")}€
+                                {finalTotal.toLocaleString("es-ES")}€
                             </span>
                             <span className="text-xl text-gray-500 self-end mb-2">+ IVA</span>
                         </div>
@@ -113,6 +117,16 @@ export default function RentalProposalTemplate({ proposal }: RentalProposalTempl
                                         <span>{rentalDetails.staff.hotelExpenses}€</span>
                                     </div>
                                 )}
+                            </div>
+                        )}
+
+                        {/* Branding */}
+                        {showBranding && (
+                            <div className="flex justify-between items-center py-2 border-b border-gray-800 bg-red-900/10 px-2 -mx-2 rounded">
+                                <div className="flex items-center gap-2 text-white">
+                                    <span className="font-medium text-red-200">{t("proposal.branding.lineItem", "Custom Branding & Vinyls")}</span>
+                                </div>
+                                <span className="text-white font-bold">{brandingPrice.toLocaleString()}€</span>
                             </div>
                         )}
 

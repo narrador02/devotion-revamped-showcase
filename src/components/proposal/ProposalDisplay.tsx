@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Proposal } from "@/types/proposal";
-import ProposalHeader from "./ProposalHeader";
+import ProposalHero from "./ProposalHero";
+import ProposalExperience from "./ProposalExperience";
+import ProposalVR from "./ProposalVR";
+import ProposalBranding from "./ProposalBranding";
 import RentalProposalTemplate from "./RentalProposalTemplate";
 import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
 import ProposalFooter from "./ProposalFooter";
@@ -16,51 +20,60 @@ interface ProposalDisplayProps {
 
 export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
+    const [showBranding, setShowBranding] = useState(false);
+    const brandingPrice = 550;
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white font-sans selection:bg-red-500/30">
-            {/* Dynamic Background */}
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-black" />
-                <div className="absolute top-0 left-0 w-full h-[500px] bg-red-600/10 blur-[120px] rounded-full mix-blend-screen" />
-                <div className="absolute bottom-0 right-0 w-full h-[500px] bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen" />
-            </div>
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-red-500/30 overflow-x-hidden">
 
-            <div className="relative z-10 max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-12">
-                {/* PDF Download Button (Floating) */}
-                <div className="fixed bottom-6 right-6 z-50">
-                    <PDFDownloadLink
-                        document={<ProposalPDF proposal={proposal} />}
-                        fileName={`DevotionSim_Proposal_${proposal.clientName.replace(/\s+/g, '_')}.pdf`}
-                    >
-                        {({ loading }) => (
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-12 w-12 rounded-full shadow-xl bg-gray-900/90 border-red-500/50 hover:bg-red-600 hover:border-red-600 transition-all duration-300"
-                                disabled={loading}
-                            >
-                                {loading ? (
-                                    <Loader2 className="h-5 w-5 animate-spin text-red-500" />
-                                ) : (
-                                    <Download className="h-5 w-5 text-white" />
-                                )}
-                            </Button>
-                        )}
-                    </PDFDownloadLink>
-                </div>
+            {/* 1. Hero Section (Replaces old ProposalHeader) */}
+            <ProposalHero
+                clientName={proposal.clientName}
+                clientLogoUrl={proposal.clientLogoUrl}
+            />
 
-                {/* Header */}
-                <ProposalHeader proposal={proposal} />
+            {/* 2. Experience Section (Simulators) */}
+            <ProposalExperience />
 
-                {/* Main Content - Template Switcher */}
+            {/* 3. VR Section */}
+            <ProposalVR />
+
+            <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 space-y-12">
+
+                {/* 4. Branding Add-on (Only for Rental, or both? Assuming Rental for now primarily) */}
+                {proposal.proposalType === 'rental' && (
+                    <ProposalBranding
+                        isSelected={showBranding}
+                        onToggle={setShowBranding}
+                        price={brandingPrice}
+                    />
+                )}
+
+                {/* 5. Detailed Proposal & Pricing */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    id="proposal-details"
                 >
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                            {t("proposal.details.title", "Your Personalized Proposal")}
+                        </h2>
+                        {proposal.personalMessage && (
+                            <p className="text-gray-400 max-w-2xl mx-auto italic border-l-2 border-red-500 pl-4 py-2 bg-gray-900/50">
+                                "{proposal.personalMessage}"
+                            </p>
+                        )}
+                    </div>
+
                     {proposal.proposalType === 'rental' ? (
-                        <RentalProposalTemplate proposal={proposal} />
+                        <RentalProposalTemplate
+                            proposal={proposal}
+                            showBranding={showBranding}
+                            brandingPrice={brandingPrice}
+                        />
                     ) : (
                         <PurchaseProposalTemplate proposal={proposal} />
                     )}
@@ -68,6 +81,34 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
                 {/* Footer */}
                 <ProposalFooter />
+            </div>
+
+            {/* PDF Download Button (Floating) */}
+            <div className="fixed bottom-6 right-6 z-50">
+                <PDFDownloadLink
+                    document={
+                        <ProposalPDF
+                            proposal={proposal}
+                        // Pass branding info to PDF if supported in future, currently PDF might not reflect dynamic state unless updated
+                        />
+                    }
+                    fileName={`DevotionSim_Proposal_${proposal.clientName.replace(/\s+/g, '_')}.pdf`}
+                >
+                    {({ loading }) => (
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-14 w-14 rounded-full shadow-2xl bg-red-600 border-none hover:bg-red-700 text-white transition-all duration-300 hover:scale-110"
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <Loader2 className="h-6 w-6 animate-spin" />
+                            ) : (
+                                <Download className="h-6 w-6" />
+                            )}
+                        </Button>
+                    )}
+                </PDFDownloadLink>
             </div>
         </div>
     );

@@ -1,0 +1,85 @@
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { ArrowDown } from "lucide-react";
+import videoBg from "@/assets/eje4-aceler.mp4";
+
+interface ProposalHeroProps {
+    clientName: string;
+    clientLogoUrl: string;
+}
+
+export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHeroProps) {
+    const { t } = useTranslation();
+
+    const scrollToContent = () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            behavior: "smooth"
+        });
+    };
+
+    return (
+        <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+            {/* Video Background */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-black/60 z-10" />
+                <video
+                    src={videoBg}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                />
+            </div>
+
+            {/* Content */}
+            <div className="relative z-20 text-center space-y-8 px-4 max-w-4xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="space-y-6"
+                >
+                    <div className="uppercase tracking-[0.2em] text-gray-400 text-sm md:text-base font-light">
+                        {t("proposal.hero.preparedFor", "Prepared exclusively for")}
+                    </div>
+
+                    <div className="flex justify-center">
+                        <div className="w-32 h-32 md:w-48 md:h-48 bg-white/5 backdrop-blur-md rounded-full p-6 border border-white/10 shadow-2xl flex items-center justify-center">
+                            <img
+                                src={clientLogoUrl}
+                                alt={clientName}
+                                className="max-w-full max-h-full object-contain drop-shadow-lg"
+                            />
+                        </div>
+                    </div>
+
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight">
+                        {clientName}
+                    </h1>
+
+                    <div className="h-1 w-24 bg-red-600 mx-auto rounded-full" />
+
+                    <p className="text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed">
+                        {t("proposal.hero.subtitle", "Discover the ultimate simulation experience for your event.")}
+                    </p>
+                </motion.div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                className="absolute bottom-10 z-20 cursor-pointer"
+                onClick={scrollToContent}
+            >
+                <div className="flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                    <span className="text-xs uppercase tracking-widest">{t("common.scroll", "Scroll")}</span>
+                    <ArrowDown className="w-6 h-6" />
+                </div>
+            </motion.div>
+        </div>
+    );
+}

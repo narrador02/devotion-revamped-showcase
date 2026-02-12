@@ -320,9 +320,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
 
             const data = await response.json();
             onSuccess(data.proposal.id, values.clientName);
-        } catch (err) {
+        } catch (err: any) {
             console.error("Error creating proposal:", err);
-            // Show error toast or message
+            setUploadError(err.message || t("admin.proposals.createError"));
         } finally {
             setIsSubmitting(false);
         }
