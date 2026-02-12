@@ -19,14 +19,47 @@ interface LegacyProposal {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    if (req.method !== 'GET') {
-        return res.status(405).json({ error: 'Method not allowed' });
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,DELETE,OPTIONS');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
     }
 
     const { id } = req.query;
 
     if (!id || typeof id !== 'string') {
         return res.status(400).json({ error: 'Proposal ID is required' });
+    }
+
+    if (req.method === 'DELETE') {
+        const cookies = req.cookies || {};
+        if (cookies.adminAuth !== 'true') {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+
+        try {
+            // @ts-ignore
+            const { getKVClient } = await import('../_lib/kv-client.js');
+            const kv = getKVClient();
+
+            // Execute delete
+            // 1. Delete the proposal object
+            await kv.del(`proposal:${id}`);
+            // 2. Remove ID from the list
+            await kv.lrem('proposals:list', 0, id);
+
+            return res.status(200).json({ success: true });
+        } catch (error) {
+            console.error('Error deleting proposal:', error);
+            return res.status(500).json({ error: 'Failed to delete proposal' });
+        }
+    }
+
+    if (req.method !== 'GET') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {

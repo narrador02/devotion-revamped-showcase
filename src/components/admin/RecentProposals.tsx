@@ -1,8 +1,19 @@
 import { useTranslation } from "react-i18next";
-import { Copy, Check, ExternalLink, Clock, AlertTriangle } from "lucide-react";
+import { Copy, Check, ExternalLink, Clock, AlertTriangle, Trash2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useState } from "react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface Proposal {
     id: string;
@@ -14,6 +25,7 @@ interface Proposal {
 
 interface RecentProposalsProps {
     proposals: Proposal[];
+    onDelete?: () => void;
 }
 
 function formatDate(dateString: string, locale: string): string {
@@ -57,7 +69,70 @@ function CopyButton({ proposalId }: { proposalId: string }) {
     );
 }
 
-export default function RecentProposals({ proposals }: RecentProposalsProps) {
+function DeleteButton({ proposalId, clientName, onDelete }: { proposalId: string, clientName: string, onDelete?: () => void }) {
+    const { t } = useTranslation();
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    const handleDelete = async () => {
+        setIsDeleting(true);
+        try {
+            const response = await fetch(`/api/proposals/${proposalId}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                onDelete?.();
+            } else {
+                console.error("Failed to delete proposal");
+            }
+        } catch (error) {
+            console.error("Error deleting proposal:", error);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    return (
+        <AlertDialog>
+            <AlertDialogTrigger asChild>
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 px-2 hover:bg-red-900/20 hover:text-red-400"
+                    title={t("admin.proposals.delete", "Delete")}
+                    disabled={isDeleting}
+                >
+                    {isDeleting ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                        <Trash2 className="w-4 h-4" />
+                    )}
+                </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-gray-900 border-gray-800 text-white">
+                <AlertDialogHeader>
+                    <AlertDialogTitle>{t("admin.proposals.deleteTitle", "Delete Proposal")}</AlertDialogTitle>
+                    <AlertDialogDescription className="text-gray-400">
+                        {t("admin.proposals.deleteConfirm", "Are you sure you want to delete the proposal for {{clientName}}? This action cannot be undone.", { clientName })}
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel className="bg-gray-800 text-white border-gray-700 hover:bg-gray-700">
+                        {t("common.cancel", "Cancel")}
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                        onClick={handleDelete}
+                        className="bg-red-600 hover:bg-red-700 text-white border-none"
+                    >
+                        {t("common.delete", "Delete")}
+                    </AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+    );
+}
+
+export default function RecentProposals({ proposals, onDelete }: RecentProposalsProps) {
     const { t, i18n } = useTranslation();
 
     if (proposals.length === 0) {
@@ -120,6 +195,11 @@ export default function RecentProposals({ proposals }: RecentProposalsProps) {
                                         >
                                             <ExternalLink className="w-4 h-4 text-gray-400" />
                                         </Button>
+                                        <DeleteButton
+                                            proposalId={proposal.id}
+                                            clientName={proposal.clientName}
+                                            onDelete={onDelete}
+                                        />
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -167,6 +247,11 @@ export default function RecentProposals({ proposals }: RecentProposalsProps) {
                                 >
                                     <ExternalLink className="w-4 h-4 text-gray-400" />
                                 </Button>
+                                <DeleteButton
+                                    proposalId={proposal.id}
+                                    clientName={proposal.clientName}
+                                    onDelete={onDelete}
+                                />
                             </div>
                         </div>
                     </div>

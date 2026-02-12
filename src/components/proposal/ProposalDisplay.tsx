@@ -80,7 +80,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                 </motion.div>
 
                 {/* Footer */}
-                <ProposalFooter />
+                <ProposalFooter proposal={proposal} />
             </div>
 
             {/* PDF Download Button (Floating) */}

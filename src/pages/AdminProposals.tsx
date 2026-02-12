@@ -186,7 +186,10 @@ export default function AdminProposals() {
                                             <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
                                         </div>
                                     ) : (
-                                        <RecentProposals proposals={recentProposals} />
+                                        <RecentProposals
+                                            proposals={recentProposals}
+                                            onDelete={loadRecentProposals}
+                                        />
                                     )}
                                 </div>
                             </div>
