@@ -32,8 +32,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     try {
         // 1. Debug: Check Environment Variables
-        if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-            throw new Error('Missing Vercel KV Environment Variables (KV_REST_API_URL or KV_REST_API_TOKEN)');
+        // 1. Debug check (relaxed to allow REDIS_URL fallback)
+        if (!process.env.KV_REST_API_URL && !process.env.KV_REST_API_TOKEN && !process.env.REDIS_URL) {
+            throw new Error('Missing KV Environment Variables (KV_* or REDIS_URL)');
         }
 
         const {
@@ -72,8 +73,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             expiresAt: expiresAt.toISOString(),
         };
 
-        // 4. Dynamically import KV inside handler
-        const { kv } = await import('@vercel/kv');
+        // 4. Get configured KV client
+        // @ts-ignore - Local helper import
+        const { getKVClient } = await import('../_lib/kv-client.js');
+        const kv = getKVClient();
 
         // 5. Store proposal
         await kv.set(`proposal:${id}`, JSON.stringify(proposal), {
