@@ -78,14 +78,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const { getKVClient } = await import('../_lib/kv-client.js');
         const kv = getKVClient();
 
-        // 5. Store proposal
-        await kv.set(`proposal:${id}`, JSON.stringify(proposal), {
+        // 5. Store proposal with timeout
+        const strProposal = JSON.stringify(proposal);
+
+        // Helper for timeout
+        const withTimeout = (promise: Promise<any>, ms: number) => Promise.race([
+            promise,
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Database Timeout')), ms))
+        ]);
+
+        console.log(`Attempting to set proposal:${id}...`);
+        await withTimeout(kv.set(`proposal:${id}`, strProposal, {
             ex: 15 * 24 * 60 * 60, // 15 days TTL
-        });
+        }), 5000);
 
         // 6. Add to list
-        await kv.lpush('proposals:list', id);
-        await kv.ltrim('proposals:list', 0, 49);
+        console.log(`Attempting to push to proposals:list...`);
+        await withTimeout(kv.lpush('proposals:list', id), 5000);
+        await kv.ltrim('proposals:list', 0, 49).catch(console.error); // Non-critical
 
         return res.status(201).json({
             success: true,
@@ -102,7 +112,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(500).json({
             error: 'Server Error',
             details: error.message,
-            stack: error.stack, // Helpful for debugging
+            stack: error.stack,
+            likely_cause: error.message.includes('Timeout') ? 'Firewall/Connection blocked. Your REDIS_URL might be TCP-only (port 6379) but we need HTTP (port 80/443).' : undefined,
             env_check: {
                 has_url: !!process.env.KV_REST_API_URL,
                 has_token: !!process.env.KV_REST_API_TOKEN

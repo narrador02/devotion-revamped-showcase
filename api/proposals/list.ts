@@ -17,8 +17,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const { getKVClient } = await import('../_lib/kv-client.js');
         const kv = getKVClient();
 
-        // 3. Simple Operation to test connection
-        const proposalIds = await kv.lrange('proposals:list', 0, 9);
+        // 3. Simple Operation to test connection with timeout
+        const withTimeout = (promise: Promise<any>, ms: number) => Promise.race([
+            promise,
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Database Timeout')), ms))
+        ]);
+
+        // lrange returns Promise<string[]>
+        const proposalIds = await withTimeout(
+            kv.lrange('proposals:list', 0, 9),
+            5000
+        ) as string[];
 
         if (!proposalIds || proposalIds.length === 0) {
             return res.status(200).json({ proposals: [] });
