@@ -315,7 +315,19 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || "Failed to create proposal");
+                let errorMessage = errorData.error || "Failed to create proposal";
+                if (errorData.details) {
+                    errorMessage += `: ${errorData.details}`;
+                }
+                if (errorData.env_check) {
+                    const missing = [];
+                    if (!errorData.env_check.has_url) missing.push("KV_REST_API_URL");
+                    if (!errorData.env_check.has_token) missing.push("KV_REST_API_TOKEN");
+                    if (missing.length > 0) {
+                        errorMessage += ` (Missing env vars: ${missing.join(", ")})`;
+                    }
+                }
+                throw new Error(errorMessage);
             }
 
             const data = await response.json();
