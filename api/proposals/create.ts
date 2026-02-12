@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { nanoid } from 'nanoid';
-import type { Proposal, ProposalType } from '@/types/proposal';
+import type { Proposal, ProposalType } from '../../src/types/proposal';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {

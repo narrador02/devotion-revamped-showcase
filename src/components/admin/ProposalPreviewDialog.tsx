@@ -37,7 +37,7 @@ export default function ProposalPreviewDialog({ data, disabled }: ProposalPrevie
                     {t("admin.proposals.preview", "Preview")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-[95vw] h-[90vh] p-0 bg-gray-900 border-gray-800 overflow-hidden">
+            <DialogContent className="w-[95vw] max-w-[95vw] h-[90vh] p-0 bg-gray-900 border-gray-800 overflow-hidden">
                 <ScrollArea className="h-full w-full">
                     <ProposalDisplay proposal={previewProposal} />
                 </ScrollArea>

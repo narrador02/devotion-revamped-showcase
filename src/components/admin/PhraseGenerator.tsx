@@ -45,7 +45,7 @@ export default function PhraseGenerator({ clientName, onSelectPhrase, disabled }
                 if (data.error === 'OpenAI not configured') {
                     throw new Error(t("admin.proposals.openaiNotConfigured"));
                 }
-                throw new Error(data.message || data.error || "Failed to generate phrase");
+                throw new Error(data.message || data.error || t("admin.proposals.phraseError", "Failed to generate phrase"));
             }
 
             const data = await response.json();
