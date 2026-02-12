@@ -32,9 +32,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     try {
         // 1. Debug: Check Environment Variables
-        // 1. Debug check (relaxed to allow REDIS_URL fallback)
-        if (!process.env.KV_REST_API_URL && !process.env.KV_REST_API_TOKEN && !process.env.REDIS_URL) {
-            throw new Error('Missing KV Environment Variables (KV_* or REDIS_URL)');
+        // 1. Debug check (relaxed to allow REDIS_URL/Upstash fallback)
+        if (!process.env.KV_REST_API_URL &&
+            !process.env.KV_REST_API_TOKEN &&
+            !process.env.UPSTASH_REDIS_REST_URL &&
+            !process.env.REDIS_URL) {
+            throw new Error('Missing KV Environment Variables (KV_*, UPSTASH_*, or REDIS_URL)');
         }
 
         const {
