@@ -43,7 +43,7 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="inline-flex bg-white/5 backdrop-blur-xl rounded-2xl p-16 md:p-24 border border-white/20 shadow-2xl transition-all duration-300">
+                        <div className="inline-flex bg-white/5 backdrop-blur-xl rounded-2xl p-8 md:p-12 border border-white/20 shadow-2xl transition-all duration-300">
                             <img
                                 src={clientLogoUrl}
                                 alt={clientName}
