@@ -38,16 +38,16 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                     transition={{ duration: 0.8 }}
                     className="space-y-6"
                 >
-                    <div className="uppercase tracking-[0.2em] text-gray-400 text-sm md:text-base font-light">
+                    <div className="uppercase tracking-[0.2em] text-white/90 text-sm md:text-base font-medium drop-shadow-md">
                         {t("proposal.hero.preparedFor", "Prepared exclusively for")}
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="w-32 h-32 md:w-48 md:h-48 bg-white/5 backdrop-blur-md rounded-full p-6 border border-white/10 shadow-2xl flex items-center justify-center">
+                        <div className="w-auto h-32 md:h-40 bg-white/5 backdrop-blur-xl rounded-2xl px-8 py-6 border border-white/20 shadow-2xl flex items-center justify-center">
                             <img
                                 src={clientLogoUrl}
                                 alt={clientName}
-                                className="max-w-full max-h-full object-contain drop-shadow-lg"
+                                className="max-w-[200px] md:max-w-[280px] max-h-full object-contain drop-shadow-xl"
                             />
                         </div>
                     </div>

@@ -89,7 +89,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
     // Settings for multipliers
     const [settings, setSettings] = useState({
         transportMultiplier: 1.6,
-        staffMultiplier: 280
+        staffMultiplier: 280,
+        simulatorPrice: 750,
+        simulatorPriceVIP: 550
     });
 
     // Load saved settings on mount
@@ -102,8 +104,14 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     if (data.settings) {
                         setSettings({
                             transportMultiplier: data.settings.transportMultiplier ?? 1.6,
-                            staffMultiplier: data.settings.staffMultiplier ?? 280
+                            staffMultiplier: data.settings.staffMultiplier ?? 280,
+                            simulatorPrice: data.settings.simulatorPrice ?? 750,
+                            simulatorPriceVIP: data.settings.simulatorPriceVIP ?? 550
                         });
+                        // Update form default if loaded early enough, or let user toggle update it
+                        if (!form.getValues("isVIP")) {
+                            form.setValue("rentalBasePrice", data.settings.simulatorPrice ?? 750);
+                        }
                     }
                 }
             } catch (error) {
@@ -131,7 +139,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
 
     // Calculate rental totals for submission
     const rentalTotals = useRentalCalculator({
-        basePrice: rentalValues.isVIP ? 550 : 750,
+        basePrice: rentalValues.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
         numberOfSimulators: rentalValues.numberOfSimulators || 0,
         transportKm: rentalValues.transportKm || 0,
         transportMultiplier: settings.transportMultiplier,
@@ -263,7 +271,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     personalMessage: values.personalMessage || undefined,
                     notes: values.notes || undefined,
                     rentalDetails: {
-                        basePrice: values.isVIP ? 550 : 750,
+                        basePrice: values.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
                         isVIP: values.isVIP,
                         numberOfSimulators: values.numberOfSimulators,
                         transport: values.transportKm ? {
@@ -493,6 +501,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                             <RentalFormFields
                                 transportMultiplier={settings.transportMultiplier}
                                 staffMultiplier={settings.staffMultiplier}
+                                simulatorPrice={settings.simulatorPrice}
+                                simulatorPriceVIP={settings.simulatorPriceVIP}
                             />
                         ) : (
                             <PurchaseFormFields />
@@ -530,7 +540,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                     personalMessage: form.watch("personalMessage"),
                                     notes: form.watch("notes"),
                                     rentalDetails: form.watch("proposalType") === "rental" ? {
-                                        basePrice: rentalValues.isVIP ? 550 : 750,
+                                        basePrice: rentalValues.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
                                         isVIP: rentalValues.isVIP,
                                         numberOfSimulators: rentalValues.numberOfSimulators || 1,
                                         transport: rentalValues.transportKm ? {

@@ -66,4 +66,6 @@ export interface ProposalListItem {
 export interface AdminSettings {
     transportMultiplier: number; // Default: 1.6
     staffMultiplier: number; // Default: 280
+    simulatorPrice: number; // Default: 750
+    simulatorPriceVIP: number; // Default: 550
 }

@@ -4,11 +4,15 @@ import { kv } from '@vercel/kv';
 interface AdminSettings {
     transportMultiplier: number;
     staffMultiplier: number;
+    simulatorPrice: number;
+    simulatorPriceVIP: number;
 }
 
 const DEFAULT_SETTINGS: AdminSettings = {
     transportMultiplier: 1.6,
     staffMultiplier: 280,
+    simulatorPrice: 750,
+    simulatorPriceVIP: 550,
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -35,7 +39,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     if (req.method === 'POST') {
-        const { transportMultiplier, staffMultiplier } = req.body || {};
+        const { transportMultiplier, staffMultiplier, simulatorPrice, simulatorPriceVIP } = req.body || {};
 
         // Validate inputs
         if (typeof transportMultiplier !== 'number' || transportMultiplier <= 0) {
@@ -46,10 +50,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(400).json({ error: 'Invalid staff multiplier' });
         }
 
+        if (typeof simulatorPrice !== 'number' || simulatorPrice <= 0) {
+            return res.status(400).json({ error: 'Invalid simulator price' });
+        }
+
+        if (typeof simulatorPriceVIP !== 'number' || simulatorPriceVIP <= 0) {
+            return res.status(400).json({ error: 'Invalid VIP simulator price' });
+        }
+
         try {
             const settings: AdminSettings = {
                 transportMultiplier,
                 staffMultiplier,
+                simulatorPrice,
+                simulatorPriceVIP,
             };
 
             await kv.set('admin:settings', JSON.stringify(settings));

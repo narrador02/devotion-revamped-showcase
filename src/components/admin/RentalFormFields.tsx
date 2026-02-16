@@ -13,9 +13,16 @@ import { useRentalCalculator } from "@/hooks/useRentalCalculator";
 interface RentalFormFieldsProps {
     transportMultiplier: number;
     staffMultiplier: number;
+    simulatorPrice: number;
+    simulatorPriceVIP: number;
 }
 
-export default function RentalFormFields({ transportMultiplier, staffMultiplier }: RentalFormFieldsProps) {
+export default function RentalFormFields({
+    transportMultiplier,
+    staffMultiplier,
+    simulatorPrice,
+    simulatorPriceVIP
+}: RentalFormFieldsProps) {
     const { t } = useTranslation();
     const { control, watch, setValue } = useFormContext();
 
@@ -30,12 +37,12 @@ export default function RentalFormFields({ transportMultiplier, staffMultiplier 
 
     // Update base price when VIP changes
     useEffect(() => {
-        setValue("rentalBasePrice", isVIP ? 550 : 750);
-    }, [isVIP, setValue]);
+        setValue("rentalBasePrice", isVIP ? simulatorPriceVIP : simulatorPrice);
+    }, [isVIP, setValue, simulatorPrice, simulatorPriceVIP]);
 
     // Calculate totals
     const totals = useRentalCalculator({
-        basePrice: isVIP ? 550 : 750,
+        basePrice: isVIP ? simulatorPriceVIP : simulatorPrice,
         numberOfSimulators: parseFloat(numberOfSimulators) || 0,
         transportKm: parseFloat(transportKm) || 0,
         transportMultiplier,
@@ -53,7 +60,7 @@ export default function RentalFormFields({ transportMultiplier, staffMultiplier 
                 <div className="space-y-0.5">
                     <Label className="text-base text-white">{t("admin.proposals.rental.isVIP")}</Label>
                     <p className="text-sm text-gray-400">
-                        {isVIP ? "550€" : "750€"} {t("admin.proposals.rental.basePrice")}
+                        {isVIP ? `${simulatorPriceVIP}€` : `${simulatorPrice}€`} {t("admin.proposals.rental.basePrice")}
                     </p>
                 </div>
                 <FormField

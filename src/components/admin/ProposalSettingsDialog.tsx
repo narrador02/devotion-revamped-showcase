@@ -17,6 +17,8 @@ import {
 interface AdminSettings {
     transportMultiplier: number;
     staffMultiplier: number;
+    simulatorPrice: number;
+    simulatorPriceVIP: number;
 }
 
 interface ProposalSettingsDialogProps {
@@ -31,6 +33,8 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
     const [settings, setSettings] = useState<AdminSettings>({
         transportMultiplier: 1.6,
         staffMultiplier: 280,
+        simulatorPrice: 750,
+        simulatorPriceVIP: 550,
     });
 
     // Load settings on open
@@ -119,6 +123,30 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                                 type="number"
                                 value={settings.staffMultiplier}
                                 onChange={(e) => setSettings({ ...settings, staffMultiplier: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="simulatorPrice" className="text-right col-span-2">
+                                {t("admin.proposals.settings.simulatorPrice", "Sim. Base Price (€)")}
+                            </Label>
+                            <Input
+                                id="simulatorPrice"
+                                type="number"
+                                value={settings.simulatorPrice}
+                                onChange={(e) => setSettings({ ...settings, simulatorPrice: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="simulatorPriceVIP" className="text-right col-span-2">
+                                {t("admin.proposals.settings.simulatorPriceVIP", "Sim. VIP Price (€)")}
+                            </Label>
+                            <Input
+                                id="simulatorPriceVIP"
+                                type="number"
+                                value={settings.simulatorPriceVIP}
+                                onChange={(e) => setSettings({ ...settings, simulatorPriceVIP: parseFloat(e.target.value) })}
                                 className="col-span-2 bg-gray-800 border-gray-700 text-white"
                             />
                         </div>

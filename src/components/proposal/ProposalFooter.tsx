@@ -25,14 +25,20 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
     const isRental = proposal.proposalType === 'rental';
     const isReadyToAccept = !isRental || (dateRange?.from && dateRange?.to);
 
-    // Show update message when dates change
+    // Show update message when dates change AND duration is different from original
     useEffect(() => {
         if (dateRange?.from && dateRange?.to) {
-            setShowUpdateMessage(true);
-            const timer = setTimeout(() => setShowUpdateMessage(false), 3000);
-            return () => clearTimeout(timer);
+            const selectedDays = differenceInDays(dateRange.to, dateRange.from) + 1;
+            const originalDays = proposal.rentalDetails?.numberOfDays || 1;
+
+            // Only show if days are different
+            if (selectedDays !== originalDays) {
+                setShowUpdateMessage(true);
+                const timer = setTimeout(() => setShowUpdateMessage(false), 3000);
+                return () => clearTimeout(timer);
+            }
         }
-    }, [dateRange]);
+    }, [dateRange, proposal.rentalDetails?.numberOfDays]);
 
     const handleAcceptClick = () => {
         if (isReadyToAccept) {
@@ -79,10 +85,10 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
                                 />
                             </div>
                             {dateRange?.from && dateRange?.to && (
-                                <p className="mt-4 text-red-500 font-mono text-sm">
-                                    {format(dateRange.from, "MMM d")} - {format(dateRange.to, "MMM d, yyyy")}
-                                    <span className="text-gray-500 ml-2">
-                                        ({differenceInDays(dateRange.to, dateRange.from) + 1} {t("common.days", "days")})
+                                <p className="mt-4 text-red-500 font-mono text-sm capitalize">
+                                    {format(dateRange.from, "MMM d", { locale: i18n.language === 'es' ? es : enUS })} - {format(dateRange.to, "MMM d, yyyy", { locale: i18n.language === 'es' ? es : enUS })}
+                                    <span className="text-gray-500 ml-2 normal-case">
+                                        ({differenceInDays(dateRange.to, dateRange.from) + 1} {t("proposal.days", "days")})
                                     </span>
                                 </p>
                             )}
@@ -92,12 +98,12 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
                         <AnimatePresence>
                             {showUpdateMessage && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 10 }}
-                                    exit={{ opacity: 0, y: 0 }}
-                                    className="absolute -bottom-16 left-0 right-0 mx-auto"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    className="absolute -bottom-24 left-0 right-0 mx-auto z-20 pointer-events-none"
                                 >
-                                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-800 to-gray-900 border border-red-500/30 text-white px-4 py-3 rounded-lg shadow-xl shadow-red-900/10">
+                                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-800 to-gray-900 border border-red-500/30 text-white px-4 py-3 rounded-lg shadow-xl shadow-red-900/10 backdrop-blur-md">
                                         <RefreshCw className="w-4 h-4 text-red-500 animate-spin" />
                                         <span className="text-sm font-medium">
                                             {t("proposal.priceUpdated", "Price updated based on selected duration")}
