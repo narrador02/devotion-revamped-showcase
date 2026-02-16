@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Check, Truck, Users, Wifi, Monitor } from "lucide-react";
+import { Check, Truck, Users, Monitor } from "lucide-react";
 import { Proposal } from "@/types/proposal";
 
 interface RentalProposalTemplateProps {
@@ -98,11 +97,11 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                     <div className="flex items-center gap-2">
                                         <Users className="w-4 h-4" />
                                         <span>
-                                            Staff ({rentalDetails.staff.numberOfStaff} staff x {rentalDetails.staff.numberOfDays} days)
+                                            Staff ({rentalDetails.staff.numberOfStaff} staff x {rentalDetails.staff.numberOfDays || 1} days)
                                         </span>
                                     </div>
                                     <span className="text-white font-medium">
-                                        {(rentalDetails.staff.numberOfStaff! * rentalDetails.staff.numberOfDays! * rentalDetails.staff.pricePerStaffDay).toLocaleString()}€
+                                        {(rentalDetails.staff.numberOfStaff! * (rentalDetails.staff.numberOfDays || 1) * rentalDetails.staff.pricePerStaffDay).toLocaleString()}€
                                     </span>
                                 </div>
                                 {(rentalDetails.staff.travelExpenses || 0) > 0 && (

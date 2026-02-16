@@ -21,6 +21,7 @@ export interface StaffDetails {
 export interface RentalDetails {
     basePrice: number; // 750 or 550 for VIP
     isVIP: boolean;
+    numberOfDays?: number; // Added for dynamic pricing tracking
     numberOfSimulators?: number;
     transport?: TransportDetails;
     staff?: StaffDetails;

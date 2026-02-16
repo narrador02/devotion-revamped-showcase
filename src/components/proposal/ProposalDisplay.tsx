@@ -13,6 +13,8 @@ import ProposalPDF from "./ProposalPDF";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DateRange } from "react-day-picker";
+import { useDynamicProposalPricing } from "@/hooks/useDynamicProposalPricing";
 
 interface ProposalDisplayProps {
     proposal: Proposal;
@@ -21,7 +23,16 @@ interface ProposalDisplayProps {
 export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
     const [showBranding, setShowBranding] = useState(false);
+    const [dateRange, setDateRange] = useState<DateRange | undefined>();
     const brandingPrice = 550;
+
+    // Calculate dynamic pricing based on selected dates
+    const dynamicRentalDetails = useDynamicProposalPricing(proposal, dateRange);
+
+    const displayProposal = {
+        ...proposal,
+        rentalDetails: dynamicRentalDetails || proposal.rentalDetails
+    };
 
     return (
         <div className="min-h-screen bg-black text-white font-sans selection:bg-red-500/30 overflow-x-hidden">
@@ -70,7 +81,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
                     {proposal.proposalType === 'rental' ? (
                         <RentalProposalTemplate
-                            proposal={proposal}
+                            proposal={displayProposal}
                             showBranding={showBranding}
                             brandingPrice={brandingPrice}
                         />
@@ -80,7 +91,11 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                 </motion.div>
 
                 {/* Footer */}
-                <ProposalFooter proposal={proposal} />
+                <ProposalFooter
+                    proposal={displayProposal}
+                    dateRange={dateRange}
+                    setDateRange={setDateRange}
+                />
             </div>
 
             {/* PDF Download Button (Floating) */}

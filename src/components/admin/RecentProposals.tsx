@@ -21,6 +21,7 @@ interface Proposal {
     createdAt: string;
     expiresAt: string;
     isExpired: boolean;
+    price?: number | null;
 }
 
 interface RecentProposalsProps {
@@ -35,6 +36,15 @@ function formatDate(dateString: string, locale: string): string {
         month: 'short',
         year: 'numeric',
     });
+}
+
+function formatPrice(price: number | null | undefined, locale: string): string {
+    if (price === null || price === undefined) return "-";
+    return new Intl.NumberFormat(locale === 'es' ? 'es-ES' : 'en-US', {
+        style: 'currency',
+        currency: 'EUR',
+        maximumFractionDigits: 0
+    }).format(price);
 }
 
 function CopyButton({ proposalId }: { proposalId: string }) {
@@ -146,16 +156,17 @@ export default function RecentProposals({ proposals, onDelete }: RecentProposals
 
     return (
         <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-2xl font-semibold text-white">
                 {t("admin.proposals.recentProposals")}
             </h3>
 
-            {/* Desktop table */}
+            {/* Desktop table - Full Width */}
             <div className="hidden md:block overflow-hidden rounded-lg border border-gray-800">
                 <Table>
                     <TableHeader className="bg-gray-800/50">
                         <TableRow className="border-gray-700 hover:bg-transparent">
-                            <TableHead className="text-gray-400">{t("admin.proposals.clientName")}</TableHead>
+                            <TableHead className="text-gray-400 w-[30%]">{t("admin.proposals.name", "Name")}</TableHead>
+                            <TableHead className="text-gray-400">{t("proposal.price", "Price")}</TableHead>
                             <TableHead className="text-gray-400">{t("admin.proposals.createdAt")}</TableHead>
                             <TableHead className="text-gray-400">{t("admin.proposals.expiresAt")}</TableHead>
                             <TableHead className="text-gray-400 text-right">{t("admin.proposals.actions")}</TableHead>
@@ -176,6 +187,9 @@ export default function RecentProposals({ proposals, onDelete }: RecentProposals
                                             </span>
                                         )}
                                     </div>
+                                </TableCell>
+                                <TableCell className="text-gray-400 font-mono">
+                                    {formatPrice(proposal.price, i18n.language)}
                                 </TableCell>
                                 <TableCell className="text-gray-400">
                                     {formatDate(proposal.createdAt, i18n.language)}
@@ -217,8 +231,11 @@ export default function RecentProposals({ proposals, onDelete }: RecentProposals
                     >
                         <div className="flex items-start justify-between gap-3">
                             <div className="flex-1 min-w-0">
-                                <p className="font-medium text-white truncate">
+                                <p className="font-medium text-white truncate text-lg">
                                     {proposal.clientName}
+                                </p>
+                                <p className="text-red-400 font-mono font-medium mb-2">
+                                    {formatPrice(proposal.price, i18n.language)}
                                 </p>
                                 <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-sm text-gray-400">
                                     <span>{formatDate(proposal.createdAt, i18n.language)}</span>
