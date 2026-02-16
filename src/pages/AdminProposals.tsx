@@ -175,27 +175,27 @@ export default function AdminProposals() {
                                 onCreateAnother={handleCreateAnother}
                             />
                         ) : (
-                            {/* Form */ }
-                            < div className="lg:col-span-2">
-                        <AdminProposalForm onSuccess={handleProposalSuccess} />
-                </div>
-            </div>
+                            <>
+                                <div className="lg:col-span-2">
+                                    <AdminProposalForm onSuccess={handleProposalSuccess} />
+                                </div>
 
-            {/* Recent proposals - Full Width */}
-            <div className="mt-12">
-                {isLoadingProposals ? (
-                    <div className="flex justify-center py-8">
-                        <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
-                    </div>
-                ) : (
-                    <RecentProposals
-                        proposals={recentProposals}
-                        onDelete={loadRecentProposals}
-                    />
-                )}
-            </div>
+                                {/* Recent proposals - Full Width */}
+                                <div className="mt-12">
+                                    {isLoadingProposals ? (
+                                        <div className="flex justify-center py-8">
+                                            <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
+                                        </div>
+                                    ) : (
+                                        <RecentProposals
+                                            proposals={recentProposals}
+                                            onDelete={loadRecentProposals}
+                                        />
+                                    )}
+                                </div>
+                            </>
                         )}
-        </main >
+                    </main >
                 </div >
             </div >
         </>
