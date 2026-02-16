@@ -43,11 +43,11 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="w-auto h-32 md:h-40 bg-white/5 backdrop-blur-xl rounded-2xl px-8 py-6 border border-white/20 shadow-2xl flex items-center justify-center">
+                        <div className="inline-flex bg-white/5 backdrop-blur-xl rounded-2xl p-16 md:p-24 border border-white/20 shadow-2xl transition-all duration-300">
                             <img
                                 src={clientLogoUrl}
                                 alt={clientName}
-                                className="max-w-[200px] md:max-w-[280px] max-h-full object-contain drop-shadow-xl"
+                                className="max-w-[240px] md:max-w-[320px] max-h-[120px] md:max-h-[160px] w-auto h-auto object-contain drop-shadow-xl"
                             />
                         </div>
                     </div>
