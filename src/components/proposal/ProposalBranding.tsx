@@ -100,11 +100,11 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
                                 style={{ width: "max-content" }}
                             >
                                 {[...brandingImages, ...brandingImages].map((img, i) => (
-                                    <div key={i} className="relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group">
+                                    <div key={i} className="relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group bg-gray-900">
                                         <img
                                             src={img}
                                             alt="Custom Branding Example"
-                                            className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
+                                            className="w-full h-full object-contain transition-all duration-500 hover:scale-110"
                                         />
                                     </div>
                                 ))}
