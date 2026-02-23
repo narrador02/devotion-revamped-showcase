@@ -99,15 +99,18 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
                                 transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
                                 style={{ width: "max-content" }}
                             >
-                                {[...brandingImages, ...brandingImages].map((img, i) => (
-                                    <div key={i} className="relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group bg-gray-900">
-                                        <img
-                                            src={img}
-                                            alt="Custom Branding Example"
-                                            className="w-full h-full object-contain transition-all duration-500 hover:scale-110"
-                                        />
-                                    </div>
-                                ))}
+                                {[...brandingImages, ...brandingImages].map((img, i) => {
+                                    const isLandscape = img === custom7;
+                                    return (
+                                        <div key={i} className={`relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group ${isLandscape ? 'bg-gray-900' : ''}`}>
+                                            <img
+                                                src={img}
+                                                alt="Custom Branding Example"
+                                                className={`w-full h-full transition-all duration-500 hover:scale-110 ${isLandscape ? 'object-contain' : 'object-cover'}`}
+                                            />
+                                        </div>
+                                    );
+                                })}
                             </motion.div>
                         </div>
                     </div>
