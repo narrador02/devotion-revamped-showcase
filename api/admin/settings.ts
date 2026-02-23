@@ -6,6 +6,9 @@ interface AdminSettings {
     staffMultiplier: number;
     simulatorPrice: number;
     simulatorPriceVIP: number;
+    purchasePriceTimeAttack: number;
+    purchasePriceSlady: number;
+    purchasePriceTopGun: number;
 }
 
 const DEFAULT_SETTINGS: AdminSettings = {
@@ -13,6 +16,9 @@ const DEFAULT_SETTINGS: AdminSettings = {
     staffMultiplier: 280,
     simulatorPrice: 750,
     simulatorPriceVIP: 550,
+    purchasePriceTimeAttack: 23000,
+    purchasePriceSlady: 26000,
+    purchasePriceTopGun: 30000,
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -27,8 +33,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method === 'GET') {
         try {
             const settings = await kv.get<AdminSettings>('admin:settings');
+            // Merge with defaults to ensure new fields are always present
             return res.status(200).json({
-                settings: settings || DEFAULT_SETTINGS
+                settings: { ...DEFAULT_SETTINGS, ...(settings || {}) }
             });
         } catch (error) {
             console.error('Error fetching settings:', error);
@@ -39,31 +46,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     if (req.method === 'POST') {
-        const { transportMultiplier, staffMultiplier, simulatorPrice, simulatorPriceVIP } = req.body || {};
+        const body = req.body || {};
 
-        // Validate inputs
-        if (typeof transportMultiplier !== 'number' || transportMultiplier <= 0) {
+        // Validate rental inputs
+        if (typeof body.transportMultiplier !== 'number' || body.transportMultiplier <= 0) {
             return res.status(400).json({ error: 'Invalid transport multiplier' });
         }
-
-        if (typeof staffMultiplier !== 'number' || staffMultiplier <= 0) {
+        if (typeof body.staffMultiplier !== 'number' || body.staffMultiplier <= 0) {
             return res.status(400).json({ error: 'Invalid staff multiplier' });
         }
-
-        if (typeof simulatorPrice !== 'number' || simulatorPrice <= 0) {
+        if (typeof body.simulatorPrice !== 'number' || body.simulatorPrice <= 0) {
             return res.status(400).json({ error: 'Invalid simulator price' });
         }
-
-        if (typeof simulatorPriceVIP !== 'number' || simulatorPriceVIP <= 0) {
+        if (typeof body.simulatorPriceVIP !== 'number' || body.simulatorPriceVIP <= 0) {
             return res.status(400).json({ error: 'Invalid VIP simulator price' });
         }
 
         try {
+            // Load existing settings to merge, ensuring new fields get defaults
+            let existing: AdminSettings = DEFAULT_SETTINGS;
+            try {
+                const stored = await kv.get<AdminSettings>('admin:settings');
+                if (stored) existing = { ...DEFAULT_SETTINGS, ...stored };
+            } catch { /* use defaults */ }
+
             const settings: AdminSettings = {
-                transportMultiplier,
-                staffMultiplier,
-                simulatorPrice,
-                simulatorPriceVIP,
+                transportMultiplier: body.transportMultiplier,
+                staffMultiplier: body.staffMultiplier,
+                simulatorPrice: body.simulatorPrice,
+                simulatorPriceVIP: body.simulatorPriceVIP,
+                purchasePriceTimeAttack: typeof body.purchasePriceTimeAttack === 'number' ? body.purchasePriceTimeAttack : existing.purchasePriceTimeAttack,
+                purchasePriceSlady: typeof body.purchasePriceSlady === 'number' ? body.purchasePriceSlady : existing.purchasePriceSlady,
+                purchasePriceTopGun: typeof body.purchasePriceTopGun === 'number' ? body.purchasePriceTopGun : existing.purchasePriceTopGun,
             };
 
             await kv.set('admin:settings', JSON.stringify(settings));

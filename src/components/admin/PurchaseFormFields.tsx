@@ -6,7 +6,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function PurchaseFormFields() {
+interface PurchaseFormFieldsProps {
+    defaultPriceTimeAttack: number;
+    defaultPriceSlady: number;
+    defaultPriceTopGun: number;
+}
+
+export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPriceSlady, defaultPriceTopGun }: PurchaseFormFieldsProps) {
     const { t } = useTranslation();
     const { control } = useFormContext();
 
@@ -16,24 +22,29 @@ export default function PurchaseFormFields() {
                 <CardContent className="pt-6 space-y-6">
                     <div className="flex items-center gap-2 text-gray-300 font-medium mb-2">
                         <Euro className="w-4 h-4 text-red-400" />
-                        {t("admin.proposals.purchase.packages")}
+                        {t("admin.proposals.purchase.simulatorPrices", "Precios por Simulador")}
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-3">
                         <FormField
                             control={control}
-                            name="purchasePricingBasic"
+                            name="purchasePriceTimeAttack"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="text-gray-400 text-sm">
-                                        {t("admin.proposals.packBasic")}
+                                        Time Attack
                                     </FormLabel>
                                     <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="500€"
-                                            className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500"
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                type="number"
+                                                {...field}
+                                                onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
+                                                placeholder={defaultPriceTimeAttack.toLocaleString("es-ES")}
+                                                className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8"
+                                            />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">€</span>
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -42,18 +53,23 @@ export default function PurchaseFormFields() {
 
                         <FormField
                             control={control}
-                            name="purchasePricingProfessional"
+                            name="purchasePriceSlady"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="text-gray-400 text-sm">
-                                        {t("admin.proposals.packProfessional")}
+                                        Slady
                                     </FormLabel>
                                     <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="900€"
-                                            className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500"
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                type="number"
+                                                {...field}
+                                                onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
+                                                placeholder={defaultPriceSlady.toLocaleString("es-ES")}
+                                                className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8"
+                                            />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">€</span>
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -62,18 +78,23 @@ export default function PurchaseFormFields() {
 
                         <FormField
                             control={control}
-                            name="purchasePricingComplete"
+                            name="purchasePriceTopGun"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="text-gray-400 text-sm">
-                                        {t("admin.proposals.packComplete")}
+                                        Top Gun
                                     </FormLabel>
                                     <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="1200€"
-                                            className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500"
-                                        />
+                                        <div className="relative">
+                                            <Input
+                                                type="number"
+                                                {...field}
+                                                onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
+                                                placeholder={defaultPriceTopGun.toLocaleString("es-ES")}
+                                                className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8"
+                                            />
+                                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">€</span>
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

@@ -19,6 +19,9 @@ interface AdminSettings {
     staffMultiplier: number;
     simulatorPrice: number;
     simulatorPriceVIP: number;
+    purchasePriceTimeAttack: number;
+    purchasePriceSlady: number;
+    purchasePriceTopGun: number;
 }
 
 interface ProposalSettingsDialogProps {
@@ -35,6 +38,9 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
         staffMultiplier: 280,
         simulatorPrice: 750,
         simulatorPriceVIP: 550,
+        purchasePriceTimeAttack: 23000,
+        purchasePriceSlady: 26000,
+        purchasePriceTopGun: 30000,
     });
 
     // Load settings on open
@@ -101,6 +107,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                     </div>
                 ) : (
                     <div className="grid gap-4 py-4">
+                        <p className="text-xs text-gray-500 uppercase tracking-wider font-medium">Alquiler</p>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="transport" className="text-right col-span-2">
                                 {t("admin.proposals.settings.transport", "Transport (€/km)")}
@@ -147,6 +154,46 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                                 type="number"
                                 value={settings.simulatorPriceVIP}
                                 onChange={(e) => setSettings({ ...settings, simulatorPriceVIP: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+
+                        <div className="border-t border-gray-700 my-2" />
+                        <p className="text-xs text-gray-500 uppercase tracking-wider font-medium">Compra</p>
+
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="priceTimeAttack" className="text-right col-span-2">
+                                Time Attack (€)
+                            </Label>
+                            <Input
+                                id="priceTimeAttack"
+                                type="number"
+                                value={settings.purchasePriceTimeAttack}
+                                onChange={(e) => setSettings({ ...settings, purchasePriceTimeAttack: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="priceSlady" className="text-right col-span-2">
+                                Slady (€)
+                            </Label>
+                            <Input
+                                id="priceSlady"
+                                type="number"
+                                value={settings.purchasePriceSlady}
+                                onChange={(e) => setSettings({ ...settings, purchasePriceSlady: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="priceTopGun" className="text-right col-span-2">
+                                Top Gun (€)
+                            </Label>
+                            <Input
+                                id="priceTopGun"
+                                type="number"
+                                value={settings.purchasePriceTopGun}
+                                onChange={(e) => setSettings({ ...settings, purchasePriceTopGun: parseFloat(e.target.value) })}
                                 className="col-span-2 bg-gray-800 border-gray-700 text-white"
                             />
                         </div>

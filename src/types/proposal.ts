@@ -31,9 +31,9 @@ export interface RentalDetails {
 
 export interface PurchaseDetails {
     packages: {
-        basic: string;
-        professional: string;
-        complete: string;
+        timeAttack: number;
+        slady: number;
+        topGun: number;
     };
     paymentTerms?: string;
 }
@@ -68,4 +68,7 @@ export interface AdminSettings {
     staffMultiplier: number; // Default: 280
     simulatorPrice: number; // Default: 750
     simulatorPriceVIP: number; // Default: 550
+    purchasePriceTimeAttack: number; // Default: 23000
+    purchasePriceSlady: number; // Default: 26000
+    purchasePriceTopGun: number; // Default: 30000
 }

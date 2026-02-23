@@ -42,36 +42,12 @@ const formSchema = z.object({
     staffHotel: z.number().optional().or(z.nan()),
 
     // Purchase fields
-    purchasePricingBasic: z.string().optional().or(z.literal("")),
-    purchasePricingProfessional: z.string().optional().or(z.literal("")),
-    purchasePricingComplete: z.string().optional().or(z.literal("")),
+    purchasePriceTimeAttack: z.number().min(1).default(23000),
+    purchasePriceSlady: z.number().min(1).default(26000),
+    purchasePriceTopGun: z.number().min(1).default(30000),
     paymentTerms: z.string().optional().or(z.literal("")),
 
     notes: z.string().max(2000).optional().or(z.literal("")),
-}).superRefine((data, ctx) => {
-    if (data.proposalType === "purchase") {
-        if (!data.purchasePricingBasic) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "Basic pricing is required",
-                path: ["purchasePricingBasic"]
-            });
-        }
-        if (!data.purchasePricingProfessional) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "Professional pricing is required",
-                path: ["purchasePricingProfessional"]
-            });
-        }
-        if (!data.purchasePricingComplete) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                message: "Complete pricing is required",
-                path: ["purchasePricingComplete"]
-            });
-        }
-    }
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -91,7 +67,10 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         transportMultiplier: 1.6,
         staffMultiplier: 280,
         simulatorPrice: 750,
-        simulatorPriceVIP: 550
+        simulatorPriceVIP: 550,
+        purchasePriceTimeAttack: 23000,
+        purchasePriceSlady: 26000,
+        purchasePriceTopGun: 30000,
     });
 
     // Load saved settings on mount
@@ -102,16 +81,23 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                 if (response.ok) {
                     const data = await response.json();
                     if (data.settings) {
-                        setSettings({
+                        const loadedSettings = {
                             transportMultiplier: data.settings.transportMultiplier ?? 1.6,
                             staffMultiplier: data.settings.staffMultiplier ?? 280,
                             simulatorPrice: data.settings.simulatorPrice ?? 750,
-                            simulatorPriceVIP: data.settings.simulatorPriceVIP ?? 550
-                        });
-                        // Update form default if loaded early enough, or let user toggle update it
+                            simulatorPriceVIP: data.settings.simulatorPriceVIP ?? 550,
+                            purchasePriceTimeAttack: data.settings.purchasePriceTimeAttack ?? 23000,
+                            purchasePriceSlady: data.settings.purchasePriceSlady ?? 26000,
+                            purchasePriceTopGun: data.settings.purchasePriceTopGun ?? 30000,
+                        };
+                        setSettings(loadedSettings);
+                        // Update form defaults from loaded settings
                         if (!form.getValues("isVIP")) {
-                            form.setValue("rentalBasePrice", data.settings.simulatorPrice ?? 750);
+                            form.setValue("rentalBasePrice", loadedSettings.simulatorPrice);
                         }
+                        form.setValue("purchasePriceTimeAttack", loadedSettings.purchasePriceTimeAttack);
+                        form.setValue("purchasePriceSlady", loadedSettings.purchasePriceSlady);
+                        form.setValue("purchasePriceTopGun", loadedSettings.purchasePriceTopGun);
                     }
                 }
             } catch (error) {
@@ -130,6 +116,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
             isVIP: false,
             rentalBasePrice: 750,
             numberOfSimulators: 1,
+            purchasePriceTimeAttack: 23000,
+            purchasePriceSlady: 26000,
+            purchasePriceTopGun: 30000,
             notes: "",
         },
     });
@@ -251,9 +240,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                 proposalType: "purchase";
                 purchaseDetails: {
                     packages: {
-                        basic: string;
-                        professional: string;
-                        complete: string;
+                        timeAttack: number;
+                        slady: number;
+                        topGun: number;
                     };
                     paymentTerms?: string;
                 };
@@ -300,13 +289,33 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     notes: values.notes || undefined,
                     purchaseDetails: {
                         packages: {
-                            basic: values.purchasePricingBasic || "",
-                            professional: values.purchasePricingProfessional || "",
-                            complete: values.purchasePricingComplete || "",
+                            timeAttack: values.purchasePriceTimeAttack,
+                            slady: values.purchasePriceSlady,
+                            topGun: values.purchasePriceTopGun,
                         },
                         paymentTerms: values.paymentTerms || undefined
                     }
                 };
+
+                // Auto-persist modified prices as new defaults
+                if (
+                    values.purchasePriceTimeAttack !== settings.purchasePriceTimeAttack ||
+                    values.purchasePriceSlady !== settings.purchasePriceSlady ||
+                    values.purchasePriceTopGun !== settings.purchasePriceTopGun
+                ) {
+                    const updatedSettings = {
+                        ...settings,
+                        purchasePriceTimeAttack: values.purchasePriceTimeAttack,
+                        purchasePriceSlady: values.purchasePriceSlady,
+                        purchasePriceTopGun: values.purchasePriceTopGun,
+                    };
+                    fetch("/api/admin/settings", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(updatedSettings),
+                    }).catch(err => console.error("Failed to persist purchase prices:", err));
+                    setSettings(updatedSettings);
+                }
             }
 
             const response = await fetch("/api/proposals/create", {
@@ -377,8 +386,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                         <TabsTrigger value="rental" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
                                             {t("admin.proposals.type.rental")}
                                         </TabsTrigger>
-                                        <TabsTrigger value="purchase" disabled className="opacity-50 cursor-not-allowed data-[state=active]:bg-red-600 data-[state=active]:text-white">
-                                            {t("admin.proposals.type.purchase")} (Disabled)
+                                        <TabsTrigger value="purchase" className="data-[state=active]:bg-red-600 data-[state=active]:text-white">
+                                            {t("admin.proposals.type.purchase")}
                                         </TabsTrigger>
                                     </TabsList>
                                 </Tabs>
@@ -505,7 +514,11 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                 simulatorPriceVIP={settings.simulatorPriceVIP}
                             />
                         ) : (
-                            <PurchaseFormFields />
+                            <PurchaseFormFields
+                                defaultPriceTimeAttack={settings.purchasePriceTimeAttack}
+                                defaultPriceSlady={settings.purchasePriceSlady}
+                                defaultPriceTopGun={settings.purchasePriceTopGun}
+                            />
                         )}
 
                         {/* Additional Notes */}
@@ -561,9 +574,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                     } : undefined,
                                     purchaseDetails: form.watch("proposalType") === "purchase" ? {
                                         packages: {
-                                            basic: form.watch("purchasePricingBasic") || "500€",
-                                            professional: form.watch("purchasePricingProfessional") || "900€",
-                                            complete: form.watch("purchasePricingComplete") || "1200€",
+                                            timeAttack: form.watch("purchasePriceTimeAttack") || 23000,
+                                            slady: form.watch("purchasePriceSlady") || 26000,
+                                            topGun: form.watch("purchasePriceTopGun") || 30000,
                                         },
                                         paymentTerms: form.watch("paymentTerms")
                                     } : undefined

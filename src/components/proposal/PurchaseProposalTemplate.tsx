@@ -13,60 +13,52 @@ export default function PurchaseProposalTemplate({ proposal }: PurchaseProposalT
 
     if (!purchaseDetails) return null;
 
-    // If new purchase structure
     const packages = purchaseDetails.packages;
+
+    const simulators = [
+        { name: "Time Attack", price: packages.timeAttack, highlight: false },
+        { name: "Slady", price: packages.slady, highlight: true },
+        { name: "Top Gun", price: packages.topGun, highlight: false },
+    ];
 
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
-            {/* Packages Grid */}
+            {/* Simulators Grid */}
             <div className="grid gap-6 md:grid-cols-3">
-                {/* Basic */}
-                <Card className="bg-gray-800/50 border-gray-700 hover:border-gray-500 transition-all duration-300">
-                    <CardHeader>
-                        <CardTitle className="text-gray-300 text-sm font-medium uppercase tracking-widest text-center">
-                            {t("proposal.packBasic")}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center pb-8">
-                        <div className="text-3xl font-bold text-white mb-2">{packages.basic}</div>
-                        <p className="text-xs text-gray-500">{t("proposal.purchase.baseConfig")}</p>
-                    </CardContent>
-                </Card>
-
-                {/* Professional - Highlighted */}
-                <Card className="bg-gradient-to-b from-red-600 to-red-800 border-red-500 transform md:-translate-y-4 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-3">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
-                            <Check className="w-4 h-4 text-white" />
-                        </div>
-                    </div>
-                    <CardHeader>
-                        <CardTitle className="text-red-100 text-sm font-medium uppercase tracking-widest text-center">
-                            {t("proposal.packProfessional")}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center pb-8">
-                        <div className="text-4xl font-bold text-white mb-2">{packages.professional}</div>
-                        <p className="text-xs text-red-200">{t("proposal.purchase.proConfig")}</p>
-                        <div className="mt-6 text-sm text-white/80 font-medium">
-                            {t("proposal.purchase.recommended")}
-                        </div>
-                    </CardContent>
-                </Card>
-
-                {/* Complete */}
-                <Card className="bg-gray-800/50 border-gray-700 hover:border-gray-500 transition-all duration-300">
-                    <CardHeader>
-                        <CardTitle className="text-gray-300 text-sm font-medium uppercase tracking-widest text-center">
-                            {t("proposal.packComplete")}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center pb-8">
-                        <div className="text-3xl font-bold text-white mb-2">{packages.complete}</div>
-                        <p className="text-xs text-gray-500">{t("proposal.purchase.fullConfig")}</p>
-                    </CardContent>
-                </Card>
+                {simulators.map((sim) => (
+                    <Card
+                        key={sim.name}
+                        className={sim.highlight
+                            ? "bg-gradient-to-b from-red-600 to-red-800 border-red-500 transform md:-translate-y-4 shadow-2xl relative overflow-hidden"
+                            : "bg-gray-800/50 border-gray-700 hover:border-gray-500 transition-all duration-300"
+                        }
+                    >
+                        {sim.highlight && (
+                            <div className="absolute top-0 right-0 p-3">
+                                <div className="bg-white/20 backdrop-blur-sm rounded-full p-1">
+                                    <Check className="w-4 h-4 text-white" />
+                                </div>
+                            </div>
+                        )}
+                        <CardHeader>
+                            <CardTitle className={`text-sm font-medium uppercase tracking-widest text-center ${sim.highlight ? "text-red-100" : "text-gray-300"}`}>
+                                {sim.name}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="text-center pb-8">
+                            <div className={`font-bold text-white mb-2 ${sim.highlight ? "text-4xl" : "text-3xl"}`}>
+                                {sim.price.toLocaleString("es-ES")}€
+                            </div>
+                            <p className={`text-xs ${sim.highlight ? "text-red-200" : "text-gray-500"}`}>+ IVA</p>
+                            {sim.highlight && (
+                                <div className="mt-6 text-sm text-white/80 font-medium">
+                                    {t("proposal.purchase.recommended", "Recomendado")}
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+                ))}
             </div>
 
             {/* Payment Terms */}
@@ -90,6 +82,11 @@ export default function PurchaseProposalTemplate({ proposal }: PurchaseProposalT
                     <p className="whitespace-pre-wrap">{proposal.notes}</p>
                 </div>
             )}
+
+            {/* Tax disclaimer */}
+            <p className="text-center text-xs text-gray-500 pt-4">
+                Impuestos no incluidos
+            </p>
         </div>
     );
 }

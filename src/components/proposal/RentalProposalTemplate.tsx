@@ -145,6 +145,11 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                     <p className="whitespace-pre-wrap">{proposal.notes}</p>
                 </div>
             )}
+
+            {/* Tax disclaimer */}
+            <p className="text-center text-xs text-gray-500 pt-4">
+                Impuestos no incluidos
+            </p>
         </div>
     );
 }

@@ -246,16 +246,16 @@ export default function ProposalPDF({ proposal }: ProposalPDFProps) {
                             <Text style={styles.sectionTitle}>Opciones de Compra</Text>
                             <View style={styles.grid}>
                                 <View style={styles.card}>
-                                    <Text style={styles.cardTitle}>Basic</Text>
-                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.basic}</Text>
+                                    <Text style={styles.cardTitle}>Time Attack</Text>
+                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.timeAttack.toLocaleString("es-ES")}€</Text>
                                 </View>
                                 <View style={[styles.card, { borderColor: "#EF4444", borderWidth: 2 }]}>
-                                    <Text style={[styles.cardTitle, { color: "#EF4444" }]}>Professional</Text>
-                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.professional}</Text>
+                                    <Text style={[styles.cardTitle, { color: "#EF4444" }]}>Slady</Text>
+                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.slady.toLocaleString("es-ES")}€</Text>
                                 </View>
                                 <View style={styles.card}>
-                                    <Text style={styles.cardTitle}>Complete</Text>
-                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.complete}</Text>
+                                    <Text style={styles.cardTitle}>Top Gun</Text>
+                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.topGun.toLocaleString("es-ES")}€</Text>
                                 </View>
                             </View>
                         </View>
