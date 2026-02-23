@@ -42,6 +42,13 @@ export default function PhraseGenerator({ clientName, onSelectPhrase, disabled }
             if (!response.ok) {
                 const data = await response.json().catch(() => ({}));
                 console.error("API Error details:", data);
+                if (response.status === 429) {
+                    const isQuotaError = data.type === 'insufficient_quota' || data.details?.includes('quota');
+                    if (isQuotaError) {
+                        throw new Error(t("admin.proposals.openaiQuotaError", "OpenAI Quota Exceeded - Check Billing"));
+                    }
+                    throw new Error(t("admin.proposals.openaiRateLimit", "Too many requests - please wait"));
+                }
                 if (data.error === 'OpenAI not configured') {
                     throw new Error(t("admin.proposals.openaiNotConfigured"));
                 }

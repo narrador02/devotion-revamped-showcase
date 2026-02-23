@@ -738,6 +738,8 @@
       "suggestions": "Sugerencias generadas:",
       "usePhrase": "Usar",
       "phraseError": "Error al generar la frase. Por favor, inténtalo de nuevo.",
+      "openaiQuotaError": "Cuota OpenAI Excedida - Revisar Facturación",
+      "openaiRateLimit": "Demasiadas peticiones - por favor espera",
       "successTitle": "¡Propuesta Creada!",
       "successMessage": "La propuesta para {{clientName}} está lista.",
       "proposalLink": "Enlace de la propuesta",

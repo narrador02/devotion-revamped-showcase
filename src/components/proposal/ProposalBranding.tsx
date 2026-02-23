@@ -10,6 +10,7 @@ import custom3 from "@/assets/custom3.jpeg";
 import custom4 from "@/assets/custom4.jpeg";
 import custom5 from "@/assets/custom5.jpeg";
 import custom6 from "@/assets/custom6.jpeg";
+import custom7 from "@/assets/custom7.jpeg";
 
 interface ProposalBrandingProps {
     isSelected: boolean;
@@ -19,7 +20,7 @@ interface ProposalBrandingProps {
 
 export default function ProposalBranding({ isSelected, onToggle, price }: ProposalBrandingProps) {
     const { t } = useTranslation();
-    const brandingImages = [custom1, custom2, custom3, custom4, custom5, custom6];
+    const brandingImages = [custom1, custom2, custom3, custom4, custom5, custom6, custom7];
 
     return (
         <div className="py-16 bg-black relative overflow-hidden">

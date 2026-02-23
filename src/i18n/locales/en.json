@@ -695,6 +695,8 @@
       "suggestions": "Generated suggestions:",
       "usePhrase": "Use",
       "phraseError": "Error generating phrase. Please try again.",
+      "openaiQuotaError": "OpenAI Quota Exceeded - Check Billing",
+      "openaiRateLimit": "Too many requests - please wait",
       "successTitle": "Proposal Created!",
       "successMessage": "The proposal for {{clientName}} is ready.",
       "proposalLink": "Proposal link",

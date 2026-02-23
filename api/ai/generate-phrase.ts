@@ -76,6 +76,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             console.error('OpenAI API Error:', errorData);
+
+            // Forward specific OpenAI errors
+            if (response.status === 429) {
+                return res.status(429).json({
+                    error: 'OpenAI Rate Limit Exceeded',
+                    details: errorData.error?.message || 'Rate limit or quota exceeded',
+                    type: errorData.error?.type || 'insufficient_quota'
+                });
+            }
+
             throw new Error(`OpenAI API error: ${response.status} ${response.statusText}`);
         }
 
