@@ -6,6 +6,7 @@ import ProposalHero from "./ProposalHero";
 import ProposalExperience from "./ProposalExperience";
 import ProposalVR from "./ProposalVR";
 import ProposalBranding from "./ProposalBranding";
+import ProposalFlightCase from "./ProposalFlightCase";
 import RentalProposalTemplate from "./RentalProposalTemplate";
 import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
 import ProposalFooter from "./ProposalFooter";
@@ -23,9 +24,12 @@ interface ProposalDisplayProps {
 export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
     const [showBranding, setShowBranding] = useState(false);
+    const [showFlightCase, setShowFlightCase] = useState(false);
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
     const brandingPrice = 550;
+    const flightCasePrice = 840;
+    const isPurchase = proposal.proposalType === 'purchase';
 
     // Detect payment success from URL params
     useEffect(() => {
@@ -96,12 +100,19 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
             <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 space-y-12">
 
-                {/* 4. Branding Add-on (Only for Rental, or both? Assuming Rental for now primarily) */}
-                {proposal.proposalType === 'rental' && (
-                    <ProposalBranding
-                        isSelected={showBranding}
-                        onToggle={setShowBranding}
-                        price={brandingPrice}
+                {/* 4. Branding Add-on */}
+                <ProposalBranding
+                    isSelected={showBranding}
+                    onToggle={setShowBranding}
+                    price={brandingPrice}
+                />
+
+                {/* 5. Flight Case Add-on (Purchase only) */}
+                {isPurchase && (
+                    <ProposalFlightCase
+                        isSelected={showFlightCase}
+                        onToggle={setShowFlightCase}
+                        price={flightCasePrice}
                     />
                 )}
 
@@ -142,6 +153,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     setDateRange={setDateRange}
                     showBranding={showBranding}
                     brandingPrice={brandingPrice}
+                    showFlightCase={isPurchase ? showFlightCase : false}
+                    flightCasePrice={flightCasePrice}
                 />
             </div>
 

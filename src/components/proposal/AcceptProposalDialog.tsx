@@ -47,6 +47,8 @@ interface AcceptProposalDialogProps {
     };
     showBranding?: boolean;
     brandingPrice?: number;
+    showFlightCase?: boolean;
+    flightCasePrice?: number;
 }
 
 // Build line items from proposal for Square checkout
@@ -132,7 +134,9 @@ export default function AcceptProposalDialog({
     proposal,
     selectedDates,
     showBranding,
-    brandingPrice = 0
+    brandingPrice = 0,
+    showFlightCase,
+    flightCasePrice = 0
 }: AcceptProposalDialogProps) {
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -183,7 +187,8 @@ export default function AcceptProposalDialog({
 
             const lineItems = buildLineItems(proposal);
             const baseTotal = getProposalTotal(proposal);
-            const effectiveTotal = baseTotal + (showBranding ? brandingPrice : 0);
+            const addOnsTotal = (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
+            const effectiveTotal = baseTotal + addOnsTotal;
 
             // Add branding line item if selected
             if (showBranding && brandingPrice > 0) {
@@ -191,6 +196,15 @@ export default function AcceptProposalDialog({
                     name: 'Branding Personalizado',
                     quantity: 1,
                     unitPrice: brandingPrice,
+                });
+            }
+
+            // Add flight case line item if selected
+            if (showFlightCase && flightCasePrice > 0) {
+                lineItems.push({
+                    name: 'Flight Case',
+                    quantity: 1,
+                    unitPrice: flightCasePrice,
                 });
             }
 
@@ -423,7 +437,7 @@ export default function AcceptProposalDialog({
                                     </span>
                                     <span className="text-white text-xl font-bold">
                                         {(() => {
-                                            const baseTotal = getProposalTotal(proposal) + (showBranding ? brandingPrice : 0);
+                                            const baseTotal = getProposalTotal(proposal) + (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
                                             const displayTotal = proposal.rentalDetails?.requireDownPayment
                                                 ? Math.round(baseTotal * ((proposal.rentalDetails.downPaymentPercentage || 30) / 100))
                                                 : baseTotal;
