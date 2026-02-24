@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Proposal } from "@/types/proposal";
 import ProposalHero from "./ProposalHero";
@@ -11,7 +11,7 @@ import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
 import ProposalFooter from "./ProposalFooter";
 import ProposalPDF from "./ProposalPDF";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, CheckCircle2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DateRange } from "react-day-picker";
 import { useDynamicProposalPricing } from "@/hooks/useDynamicProposalPricing";
@@ -24,7 +24,20 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
     const [showBranding, setShowBranding] = useState(false);
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
+    const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
     const brandingPrice = 550;
+
+    // Detect payment success from URL params
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('payment') === 'success') {
+            setShowPaymentSuccess(true);
+            // Clean the URL without reloading
+            const url = new URL(window.location.href);
+            url.searchParams.delete('payment');
+            window.history.replaceState({}, '', url.toString());
+        }
+    }, []);
 
     // Calculate dynamic pricing based on selected dates
     const dynamicRentalDetails = useDynamicProposalPricing(proposal, dateRange);
@@ -36,6 +49,38 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
     return (
         <div className="min-h-screen bg-black text-white font-sans selection:bg-red-500/30 overflow-x-hidden">
+
+            {/* Payment Success Banner */}
+            <AnimatePresence>
+                {showPaymentSuccess && (
+                    <motion.div
+                        initial={{ y: -100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -100, opacity: 0 }}
+                        className="fixed top-0 left-0 right-0 z-[100] bg-gradient-to-r from-green-600 to-emerald-600 shadow-2xl shadow-green-500/30"
+                    >
+                        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <CheckCircle2 className="w-6 h-6 text-white" />
+                                <div>
+                                    <p className="text-white font-bold">
+                                        {t("proposal.paymentSuccess", "Payment Successful!")}
+                                    </p>
+                                    <p className="text-green-100 text-sm">
+                                        {t("proposal.paymentSuccessDesc", "Thank you! Your payment has been processed. We will contact you shortly to confirm details.")}
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setShowPaymentSuccess(false)}
+                                className="text-white/80 hover:text-white transition-colors p-1"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* 1. Hero Section (Replaces old ProposalHeader) */}
             <ProposalHero

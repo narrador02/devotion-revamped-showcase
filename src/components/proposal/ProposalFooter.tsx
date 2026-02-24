@@ -23,6 +23,8 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
     const [showUpdateMessage, setShowUpdateMessage] = useState(false);
 
     const isRental = proposal.proposalType === 'rental';
+    const requireDownPayment = isRental && proposal.rentalDetails?.requireDownPayment;
+    const downPaymentPercentage = proposal.rentalDetails?.downPaymentPercentage || 30;
     const isReadyToAccept = !isRental || (dateRange?.from && dateRange?.to);
 
     // Show update message when dates change AND duration is different from original
@@ -115,6 +117,12 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
                     </div>
                 )}
 
+                {requireDownPayment && (
+                    <div className="text-gray-400 text-sm max-w-md mx-auto px-4 mt-6">
+                        {t("proposal.reserveMessage", { percentage: downPaymentPercentage })}
+                    </div>
+                )}
+
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                     <Button
                         onClick={handleAcceptClick}
@@ -129,7 +137,10 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
                         `}
                         style={isReadyToAccept ? { animationDuration: '3s' } : {}}
                     >
-                        {t("proposal.acceptOffer", "Accept Proposal")}
+                        {requireDownPayment
+                            ? t("proposal.reserveDates", { percentage: downPaymentPercentage })
+                            : t("proposal.acceptOffer", "Accept Proposal")
+                        }
                     </Button>
                 </div>
             </div>
@@ -151,6 +162,7 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange }: Pr
                 clientName={proposal.clientName}
                 proposalId={proposal.id}
                 proposalType={proposal.proposalType}
+                proposal={proposal}
                 selectedDates={
                     dateRange?.from && dateRange?.to
                         ? { start: dateRange.from, end: dateRange.to }

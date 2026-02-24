@@ -22,6 +22,7 @@ interface AdminSettings {
     purchasePriceTimeAttack: number;
     purchasePriceSlady: number;
     purchasePriceTopGun: number;
+    downPaymentPercentage: number;
 }
 
 interface ProposalSettingsDialogProps {
@@ -41,6 +42,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
         purchasePriceTimeAttack: 23000,
         purchasePriceSlady: 26000,
         purchasePriceTopGun: 30000,
+        downPaymentPercentage: 30,
     });
 
     // Load settings on open
@@ -154,6 +156,21 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                                 type="number"
                                 value={settings.simulatorPriceVIP}
                                 onChange={(e) => setSettings({ ...settings, simulatorPriceVIP: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="downPaymentPercentage" className="text-right col-span-2">
+                                {t("admin.proposals.settings.downPaymentPercentage", "Down Payment (%)")}
+                            </Label>
+                            <Input
+                                id="downPaymentPercentage"
+                                type="number"
+                                min="0"
+                                max="100"
+                                value={settings.downPaymentPercentage}
+                                onChange={(e) => setSettings({ ...settings, downPaymentPercentage: parseFloat(e.target.value) })}
                                 className="col-span-2 bg-gray-800 border-gray-700 text-white"
                             />
                         </div>

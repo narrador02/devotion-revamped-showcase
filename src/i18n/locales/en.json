@@ -717,6 +717,8 @@
       },
       "rental": {
         "isVIP": "VIP Client Price",
+        "requireDownPayment": "Require down payment via Square",
+        "downPaymentPercentage": "Down Payment (%)",
         "basePrice": "Base Price",
         "simulators": "Number of Simulators",
         "transport": "Transport / Logistics",
@@ -743,6 +745,7 @@
       "description": "Adjust global multipliers for calculations",
       "transport": "Transport Cost (€/km)",
       "staff": "Staff Cost (€/day)",
+      "downPaymentPercentage": "Default Down Payment (%)",
       "save": "Save Changes"
     }
   },
@@ -757,6 +760,15 @@
     "notesTitle": "Notes",
     "footer": "High-performance motorcycle simulators",
     "expiredTitle": "Link Expired",
-    "expiredMessage": "This proposal link has expired or is invalid. Please contact us for more information."
+    "expiredMessage": "This proposal link has expired or is invalid. Please contact us for more information.",
+    "acceptOffer": "Accept Proposal",
+    "reserveDates": "Pay Deposit ({{percentage}}%)",
+    "reserveMessage": "To reserve the dates, a down payment of {{percentage}}% of the final budget is required",
+    "contactUs": "Contact Us"
+  },
+  "paymentSuccess": {
+    "title": "Payment Received!",
+    "message": "Payment received. Thank you very much for your trust in Devotion Sim Experience. You will receive an email shortly with more information from our specialized team.",
+    "returnHome": "Return to Home"
   }
 }

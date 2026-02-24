@@ -40,6 +40,8 @@ const formSchema = z.object({
     numberOfDays: z.number().optional().or(z.nan()),
     staffTravel: z.number().optional().or(z.nan()),
     staffHotel: z.number().optional().or(z.nan()),
+    requireDownPayment: z.boolean().default(false),
+    downPaymentPercentage: z.number().min(0).max(100).default(30),
 
     // Purchase fields
     purchasePriceTimeAttack: z.number().min(1).default(23000),
@@ -71,6 +73,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         purchasePriceTimeAttack: 23000,
         purchasePriceSlady: 26000,
         purchasePriceTopGun: 30000,
+        downPaymentPercentage: 30,
     });
 
     // Load saved settings on mount
@@ -89,6 +92,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                             purchasePriceTimeAttack: data.settings.purchasePriceTimeAttack ?? 23000,
                             purchasePriceSlady: data.settings.purchasePriceSlady ?? 26000,
                             purchasePriceTopGun: data.settings.purchasePriceTopGun ?? 30000,
+                            downPaymentPercentage: data.settings.downPaymentPercentage ?? 30,
                         };
                         setSettings(loadedSettings);
                         // Update form defaults from loaded settings
@@ -98,6 +102,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                         form.setValue("purchasePriceTimeAttack", loadedSettings.purchasePriceTimeAttack);
                         form.setValue("purchasePriceSlady", loadedSettings.purchasePriceSlady);
                         form.setValue("purchasePriceTopGun", loadedSettings.purchasePriceTopGun);
+                        form.setValue("downPaymentPercentage", loadedSettings.downPaymentPercentage);
                     }
                 }
             } catch (error) {
@@ -119,6 +124,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
             purchasePriceTimeAttack: 23000,
             purchasePriceSlady: 26000,
             purchasePriceTopGun: 30000,
+            requireDownPayment: false,
+            downPaymentPercentage: 30,
             notes: "",
         },
     });
@@ -218,6 +225,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     basePrice: number;
                     isVIP: boolean;
                     numberOfSimulators: number;
+                    requireDownPayment?: boolean;
+                    downPaymentPercentage?: number;
                     transport?: {
                         kilometers: number;
                         pricePerKm: number;
@@ -263,6 +272,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                         basePrice: values.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
                         isVIP: values.isVIP,
                         numberOfSimulators: values.numberOfSimulators,
+                        requireDownPayment: values.requireDownPayment,
+                        downPaymentPercentage: values.requireDownPayment ? values.downPaymentPercentage : undefined,
                         transport: values.transportKm ? {
                             kilometers: values.transportKm,
                             pricePerKm: settings.transportMultiplier,
@@ -512,6 +523,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                 staffMultiplier={settings.staffMultiplier}
                                 simulatorPrice={settings.simulatorPrice}
                                 simulatorPriceVIP={settings.simulatorPriceVIP}
+                                defaultDownPaymentPct={settings.downPaymentPercentage}
                             />
                         ) : (
                             <PurchaseFormFields

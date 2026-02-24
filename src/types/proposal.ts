@@ -23,6 +23,8 @@ export interface RentalDetails {
     isVIP: boolean;
     numberOfDays?: number; // Added for dynamic pricing tracking
     numberOfSimulators?: number;
+    requireDownPayment?: boolean;
+    downPaymentPercentage?: number;
     transport?: TransportDetails;
     staff?: StaffDetails;
     subtotal: number;
@@ -71,4 +73,5 @@ export interface AdminSettings {
     purchasePriceTimeAttack: number; // Default: 23000
     purchasePriceSlady: number; // Default: 26000
     purchasePriceTopGun: number; // Default: 30000
+    downPaymentPercentage: number; // Default: 30
 }

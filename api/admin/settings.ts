@@ -9,6 +9,7 @@ interface AdminSettings {
     purchasePriceTimeAttack: number;
     purchasePriceSlady: number;
     purchasePriceTopGun: number;
+    downPaymentPercentage: number;
 }
 
 const DEFAULT_SETTINGS: AdminSettings = {
@@ -19,6 +20,7 @@ const DEFAULT_SETTINGS: AdminSettings = {
     purchasePriceTimeAttack: 23000,
     purchasePriceSlady: 26000,
     purchasePriceTopGun: 30000,
+    downPaymentPercentage: 30, // Default 30% reservation down payment
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -78,6 +80,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 purchasePriceTimeAttack: typeof body.purchasePriceTimeAttack === 'number' ? body.purchasePriceTimeAttack : existing.purchasePriceTimeAttack,
                 purchasePriceSlady: typeof body.purchasePriceSlady === 'number' ? body.purchasePriceSlady : existing.purchasePriceSlady,
                 purchasePriceTopGun: typeof body.purchasePriceTopGun === 'number' ? body.purchasePriceTopGun : existing.purchasePriceTopGun,
+                downPaymentPercentage: typeof body.downPaymentPercentage === 'number' ? body.downPaymentPercentage : existing.downPaymentPercentage,
             };
 
             await kv.set('admin:settings', JSON.stringify(settings));

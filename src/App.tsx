@@ -25,6 +25,7 @@ const Specs = lazy(() => import("./pages/Specs"));
 const Customization = lazy(() => import("./pages/Customization"));
 const AdminProposals = lazy(() => import("./pages/AdminProposals"));
 const Proposal = lazy(() => import("./pages/Proposal"));
+const PaymentSuccess = lazy(() => import("./pages/PaymentSuccess"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -107,6 +108,9 @@ const App = () => (
 
                 {/* Public proposal page */}
                 <Route path="/p/:id" element={<Proposal />} />
+
+                {/* Down payment success page */}
+                <Route path="/payment-success" element={<PaymentSuccess />} />
 
                 {/* Legacy URL redirects from old website */}
                 <Route path="/riders/" element={<Navigate to="/reviews" replace />} />

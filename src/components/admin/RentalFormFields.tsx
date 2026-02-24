@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Truck, Users, Euro, Calculator } from "lucide-react";
+import { Truck, Users, Calculator } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -15,19 +15,22 @@ interface RentalFormFieldsProps {
     staffMultiplier: number;
     simulatorPrice: number;
     simulatorPriceVIP: number;
+    defaultDownPaymentPct?: number;
 }
 
 export default function RentalFormFields({
     transportMultiplier,
     staffMultiplier,
     simulatorPrice,
-    simulatorPriceVIP
+    simulatorPriceVIP,
+    defaultDownPaymentPct = 30
 }: RentalFormFieldsProps) {
     const { t } = useTranslation();
     const { control, watch, setValue } = useFormContext();
 
     // Watch fields for calculation
     const isVIP = watch("isVIP");
+    const requireDownPayment = watch("requireDownPayment");
     const numberOfSimulators = watch("numberOfSimulators");
     const transportKm = watch("transportKm");
     const numberOfStaff = watch("numberOfStaff");
@@ -76,6 +79,63 @@ export default function RentalFormFields({
                         </FormControl>
                     )}
                 />
+            </div>
+
+            {/* Down Payment Options */}
+            <div className="flex flex-col gap-4 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                <div className="flex items-center justify-between">
+                    <div className="space-y-0.5">
+                        <Label className="text-base text-white">{t("admin.proposals.rental.requireDownPayment")}</Label>
+                    </div>
+                    <FormField
+                        control={control}
+                        name="requireDownPayment"
+                        render={({ field }) => (
+                            <FormControl>
+                                <Switch
+                                    checked={field.value}
+                                    onCheckedChange={(checked) => {
+                                        field.onChange(checked);
+                                        if (checked && !watch("downPaymentPercentage")) {
+                                            setValue("downPaymentPercentage", defaultDownPaymentPct);
+                                        }
+                                    }}
+                                    className="data-[state=checked]:bg-red-600"
+                                />
+                            </FormControl>
+                        )}
+                    />
+                </div>
+
+                {requireDownPayment && (
+                    <div className="pt-4 border-t border-gray-700 animate-in slide-in-from-top-2">
+                        <FormField
+                            control={control}
+                            name="downPaymentPercentage"
+                            render={({ field }) => (
+                                <FormItem className="flex items-center gap-4 space-y-0">
+                                    <FormLabel className="text-sm text-gray-300 w-1/3">
+                                        {t("admin.proposals.rental.downPaymentPercentage")}
+                                    </FormLabel>
+                                    <div className="w-2/3 flex items-center gap-2">
+                                        <FormControl>
+                                            <Input
+                                                type="number"
+                                                {...field}
+                                                onChange={e => field.onChange(parseFloat(e.target.value))}
+                                                className="bg-gray-700 border-gray-600 text-white w-24"
+                                                min="0"
+                                                max="100"
+                                            />
+                                        </FormControl>
+                                        <span className="text-gray-400">%</span>
+                                    </div>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                )}
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">

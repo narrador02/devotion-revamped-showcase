@@ -693,6 +693,8 @@
       },
       "rental": {
         "isVIP": "Cliente VIP",
+        "requireDownPayment": "Requerir pago de reserva a través de Square",
+        "downPaymentPercentage": "Porcentaje de Reserva (%)",
         "basePrice": "Precio Base",
         "simulators": "Simuladores",
         "transport": "Transporte",
@@ -717,6 +719,7 @@
         "description": "Ajusta los multiplicadores de costes para todas las nuevas propuestas.",
         "transport": "Tarifa Transporte (€/km)",
         "staff": "Tarifa Personal (€/día)",
+        "downPaymentPercentage": "Porcentaje de Reserva por Defecto (%)",
         "save": "Guardar Cambios",
         "saving": "Guardan..."
       },
@@ -763,6 +766,8 @@
     "preparedFor": "Propuesta preparada para",
     "readyToStart": "¿Listo para empezar la carrera?",
     "acceptOffer": "Aceptar Propuesta",
+    "reserveDates": "Pagar Reserva ({{percentage}}%)",
+    "reserveMessage": "Para reservar las fechas debes dejar pagado un {{percentage}}% del presupuesto final",
     "contactUs": "Contactar",
     "pricingTitle": "Nuestros Paquetes",
     "packBasic": "Pack Básico",
@@ -844,5 +849,10 @@
     "details": {
       "title": "Tu Propuesta Personalizada"
     }
+  },
+  "paymentSuccess": {
+    "title": "¡Pago Recibido!",
+    "message": "Pago recibido. Muchas gracias por tu confianza depositada en Devotion Sim Experience. Recibirás un mail pronto con más información de parte de nuestro equipo especializado.",
+    "returnHome": "Volver al Inicio"
   }
 }
