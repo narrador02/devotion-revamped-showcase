@@ -764,7 +764,30 @@
     "acceptOffer": "Accept Proposal",
     "reserveDates": "Pay Deposit ({{percentage}}%)",
     "reserveMessage": "To reserve the dates, a down payment of {{percentage}}% of the final budget is required",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "accept": {
+      "title": "Finalize Your Booking",
+      "description": "Please provide your contact details to proceed with the reservation.",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "dates": "Selected Dates",
+      "comments": "Additional Comments (Optional)",
+      "total": "Total",
+      "payNow": "Proceed to Payment",
+      "redirecting": "Redirecting to payment...",
+      "redirectingDesc": "You will be redirected to our secure payment page to complete your booking.",
+      "preparingPayment": "Preparing secure payment...",
+      "squareRedirect": "Powered by Square",
+      "securePayment": "Secure payment powered by Square",
+      "successTitle": "Request Sent Successfully!",
+      "successDescription": "Thank you! We have received your request and will contact you shortly to confirm details.",
+      "emailSent": "A confirmation email has been sent to {{email}}."
+    }
+  },
+  "common": {
+    "sending": "Sending...",
+    "close": "Close"
   },
   "paymentSuccess": {
     "title": "Payment Received!",

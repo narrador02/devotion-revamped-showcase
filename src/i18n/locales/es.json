@@ -769,6 +769,25 @@
     "reserveDates": "Pagar Reserva ({{percentage}}%)",
     "reserveMessage": "Para reservar las fechas debes dejar pagado un {{percentage}}% del presupuesto final",
     "contactUs": "Contactar",
+    "accept": {
+      "title": "Finaliza tu Reserva",
+      "description": "Facilita tus datos de contacto para proceder con la reserva.",
+      "fullName": "Nombre Completo",
+      "email": "Email",
+      "phone": "Teléfono",
+      "dates": "Fechas Seleccionadas",
+      "comments": "Comentarios Adicionales (Opcional)",
+      "total": "Total",
+      "payNow": "Proceder al Pago",
+      "redirecting": "Redirigiendo al pago...",
+      "redirectingDesc": "Serás redirigido a nuestra página de pago seguro para completar tu reserva.",
+      "preparingPayment": "Preparando el pago seguro...",
+      "squareRedirect": "Procesado por Square",
+      "securePayment": "Pago seguro procesado por Square",
+      "successTitle": "¡Solicitud Enviada!",
+      "successDescription": "¡Gracias! Hemos recibido tu solicitud y te contactaremos pronto para confirmar los detalles.",
+      "emailSent": "Se ha enviado un correo de confirmación a {{email}}."
+    },
     "pricingTitle": "Nuestros Paquetes",
     "packBasic": "Pack Básico",
     "packProfessional": "Pack Profesional",
@@ -854,5 +873,9 @@
     "title": "¡Pago Recibido!",
     "message": "Pago recibido. Muchas gracias por tu confianza depositada en Devotion Sim Experience. Recibirás un mail pronto con más información de parte de nuestro equipo especializado.",
     "returnHome": "Volver al Inicio"
+  },
+  "common": {
+    "sending": "Enviando...",
+    "close": "Cerrar"
   }
 }
