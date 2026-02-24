@@ -120,10 +120,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         });
 
     } catch (error: any) {
-        console.error('Square API Error:', error);
+        // Enhanced error logging for debugging
+        const tokenPrefix = process.env.SQUARE_ACCESS_TOKEN?.substring(0, 10) || 'NOT_SET';
+        const envValue = process.env.SQUARE_ENVIRONMENT || 'NOT_SET';
+        console.error('Square API Error:', {
+            message: error.message,
+            statusCode: error.statusCode,
+            body: error.body,
+            tokenPrefix: `${tokenPrefix}...`,
+            environment: envValue,
+        });
         return res.status(500).json({
             error: 'Failed to create payment link',
-            details: error.message || String(error),
+            details: error.body ? JSON.stringify(error.body) : (error.message || String(error)),
+            debug: {
+                tokenPrefix: `${tokenPrefix}...`,
+                environment: envValue,
+                locationId: process.env.SQUARE_LOCATION_ID?.substring(0, 6) + '...',
+            }
         });
     }
 }
