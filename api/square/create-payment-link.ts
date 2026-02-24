@@ -31,7 +31,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(400).json({ error: 'Missing required fields (proposalId, clientName, total, lineItems)' });
         }
 
-        if (!process.env.SQUARE_ACCESS_TOKEN || !process.env.SQUARE_LOCATION_ID) {
+        const accessToken = (process.env.SQUARE_ACCESS_TOKEN || '').trim();
+        const locationId = (process.env.SQUARE_LOCATION_ID || '').trim();
+
+        if (!accessToken || !locationId) {
             return res.status(500).json({ error: 'Square API not configured' });
         }
 
@@ -40,7 +43,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             : SquareEnvironment.Sandbox;
 
         const client = new SquareClient({
-            token: process.env.SQUARE_ACCESS_TOKEN,
+            token: accessToken,
             environment,
         });
 
@@ -80,7 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const response = await client.checkout.paymentLinks.create({
             idempotencyKey,
             order: {
-                locationId: process.env.SQUARE_LOCATION_ID,
+                locationId: locationId,
                 lineItems: orderLineItems,
                 referenceId: proposalId,
             },

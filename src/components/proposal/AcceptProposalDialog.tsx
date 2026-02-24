@@ -45,6 +45,8 @@ interface AcceptProposalDialogProps {
         start: Date;
         end: Date;
     };
+    showBranding?: boolean;
+    brandingPrice?: number;
 }
 
 // Build line items from proposal for Square checkout
@@ -128,7 +130,9 @@ export default function AcceptProposalDialog({
     proposalId,
     proposalType,
     proposal,
-    selectedDates
+    selectedDates,
+    showBranding,
+    brandingPrice = 0
 }: AcceptProposalDialogProps) {
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -178,7 +182,17 @@ export default function AcceptProposalDialog({
             const downPaymentPercentage = proposal.rentalDetails?.downPaymentPercentage ?? 30;
 
             const lineItems = buildLineItems(proposal);
-            const total = getProposalTotal(proposal);
+            const baseTotal = getProposalTotal(proposal);
+            const effectiveTotal = baseTotal + (showBranding ? brandingPrice : 0);
+
+            // Add branding line item if selected
+            if (showBranding && brandingPrice > 0) {
+                lineItems.push({
+                    name: 'Branding Personalizado',
+                    quantity: 1,
+                    unitPrice: brandingPrice,
+                });
+            }
 
             const lang = typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es';
 
@@ -189,7 +203,7 @@ export default function AcceptProposalDialog({
                     proposalId,
                     clientName,
                     proposalType,
-                    total,
+                    total: effectiveTotal,
                     lineItems,
                     isDownPayment,
                     downPaymentPercentage: isDownPayment ? downPaymentPercentage : undefined,
@@ -402,10 +416,19 @@ export default function AcceptProposalDialog({
                             <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
                                 <div className="flex justify-between items-center">
                                     <span className="text-gray-400 text-sm uppercase tracking-wider">
-                                        {t("proposal.accept.total", "Total")}
+                                        {proposal.rentalDetails?.requireDownPayment
+                                            ? `${t("proposal.accept.total", "Total")} (${proposal.rentalDetails.downPaymentPercentage || 30}%)`
+                                            : t("proposal.accept.total", "Total")
+                                        }
                                     </span>
                                     <span className="text-white text-xl font-bold">
-                                        {getProposalTotal(proposal).toLocaleString("es-ES")}€
+                                        {(() => {
+                                            const baseTotal = getProposalTotal(proposal) + (showBranding ? brandingPrice : 0);
+                                            const displayTotal = proposal.rentalDetails?.requireDownPayment
+                                                ? Math.round(baseTotal * ((proposal.rentalDetails.downPaymentPercentage || 30) / 100))
+                                                : baseTotal;
+                                            return displayTotal.toLocaleString("es-ES");
+                                        })()}€
                                         <span className="text-gray-500 text-xs ml-1">+ IVA</span>
                                     </span>
                                 </div>

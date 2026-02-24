@@ -140,6 +140,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     proposal={displayProposal}
                     dateRange={dateRange}
                     setDateRange={setDateRange}
+                    showBranding={showBranding}
+                    brandingPrice={brandingPrice}
                 />
             </div>
 
