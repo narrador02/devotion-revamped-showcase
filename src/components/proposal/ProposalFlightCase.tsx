@@ -16,7 +16,7 @@ export default function ProposalFlightCase({ isSelected, onToggle, price }: Prop
     const images = [flightcaseExterior, flightcaseInterior, flightcaseExterior, flightcaseInterior];
 
     return (
-        <div className="py-16 bg-black relative overflow-hidden">
+        <div className="py-6 bg-black relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-4 relative z-10">
                 <Card className={`overflow-hidden transition-all duration-500 border-2 ${isSelected ? 'border-red-600 bg-gray-900' : 'border-gray-800 bg-black'
                     }`}>
@@ -101,7 +101,7 @@ export default function ProposalFlightCase({ isSelected, onToggle, price }: Prop
                                 style={{ width: "max-content" }}
                             >
                                 {[...images, ...images].map((img, i) => (
-                                    <div key={i} className="relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group">
+                                    <div key={i} className="relative w-[26rem] h-[17rem] rounded-lg overflow-hidden shrink-0 border border-gray-800 group">
                                         <img
                                             src={img}
                                             alt="Flight Case"

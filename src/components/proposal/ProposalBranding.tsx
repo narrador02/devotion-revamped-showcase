@@ -23,7 +23,7 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
     const brandingImages = [custom7, custom1, custom2, custom3, custom4, custom5, custom6];
 
     return (
-        <div className="py-16 bg-black relative overflow-hidden">
+        <div className="py-6 bg-black relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-4 relative z-10">
                 <Card className={`overflow-hidden transition-all duration-500 border-2 ${isSelected ? 'border-red-600 bg-gray-900' : 'border-gray-800 bg-black'
                     }`}>
