@@ -12,7 +12,7 @@ import custom5 from "@/assets/custom5.jpeg";
 import custom6 from "@/assets/custom6.jpeg";
 import custom7 from "@/assets/custom7.jpeg";
 
-const images = [custom1, custom2, custom3, custom4, custom5, custom6, custom7];
+const images = [custom7, custom1, custom2, custom3, custom4, custom5, custom6];
 
 const CustomizationSection = () => {
     const { t } = useTranslation();

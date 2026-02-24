@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Check, ShieldCheck } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
 
 import flightcaseExterior from "@/assets/flightcase-exterior.png";
 import flightcaseInterior from "@/assets/flightcase-interior.png";
@@ -14,8 +13,7 @@ interface ProposalFlightCaseProps {
 }
 
 export default function ProposalFlightCase({ isSelected, onToggle, price }: ProposalFlightCaseProps) {
-    const [activeImage, setActiveImage] = useState(0);
-    const images = [flightcaseExterior, flightcaseInterior];
+    const images = [flightcaseExterior, flightcaseInterior, flightcaseExterior, flightcaseInterior];
 
     return (
         <div className="py-16 bg-black relative overflow-hidden">
@@ -90,32 +88,28 @@ export default function ProposalFlightCase({ isSelected, onToggle, price }: Prop
                         </div>
                     </div>
 
-                    {/* Image Gallery */}
-                    <div className="px-8 md:px-12 pb-10">
-                        <div className="relative rounded-xl overflow-hidden border border-gray-800">
-                            <motion.img
-                                key={activeImage}
-                                src={images[activeImage]}
-                                alt="Flight Case"
-                                className="w-full h-[350px] md:h-[450px] object-contain bg-gradient-to-b from-gray-900/80 to-gray-950"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.4 }}
-                            />
+                    {/* Infinite Marquee of Flight Case Images */}
+                    <div className="mt-12 mb-8 relative">
+                        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10" />
+                        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10" />
 
-                            {/* Image selector dots */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                                {images.map((_, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => setActiveImage(i)}
-                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${activeImage === i
-                                            ? 'bg-red-500 scale-125'
-                                            : 'bg-gray-600 hover:bg-gray-400'
-                                            }`}
-                                    />
+                        <div className="flex overflow-hidden">
+                            <motion.div
+                                className="flex gap-4 px-4"
+                                animate={{ x: ["0%", "-50%"] }}
+                                transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+                                style={{ width: "max-content" }}
+                            >
+                                {[...images, ...images].map((img, i) => (
+                                    <div key={i} className="relative w-80 h-52 rounded-lg overflow-hidden shrink-0 border border-gray-800 group">
+                                        <img
+                                            src={img}
+                                            alt="Flight Case"
+                                            className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
+                                        />
+                                    </div>
                                 ))}
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </Card>

@@ -25,6 +25,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
     const [showBranding, setShowBranding] = useState(false);
     const [showFlightCase, setShowFlightCase] = useState(false);
+    const [selectedSimulator, setSelectedSimulator] = useState('Slady');
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
     const brandingPrice = 550;
@@ -142,7 +143,15 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                             brandingPrice={brandingPrice}
                         />
                     ) : (
-                        <PurchaseProposalTemplate proposal={proposal} />
+                        <PurchaseProposalTemplate
+                            proposal={proposal}
+                            selectedSimulator={selectedSimulator}
+                            onSelectSimulator={setSelectedSimulator}
+                            showBranding={showBranding}
+                            brandingPrice={brandingPrice}
+                            showFlightCase={showFlightCase}
+                            flightCasePrice={flightCasePrice}
+                        />
                     )}
                 </motion.div>
 
@@ -155,6 +164,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     brandingPrice={brandingPrice}
                     showFlightCase={isPurchase ? showFlightCase : false}
                     flightCasePrice={flightCasePrice}
+                    selectedSimulator={isPurchase ? selectedSimulator : undefined}
                 />
             </div>
 

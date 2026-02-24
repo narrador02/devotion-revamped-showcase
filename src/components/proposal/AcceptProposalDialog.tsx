@@ -49,6 +49,7 @@ interface AcceptProposalDialogProps {
     brandingPrice?: number;
     showFlightCase?: boolean;
     flightCasePrice?: number;
+    selectedSimulator?: string;
 }
 
 // Build line items from proposal for Square checkout
@@ -136,13 +137,17 @@ export default function AcceptProposalDialog({
     showBranding,
     brandingPrice = 0,
     showFlightCase,
-    flightCasePrice = 0
+    flightCasePrice = 0,
+    selectedSimulator
 }: AcceptProposalDialogProps) {
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [paymentError, setPaymentError] = useState<string | null>(null);
     const [step, setStep] = useState<"form" | "redirecting">("form");
+
+    // Only use Square for rental proposals with requireDownPayment
+    const useSquarePayment = !!(proposal.rentalDetails?.requireDownPayment);
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -159,16 +164,21 @@ export default function AcceptProposalDialog({
         setPaymentError(null);
 
         try {
-            // Step 1: Save contact info via existing accept endpoint
+            // Step 1: Save contact info via Formspree
             const acceptPayload = {
                 proposalId,
                 clientName,
                 ...values,
                 proposalType,
+                selectedSimulator: proposalType === 'purchase' ? selectedSimulator : undefined,
                 selectedDates: selectedDates ? {
                     start: format(selectedDates.start, "yyyy-MM-dd"),
                     end: format(selectedDates.end, "yyyy-MM-dd"),
                 } : undefined,
+                addOns: [
+                    ...(showBranding ? ['Branding Personalizado'] : []),
+                    ...(showFlightCase ? ['Flight Case'] : []),
+                ].join(', ') || 'Ninguno',
             };
 
             const acceptResponse = await fetch("/api/proposals/accept", {
@@ -179,70 +189,62 @@ export default function AcceptProposalDialog({
 
             if (!acceptResponse.ok) throw new Error("Failed to submit contact info");
 
-            // Step 2: Create Square payment link
-            setStep("redirecting");
+            // Step 2: Only use Square for rental down payments
+            if (useSquarePayment) {
+                setStep("redirecting");
 
-            const isDownPayment = !!(proposal.rentalDetails?.requireDownPayment);
-            const downPaymentPercentage = proposal.rentalDetails?.downPaymentPercentage ?? 30;
+                const downPaymentPercentage = proposal.rentalDetails?.downPaymentPercentage ?? 30;
 
-            const lineItems = buildLineItems(proposal);
-            const baseTotal = getProposalTotal(proposal);
-            const addOnsTotal = (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
-            const effectiveTotal = baseTotal + addOnsTotal;
+                const lineItems = buildLineItems(proposal);
+                const baseTotal = getProposalTotal(proposal);
+                const addOnsTotal = (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
+                const effectiveTotal = baseTotal + addOnsTotal;
 
-            // Add branding line item if selected
-            if (showBranding && brandingPrice > 0) {
-                lineItems.push({
-                    name: 'Branding Personalizado',
-                    quantity: 1,
-                    unitPrice: brandingPrice,
+                if (showBranding && brandingPrice > 0) {
+                    lineItems.push({ name: 'Branding Personalizado', quantity: 1, unitPrice: brandingPrice });
+                }
+                if (showFlightCase && flightCasePrice > 0) {
+                    lineItems.push({ name: 'Flight Case', quantity: 1, unitPrice: flightCasePrice });
+                }
+
+                const lang = typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es';
+
+                const paymentResponse = await fetch("/api/square/create-payment-link", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        proposalId,
+                        clientName,
+                        proposalType,
+                        total: effectiveTotal,
+                        lineItems,
+                        isDownPayment: true,
+                        downPaymentPercentage,
+                        lang,
+                        contact: {
+                            name: values.fullName,
+                            email: values.email,
+                            phone: values.phone,
+                        },
+                        redirectBase: window.location.origin,
+                    }),
                 });
-            }
 
-            // Add flight case line item if selected
-            if (showFlightCase && flightCasePrice > 0) {
-                lineItems.push({
-                    name: 'Flight Case',
-                    quantity: 1,
-                    unitPrice: flightCasePrice,
-                });
-            }
+                if (!paymentResponse.ok) {
+                    const err = await paymentResponse.json();
+                    throw new Error(err.details || err.error || "Failed to create payment link");
+                }
 
-            const lang = typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es';
+                const { checkoutUrl } = await paymentResponse.json();
 
-            const paymentResponse = await fetch("/api/square/create-payment-link", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    proposalId,
-                    clientName,
-                    proposalType,
-                    total: effectiveTotal,
-                    lineItems,
-                    isDownPayment,
-                    downPaymentPercentage: isDownPayment ? downPaymentPercentage : undefined,
-                    lang,
-                    contact: {
-                        name: values.fullName,
-                        email: values.email,
-                        phone: values.phone,
-                    },
-                    redirectBase: window.location.origin,
-                }),
-            });
-
-            if (!paymentResponse.ok) {
-                const err = await paymentResponse.json();
-                throw new Error(err.details || err.error || "Failed to create payment link");
-            }
-
-            const { checkoutUrl } = await paymentResponse.json();
-
-            if (checkoutUrl) {
-                // Redirect to Square checkout
-                window.location.href = checkoutUrl;
+                if (checkoutUrl) {
+                    window.location.href = checkoutUrl;
+                } else {
+                    throw new Error("No checkout URL received");
+                }
             } else {
-                throw new Error("No checkout URL received");
+                // No Square — just show success
+                setIsSuccess(true);
             }
 
         } catch (error: any) {
@@ -426,27 +428,24 @@ export default function AcceptProposalDialog({
                                 </div>
                             )}
 
-                            {/* Total summary */}
-                            <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
-                                <div className="flex justify-between items-center">
-                                    <span className="text-gray-400 text-sm uppercase tracking-wider">
-                                        {proposal.rentalDetails?.requireDownPayment
-                                            ? `${t("proposal.accept.total", "Total")} (${proposal.rentalDetails.downPaymentPercentage || 30}%)`
-                                            : t("proposal.accept.total", "Total")
-                                        }
-                                    </span>
-                                    <span className="text-white text-xl font-bold">
-                                        {(() => {
-                                            const baseTotal = getProposalTotal(proposal) + (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
-                                            const displayTotal = proposal.rentalDetails?.requireDownPayment
-                                                ? Math.round(baseTotal * ((proposal.rentalDetails.downPaymentPercentage || 30) / 100))
-                                                : baseTotal;
-                                            return displayTotal.toLocaleString("es-ES");
-                                        })()}€
-                                        <span className="text-gray-500 text-xs ml-1">+ IVA</span>
-                                    </span>
+                            {/* Total summary — only show for Square down payment flows */}
+                            {useSquarePayment && (
+                                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-gray-400 text-sm uppercase tracking-wider">
+                                            {`${t("proposal.accept.total", "Total")} (${proposal.rentalDetails?.downPaymentPercentage || 30}%)`}
+                                        </span>
+                                        <span className="text-white text-xl font-bold">
+                                            {(() => {
+                                                const baseTotal = getProposalTotal(proposal) + (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
+                                                const displayTotal = Math.round(baseTotal * ((proposal.rentalDetails?.downPaymentPercentage || 30) / 100));
+                                                return displayTotal.toLocaleString("es-ES");
+                                            })()}€
+                                            <span className="text-gray-500 text-xs ml-1">+ IVA</span>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             <Button
                                 type="submit"
@@ -458,18 +457,25 @@ export default function AcceptProposalDialog({
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                         {t("common.sending", "Sending...")}
                                     </>
-                                ) : (
+                                ) : useSquarePayment ? (
                                     <>
                                         <CreditCard className="mr-2 h-4 w-4" />
                                         {t("proposal.accept.payNow", "Proceed to Payment")}
                                     </>
+                                ) : (
+                                    <>
+                                        <Check className="mr-2 h-4 w-4" />
+                                        {t("proposal.accept.confirm", "Confirmar Propuesta")}
+                                    </>
                                 )}
                             </Button>
 
-                            <p className="text-center text-xs text-gray-600 flex items-center justify-center gap-1">
-                                <ExternalLink className="w-3 h-3" />
-                                {t("proposal.accept.securePayment", "Secure payment powered by Square")}
-                            </p>
+                            {useSquarePayment && (
+                                <p className="text-center text-xs text-gray-600 flex items-center justify-center gap-1">
+                                    <ExternalLink className="w-3 h-3" />
+                                    {t("proposal.accept.securePayment", "Secure payment powered by Square")}
+                                </p>
+                            )}
                         </form>
                     </Form>
                 )}

@@ -20,7 +20,7 @@ interface ProposalBrandingProps {
 
 export default function ProposalBranding({ isSelected, onToggle, price }: ProposalBrandingProps) {
     const { t } = useTranslation();
-    const brandingImages = [custom1, custom2, custom3, custom4, custom5, custom6, custom7];
+    const brandingImages = [custom7, custom1, custom2, custom3, custom4, custom5, custom6];
 
     return (
         <div className="py-16 bg-black relative overflow-hidden">
