@@ -831,7 +831,7 @@
     "expiredTitle": "Enlace Caducado",
     "expiredMessage": "Este enlace de propuesta ha expirado o no es válido. Por favor, contacta con nosotros para más información.",
     "hero": {
-      "preparedFor": "Propuesta preparada exclusivamente para",
+      "preparedFor": "Propuesta exclusiva para",
       "subtitle": "Descubre la experiencia de simulación definitiva para tu evento."
     },
     "priceUpdated": "Precio actualizado según la duración seleccionada",
