@@ -35,7 +35,7 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="absolute right-[8%] md:right-[11%] top-[45%] md:top-[46%] -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-[110px] md:w-[160px] lg:w-[200px] aspect-square"
+                className="absolute right-[10%] md:right-[14%] top-[48%] md:top-[51%] -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-[100px] md:w-[160px] lg:w-[190px] aspect-square"
             >
                 <img
                     src={clientLogoUrl}
