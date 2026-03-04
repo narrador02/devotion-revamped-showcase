@@ -95,7 +95,7 @@ export default function AdminProposals() {
                 id,
                 clientName,
                 createdAt: new Date().toISOString(),
-                expiresAt: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString(),
+                expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
                 isExpired: false,
             },
             ...prev,

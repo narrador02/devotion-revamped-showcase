@@ -877,7 +877,8 @@
     },
     "details": {
       "title": "Tu Propuesta Personalizada"
-    }
+    },
+    "expiresOn": "Esta propuesta caducará el {{date}}"
   },
   "paymentSuccess": {
     "title": "¡Pago Recibido!",

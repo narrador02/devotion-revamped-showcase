@@ -411,7 +411,16 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
             </CardHeader>
             <CardContent>
                 <FormProvider {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-6"
+                        onKeyDown={(e) => {
+                            // Prevent form submission on Enter, unless it's a textarea
+                            if (e.key === 'Enter' && (e.target as HTMLElement).tagName !== 'TEXTAREA') {
+                                e.preventDefault();
+                            }
+                        }}
+                    >
 
                         {/* Proposal Type Toggle */}
                         <FormField

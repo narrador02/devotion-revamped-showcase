@@ -159,9 +159,20 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
                     alt="DevotionSim"
                     className="h-10 mx-auto brightness-0 invert opacity-80 hover:opacity-100 transition-all duration-300"
                 />
-                <p className="text-sm text-gray-500">
-                    © {new Date().getFullYear()} DevotionSim. All rights reserved.
-                </p>
+                <div className="space-y-1">
+                    <p className="text-sm text-gray-400 font-medium">
+                        {t("proposal.expiresOn", {
+                            date: new Intl.DateTimeFormat(i18n.language, {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric'
+                            }).format(new Date(proposal.expiresAt))
+                        })}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                        © {new Date().getFullYear()} DevotionSim. All rights reserved.
+                    </p>
+                </div>
             </div>
 
             <AcceptProposalDialog

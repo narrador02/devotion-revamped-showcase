@@ -61,7 +61,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         // 3. Generate ID using native crypto (no external deps)
         const id = crypto.randomUUID().slice(0, 11); // Shorten UUID for URL friendliness
         const now = new Date();
-        const expiresAt = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000); // 15 days
+        const expiresAt = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
 
         const proposal: Proposal = {
             id,
@@ -92,7 +92,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         console.log(`Attempting to set proposal:${id}...`);
         await withTimeout(kv.set(`proposal:${id}`, strProposal, {
-            ex: 15 * 24 * 60 * 60, // 15 days TTL
+            ex: 30 * 24 * 60 * 60, // 30 days TTL
         }), 5000);
 
         // 6. Add to list

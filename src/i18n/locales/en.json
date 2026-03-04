@@ -799,6 +799,7 @@
     },
     "expiredTitle": "Link Expired",
     "expiredMessage": "This proposal link has expired or is invalid. Please contact us for more information.",
+    "expiresOn": "This proposal will expire on {{date}}",
     "acceptOffer": "Accept Proposal",
     "reserveDates": "Pay Deposit ({{percentage}}%)",
     "reserveMessage": "To reserve the dates, a down payment of {{percentage}}% of the final budget is required",
