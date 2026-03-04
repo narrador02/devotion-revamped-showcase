@@ -29,6 +29,7 @@ export interface RentalDetails {
     staff?: StaffDetails;
     subtotal: number;
     total: number;
+    eventReference?: string;
 }
 
 export interface PurchaseDetails {

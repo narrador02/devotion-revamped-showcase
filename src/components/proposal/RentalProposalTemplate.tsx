@@ -145,6 +145,13 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                 </div>
             )}
 
+            {/* Event Reference */}
+            {rentalDetails.eventReference && (
+                <div className="text-gray-500 text-xs text-center border-t border-gray-800 pt-4 mt-8">
+                    <span className="opacity-75">Ref: {rentalDetails.eventReference}</span>
+                </div>
+            )}
+
             {/* Tax disclaimer */}
             <p className="text-center text-xs text-gray-500 pt-4">
                 Impuestos no incluidos

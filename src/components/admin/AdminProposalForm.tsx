@@ -43,6 +43,7 @@ const formSchema = z.object({
     hotelNights: z.number().optional().or(z.nan()),
     requireDownPayment: z.boolean().default(false),
     downPaymentPercentage: z.number().min(0).max(100).default(30),
+    eventReference: z.string().optional().or(z.literal("")),
 
     // Purchase fields
     purchasePriceTimeAttack: z.number().min(1).default(23000),
@@ -138,6 +139,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
             requireDownPayment: false,
             downPaymentPercentage: 30,
             notes: "",
+            eventReference: "",
         },
     });
 
@@ -256,6 +258,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     };
                     subtotal: number;
                     total: number;
+                    eventReference?: string;
                 };
             }
 
@@ -310,7 +313,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                             totalCost: rentalTotals.staffTotalCost
                         } : undefined,
                         subtotal: rentalTotals.simulatorSubtotal,
-                        total: rentalTotals.grandTotal
+                        total: rentalTotals.grandTotal,
+                        eventReference: values.eventReference?.trim() || undefined
                     }
                 };
             } else {

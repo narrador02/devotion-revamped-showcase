@@ -176,6 +176,31 @@ export default function RentalFormFields({
                 )}
             </div>
 
+            {/* Event Reference */}
+            <FormField
+                control={control}
+                name="eventReference"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel className="flex items-center gap-2 text-gray-300">
+                            Referencia del Evento (opcional)
+                        </FormLabel>
+                        <FormControl>
+                            <Input
+                                type="text"
+                                placeholder="Ej: Carrera MotoGP Praga, Evento Privado X..."
+                                {...field}
+                                className="bg-gray-700 border-gray-600 text-white"
+                            />
+                        </FormControl>
+                        <p className="text-xs text-gray-500 mt-1">
+                            Este texto se mostrará al final de la propuesta para ayudar a identificarla.
+                        </p>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+
             <div className="grid gap-6 md:grid-cols-2">
                 {/* Simulators */}
                 <Card className="bg-gray-800/50 border-gray-700">
