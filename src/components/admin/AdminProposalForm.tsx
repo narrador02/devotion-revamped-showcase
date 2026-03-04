@@ -170,6 +170,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
         staffMultiplier: settings.staffMultiplier,
         staffTravel: rentalValues.staffTravel || 0,
         staffHotel: (rentalValues.staffHotel || 0) * (rentalValues.hotelNights || rentalValues.numberOfDays || 1),
+        discountAmount: rentalValues.discountAmount || 0,
     });
 
     const handleFileSelect = async (file: File) => {
