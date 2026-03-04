@@ -33,61 +33,12 @@ async function getGoogleToken(): Promise<string> {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    const calendarId = process.env.GOOGLE_CALENDAR_ID;
-    if (!calendarId) return res.status(500).json({ error: 'Google Calendar not configured' });
-
-    // 1. Get Availability (GET)
+    // TEMPORARILY DISABLED
     if (req.method === 'GET') {
-        try {
-            const token = await getGoogleToken();
-            const timeMin = new Date().toISOString();
-            const futureDate = new Date();
-            futureDate.setMonth(futureDate.getMonth() + 6);
-            const timeMax = futureDate.toISOString();
-
-            const url = new URL(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`);
-            url.searchParams.append('timeMin', timeMin);
-            url.searchParams.append('timeMax', timeMax);
-            url.searchParams.append('singleEvents', 'true');
-            url.searchParams.append('orderBy', 'startTime');
-
-            const response = await fetch(url.toString(), { headers: { 'Authorization': `Bearer ${token}` } });
-            const data = await response.json();
-            const busy = data.items?.map((event: any) => ({
-                start: event.start.dateTime || event.start.date,
-                end: event.end.dateTime || event.end.date
-            })) || [];
-
-            return res.status(200).json({ busy });
-        } catch (error: any) {
-            return res.status(500).json({ error: error.message });
-        }
+        return res.status(200).json({ busy: [] });
     }
-
-    // 2. Create Event (POST)
     if (req.method === 'POST') {
-        try {
-            const { eventName, description, startDate, endDate, location } = req.body;
-            const token = await getGoogleToken();
-            const eventData = {
-                summary: eventName,
-                location: location || '',
-                description: description || '',
-                start: { dateTime: startDate.includes('T') ? startDate : undefined, date: startDate.includes('T') ? undefined : startDate, timeZone: 'Europe/Madrid' },
-                end: { dateTime: endDate.includes('T') ? endDate : undefined, date: endDate.includes('T') ? undefined : endDate, timeZone: 'Europe/Madrid' },
-            };
-
-            const response = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify(eventData)
-            });
-            const result = await response.json();
-            return res.status(200).json({ success: true, eventId: result.id });
-        } catch (error: any) {
-            return res.status(500).json({ error: error.message });
-        }
+        return res.status(200).json({ success: true, message: 'Calendar disabled' });
     }
-
     return res.status(405).json({ error: 'Method not allowed' });
 }

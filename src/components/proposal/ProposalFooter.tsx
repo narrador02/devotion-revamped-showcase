@@ -38,7 +38,8 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
     const downPaymentPercentage = proposal.rentalDetails?.downPaymentPercentage || 30;
     const isReadyToAccept = !isRental || (dateRange?.from && dateRange?.to);
 
-    // Fetch calendar availability
+    // Fetch calendar availability - TEMPORARILY DISABLED
+    /*
     useEffect(() => {
         if (!isRental) return;
 
@@ -59,8 +60,10 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
 
         fetchAvailability();
     }, [isRental]);
+    */
 
-    // Check for overlap whenever dateRange changes
+    // Check for overlap whenever dateRange changes - TEMPORARILY DISABLED
+    /*
     useEffect(() => {
         if (!dateRange?.from || !dateRange?.to) {
             setOverlapError(false);
@@ -77,6 +80,7 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
 
         setOverlapError(hasOverlap);
     }, [dateRange, busyDates]);
+    */
 
     // Show update message when dates change AND duration is different from original
     useEffect(() => {

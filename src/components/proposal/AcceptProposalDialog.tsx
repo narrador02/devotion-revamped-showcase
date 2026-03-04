@@ -187,13 +187,16 @@ export default function AcceptProposalDialog({
                 ].join(', ') || 'Ninguno',
             };
 
-            const acceptResponse = await fetch("/api/proposals/accept", {
+            const acceptResponse = await fetch(`/api/proposals/${proposalId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(acceptPayload),
+                body: JSON.stringify({ customerDetails: values }),
             });
 
-            if (!acceptResponse.ok) throw new Error("Failed to submit contact info");
+            if (!acceptResponse.ok) {
+                const errData = await acceptResponse.json();
+                throw new Error(errData.error || "Failed to submit contact info");
+            }
 
             // Step 2: Only use Square for rental down payments
             if (useSquarePayment) {

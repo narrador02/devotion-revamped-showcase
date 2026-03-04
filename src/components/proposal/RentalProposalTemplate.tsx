@@ -82,7 +82,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                 <div className="flex items-center gap-2 text-gray-400">
                                     <Truck className="w-4 h-4" />
                                     <span>
-                                        {t("proposal.rental.transport", "Transport")} ({rentalDetails.transport.kilometers}km @ {rentalDetails.transport.pricePerKm}€/km)
+                                        {t("proposal.rental.transport", "Transporte")}
                                     </span>
                                 </div>
                                 <span className="text-white font-medium">{rentalDetails.transport.totalCost.toLocaleString()}€</span>
@@ -96,25 +96,13 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                     <div className="flex items-center gap-2">
                                         <Users className="w-4 h-4" />
                                         <span>
-                                            {t("proposal.rental.staff", "Staff")} ({rentalDetails.staff.numberOfStaff} {t("proposal.rental.staffLabel", "staff")} x {rentalDetails.staff.numberOfDays || 1} {t("proposal.rental.daysLabel", "days")})
+                                            {t("proposal.rental.staff", "Staff / Alojamiento")}
                                         </span>
                                     </div>
                                     <span className="text-white font-medium">
-                                        {(rentalDetails.staff.numberOfStaff! * (rentalDetails.staff.numberOfDays || 1) * rentalDetails.staff.pricePerStaffDay).toLocaleString()}€
+                                        {rentalDetails.staff.totalCost.toLocaleString()}€
                                     </span>
                                 </div>
-                                {(rentalDetails.staff.travelExpenses || 0) > 0 && (
-                                    <div className="flex justify-between items-center text-gray-500 pl-6 text-xs">
-                                        <span>{t("proposal.rental.travelExpenses", "Travel Expenses")}</span>
-                                        <span>{rentalDetails.staff.travelExpenses}€</span>
-                                    </div>
-                                )}
-                                {(rentalDetails.staff.hotelExpenses || 0) > 0 && (
-                                    <div className="flex justify-between items-center text-gray-500 pl-6 text-xs">
-                                        <span>{t("proposal.rental.hotelExpenses", "Hotel Expenses")}</span>
-                                        <span>{rentalDetails.staff.hotelExpenses}€</span>
-                                    </div>
-                                )}
                             </div>
                         )}
 
