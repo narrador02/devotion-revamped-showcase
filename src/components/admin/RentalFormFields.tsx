@@ -39,6 +39,8 @@ export default function RentalFormFields({
     const staffHotel = watch("staffHotel");
     const hotelNights = watch("hotelNights");
     const rentalBasePrice = watch("rentalBasePrice");
+    const discountAmount = watch("discountAmount");
+    const discountConcept = watch("discountConcept");
 
     // Update base price when VIP changes (only if user hasn't manually edited)
     useEffect(() => {
@@ -63,6 +65,7 @@ export default function RentalFormFields({
         staffMultiplier,
         staffTravel: parseFloat(staffTravel) || 0,
         staffHotel: (parseFloat(staffHotel) || 0) * (parseFloat(hotelNights) || parseFloat(numberOfDays) || 1),
+        discountAmount: parseFloat(discountAmount) || 0,
     });
 
     return (
@@ -469,6 +472,18 @@ export default function RentalFormFields({
                     <div className="flex justify-between text-sm">
                         <span className="text-gray-400">{t("admin.proposals.rental.staffTotal")}</span>
                         <span className="text-white">{totals.staffTotalCost.toFixed(2)}€</span>
+                    </div>
+                )}
+
+                {parseFloat(discountAmount) > 0 && (
+                    <div className="flex justify-between text-sm bg-green-900/20 px-2 py-1 rounded">
+                        <span className="text-green-400 flex flex-col">
+                            <span>Descuento</span>
+                            {discountConcept && (
+                                <span className="text-[10px] text-green-600 opacity-80">{discountConcept}</span>
+                            )}
+                        </span>
+                        <span className="text-green-400 font-medium">-{parseFloat(discountAmount).toFixed(2)}€</span>
                     </div>
                 )}
 
