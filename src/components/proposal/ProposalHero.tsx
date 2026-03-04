@@ -30,35 +30,42 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 />
             </div>
 
-            {/* Content */}
-            <div className="relative z-20 text-center space-y-8 px-4 max-w-4xl mx-auto mt-20">
+            {/* Client Logo as Vinyl on Simulator */}
+            <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="absolute right-[5%] md:right-[12%] top-[35%] z-20 pointer-events-none"
+            >
+                <img
+                    src={clientLogoUrl}
+                    alt={clientName}
+                    className="w-[180px] md:w-[280px] lg:w-[320px] h-auto object-contain opacity-90 drop-shadow-2xl filter brightness-110 contrast-110"
+                    style={{
+                        transform: "perspective(1000px) rotateY(-15deg) rotateX(5deg) skewY(-2deg)",
+                    }}
+                />
+            </motion.div>
+
+            {/* Content Bottom Platform */}
+            <div className="absolute bottom-[15%] md:bottom-[18%] left-1/2 -translate-x-1/2 z-20 text-center w-full px-4">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="space-y-6"
+                    className="max-w-4xl mx-auto"
                 >
-                    <div className="uppercase tracking-[0.2em] text-white/90 text-sm md:text-base font-medium drop-shadow-md">
+                    <div className="uppercase tracking-[0.3em] text-white/70 text-[10px] md:text-sm font-light mb-2">
                         {t("proposal.hero.preparedFor", "Prepared exclusively for")}
                     </div>
 
-                    <div className="flex justify-center">
-                        <div className="inline-flex bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-9 border border-white/20 shadow-2xl transition-all duration-300">
-                            <img
-                                src={clientLogoUrl}
-                                alt={clientName}
-                                className="max-w-[240px] md:max-w-[320px] max-h-[120px] md:max-h-[160px] w-auto h-auto object-contain drop-shadow-xl"
-                            />
-                        </div>
-                    </div>
-
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-widest uppercase mb-6 drop-shadow-2xl">
                         {clientName}
                     </h1>
 
-                    <div className="h-1 w-24 bg-red-600 mx-auto rounded-full" />
+                    <div className="h-[2px] w-16 bg-red-600 mx-auto rounded-full mb-8" />
 
-                    <p className="text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed">
+                    <p className="hidden md:block text-sm md:text-base text-gray-400 font-light tracking-wide max-w-xl mx-auto uppercase">
                         {t("proposal.hero.subtitle", "Discover the ultimate simulation experience for your event.")}
                     </p>
                 </motion.div>
