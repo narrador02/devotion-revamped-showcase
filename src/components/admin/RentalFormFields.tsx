@@ -45,6 +45,13 @@ export default function RentalFormFields({
         setValue("rentalBasePrice", isVIP ? simulatorPriceVIP : simulatorPrice);
     }, [isVIP, setValue, simulatorPrice, simulatorPriceVIP]);
 
+    // Sync hotelNights to numberOfDays
+    useEffect(() => {
+        if (numberOfDays) {
+            setValue("hotelNights", numberOfDays);
+        }
+    }, [numberOfDays, setValue]);
+
     // Calculate totals using the (potentially overridden) rentalBasePrice
     const totals = useRentalCalculator({
         basePrice: parseFloat(rentalBasePrice) || (isVIP ? simulatorPriceVIP : simulatorPrice),

@@ -23,6 +23,11 @@ interface AdminSettings {
     purchasePriceSlady: number;
     purchasePriceTopGun: number;
     downPaymentPercentage: number;
+    brandingPricePlatform: number;
+    brandingPriceSimulator: number;
+    brandingPricePack: number;
+    flightCasePrice: number;
+    pianolaPrice: number;
 }
 
 interface ProposalSettingsDialogProps {
@@ -43,6 +48,11 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
         purchasePriceSlady: 26000,
         purchasePriceTopGun: 30000,
         downPaymentPercentage: 30,
+        brandingPricePlatform: 290,
+        brandingPriceSimulator: 360,
+        brandingPricePack: 600,
+        flightCasePrice: 840,
+        pianolaPrice: 480,
     });
 
     // Load settings on open
@@ -211,6 +221,70 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                                 type="number"
                                 value={settings.purchasePriceTopGun}
                                 onChange={(e) => setSettings({ ...settings, purchasePriceTopGun: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+
+                        <div className="border-t border-gray-700 my-2" />
+                        <p className="text-xs text-gray-500 uppercase tracking-wider font-medium">Add-Ons</p>
+
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="brandingPlatform" className="text-right col-span-2">
+                                Branding Plataforma (€)
+                            </Label>
+                            <Input
+                                id="brandingPlatform"
+                                type="number"
+                                value={settings.brandingPricePlatform}
+                                onChange={(e) => setSettings({ ...settings, brandingPricePlatform: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="brandingSimulator" className="text-right col-span-2">
+                                Branding Simulador (€)
+                            </Label>
+                            <Input
+                                id="brandingSimulator"
+                                type="number"
+                                value={settings.brandingPriceSimulator}
+                                onChange={(e) => setSettings({ ...settings, brandingPriceSimulator: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="brandingPack" className="text-right col-span-2">
+                                Branding Pack Completo (€)
+                            </Label>
+                            <Input
+                                id="brandingPack"
+                                type="number"
+                                value={settings.brandingPricePack}
+                                onChange={(e) => setSettings({ ...settings, brandingPricePack: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="flightCase" className="text-right col-span-2">
+                                Flight Case (€)
+                            </Label>
+                            <Input
+                                id="flightCase"
+                                type="number"
+                                value={settings.flightCasePrice}
+                                onChange={(e) => setSettings({ ...settings, flightCasePrice: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="pianola" className="text-right col-span-2">
+                                Pianola (€)
+                            </Label>
+                            <Input
+                                id="pianola"
+                                type="number"
+                                value={settings.pianolaPrice}
+                                onChange={(e) => setSettings({ ...settings, pianolaPrice: parseFloat(e.target.value) })}
                                 className="col-span-2 bg-gray-800 border-gray-700 text-white"
                             />
                         </div>

@@ -800,7 +800,7 @@
       "terms": "Condiciones de Pago"
     },
     "features": {
-      "setup": "Instalación y montaje completo",
+      "setup": "Instalación y puesta a punto",
       "support": "Soporte técnico in-situ",
       "branding": "Branding digital incluido",
       "insurance": "Seguro de responsabilidad civil"
@@ -853,7 +853,7 @@
     "branding": {
       "optional": "Add-on Opcional",
       "title": "Integración de Marca Personalizada",
-      "description": "Maximiza el impacto de tu marca. Vinilamos el chasis del simulador con tu identidad corporativa e integramos tus logotipos directamente en el software de simulación.",
+      "description": "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.",
       "vinyl": "Vinilado Completo del Chasis",
       "billboards": "Vallas Publicitarias en el Juego",
       "ui": "Interfaz de Usuario con Branding",
@@ -864,6 +864,16 @@
         "title": "Ejemplos de Personalización",
         "subtitle": "Inspírate con algunos de nuestros trabajos recientes"
       }
+    },
+    "pianolas": {
+      "optional": "Add-on Opcional",
+      "title": "Pianolas",
+      "description": "Para los más valientes. Para aquellos dispuestos a llegar al límite en cada curva. Este add-on exclusivo eleva la simulación al máximo nivel, permitiéndote tocar rodilla e incluso codo, acercándote más que nunca a la sensación de un piloto profesional de MotoGP.",
+      "feature1": "Simulación extrema de paso por curva",
+      "feature2": "Permite tocar rodilla y codo",
+      "feature3": "Diseñado para pilotos experimentados",
+      "feature4": "La experiencia definitiva de MotoGP",
+      "applied": "Aplicado al Total"
     },
     "details": {
       "title": "Tu Propuesta Personalizada"

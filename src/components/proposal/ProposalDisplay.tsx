@@ -7,6 +7,7 @@ import ProposalExperience from "./ProposalExperience";
 import ProposalVR from "./ProposalVR";
 import ProposalBranding, { BrandingOption, BRANDING_PRICES, BRANDING_LABELS } from "./ProposalBranding";
 import ProposalFlightCase from "./ProposalFlightCase";
+import ProposalPianolas from "./ProposalPianolas";
 import RentalProposalTemplate from "./RentalProposalTemplate";
 import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
 import ProposalFooter from "./ProposalFooter";
@@ -25,13 +26,17 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
     const [brandingOption, setBrandingOption] = useState<BrandingOption>('none');
     const [showFlightCase, setShowFlightCase] = useState(false);
+    const [showPianola, setShowPianola] = useState(false);
     const [selectedSimulator, setSelectedSimulator] = useState('Slady');
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
-    const brandingPrice = BRANDING_PRICES[brandingOption];
+
+    const brandingPrices = proposal.brandingPrices || BRANDING_PRICES;
+    const brandingPrice = brandingPrices[brandingOption];
     const brandingLabel = BRANDING_LABELS[brandingOption];
     const showBranding = brandingOption !== 'none';
-    const flightCasePrice = 840;
+    const flightCasePrice = proposal.flightCasePrice ?? 840;
+    const pianolaPrice = proposal.pianolaPrice ?? 480;
     const isPurchase = proposal.proposalType === 'purchase';
 
     // Detect payment success from URL params
@@ -107,6 +112,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                 <ProposalBranding
                     selected={brandingOption}
                     onSelect={setBrandingOption}
+                    prices={brandingPrices}
                 />
 
                 {/* 5. Flight Case Add-on (Purchase only) */}
@@ -118,7 +124,16 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     />
                 )}
 
-                {/* 5. Detailed Proposal & Pricing */}
+                {/* 6. Pianolas Add-on (Purchase only) */}
+                {isPurchase && (
+                    <ProposalPianolas
+                        isSelected={showPianola}
+                        onToggle={setShowPianola}
+                        price={pianolaPrice}
+                    />
+                )}
+
+                {/* 7. Detailed Proposal & Pricing */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -154,6 +169,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                             brandingLabel={brandingLabel}
                             showFlightCase={showFlightCase}
                             flightCasePrice={flightCasePrice}
+                            showPianola={showPianola}
+                            pianolaPrice={pianolaPrice}
                         />
                     )}
                 </motion.div>
@@ -168,6 +185,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     brandingLabel={brandingLabel}
                     showFlightCase={isPurchase ? showFlightCase : false}
                     flightCasePrice={flightCasePrice}
+                    showPianola={isPurchase ? showPianola : false}
+                    pianolaPrice={pianolaPrice}
                     selectedSimulator={isPurchase ? selectedSimulator : undefined}
                 />
             </div>

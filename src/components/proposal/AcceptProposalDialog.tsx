@@ -50,6 +50,8 @@ interface AcceptProposalDialogProps {
     brandingLabel?: string;
     showFlightCase?: boolean;
     flightCasePrice?: number;
+    showPianola?: boolean;
+    pianolaPrice?: number;
     selectedSimulator?: string;
 }
 
@@ -140,6 +142,8 @@ export default function AcceptProposalDialog({
     brandingLabel = "Branding Personalizado",
     showFlightCase,
     flightCasePrice = 0,
+    showPianola,
+    pianolaPrice = 0,
     selectedSimulator
 }: AcceptProposalDialogProps) {
     const { t } = useTranslation();
@@ -199,7 +203,9 @@ export default function AcceptProposalDialog({
 
                 const lineItems = buildLineItems(proposal);
                 const baseTotal = getProposalTotal(proposal);
-                const addOnsTotal = (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
+                const addOnsTotal = (showBranding ? brandingPrice : 0) +
+                    (showFlightCase ? flightCasePrice : 0) +
+                    (showPianola ? pianolaPrice : 0);
                 const effectiveTotal = baseTotal + addOnsTotal;
 
                 if (showBranding && brandingPrice > 0) {
@@ -207,6 +213,9 @@ export default function AcceptProposalDialog({
                 }
                 if (showFlightCase && flightCasePrice > 0) {
                     lineItems.push({ name: 'Flight Case', quantity: 1, unitPrice: flightCasePrice });
+                }
+                if (showPianola && pianolaPrice > 0) {
+                    lineItems.push({ name: 'Pianolas', quantity: 1, unitPrice: pianolaPrice });
                 }
 
                 const lang = typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es';
@@ -384,11 +393,34 @@ export default function AcceptProposalDialog({
                                                 {t("proposal.accept.phone", "Phone")}
                                             </FormLabel>
                                             <FormControl>
-                                                <Input
-                                                    {...field}
-                                                    type="tel"
-                                                    className="bg-gray-800 border-gray-700 focus:border-red-500/50"
-                                                />
+                                                <div className="space-y-4">
+                                                    <Input
+                                                        {...field}
+                                                        type="tel"
+                                                        className="bg-gray-800 border-gray-700 focus:border-red-500/50"
+                                                    />
+                                                    {/* Render add-ons text based on what's active */}
+                                                    {(() => {
+                                                        const activeAddons = [
+                                                            ...(showBranding ? [brandingLabel] : []),
+                                                            ...(showFlightCase ? ['Flight Case'] : []),
+                                                            ...(showPianola ? ['Pianolas'] : []),
+                                                        ];
+
+                                                        if (activeAddons.length === 0) return null;
+
+                                                        const formatter = new Intl.ListFormat(
+                                                            typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es',
+                                                            { style: 'long', type: 'conjunction' }
+                                                        );
+
+                                                        return (
+                                                            <span className="text-gray-400 capitalize block mt-1">
+                                                                Add-ons: {formatter.format(activeAddons)}
+                                                            </span>
+                                                        );
+                                                    })()}
+                                                </div>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -439,9 +471,13 @@ export default function AcceptProposalDialog({
                                         </span>
                                         <span className="text-white text-xl font-bold">
                                             {(() => {
-                                                const baseTotal = getProposalTotal(proposal) + (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
-                                                const displayTotal = Math.round(baseTotal * ((proposal.rentalDetails?.downPaymentPercentage || 30) / 100));
-                                                return displayTotal.toLocaleString("es-ES");
+                                                const baseTotal = getProposalTotal(proposal) +
+                                                    (showBranding ? brandingPrice : 0) +
+                                                    (showFlightCase ? flightCasePrice : 0) +
+                                                    (showPianola ? pianolaPrice : 0);
+                                                const dpPercentage = proposal.rentalDetails?.downPaymentPercentage ?? 30;
+                                                const downPaymentAmount = Math.round(baseTotal * (dpPercentage / 100));
+                                                return downPaymentAmount.toLocaleString("es-ES");
                                             })()}€
                                             <span className="text-gray-500 text-xs ml-1">+ IVA</span>
                                         </span>
@@ -482,6 +518,6 @@ export default function AcceptProposalDialog({
                     </Form>
                 )}
             </DialogContent>
-        </Dialog>
+        </Dialog >
     );
 }

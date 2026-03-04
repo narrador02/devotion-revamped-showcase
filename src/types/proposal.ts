@@ -51,6 +51,10 @@ export interface Proposal {
     rentalDetails?: RentalDetails;
     purchaseDetails?: PurchaseDetails;
 
+    brandingPrices?: { none: number; platform: number; simulator: number; full: number; };
+    flightCasePrice?: number;
+    pianolaPrice?: number;
+
     notes?: string;
     createdAt: string;
     expiresAt: string;
@@ -74,4 +78,9 @@ export interface AdminSettings {
     purchasePriceSlady: number; // Default: 26000
     purchasePriceTopGun: number; // Default: 30000
     downPaymentPercentage: number; // Default: 30
+    brandingPricePlatform: number; // Default: 290
+    brandingPriceSimulator: number; // Default: 360
+    brandingPricePack: number; // Default: 600
+    flightCasePrice: number; // Default: 840
+    pianolaPrice: number; // Default: 480
 }

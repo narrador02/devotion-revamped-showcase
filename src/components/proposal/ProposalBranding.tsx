@@ -36,39 +36,42 @@ interface BrandingTier {
     features: string[];
 }
 
-const TIERS: BrandingTier[] = [
-    {
-        key: "platform",
-        title: "Branding Plataforma",
-        price: 290,
-        description: "Vinilamos la plataforma del simulador con tu identidad corporativa.",
-        features: ["Vinilo en plataforma", "Diseño personalizado", "Acabado profesional"],
-    },
-    {
-        key: "simulator",
-        title: "Branding Simulador",
-        price: 360,
-        description: "Vinilamos el carenado completo del simulador con tu marca.",
-        subtext: "Vinilo, no pintado",
-        features: ["Vinilo en carenado", "Diseño personalizado", "Acabado profesional"],
-    },
-    {
-        key: "full",
-        title: "Pack Branding Completo",
-        price: 600,
-        description: "Vinilamos tanto el carenado como la plataforma. Máximo impacto de marca.",
-        features: ["Vinilo en carenado", "Vinilo en plataforma", "Diseño personalizado", "Acabado profesional"],
-    },
-];
-
 interface ProposalBrandingProps {
     selected: BrandingOption;
     onSelect: (option: BrandingOption) => void;
+    prices?: Record<BrandingOption, number>;
 }
 
-export default function ProposalBranding({ selected, onSelect }: ProposalBrandingProps) {
+export default function ProposalBranding({ selected, onSelect, prices = BRANDING_PRICES }: ProposalBrandingProps) {
     const { t } = useTranslation();
     const brandingImages = [custom7, custom1, custom2, custom3, custom4, custom5, custom6];
+
+    const currentPrices = prices || BRANDING_PRICES;
+
+    const TIERS: BrandingTier[] = [
+        {
+            key: "platform",
+            title: "Branding Plataforma",
+            price: currentPrices["platform"],
+            description: "Vinilamos la plataforma del simulador con tu identidad corporativa.",
+            features: ["Vinilo en plataforma", "Diseño personalizado", "Acabado profesional"],
+        },
+        {
+            key: "simulator",
+            title: "Branding Simulador",
+            price: currentPrices["simulator"],
+            description: "Vinilamos el carenado completo del simulador con tu marca.",
+            subtext: "Vinilo, no pintado",
+            features: ["Vinilo en carenado", "Diseño personalizado", "Acabado profesional"],
+        },
+        {
+            key: "full",
+            title: "Pack Branding Completo",
+            price: currentPrices["full"],
+            description: "Vinilamos tanto el carenado como la plataforma. Máximo impacto de marca.",
+            features: ["Vinilo en carenado", "Vinilo en plataforma", "Diseño personalizado", "Acabado profesional"],
+        },
+    ];
 
     const handleToggle = (key: BrandingOption) => {
         // Toggle off if already selected
@@ -105,8 +108,8 @@ export default function ProposalBranding({ selected, onSelect }: ProposalBrandin
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => handleToggle(tier.key)}
                                         className={`relative cursor-pointer rounded-xl border-2 p-6 transition-all duration-300 ${isSelected
-                                                ? "border-red-600 bg-gray-900"
-                                                : "border-gray-800 bg-gray-950 hover:border-gray-600"
+                                            ? "border-red-600 bg-gray-900"
+                                            : "border-gray-800 bg-gray-950 hover:border-gray-600"
                                             }`}
                                     >
                                         {/* Selected check */}

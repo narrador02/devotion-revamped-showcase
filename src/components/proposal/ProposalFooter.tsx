@@ -19,10 +19,12 @@ interface ProposalFooterProps {
     brandingLabel?: string;
     showFlightCase?: boolean;
     flightCasePrice?: number;
+    showPianola?: boolean;
+    pianolaPrice?: number;
     selectedSimulator?: string;
 }
 
-export default function ProposalFooter({ proposal, dateRange, setDateRange, showBranding, brandingPrice, brandingLabel, showFlightCase, flightCasePrice, selectedSimulator }: ProposalFooterProps) {
+export default function ProposalFooter({ proposal, dateRange, setDateRange, showBranding, brandingPrice, brandingLabel, showFlightCase, flightCasePrice, showPianola, pianolaPrice, selectedSimulator }: ProposalFooterProps) {
     const { t, i18n } = useTranslation();
     // Local state for dialog only, dateRange is now lifted
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -174,6 +176,8 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
                 brandingLabel={brandingLabel}
                 showFlightCase={showFlightCase}
                 flightCasePrice={flightCasePrice}
+                showPianola={showPianola}
+                pianolaPrice={pianolaPrice}
                 selectedSimulator={selectedSimulator}
                 selectedDates={
                     dateRange?.from && dateRange?.to

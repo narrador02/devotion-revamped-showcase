@@ -14,6 +14,8 @@ interface PurchaseProposalTemplateProps {
     brandingLabel?: string;
     showFlightCase?: boolean;
     flightCasePrice?: number;
+    showPianola?: boolean;
+    pianolaPrice?: number;
 }
 
 const iconMap = {
@@ -31,6 +33,8 @@ export default function PurchaseProposalTemplate({
     brandingLabel = "Branding Personalizado",
     showFlightCase,
     flightCasePrice = 0,
+    showPianola,
+    pianolaPrice = 0,
 }: PurchaseProposalTemplateProps) {
     const { t } = useTranslation();
     const { purchaseDetails } = proposal;
@@ -58,7 +62,9 @@ export default function PurchaseProposalTemplate({
 
     // Calculate total for the selected simulator
     const selectedPrice = priceMap[selectedSimulator] ?? packages.slady;
-    const addOnsTotal = (showBranding ? brandingPrice : 0) + (showFlightCase ? flightCasePrice : 0);
+    const addOnsTotal = (showBranding ? brandingPrice : 0) +
+        (showFlightCase ? flightCasePrice : 0) +
+        (showPianola ? pianolaPrice : 0);
     const subtotal = selectedPrice + addOnsTotal;
     const iva = Math.round(subtotal * 0.21);
     const totalWithIva = subtotal + iva;
@@ -241,6 +247,12 @@ export default function PurchaseProposalTemplate({
                                 <div className="flex justify-between items-center text-gray-400 text-sm">
                                     <span>Flight Case</span>
                                     <span className="font-mono">+{flightCasePrice.toLocaleString("es-ES")}€</span>
+                                </div>
+                            )}
+                            {showPianola && pianolaPrice > 0 && (
+                                <div className="flex justify-between items-center text-gray-400 text-sm">
+                                    <span>Pianolas</span>
+                                    <span className="font-mono">+{pianolaPrice.toLocaleString("es-ES")}€</span>
                                 </div>
                             )}
 

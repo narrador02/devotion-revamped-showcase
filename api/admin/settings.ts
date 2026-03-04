@@ -10,6 +10,11 @@ interface AdminSettings {
     purchasePriceSlady: number;
     purchasePriceTopGun: number;
     downPaymentPercentage: number;
+    brandingPricePlatform: number;
+    brandingPriceSimulator: number;
+    brandingPricePack: number;
+    flightCasePrice: number;
+    pianolaPrice: number;
 }
 
 const DEFAULT_SETTINGS: AdminSettings = {
@@ -21,6 +26,11 @@ const DEFAULT_SETTINGS: AdminSettings = {
     purchasePriceSlady: 26000,
     purchasePriceTopGun: 30000,
     downPaymentPercentage: 30, // Default 30% reservation down payment
+    brandingPricePlatform: 290,
+    brandingPriceSimulator: 360,
+    brandingPricePack: 600,
+    flightCasePrice: 840,
+    pianolaPrice: 480,
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -81,6 +91,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 purchasePriceSlady: typeof body.purchasePriceSlady === 'number' ? body.purchasePriceSlady : existing.purchasePriceSlady,
                 purchasePriceTopGun: typeof body.purchasePriceTopGun === 'number' ? body.purchasePriceTopGun : existing.purchasePriceTopGun,
                 downPaymentPercentage: typeof body.downPaymentPercentage === 'number' ? body.downPaymentPercentage : existing.downPaymentPercentage,
+                brandingPricePlatform: typeof body.brandingPricePlatform === 'number' ? body.brandingPricePlatform : existing.brandingPricePlatform,
+                brandingPriceSimulator: typeof body.brandingPriceSimulator === 'number' ? body.brandingPriceSimulator : existing.brandingPriceSimulator,
+                brandingPricePack: typeof body.brandingPricePack === 'number' ? body.brandingPricePack : existing.brandingPricePack,
+                flightCasePrice: typeof body.flightCasePrice === 'number' ? body.flightCasePrice : existing.flightCasePrice,
+                pianolaPrice: typeof body.pianolaPrice === 'number' ? body.pianolaPrice : existing.pianolaPrice,
             };
 
             await kv.set('admin:settings', JSON.stringify(settings));

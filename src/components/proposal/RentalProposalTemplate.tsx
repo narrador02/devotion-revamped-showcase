@@ -19,10 +19,8 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
     const finalTotal = rentalDetails.total + (showBranding ? brandingPrice : 0);
 
     const features = [
-        t("proposal.features.setup", "Full setup & installation"),
+        t("proposal.features.setup", "Instalación y puesta a punto"),
         t("proposal.features.support", "Technical support"),
-        t("proposal.features.branding", "Digital branding"),
-        t("proposal.features.insurance", "Liability insurance"),
     ];
 
     return (

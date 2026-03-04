@@ -124,6 +124,15 @@
       "specs": "Specs",
       "options": "Options"
     },
+    "features": {
+      "setup": "Full setup & fine-tuning",
+      "support": "On-site technical support",
+      "branding": "Digital branding",
+      "insurance": "Liability insurance",
+      "hardware": "Professional-Grade Hardware",
+      "updates": "Free Software Updates",
+      "warranty": "2-Year Warranty"
+    },
     "comparison": {
       "title": "Compare Models",
       "axes": "Axes",
@@ -247,6 +256,20 @@
     "past": {
       "title": "Past Events",
       "subtitle": "Events where we showcased our simulators"
+    },
+    "examples": {
+      "title": "Customization Examples",
+      "subtitle": "Get inspired by some of our recent work"
+    },
+    "pianolas": {
+      "optional": "Optional Add-on",
+      "title": "Pianolas",
+      "description": "For the bravest. For those willing to go to the absolute limit in every corner. This exclusive add-on elevates simulation to the highest level, allowing you to touch knee and even elbow, bringing you closer than ever to the feeling of a professional MotoGP rider.",
+      "feature1": "Extreme cornering simulation",
+      "feature2": "Allows knee and elbow down",
+      "feature3": "Designed for experienced riders",
+      "feature4": "The ultimate MotoGP experience",
+      "applied": "Applied to Total"
     },
     "hero": {
       "title": "Events and Grand Prix Where We've Been",
@@ -759,6 +782,21 @@
     "packComplete": "Complete Pack",
     "notesTitle": "Notes",
     "footer": "High-performance motorcycle simulators",
+    "branding": {
+      "optional": "Optional Add-on",
+      "title": "Custom Brand Integration",
+      "description": "Maximize your brand impact. We custom wrap the simulator's fairings and platform with your corporate identity."
+    },
+    "pianolas": {
+      "optional": "Optional Add-on",
+      "title": "Pianolas",
+      "description": "For the bravest. For those willing to go to the absolute limit in every corner. This exclusive add-on elevates simulation to the highest level, allowing you to touch knee and even elbow, bringing you closer than ever to the feeling of a professional MotoGP rider.",
+      "feature1": "Extreme cornering simulation",
+      "feature2": "Allows knee and elbow down",
+      "feature3": "Designed for experienced riders",
+      "feature4": "The ultimate MotoGP experience",
+      "applied": "Applied to Total"
+    },
     "expiredTitle": "Link Expired",
     "expiredMessage": "This proposal link has expired or is invalid. Please contact us for more information.",
     "acceptOffer": "Accept Proposal",

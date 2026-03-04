@@ -75,6 +75,11 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         purchasePriceSlady: 26000,
         purchasePriceTopGun: 30000,
         downPaymentPercentage: 30,
+        brandingPricePlatform: 290,
+        brandingPriceSimulator: 360,
+        brandingPricePack: 600,
+        flightCasePrice: 840,
+        pianolaPrice: 480,
     });
 
     // Load saved settings on mount
@@ -94,6 +99,11 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                             purchasePriceSlady: data.settings.purchasePriceSlady ?? 26000,
                             purchasePriceTopGun: data.settings.purchasePriceTopGun ?? 30000,
                             downPaymentPercentage: data.settings.downPaymentPercentage ?? 30,
+                            brandingPricePlatform: data.settings.brandingPricePlatform ?? 290,
+                            brandingPriceSimulator: data.settings.brandingPriceSimulator ?? 360,
+                            brandingPricePack: data.settings.brandingPricePack ?? 600,
+                            flightCasePrice: data.settings.flightCasePrice ?? 840,
+                            pianolaPrice: data.settings.pianolaPrice ?? 480,
                         };
                         setSettings(loadedSettings);
                         // Update form defaults from loaded settings
@@ -218,6 +228,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                 clientLogoUrl: string;
                 personalMessage?: string;
                 notes?: string;
+                brandingPrices?: { none: number; platform: number; simulator: number; full: number; };
+                flightCasePrice?: number;
+                pianolaPrice?: number;
             }
 
             interface RentalPayload extends BasePayload {
@@ -269,6 +282,14 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     clientLogoUrl: logoUrl,
                     personalMessage: values.personalMessage || undefined,
                     notes: values.notes || undefined,
+                    brandingPrices: {
+                        none: 0,
+                        platform: settings.brandingPricePlatform,
+                        simulator: settings.brandingPriceSimulator,
+                        full: settings.brandingPricePack,
+                    },
+                    flightCasePrice: settings.flightCasePrice,
+                    pianolaPrice: settings.pianolaPrice,
                     rentalDetails: {
                         basePrice: values.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
                         isVIP: values.isVIP,
@@ -299,6 +320,14 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     clientLogoUrl: logoUrl,
                     personalMessage: values.personalMessage || undefined,
                     notes: values.notes || undefined,
+                    brandingPrices: {
+                        none: 0,
+                        platform: settings.brandingPricePlatform,
+                        simulator: settings.brandingPriceSimulator,
+                        full: settings.brandingPricePack,
+                    },
+                    flightCasePrice: settings.flightCasePrice,
+                    pianolaPrice: settings.pianolaPrice,
                     purchaseDetails: {
                         packages: {
                             timeAttack: values.purchasePriceTimeAttack,
