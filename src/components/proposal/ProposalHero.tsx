@@ -35,12 +35,12 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="absolute right-[5%] md:right-[8%] top-[40%] md:top-[45%] z-20 pointer-events-none"
+                className="absolute right-[6%] md:right-[9%] top-[42%] md:top-[48%] -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-[120px] md:w-[180px] lg:w-[220px] aspect-square"
             >
                 <img
                     src={clientLogoUrl}
                     alt={clientName}
-                    className="w-[140px] md:w-[220px] lg:w-[260px] h-auto object-contain opacity-95 drop-shadow-2xl filter brightness-110 contrast-110"
+                    className="max-w-full max-h-full object-contain opacity-95 drop-shadow-2xl filter brightness-110 contrast-110"
                 />
             </motion.div>
 
@@ -49,15 +49,15 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="absolute top-[18%] md:top-[22%] left-1/2 -translate-x-1/2 z-20 w-full text-center px-4"
+                className="absolute top-[8%] md:top-[12%] left-1/2 -translate-x-1/2 z-20 w-full text-center px-4"
             >
-                <p className="text-[10px] md:text-sm lg:text-base text-white/60 font-medium tracking-[0.3em] uppercase whitespace-nowrap overflow-hidden">
+                <p className="text-[10px] md:text-xs lg:text-sm text-black/60 font-medium tracking-[0.4em] uppercase whitespace-nowrap overflow-hidden drop-shadow-sm">
                     {t("proposal.hero.subtitle", "Descubre la experiencia de simulación definitiva para tu evento.")}
                 </p>
             </motion.div>
 
             {/* Content Bottom Platform */}
-            <div className="absolute bottom-[8%] md:bottom-[10%] left-1/2 -translate-x-1/2 z-20 text-center w-full px-4">
+            <div className="absolute bottom-[10%] md:bottom-[14%] left-1/2 -translate-x-1/2 z-20 text-center w-full px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}

@@ -278,7 +278,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="pianola" className="text-right col-span-2">
-                                Pianola (€)
+                                Pianos (€)
                             </Label>
                             <Input
                                 id="pianola"

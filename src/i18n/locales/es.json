@@ -707,7 +707,7 @@
         "totals": "Desglose",
         "simTotal": "Simuladores",
         "transportTotal": "Transporte",
-        "staffTotal": "Personal",
+        "staffTotal": "Staff / Alojamiento",
         "total": "Total Estimado",
         "eventReference": "Referencia del Evento (opcional)",
         "eventReferencePlaceholder": "Ej: Carrera MotoGP Praga...",
@@ -806,7 +806,7 @@
       "terms": "Condiciones de Pago"
     },
     "features": {
-      "setup": "Instalación y puesta a punto",
+      "setup": "Instalación y puesta en marcha",
       "support": "Soporte técnico in-situ"
     },
     "rental": {
@@ -816,7 +816,7 @@
       "simulator": "Simulador MotoGP",
       "unit": "un.",
       "transport": "Transporte",
-      "staff": "Personal",
+      "staff": "Staff / Alojamiento",
       "staffLabel": "pers.",
       "daysLabel": "días",
       "travelExpenses": "Gastos de Viaje",
@@ -888,7 +888,7 @@
     },
     "pianolas": {
       "optional": "Add-on Opcional",
-      "title": "Pianolas",
+      "title": "Pianos",
       "description": "Para los más valientes. Para aquellos dispuestos a llegar al límite en cada curva. Este add-on exclusivo eleva la simulación al máximo nivel, permitiéndote tocar rodilla e incluso codo, acercándote más que nunca a la sensación de un piloto profesional de MotoGP.",
       "feature1": "Simulación extrema de paso por curva",
       "feature2": "Permite tocar rodilla y codo",

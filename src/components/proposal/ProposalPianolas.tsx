@@ -4,8 +4,8 @@ import { Switch } from "@/components/ui/switch";
 import { Card } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 
-// TODO: Replace with actual pianola.jpg once uploaded to assets
-import pianolaImg from "@/assets/product-1.jpg";
+// Image for the Pianos add-on
+import pianoImg from "@/assets/pianos-view.jpg";
 
 interface ProposalPianolasProps {
     isSelected: boolean;
@@ -91,7 +91,7 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
                     <div className="relative h-[24rem] w-full overflow-hidden mt-8 border-t border-gray-800">
                         <motion.div
                             className="absolute inset-0 bg-cover bg-center"
-                            style={{ backgroundImage: `url(${pianolaImg})` }}
+                            style={{ backgroundImage: `url(${pianoImg})` }}
                             animate={{
                                 scale: [1, 1.15, 1],
                                 x: ["0%", "-2%", "2%", "0%"],
