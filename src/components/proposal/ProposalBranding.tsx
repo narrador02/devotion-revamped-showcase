@@ -39,7 +39,7 @@ export default function ProposalBranding({ isSelected, onToggle, price }: Propos
                             </h3>
 
                             <p className="text-gray-400 leading-relaxed max-w-2xl">
-                                {t("proposal.branding.description", "Maximize your brand impact. We wrap the simulator chassis with your corporate identity and integrate your logos directly into the simulation software.")}
+                                {t("proposal.branding.description", "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.")}
                             </p>
 
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left">
