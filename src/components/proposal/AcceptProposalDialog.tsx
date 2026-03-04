@@ -412,14 +412,9 @@ export default function AcceptProposalDialog({
 
                                                         if (activeAddons.length === 0) return null;
 
-                                                        const formatter = new Intl.ListFormat(
-                                                            typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es',
-                                                            { style: 'long', type: 'conjunction' }
-                                                        );
-
                                                         return (
                                                             <span className="text-gray-400 capitalize block mt-1">
-                                                                Add-ons: {formatter.format(activeAddons)}
+                                                                Add-ons: {activeAddons.join(', ')}
                                                             </span>
                                                         );
                                                     })()}

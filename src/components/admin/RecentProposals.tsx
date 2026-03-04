@@ -343,61 +343,62 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
                                 </div>
                             </div>
                         </div>
-                ))}
                     </div>
+                ))}
+            </div>
         </>
-            );
+    );
 }
 
-            export default function RecentProposals({proposals, onDelete, onEdit}: RecentProposalsProps) {
-    const {t} = useTranslation();
+export default function RecentProposals({ proposals, onDelete, onEdit }: RecentProposalsProps) {
+    const { t } = useTranslation();
 
     const pending = proposals.filter(p => !p.accepted);
     const accepted = proposals.filter(p => p.accepted);
 
-            return (
-            <div className="space-y-12">
-                {/* Propuestas Pendientes */}
-                <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                        <Clock className="w-5 h-5 text-gray-400" />
-                        <h3 className="text-2xl font-semibold text-white">Propuestas Pendientes</h3>
-                        {pending.length > 0 && (
-                            <span className="px-2 py-0.5 text-xs bg-gray-800 text-gray-400 rounded-full border border-gray-700">
-                                {pending.length}
-                            </span>
-                        )}
-                    </div>
-                    {pending.length === 0 ? (
-                        <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
-                            <Clock className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                            <p>{t("admin.proposals.noProposals", "No hay propuestas pendientes")}</p>
-                        </div>
-                    ) : (
-                        <ProposalTable proposals={pending} onDelete={onDelete} onEdit={onEdit} showAcceptedInfo={false} />
+    return (
+        <div className="space-y-12">
+            {/* Propuestas Pendientes */}
+            <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-gray-400" />
+                    <h3 className="text-2xl font-semibold text-white">Propuestas Pendientes</h3>
+                    {pending.length > 0 && (
+                        <span className="px-2 py-0.5 text-xs bg-gray-800 text-gray-400 rounded-full border border-gray-700">
+                            {pending.length}
+                        </span>
                     )}
                 </div>
-
-                {/* Propuestas Aceptadas */}
-                <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-500" />
-                        <h3 className="text-2xl font-semibold text-white">Propuestas Aceptadas</h3>
-                        {accepted.length > 0 && (
-                            <span className="px-2 py-0.5 text-xs bg-green-900/30 text-green-400 rounded-full border border-green-900/50">
-                                {accepted.length}
-                            </span>
-                        )}
+                {pending.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
+                        <Clock className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                        <p>{t("admin.proposals.noProposals", "No hay propuestas pendientes")}</p>
                     </div>
-                    {accepted.length === 0 ? (
-                        <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
-                            <CheckCircle2 className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                            <p>No hay propuestas aceptadas aún</p>
-                        </div>
-                    ) : (
-                        <ProposalTable proposals={accepted} onDelete={onDelete} showAcceptedInfo={true} />
-                    )}
-                </div>
+                ) : (
+                    <ProposalTable proposals={pending} onDelete={onDelete} onEdit={onEdit} showAcceptedInfo={false} />
+                )}
             </div>
-            );
+
+            {/* Propuestas Aceptadas */}
+            <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <h3 className="text-2xl font-semibold text-white">Propuestas Aceptadas</h3>
+                    {accepted.length > 0 && (
+                        <span className="px-2 py-0.5 text-xs bg-green-900/30 text-green-400 rounded-full border border-green-900/50">
+                            {accepted.length}
+                        </span>
+                    )}
+                </div>
+                {accepted.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
+                        <CheckCircle2 className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                        <p>No hay propuestas aceptadas aún</p>
+                    </div>
+                ) : (
+                    <ProposalTable proposals={accepted} onDelete={onDelete} showAcceptedInfo={true} />
+                )}
+            </div>
+        </div>
+    );
 }
