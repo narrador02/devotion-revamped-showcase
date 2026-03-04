@@ -189,7 +189,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         try {
             const blob = await upload(file.name, file, {
                 access: 'public',
-                handleUploadUrl: '/api/blob/upload',
+                handleUploadUrl: '/api/utils?action=upload',
             });
             setLogoUrl(blob.url);
         } catch (err) {
