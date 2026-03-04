@@ -51,25 +51,40 @@ export default function ProposalBranding({ selected, onSelect, prices = BRANDING
     const TIERS: BrandingTier[] = [
         {
             key: "platform",
-            title: "Branding Plataforma",
+            title: t("proposal.branding.tiers.platform.title", "Branding Plataforma"),
             price: currentPrices["platform"],
-            description: "Vinilamos la plataforma del simulador con tu identidad corporativa.",
-            features: ["Vinilo en plataforma", "Diseño personalizado", "Acabado profesional"],
+            description: t("proposal.branding.tiers.platform.description", "Vinilamos la plataforma del simulador con tu identidad corporativa."),
+            subtext: t("proposal.branding.tiers.platform.subtext", "Vinilo, no pintado"),
+            features: [
+                t("proposal.branding.features.platform"),
+                t("proposal.branding.features.design"),
+                t("proposal.branding.features.finish")
+            ],
         },
         {
             key: "simulator",
-            title: "Branding Simulador",
+            title: t("proposal.branding.tiers.simulator.title", "Branding Simulador"),
             price: currentPrices["simulator"],
-            description: "Vinilamos el carenado completo del simulador con tu marca.",
-            subtext: "Vinilo, no pintado",
-            features: ["Vinilo en carenado", "Diseño personalizado", "Acabado profesional"],
+            description: t("proposal.branding.tiers.simulator.description", "Vinilamos el carenado completo del simulador con tu marca."),
+            subtext: t("proposal.branding.tiers.simulator.subtext", "Vinilo, no pintado"),
+            features: [
+                t("proposal.branding.features.fairing"),
+                t("proposal.branding.features.design"),
+                t("proposal.branding.features.finish")
+            ],
         },
         {
             key: "full",
-            title: "Pack Branding Completo",
+            title: t("proposal.branding.tiers.full.title", "Pack Branding Completo"),
             price: currentPrices["full"],
-            description: "Vinilamos tanto el carenado como la plataforma. Máximo impacto de marca.",
-            features: ["Vinilo en carenado", "Vinilo en plataforma", "Diseño personalizado", "Acabado profesional"],
+            description: t("proposal.branding.tiers.full.description", "Vinilamos tanto el carenado como la plataforma. Máximo impacto de marca."),
+            subtext: t("proposal.branding.tiers.full.subtext", "Vinilo, no pintado"),
+            features: [
+                t("proposal.branding.features.fairing"),
+                t("proposal.branding.features.platform"),
+                t("proposal.branding.features.design"),
+                t("proposal.branding.features.finish")
+            ],
         },
     ];
 
@@ -127,7 +142,7 @@ export default function ProposalBranding({ selected, onSelect, prices = BRANDING
                                         {tier.key === "full" && (
                                             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                                                 <span className="px-3 py-1 bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full whitespace-nowrap">
-                                                    Mejor valor
+                                                    {t("proposal.branding.bestValue", "Mejor valor")}
                                                 </span>
                                             </div>
                                         )}
@@ -174,7 +189,7 @@ export default function ProposalBranding({ selected, onSelect, prices = BRANDING
                                                     className="flex items-center justify-center gap-2 px-3 py-1.5 bg-green-500/20 text-green-400 rounded-full text-[10px] font-bold border border-green-500/30 uppercase tracking-wide"
                                                 >
                                                     <Check className="w-3 h-3" />
-                                                    Añadido a la propuesta
+                                                    {t("proposal.branding.added", "Añadido a la propuesta")}
                                                 </motion.div>
                                             )}
                                         </div>

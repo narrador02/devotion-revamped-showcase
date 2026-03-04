@@ -29,11 +29,54 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
     // Local state for dialog only, dateRange is now lifted
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [showUpdateMessage, setShowUpdateMessage] = useState(false);
+    const [busyDates, setBusyDates] = useState<{ start: string; end: string; }[]>([]);
+    const [isLoadingAvailability, setIsLoadingAvailability] = useState(false);
+    const [overlapError, setOverlapError] = useState(false);
 
     const isRental = proposal.proposalType === 'rental';
     const requireDownPayment = isRental && proposal.rentalDetails?.requireDownPayment;
     const downPaymentPercentage = proposal.rentalDetails?.downPaymentPercentage || 30;
     const isReadyToAccept = !isRental || (dateRange?.from && dateRange?.to);
+
+    // Fetch calendar availability
+    useEffect(() => {
+        if (!isRental) return;
+
+        async function fetchAvailability() {
+            setIsLoadingAvailability(true);
+            try {
+                const response = await fetch('/api/calendar');
+                if (response.ok) {
+                    const data = await response.json();
+                    setBusyDates(data.busy || []);
+                }
+            } catch (error) {
+                console.error("Failed to fetch calendar availability:", error);
+            } finally {
+                setIsLoadingAvailability(false);
+            }
+        }
+
+        fetchAvailability();
+    }, [isRental]);
+
+    // Check for overlap whenever dateRange changes
+    useEffect(() => {
+        if (!dateRange?.from || !dateRange?.to) {
+            setOverlapError(false);
+            return;
+        }
+
+        const hasOverlap = busyDates.some(busy => {
+            const busyStart = new Date(busy.start);
+            const busyEnd = new Date(busy.end);
+            return (
+                (dateRange.from! <= busyEnd && dateRange.to! >= busyStart)
+            );
+        });
+
+        setOverlapError(hasOverlap);
+    }, [dateRange, busyDates]);
 
     // Show update message when dates change AND duration is different from original
     useEffect(() => {
@@ -79,21 +122,47 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
                             <p className="text-gray-400 mb-4 text-sm uppercase tracking-wider font-semibold">
                                 {t("proposal.selectDates", "Select Your Rental Dates")}
                             </p>
-                            <div className="flex justify-center">
+                            <div className="flex justify-center flex-col items-center">
                                 <Calendar
                                     mode="range"
                                     selected={dateRange}
                                     onSelect={handleDateSelect}
                                     numberOfMonths={1}
-                                    disabled={(date) => date < new Date()}
+                                    disabled={(date) => {
+                                        // Disable past dates
+                                        if (date < new Date(new Date().setHours(0, 0, 0, 0))) return true;
+
+                                        // Disable busy dates from calendar
+                                        return busyDates.some(busy => {
+                                            const busyStart = new Date(busy.start);
+                                            const busyEnd = new Date(busy.end);
+                                            // Reset time parts for comparison
+                                            const checkDate = new Date(date).setHours(0, 0, 0, 0);
+                                            const start = new Date(busyStart).setHours(0, 0, 0, 0);
+                                            const end = new Date(busyEnd).setHours(23, 59, 59, 999);
+                                            return checkDate >= start && checkDate <= end;
+                                        });
+                                    }}
                                     locale={i18n.language === 'es' ? es : enUS}
                                     className="bg-transparent text-white"
                                     classNames={{
                                         day_selected: "bg-red-600 text-white hover:bg-red-600",
                                         day_today: "bg-gray-800 text-white",
+                                        day_disabled: "text-gray-600 opacity-30 line-through cursor-not-allowed",
                                     }}
                                 />
+                                {isLoadingAvailability && (
+                                    <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
+                                        <RefreshCw className="w-3 h-3 animate-spin" />
+                                        Checking availability...
+                                    </div>
+                                )}
                             </div>
+                            {overlapError && (
+                                <div className="mt-4 p-3 bg-red-500/10 border border-red-500/50 rounded text-red-400 text-sm">
+                                    {t("proposal.dateUnavailable", "Fecha no disponible actualmente, consúltanos para posibles opciones")}
+                                </div>
+                            )}
                             {dateRange?.from && dateRange?.to && (
                                 <p className="mt-4 text-red-500 font-mono text-sm capitalize">
                                     {format(dateRange.from, "MMM d", { locale: i18n.language === 'es' ? es : enUS })} - {format(dateRange.to, "MMM d, yyyy", { locale: i18n.language === 'es' ? es : enUS })}
@@ -134,7 +203,7 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                     <Button
                         onClick={handleAcceptClick}
-                        disabled={isRental && (!dateRange?.from || !dateRange?.to)}
+                        disabled={(isRental && (!dateRange?.from || !dateRange?.to)) || overlapError}
                         size="lg"
                         className={`
                             w-full sm:w-auto font-bold px-12 py-8 text-xl uppercase tracking-wider transition-all duration-300

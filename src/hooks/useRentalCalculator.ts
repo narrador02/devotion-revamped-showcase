@@ -10,6 +10,7 @@ export interface RentalCalculatorInputs {
     staffMultiplier: number;
     staffTravel?: number;
     staffHotel?: number;
+    discountAmount?: number;
 }
 
 export interface RentalCalculatorResults {
@@ -46,14 +47,16 @@ export function useRentalCalculator(inputs: RentalCalculatorInputs): RentalCalcu
         const staffTotalCost = staffDailyCost + staffTravel + staffHotel;
 
         // Grand total
-        const grandTotal = simulatorSubtotal + transportCost + staffTotalCost;
+        const discount = inputs.discountAmount || 0;
+        const grandTotal = Math.max(0, simulatorSubtotal + transportCost + staffTotalCost - discount);
 
         // Check if any optional fields were provided
         const hasOptionalFields = !!(
             inputs.transportKm ||
             inputs.numberOfStaff ||
             inputs.staffTravel ||
-            inputs.staffHotel
+            inputs.staffHotel ||
+            inputs.discountAmount
         );
 
         return {

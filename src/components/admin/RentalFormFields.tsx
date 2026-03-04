@@ -175,7 +175,6 @@ export default function RentalFormFields({
                     </div>
                 )}
             </div>
-
             {/* Event Reference */}
             <FormField
                 control={control}
@@ -183,23 +182,68 @@ export default function RentalFormFields({
                 render={({ field }) => (
                     <FormItem>
                         <FormLabel className="flex items-center gap-2 text-gray-300">
-                            Referencia del Evento (opcional)
+                            {t("admin.proposals.rental.eventReference")}
                         </FormLabel>
                         <FormControl>
                             <Input
                                 type="text"
-                                placeholder="Ej: Carrera MotoGP Praga, Evento Privado X..."
+                                placeholder={t("admin.proposals.rental.eventReferencePlaceholder")}
                                 {...field}
                                 className="bg-gray-700 border-gray-600 text-white"
                             />
                         </FormControl>
                         <p className="text-xs text-gray-500 mt-1">
-                            Este texto se mostrará al final de la propuesta para ayudar a identificarla.
+                            {t("admin.proposals.rental.eventReferenceDesc")}
                         </p>
                         <FormMessage />
                     </FormItem>
                 )}
             />
+
+            {/* Discount Section */}
+            <div className="grid gap-6 md:grid-cols-2 p-4 bg-gray-800/30 rounded-lg border border-gray-700/50">
+                <FormField
+                    control={control}
+                    name="discountAmount"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="flex items-center gap-2 text-gray-300">
+                                {t("admin.proposals.rental.discount")}
+                            </FormLabel>
+                            <FormControl>
+                                <Input
+                                    type="number"
+                                    placeholder="0"
+                                    {...field}
+                                    onChange={(e) => field.onChange(e.target.value ? parseFloat(e.target.value) : undefined)}
+                                    className="bg-gray-700 border-gray-600 text-white"
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={control}
+                    name="discountConcept"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="flex items-center gap-2 text-gray-300">
+                                {t("admin.proposals.rental.discountConcept")}
+                            </FormLabel>
+                            <FormControl>
+                                <Input
+                                    type="text"
+                                    placeholder={t("admin.proposals.rental.discountConceptPlaceholder")}
+                                    {...field}
+                                    className="bg-gray-700 border-gray-600 text-white"
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </div>
 
             <div className="grid gap-6 md:grid-cols-2">
                 {/* Simulators */}

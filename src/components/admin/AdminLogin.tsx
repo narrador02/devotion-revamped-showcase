@@ -26,7 +26,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
         setIsLoading(true);
 
         try {
-            const response = await fetch("/api/admin/login", {
+            const response = await fetch("/api/admin?action=login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

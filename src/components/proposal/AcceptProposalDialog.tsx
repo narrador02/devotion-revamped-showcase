@@ -220,7 +220,7 @@ export default function AcceptProposalDialog({
 
                 const lang = typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es';
 
-                const paymentResponse = await fetch("/api/square/create-payment-link", {
+                const paymentResponse = await fetch("/api/square?action=create-payment-link", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

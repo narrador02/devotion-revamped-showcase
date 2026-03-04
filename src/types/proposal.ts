@@ -30,6 +30,8 @@ export interface RentalDetails {
     subtotal: number;
     total: number;
     eventReference?: string;
+    discountAmount?: number;
+    discountConcept?: string;
 }
 
 export interface PurchaseDetails {

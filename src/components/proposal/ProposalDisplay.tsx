@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Proposal } from "@/types/proposal";
 import ProposalHero from "./ProposalHero";
 import ProposalExperience from "./ProposalExperience";
-import ProposalVR from "./ProposalVR";
 import ProposalBranding, { BrandingOption, BRANDING_PRICES, BRANDING_LABELS } from "./ProposalBranding";
 import ProposalFlightCase from "./ProposalFlightCase";
 import ProposalPianolas from "./ProposalPianolas";
@@ -102,9 +101,6 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
             {/* 2. Experience Section (Simulators) */}
             <ProposalExperience />
-
-            {/* 3. VR Section */}
-            <ProposalVR />
 
             <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 space-y-12">
 

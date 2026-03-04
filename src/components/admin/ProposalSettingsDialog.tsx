@@ -65,7 +65,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
     const loadSettings = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch("/api/admin/settings");
+            const response = await fetch("/api/admin?action=settings");
             if (response.ok) {
                 const data = await response.json();
                 setSettings(data.settings);
@@ -81,7 +81,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            const response = await fetch("/api/admin/settings", {
+            const response = await fetch("/api/admin?action=settings", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(settings),

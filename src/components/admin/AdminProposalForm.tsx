@@ -44,6 +44,8 @@ const formSchema = z.object({
     requireDownPayment: z.boolean().default(false),
     downPaymentPercentage: z.number().min(0).max(100).default(30),
     eventReference: z.string().optional().or(z.literal("")),
+    discountAmount: z.number().min(0).optional().or(z.nan()),
+    discountConcept: z.string().optional().or(z.literal("")),
 
     // Purchase fields
     purchasePriceTimeAttack: z.number().min(1).default(23000),
@@ -87,7 +89,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
     useEffect(() => {
         const fetchSettings = async () => {
             try {
-                const response = await fetch("/api/admin/settings");
+                const response = await fetch("/api/admin?action=settings");
                 if (response.ok) {
                     const data = await response.json();
                     if (data.settings) {
@@ -140,6 +142,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
             downPaymentPercentage: 30,
             notes: "",
             eventReference: "",
+            discountAmount: undefined,
+            discountConcept: "",
         },
     });
 
@@ -259,6 +263,8 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                     subtotal: number;
                     total: number;
                     eventReference?: string;
+                    discountAmount?: number;
+                    discountConcept?: string;
                 };
             }
 
@@ -314,7 +320,9 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                         } : undefined,
                         subtotal: rentalTotals.simulatorSubtotal,
                         total: rentalTotals.grandTotal,
-                        eventReference: values.eventReference?.trim() || undefined
+                        eventReference: values.eventReference?.trim() || undefined,
+                        discountAmount: values.discountAmount || undefined,
+                        discountConcept: values.discountConcept?.trim() || undefined
                     }
                 };
             } else {
@@ -354,7 +362,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                         purchasePriceSlady: values.purchasePriceSlady,
                         purchasePriceTopGun: values.purchasePriceTopGun,
                     };
-                    fetch("/api/admin/settings", {
+                    fetch("/api/admin?action=settings", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(updatedSettings),
@@ -363,7 +371,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                 }
             }
 
-            const response = await fetch("/api/proposals/create", {
+            const response = await fetch("/api/proposals", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -625,7 +633,10 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                             totalCost: rentalTotals.staffTotalCost
                                         } : undefined,
                                         subtotal: rentalTotals.simulatorSubtotal,
-                                        total: rentalTotals.grandTotal
+                                        total: rentalTotals.grandTotal,
+                                        eventReference: form.watch("eventReference"),
+                                        discountAmount: form.watch("discountAmount"),
+                                        discountConcept: form.watch("discountConcept")
                                     } : undefined,
                                     purchaseDetails: form.watch("proposalType") === "purchase" ? {
                                         packages: {

@@ -709,6 +709,12 @@
         "transportTotal": "Transporte",
         "staffTotal": "Personal",
         "total": "Total Estimado",
+        "eventReference": "Referencia del Evento (opcional)",
+        "eventReferencePlaceholder": "Ej: Carrera MotoGP Praga...",
+        "eventReferenceDesc": "Este texto se mostrará al final de la propuesta para ayudar a identificarla.",
+        "discount": "Descuento (€)",
+        "discountConcept": "Concepto del descuento",
+        "discountConceptPlaceholder": "Ej: Descuento por volumen, Promo Verano...",
         "title": "Alquiler de Eventos",
         "vipApplied": "Tarifa Partner VIP Aplicada",
         "breakdown": "Desglose de Costes",
@@ -801,17 +807,26 @@
     },
     "features": {
       "setup": "Instalación y puesta a punto",
-      "support": "Soporte técnico in-situ",
-      "branding": "Branding digital incluido",
-      "insurance": "Seguro de responsabilidad civil"
+      "support": "Soporte técnico in-situ"
     },
     "rental": {
       "title": "Alquiler para Eventos",
       "vipApplied": "Tarifa Partner VIP Aplicada",
       "breakdown": "Desglose de Costes",
+      "simulator": "Simulador MotoGP",
+      "unit": "un.",
+      "transport": "Transporte",
+      "staff": "Personal",
+      "staffLabel": "pers.",
+      "daysLabel": "días",
+      "travelExpenses": "Gastos de Viaje",
+      "hotelExpenses": "Gastos de Hotel",
+      "discount": "Descuento",
       "disclaimer": "* Precios de transporte del simulador y staff no incluidos salvo que se especifique. IVA no incluido."
     },
     "notesTitle": "Notas",
+    "selectDates": "Selecciona las fechas para tu alquiler",
+    "dateUnavailable": "Fecha no disponible actualmente, consúltanos para posibles opciones",
     "footer": "Simuladores de motos de alto rendimiento",
     "expiredTitle": "Enlace Caducado",
     "expiredMessage": "Este enlace de propuesta ha expirado o no es válido. Por favor, contacta con nosotros para más información.",
@@ -830,36 +845,42 @@
       },
       "immersion": {
         "title": "Inmersión",
-        "subtitle": "VR y Sonido Envolvente"
+        "subtitle": "Sonido Envolvente"
       },
       "competition": {
         "title": "Competición",
         "subtitle": "Telemetría en Vivo"
       }
     },
-    "vr": {
-      "badge": "Inmersión Next Gen",
-      "title": "Realidad Virtual",
-      "titleHighlight": "Como Nunca Antes",
-      "description": "Entra en el casco de un piloto profesional. Nuestra integración VR proporciona una percepción de profundidad y velocidad inigualable.",
-      "resolution": "Resolución 4K",
-      "resDesc": "Óptica cristalina para máximo realismo",
-      "refresh": "120Hz Tasa de Refresco",
-      "refreshDesc": "Movimiento suave sin mareos",
-      "headset": "Meta Quest 3 / HP Reverb G2",
-      "edition": "Edición Enterprise",
-      "availability": "Consúltanos por la disponibilidad de nuestras gafas VR"
-    },
     "branding": {
       "optional": "Add-on Opcional",
-      "title": "Integración de Marca Personalizada",
+      "title": "Integración de Marca",
       "description": "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.",
-      "vinyl": "Vinilado Completo del Chasis",
-      "billboards": "Vallas Publicitarias en el Juego",
-      "ui": "Interfaz de Usuario con Branding",
-      "addToProposal": "Añadir a la Propuesta",
-      "applied": "APLICADO AL TOTAL",
-      "lineItem": "Branding Personalizado y Vinilos",
+      "bestValue": "Mejor valor",
+      "added": "Añadido a la propuesta",
+      "tiers": {
+        "platform": {
+          "title": "Branding Plataforma",
+          "description": "Vinilamos la plataforma del simulador con tu identidad corporativa.",
+          "subtext": "Vinilo, no pintado"
+        },
+        "simulator": {
+          "title": "Branding Simulador",
+          "description": "Vinilamos el carenado completo del simulador con tu marca.",
+          "subtext": "Vinilo, no pintado"
+        },
+        "full": {
+          "title": "Pack Branding Completo",
+          "description": "Vinilamos tanto el carenado como la plataforma. Máximo impacto de marca.",
+          "subtext": "Vinilo, no pintado"
+        }
+      },
+      "features": {
+        "platform": "Vinilo en plataforma",
+        "fairing": "Vinilo en carenado",
+        "design": "Diseño personalizado",
+        "finish": "Acabado profesional"
+      },
       "examples": {
         "title": "Ejemplos de Personalización",
         "subtitle": "Inspírate con algunos de nuestros trabajos recientes"

@@ -31,7 +31,7 @@ export default function AdminProposals() {
     useEffect(() => {
         const verifyAuth = async () => {
             try {
-                const response = await fetch('/api/admin/verify', {
+                const response = await fetch('/api/admin?action=verify', {
                     credentials: 'include'
                 });
                 setIsAuthenticated(response.ok);
@@ -50,7 +50,7 @@ export default function AdminProposals() {
 
         setIsLoadingProposals(true);
         try {
-            const response = await fetch("/api/proposals/list", {
+            const response = await fetch("/api/proposals", {
                 credentials: "include",
             });
             if (response.ok) {
@@ -74,7 +74,7 @@ export default function AdminProposals() {
 
     const handleLogout = async () => {
         try {
-            await fetch("/api/admin/logout", {
+            await fetch("/api/admin?action=logout", {
                 method: "POST",
                 credentials: "include",
             });

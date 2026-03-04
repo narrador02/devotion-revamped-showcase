@@ -16,7 +16,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
 
     if (!rentalDetails) return null;
 
-    const finalTotal = rentalDetails.total + (showBranding ? brandingPrice : 0);
+    const finalTotal = rentalDetails.total + (showBranding ? brandingPrice : 0) - (rentalDetails.discountAmount || 0);
 
     const features = [
         t("proposal.features.setup", "Instalación y puesta a punto"),
@@ -71,7 +71,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                         {/* Simulators */}
                         <div className="flex justify-between items-center py-2 border-b border-gray-800">
                             <span className="text-gray-400">
-                                {rentalDetails.numberOfSimulators}x MotoGP Simulator ({rentalDetails.basePrice}€/unit)
+                                {rentalDetails.numberOfSimulators}x {t("proposal.rental.simulator", "MotoGP Simulator")} ({rentalDetails.basePrice}€/{t("proposal.rental.unit", "unit")})
                             </span>
                             <span className="text-white font-medium">{rentalDetails.subtotal.toLocaleString()}€</span>
                         </div>
@@ -82,7 +82,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                 <div className="flex items-center gap-2 text-gray-400">
                                     <Truck className="w-4 h-4" />
                                     <span>
-                                        Transport ({rentalDetails.transport.kilometers}km @ {rentalDetails.transport.pricePerKm}€/km)
+                                        {t("proposal.rental.transport", "Transport")} ({rentalDetails.transport.kilometers}km @ {rentalDetails.transport.pricePerKm}€/km)
                                     </span>
                                 </div>
                                 <span className="text-white font-medium">{rentalDetails.transport.totalCost.toLocaleString()}€</span>
@@ -96,7 +96,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                     <div className="flex items-center gap-2">
                                         <Users className="w-4 h-4" />
                                         <span>
-                                            Staff ({rentalDetails.staff.numberOfStaff} staff x {rentalDetails.staff.numberOfDays || 1} days)
+                                            {t("proposal.rental.staff", "Staff")} ({rentalDetails.staff.numberOfStaff} {t("proposal.rental.staffLabel", "staff")} x {rentalDetails.staff.numberOfDays || 1} {t("proposal.rental.daysLabel", "days")})
                                         </span>
                                     </div>
                                     <span className="text-white font-medium">
@@ -105,13 +105,13 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                 </div>
                                 {(rentalDetails.staff.travelExpenses || 0) > 0 && (
                                     <div className="flex justify-between items-center text-gray-500 pl-6 text-xs">
-                                        <span>Travel Expenses</span>
+                                        <span>{t("proposal.rental.travelExpenses", "Travel Expenses")}</span>
                                         <span>{rentalDetails.staff.travelExpenses}€</span>
                                     </div>
                                 )}
                                 {(rentalDetails.staff.hotelExpenses || 0) > 0 && (
                                     <div className="flex justify-between items-center text-gray-500 pl-6 text-xs">
-                                        <span>Hotel Expenses</span>
+                                        <span>{t("proposal.rental.hotelExpenses", "Hotel Expenses")}</span>
                                         <span>{rentalDetails.staff.hotelExpenses}€</span>
                                     </div>
                                 )}
@@ -125,6 +125,19 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                     <span className="font-medium text-red-200">{brandingLabel}</span>
                                 </div>
                                 <span className="text-white font-bold">{brandingPrice.toLocaleString()}€</span>
+                            </div>
+                        )}
+
+                        {/* Discount */}
+                        {rentalDetails.discountAmount && (
+                            <div className="flex justify-between items-center py-2 border-b border-gray-800 bg-green-900/10 px-2 -mx-2 rounded">
+                                <div className="flex flex-col text-green-300">
+                                    <span className="font-medium">{t("proposal.rental.discount", "Discount")}</span>
+                                    {rentalDetails.discountConcept && (
+                                        <span className="text-[10px] opacity-75">{rentalDetails.discountConcept}</span>
+                                    )}
+                                </div>
+                                <span className="text-green-400 font-bold">-{rentalDetails.discountAmount.toLocaleString()}€</span>
                             </div>
                         )}
 

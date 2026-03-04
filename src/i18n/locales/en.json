@@ -755,7 +755,13 @@
         "simTotal": "Simulators",
         "transportTotal": "Transport",
         "staffTotal": "Staff",
-        "total": "Total Estimate"
+        "total": "Total Estimate",
+        "eventReference": "Event Reference (optional)",
+        "eventReferencePlaceholder": "e.g. MotoGP Prague Race...",
+        "eventReferenceDesc": "This text will be shown at the bottom of the proposal to help identify it.",
+        "discount": "Discount (€)",
+        "discountConcept": "Discount Concept",
+        "discountConceptPlaceholder": "e.g. Volume discount, Summer Promo..."
       },
       "purchase": {
         "packages": "Pricing Packages",
@@ -776,16 +782,84 @@
     "titleFor": "Proposal for {{clientName}}",
     "pageTitle": "Proposal - {{clientName}}",
     "pageDescription": "Personalized business proposal for {{clientName}}",
+    "features": {
+      "setup": "Setup & Configuration",
+      "support": "On-site Technical Support"
+    },
+    "rental": {
+      "title": "Event Rental",
+      "vipApplied": "VIP Partner Rate Applied",
+      "breakdown": "Cost Breakdown",
+      "simulator": "MotoGP Simulator",
+      "unit": "unit",
+      "transport": "Transport",
+      "staff": "Staff",
+      "staffLabel": "staff",
+      "daysLabel": "days",
+      "travelExpenses": "Travel Expenses",
+      "hotelExpenses": "Hotel Expenses",
+      "discount": "Discount",
+      "disclaimer": "* Transport and staff costs not included unless specified above. Prices exclude VAT."
+    },
     "pricingTitle": "Our Packages",
     "packBasic": "Basic Pack",
     "packProfessional": "Professional Pack",
     "packComplete": "Complete Pack",
     "notesTitle": "Notes",
+    "selectDates": "Select Your Rental Dates",
+    "dateUnavailable": "Date currently unavailable, please contact us for possible options",
     "footer": "High-performance motorcycle simulators",
+    "hero": {
+      "preparedFor": "Proposal prepared exclusively for",
+      "subtitle": "Discover the ultimate simulation experience for your event."
+    },
+    "priceUpdated": "Price updated based on selected duration",
+    "days": "days",
+    "experience": {
+      "title": "The Devotion Experience",
+      "subtitle": "Professional grade simulation technology tailored for your event.",
+      "realism": {
+        "title": "Realism",
+        "subtitle": "Physics & Feedback"
+      },
+      "immersion": {
+        "title": "Immersion",
+        "subtitle": "Surround Sound"
+      },
+      "competition": {
+        "title": "Competition",
+        "subtitle": "Live Telemetry"
+      }
+    },
     "branding": {
       "optional": "Optional Add-on",
       "title": "Custom Brand Integration",
-      "description": "Maximize your brand impact. We custom wrap the simulator's fairings and platform with your corporate identity."
+      "description": "Maximize your brand impact. We custom wrap the simulator's fairings and platform with your corporate identity.",
+      "bestValue": "Best Value",
+      "added": "Added to proposal",
+      "tiers": {
+        "platform": {
+          "title": "Platform Branding",
+          "description": "We wrap the simulator's platform with your corporate identity.",
+          "subtext": "Vinyl, not painted"
+        },
+        "simulator": {
+          "title": "Simulator Branding",
+          "description": "We wrap the entire simulator fairing with your brand.",
+          "subtext": "Vinyl, not painted"
+        },
+        "full": {
+          "title": "Complete Branding Pack",
+          "description": "We wrap both the fairing and the platform for maximum brand impact.",
+          "subtext": "Vinyl, not painted"
+        }
+      },
+      "features": {
+        "platform": "Platform vinyl",
+        "fairing": "Fairing vinyl",
+        "design": "Custom design",
+        "finish": "Professional finish"
+      }
     },
     "pianolas": {
       "optional": "Optional Add-on",
