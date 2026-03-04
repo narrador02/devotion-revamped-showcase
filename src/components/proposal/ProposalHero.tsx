@@ -74,9 +74,9 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="absolute top-[8%] md:top-[10%] left-1/2 -translate-x-1/2 z-20 w-full text-center px-4"
+                className="absolute top-[4%] md:top-[7%] left-1/2 -translate-x-1/2 z-20 w-full text-center px-4"
             >
-                <p className="text-[10px] md:text-xs text-gray-600 font-medium tracking-[0.5em] uppercase whitespace-nowrap">
+                <p className="text-[11px] md:text-sm text-gray-600 font-medium tracking-[0.5em] uppercase whitespace-nowrap">
                     {t("proposal.hero.subtitle", "Descubre la experiencia de simulación definitiva para tu evento.")}
                 </p>
             </motion.div>

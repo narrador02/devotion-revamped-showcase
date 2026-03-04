@@ -14,6 +14,13 @@ interface RecentProposal {
     createdAt: string;
     expiresAt: string;
     isExpired: boolean;
+    accepted?: boolean;
+    acceptedAt?: string | null;
+    customerDetails?: {
+        fullName?: string;
+        email?: string;
+        phone?: string;
+    } | null;
 }
 
 type ViewState = "form" | "success";

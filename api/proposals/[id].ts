@@ -56,16 +56,57 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // 3. Accept Proposal (POST) - Merged from accept.ts
     if (req.method === 'POST') {
         try {
-            const { customerDetails } = req.body || {};
+            const payload = req.body || {};
+
+            // Validate required fields
+            if (!payload.email || !payload.phone || !payload.fullName) {
+                return res.status(400).json({ error: 'Missing required fields' });
+            }
+
+            // Save acceptance to KV
             const data = await kv.get(`proposal:${id}`);
             if (!data) return res.status(404).json({ error: 'Proposal not found' });
 
             const proposal = typeof data === 'string' ? JSON.parse(data) : data;
             proposal.accepted = true;
             proposal.acceptedAt = new Date().toISOString();
-            proposal.customerDetails = customerDetails;
-
+            proposal.customerDetails = {
+                fullName: payload.fullName,
+                email: payload.email,
+                phone: payload.phone,
+                comments: payload.comments,
+            };
             await kv.set(`proposal:${id}`, JSON.stringify(proposal));
+
+            // Send email notification via Formspree
+            const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgvrveqe";
+            const formspreePayload = {
+                subject: `New Proposal Acceptance: ${payload.clientName || proposal.clientName}`,
+                proposalId: id,
+                clientName: payload.clientName || proposal.clientName,
+                proposalType: proposal.proposalType,
+                fullName: payload.fullName,
+                email: payload.email,
+                phone: payload.phone,
+                comments: payload.comments || '',
+                selectedSimulator: payload.selectedSimulator || '',
+                selectedDates: payload.selectedDates ? JSON.stringify(payload.selectedDates) : 'N/A',
+                addOns: payload.addOns || 'Ninguno',
+                _subject: `Proposal Acceptance: ${payload.clientName || proposal.clientName} (${proposal.proposalType})`,
+                _replyto: payload.email,
+            };
+
+            const formspreeResponse = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(formspreePayload),
+            });
+
+            if (!formspreeResponse.ok) {
+                // Email failed but KV write succeeded - log but don't fail the request
+                console.error('Formspree notification failed:', await formspreeResponse.text());
+            }
+
             return res.status(200).json({ success: true });
         } catch (error) {
             return res.status(500).json({ error: 'Failed to accept proposal' });

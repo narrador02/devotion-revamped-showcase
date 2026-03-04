@@ -190,7 +190,7 @@ export default function AcceptProposalDialog({
             const acceptResponse = await fetch(`/api/proposals/${proposalId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ customerDetails: values }),
+                body: JSON.stringify(acceptPayload),
             });
 
             if (!acceptResponse.ok) {

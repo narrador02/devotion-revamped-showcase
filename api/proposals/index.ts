@@ -42,6 +42,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                         expiresAt: proposal.expiresAt,
                         isExpired: new Date(proposal.expiresAt) < new Date(),
                         price: proposal.proposalType === 'rental' ? proposal.rentalDetails?.total : null,
+                        accepted: proposal.accepted || false,
+                        acceptedAt: proposal.acceptedAt || null,
+                        customerDetails: proposal.customerDetails || null,
                     });
                 }
             }
