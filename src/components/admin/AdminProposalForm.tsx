@@ -40,6 +40,7 @@ const formSchema = z.object({
     numberOfDays: z.number().optional().or(z.nan()),
     staffTravel: z.number().optional().or(z.nan()),
     staffHotel: z.number().optional().or(z.nan()),
+    hotelNights: z.number().optional().or(z.nan()),
     requireDownPayment: z.boolean().default(false),
     downPaymentPercentage: z.number().min(0).max(100).default(30),
 
@@ -143,7 +144,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
         numberOfDays: rentalValues.numberOfDays || 0,
         staffMultiplier: settings.staffMultiplier,
         staffTravel: rentalValues.staffTravel || 0,
-        staffHotel: rentalValues.staffHotel || 0,
+        staffHotel: (rentalValues.staffHotel || 0) * (rentalValues.hotelNights || rentalValues.numberOfDays || 1),
     });
 
     const handleFileSelect = async (file: File) => {
@@ -284,7 +285,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                             numberOfDays: values.numberOfDays,
                             pricePerStaffDay: settings.staffMultiplier,
                             travelExpenses: values.staffTravel,
-                            hotelExpenses: values.staffHotel,
+                            hotelExpenses: (values.staffHotel || 0) * (values.hotelNights || values.numberOfDays || 1),
                             totalCost: rentalTotals.staffTotalCost
                         } : undefined,
                         subtotal: rentalTotals.simulatorSubtotal,
@@ -578,7 +579,7 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
                                             numberOfDays: rentalValues.numberOfDays,
                                             pricePerStaffDay: settings.staffMultiplier,
                                             travelExpenses: rentalValues.staffTravel,
-                                            hotelExpenses: rentalValues.staffHotel,
+                                            hotelExpenses: (rentalValues.staffHotel || 0) * (rentalValues.hotelNights || rentalValues.numberOfDays || 1),
                                             totalCost: rentalTotals.staffTotalCost
                                         } : undefined,
                                         subtotal: rentalTotals.simulatorSubtotal,

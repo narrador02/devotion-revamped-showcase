@@ -7,9 +7,10 @@ interface RentalProposalTemplateProps {
     proposal: Proposal;
     showBranding?: boolean;
     brandingPrice?: number;
+    brandingLabel?: string;
 }
 
-export default function RentalProposalTemplate({ proposal, showBranding = false, brandingPrice = 550 }: RentalProposalTemplateProps) {
+export default function RentalProposalTemplate({ proposal, showBranding = false, brandingPrice = 0, brandingLabel = "Branding Personalizado" }: RentalProposalTemplateProps) {
     const { t } = useTranslation();
     const { rentalDetails } = proposal;
 
@@ -123,7 +124,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                         {showBranding && (
                             <div className="flex justify-between items-center py-2 border-b border-gray-800 bg-red-900/10 px-2 -mx-2 rounded">
                                 <div className="flex items-center gap-2 text-white">
-                                    <span className="font-medium text-red-200">{t("proposal.branding.lineItem", "Custom Branding & Vinyls")}</span>
+                                    <span className="font-medium text-red-200">{brandingLabel}</span>
                                 </div>
                                 <span className="text-white font-bold">{brandingPrice.toLocaleString()}€</span>
                             </div>

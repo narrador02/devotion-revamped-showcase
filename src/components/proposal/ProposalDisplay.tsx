@@ -5,7 +5,7 @@ import { Proposal } from "@/types/proposal";
 import ProposalHero from "./ProposalHero";
 import ProposalExperience from "./ProposalExperience";
 import ProposalVR from "./ProposalVR";
-import ProposalBranding from "./ProposalBranding";
+import ProposalBranding, { BrandingOption, BRANDING_PRICES, BRANDING_LABELS } from "./ProposalBranding";
 import ProposalFlightCase from "./ProposalFlightCase";
 import RentalProposalTemplate from "./RentalProposalTemplate";
 import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
@@ -23,12 +23,14 @@ interface ProposalDisplayProps {
 
 export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const { t } = useTranslation();
-    const [showBranding, setShowBranding] = useState(false);
+    const [brandingOption, setBrandingOption] = useState<BrandingOption>('none');
     const [showFlightCase, setShowFlightCase] = useState(false);
     const [selectedSimulator, setSelectedSimulator] = useState('Slady');
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
-    const brandingPrice = 550;
+    const brandingPrice = BRANDING_PRICES[brandingOption];
+    const brandingLabel = BRANDING_LABELS[brandingOption];
+    const showBranding = brandingOption !== 'none';
     const flightCasePrice = 840;
     const isPurchase = proposal.proposalType === 'purchase';
 
@@ -103,9 +105,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
                 {/* 4. Branding Add-on */}
                 <ProposalBranding
-                    isSelected={showBranding}
-                    onToggle={setShowBranding}
-                    price={brandingPrice}
+                    selected={brandingOption}
+                    onSelect={setBrandingOption}
                 />
 
                 {/* 5. Flight Case Add-on (Purchase only) */}
@@ -141,6 +142,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                             proposal={displayProposal}
                             showBranding={showBranding}
                             brandingPrice={brandingPrice}
+                            brandingLabel={brandingLabel}
                         />
                     ) : (
                         <PurchaseProposalTemplate
@@ -149,6 +151,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                             onSelectSimulator={setSelectedSimulator}
                             showBranding={showBranding}
                             brandingPrice={brandingPrice}
+                            brandingLabel={brandingLabel}
                             showFlightCase={showFlightCase}
                             flightCasePrice={flightCasePrice}
                         />
@@ -162,6 +165,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     setDateRange={setDateRange}
                     showBranding={showBranding}
                     brandingPrice={brandingPrice}
+                    brandingLabel={brandingLabel}
                     showFlightCase={isPurchase ? showFlightCase : false}
                     flightCasePrice={flightCasePrice}
                     selectedSimulator={isPurchase ? selectedSimulator : undefined}

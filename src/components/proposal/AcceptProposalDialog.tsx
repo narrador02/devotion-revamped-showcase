@@ -47,6 +47,7 @@ interface AcceptProposalDialogProps {
     };
     showBranding?: boolean;
     brandingPrice?: number;
+    brandingLabel?: string;
     showFlightCase?: boolean;
     flightCasePrice?: number;
     selectedSimulator?: string;
@@ -136,6 +137,7 @@ export default function AcceptProposalDialog({
     selectedDates,
     showBranding,
     brandingPrice = 0,
+    brandingLabel = "Branding Personalizado",
     showFlightCase,
     flightCasePrice = 0,
     selectedSimulator
@@ -176,7 +178,7 @@ export default function AcceptProposalDialog({
                     end: format(selectedDates.end, "yyyy-MM-dd"),
                 } : undefined,
                 addOns: [
-                    ...(showBranding ? ['Branding Personalizado'] : []),
+                    ...(showBranding ? [brandingLabel] : []),
                     ...(showFlightCase ? ['Flight Case'] : []),
                 ].join(', ') || 'Ninguno',
             };

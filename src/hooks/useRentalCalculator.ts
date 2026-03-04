@@ -28,9 +28,13 @@ export function useRentalCalculator(inputs: RentalCalculatorInputs): RentalCalcu
         const days = inputs.numberOfDays || 1;
         const simulatorSubtotal = inputs.basePrice * simCount * days;
 
-        // Transport costs
-        const transportCost = inputs.transportKm
+        // Transport costs (minimum 250€)
+        const TRANSPORT_MINIMUM = 250;
+        const rawTransportCost = inputs.transportKm
             ? inputs.transportKm * inputs.transportMultiplier
+            : 0;
+        const transportCost = rawTransportCost > 0
+            ? Math.max(rawTransportCost, TRANSPORT_MINIMUM)
             : 0;
 
         // Staff costs

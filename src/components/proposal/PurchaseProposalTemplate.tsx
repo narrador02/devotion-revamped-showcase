@@ -11,6 +11,7 @@ interface PurchaseProposalTemplateProps {
     onSelectSimulator: (name: string) => void;
     showBranding?: boolean;
     brandingPrice?: number;
+    brandingLabel?: string;
     showFlightCase?: boolean;
     flightCasePrice?: number;
 }
@@ -27,6 +28,7 @@ export default function PurchaseProposalTemplate({
     onSelectSimulator,
     showBranding,
     brandingPrice = 0,
+    brandingLabel = "Branding Personalizado",
     showFlightCase,
     flightCasePrice = 0,
 }: PurchaseProposalTemplateProps) {
@@ -231,7 +233,7 @@ export default function PurchaseProposalTemplate({
 
                             {showBranding && brandingPrice > 0 && (
                                 <div className="flex justify-between items-center text-gray-400 text-sm">
-                                    <span>Branding Personalizado</span>
+                                    <span>{brandingLabel}</span>
                                     <span className="font-mono">+{brandingPrice.toLocaleString("es-ES")}€</span>
                                 </div>
                             )}

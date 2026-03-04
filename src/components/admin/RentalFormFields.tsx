@@ -37,15 +37,17 @@ export default function RentalFormFields({
     const numberOfDays = watch("numberOfDays");
     const staffTravel = watch("staffTravel");
     const staffHotel = watch("staffHotel");
+    const hotelNights = watch("hotelNights");
+    const rentalBasePrice = watch("rentalBasePrice");
 
-    // Update base price when VIP changes
+    // Update base price when VIP changes (only if user hasn't manually edited)
     useEffect(() => {
         setValue("rentalBasePrice", isVIP ? simulatorPriceVIP : simulatorPrice);
     }, [isVIP, setValue, simulatorPrice, simulatorPriceVIP]);
 
-    // Calculate totals
+    // Calculate totals using the (potentially overridden) rentalBasePrice
     const totals = useRentalCalculator({
-        basePrice: isVIP ? simulatorPriceVIP : simulatorPrice,
+        basePrice: parseFloat(rentalBasePrice) || (isVIP ? simulatorPriceVIP : simulatorPrice),
         numberOfSimulators: parseFloat(numberOfSimulators) || 0,
         transportKm: parseFloat(transportKm) || 0,
         transportMultiplier,
@@ -53,7 +55,7 @@ export default function RentalFormFields({
         numberOfDays: parseFloat(numberOfDays) || 0,
         staffMultiplier,
         staffTravel: parseFloat(staffTravel) || 0,
-        staffHotel: parseFloat(staffHotel) || 0,
+        staffHotel: (parseFloat(staffHotel) || 0) * (parseFloat(hotelNights) || parseFloat(numberOfDays) || 1),
     });
 
     return (
@@ -80,6 +82,35 @@ export default function RentalFormFields({
                     )}
                 />
             </div>
+
+            {/* Editable price per simulator */}
+            <FormField
+                control={control}
+                name="rentalBasePrice"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-sm text-gray-300">
+                            Precio por simulador / día (€)
+                        </FormLabel>
+                        <FormControl>
+                            <div className="relative">
+                                <Input
+                                    type="number"
+                                    min="1"
+                                    {...field}
+                                    onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                                    className="bg-gray-700 border-gray-600 text-white pl-7"
+                                />
+                                <span className="absolute left-2.5 top-2.5 text-gray-400 text-sm">€</span>
+                            </div>
+                        </FormControl>
+                        <p className="text-xs text-gray-500 mt-1">
+                            Por defecto: {isVIP ? simulatorPriceVIP : simulatorPrice}€ ({isVIP ? 'VIP' : 'estándar'}). Edítalo para ajustar este presupuesto.
+                        </p>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
 
             {/* Down Payment Options */}
             <div className="flex flex-col gap-4 p-4 bg-gray-800 rounded-lg border border-gray-700">
@@ -220,8 +251,11 @@ export default function RentalFormFields({
                         />
 
                         {totals.transportCost > 0 && (
-                            <div className="text-right text-sm text-green-400 font-mono">
-                                + {totals.transportCost.toFixed(2)}€
+                            <div className="text-right space-y-0.5">
+                                <div className="text-sm text-green-400 font-mono">+ {totals.transportCost.toFixed(2)}€</div>
+                                {(parseFloat(transportKm) * transportMultiplier) < 250 && (
+                                    <div className="text-[10px] text-amber-500">Mínimo de transporte: 250€ aplicado</div>
+                                )}
                             </div>
                         )}
                     </CardContent>
@@ -284,7 +318,7 @@ export default function RentalFormFields({
                                 name="staffHotel"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-xs text-gray-400">{t("admin.proposals.rental.hotel")}</FormLabel>
+                                        <FormLabel className="text-xs text-gray-400">Hotel (€/noche)</FormLabel>
                                         <FormControl>
                                             <div className="relative">
                                                 <Input
@@ -297,6 +331,32 @@ export default function RentalFormFields({
                                                 <span className="absolute left-2 top-2.5 text-gray-500">€</span>
                                             </div>
                                         </FormControl>
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={control}
+                                name="hotelNights"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="text-xs text-gray-400">Noches hotel</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                type="number"
+                                                placeholder={String(parseFloat(numberOfDays) || 1)}
+                                                {...field}
+                                                value={field.value ?? ""}
+                                                onChange={(e) => {
+                                                    const val = e.target.value;
+                                                    field.onChange(val === "" ? undefined : parseFloat(val));
+                                                }}
+                                                className="bg-gray-700 border-gray-600 text-white"
+                                            />
+                                        </FormControl>
+                                        <p className="text-[10px] text-gray-500 mt-0.5">
+                                            Por defecto: {parseFloat(numberOfDays) || 1} noche(s)
+                                        </p>
                                     </FormItem>
                                 )}
                             />
