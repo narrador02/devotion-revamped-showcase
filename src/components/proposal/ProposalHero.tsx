@@ -31,43 +31,41 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
             />
 
             {/*
-              Client Logo — pinned inside the white box on the simulator's right cylinder face.
-              The hero image is 1024×1024 px. The white box center is roughly at:
-                - horizontal: ~80% from left  → right: 20%
-                - vertical:   ~53% from top   → top: 53%
-              The box is roughly 14% of the image width.
-              We keep logo slightly smaller than the box to leave a margin.
+              Client Logo — pinned to the white square on the right cylinder face.
+              Outer div handles position/centering. Inner motion.div handles animation only
+              so Framer Motion never overrides the translateY(-50%) centering.
+
+              White box reference coordinates (from 1024×1024 image, object-cover landscape):
+                - Center X: ~77% from left → right: ~12.5% (element right edge)
+                - Center Y: ~52% from top
+                - Box width: ~21% of image → logo fits inside at 15%
             */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
+            <div
+                className="absolute z-20 pointer-events-none"
                 style={{
-                    position: "absolute",
-                    right: "20%",
-                    top: "53%",
+                    right: "12.5%",
+                    top: "52%",
                     transform: "translateY(-50%)",
-                    width: "13%",
+                    width: "15%",
                     aspectRatio: "1 / 1",
-                    zIndex: 20,
-                    pointerEvents: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
                 }}
             >
-                <img
-                    src={clientLogoUrl}
-                    alt={clientName}
-                    style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: "contain",
-                        opacity: 0.95,
-                        filter: "brightness(1.1) contrast(1.1) drop-shadow(0 2px 8px rgba(0,0,0,0.4))",
-                    }}
-                />
-            </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, delay: 0.3 }}
+                    className="w-full h-full flex items-center justify-center"
+                >
+                    <img
+                        src={clientLogoUrl}
+                        alt={clientName}
+                        className="max-w-full max-h-full object-contain opacity-95"
+                        style={{
+                            filter: "brightness(1.1) contrast(1.05) drop-shadow(0 2px 8px rgba(0,0,0,0.3))",
+                        }}
+                    />
+                </motion.div>
+            </div>
 
             {/* Top subtitle — matches the original barely-visible uppercase style */}
             <motion.div
