@@ -4,12 +4,6 @@ import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { action } = req.query;
 
-    // Verify admin authentication for all utils
-    const cookies = req.cookies || {};
-    if (cookies.adminAuth !== 'true') {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-
     // 1. BLOB UPLOAD
     if (action === 'upload') {
         try {
@@ -41,6 +35,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 2. AI PHRASE GENERATION
     if (action === 'generate-phrase') {
+        // Verify admin authentication for AI processing
+        const cookies = req.cookies || {};
+        if (cookies.adminAuth !== 'true') {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+
         if (req.method !== 'POST') {
             return res.status(405).json({ error: 'Method not allowed' });
         }
