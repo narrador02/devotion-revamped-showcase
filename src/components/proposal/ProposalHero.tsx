@@ -35,7 +35,7 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="absolute right-[6%] md:right-[9%] top-[42%] md:top-[48%] -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-[120px] md:w-[180px] lg:w-[220px] aspect-square"
+                className="absolute right-[8%] md:right-[11%] top-[45%] md:top-[46%] -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-[110px] md:w-[160px] lg:w-[200px] aspect-square"
             >
                 <img
                     src={clientLogoUrl}
@@ -49,7 +49,7 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="absolute top-[8%] md:top-[12%] left-1/2 -translate-x-1/2 z-20 w-full text-center px-4"
+                className="absolute top-[5%] md:top-[8%] left-1/2 -translate-x-1/2 z-20 w-full text-center px-4"
             >
                 <p className="text-[10px] md:text-xs lg:text-sm text-black/60 font-medium tracking-[0.4em] uppercase whitespace-nowrap overflow-hidden drop-shadow-sm">
                     {t("proposal.hero.subtitle", "Descubre la experiencia de simulación definitiva para tu evento.")}
