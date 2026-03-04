@@ -21,9 +21,11 @@ import RentalFormFields from "./RentalFormFields";
 import PurchaseFormFields from "./PurchaseFormFields";
 import ProposalPreviewDialog from "./ProposalPreviewDialog";
 import { useRentalCalculator } from "@/hooks/useRentalCalculator";
+import { Proposal } from "@/types/proposal";
 
 interface AdminProposalFormProps {
     onSuccess: (proposalId: string, clientName: string) => void;
+    initialData?: Proposal | null;
 }
 
 const formSchema = z.object({
@@ -58,12 +60,12 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps) {
+export default function AdminProposalForm({ onSuccess, initialData }: AdminProposalFormProps) {
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
     // logoFile removed as unused
-    const [logoPreview, setLogoPreview] = useState<string | null>(null);
-    const [logoUrl, setLogoUrl] = useState<string | null>(null);
+    const [logoPreview, setLogoPreview] = useState<string | null>(initialData?.clientLogoUrl || null);
+    const [logoUrl, setLogoUrl] = useState<string | null>(initialData?.clientLogoUrl || null);
     const [isUploading, setIsUploading] = useState(false);
     const [uploadError, setUploadError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -129,21 +131,28 @@ export default function AdminProposalForm({ onSuccess }: AdminProposalFormProps)
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            proposalType: "rental",
-            clientName: "",
-            personalMessage: "",
-            isVIP: false,
-            rentalBasePrice: 750,
-            numberOfSimulators: 1,
-            purchasePriceTimeAttack: 23000,
-            purchasePriceSlady: 26000,
-            purchasePriceTopGun: 30000,
-            requireDownPayment: false,
-            downPaymentPercentage: 30,
-            notes: "",
-            eventReference: "",
-            discountAmount: undefined,
-            discountConcept: "",
+            proposalType: initialData?.proposalType || "rental",
+            clientName: initialData?.clientName || "",
+            personalMessage: initialData?.personalMessage || "",
+            isVIP: initialData?.rentalDetails?.isVIP || false,
+            rentalBasePrice: initialData?.rentalDetails?.basePrice || 750,
+            numberOfSimulators: initialData?.rentalDetails?.numberOfSimulators || 1,
+            purchasePriceTimeAttack: initialData?.purchaseDetails?.packages?.timeAttack || 23000,
+            purchasePriceSlady: initialData?.purchaseDetails?.packages?.slady || 26000,
+            purchasePriceTopGun: initialData?.purchaseDetails?.packages?.topGun || 30000,
+            requireDownPayment: initialData?.rentalDetails?.requireDownPayment || false,
+            downPaymentPercentage: initialData?.rentalDetails?.downPaymentPercentage || 30,
+            notes: initialData?.notes || "",
+            eventReference: initialData?.rentalDetails?.eventReference || "",
+            discountAmount: initialData?.rentalDetails?.discountAmount,
+            discountConcept: initialData?.rentalDetails?.discountConcept || "",
+            transportKm: initialData?.rentalDetails?.transport?.kilometers,
+            numberOfStaff: initialData?.rentalDetails?.staff?.numberOfStaff,
+            numberOfDays: initialData?.rentalDetails?.staff?.numberOfDays,
+            staffTravel: initialData?.rentalDetails?.staff?.travelExpenses,
+            staffHotel: initialData?.rentalDetails?.staff?.hotelExpenses,
+            hotelNights: initialData?.rentalDetails?.staff?.numberOfDays,
+            paymentTerms: initialData?.purchaseDetails?.paymentTerms || "",
         },
     });
 

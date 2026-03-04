@@ -102,7 +102,35 @@
       },
       "branding": {
         "name": "Branding Personalizado",
-        "desc": "Personalización de colores y logotipos para eventos."
+        "desc": "Personalización de colores y logotipos para eventos.",
+        "optional": "ADD-ON OPCIONAL",
+        "title": "¿Quieres vinilar tu Simulador MotoGp?",
+        "description": "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.",
+        "bestValue": "Mejor valor",
+        "added": "Añadido a la propuesta",
+        "tiers": {
+          "platform": {
+            "title": "Branding Plataforma",
+            "description": "Vinilamos la plataforma del simulador con tu identidad corporativa.",
+            "subtext": "Vinilo, no pintado"
+          },
+          "simulator": {
+            "title": "Branding Simulador (vinilo)",
+            "description": "Vinilamos el carenado completo del simulador con tu marca.",
+            "subtext": "Vinilo, no pintado"
+          },
+          "full": {
+            "title": "Pack Branding Completo",
+            "description": "Vinilamos tanto el carenado como la plataforma. Máximo impacto de marca.",
+            "subtext": "Vinilo, no pintado"
+          }
+        },
+        "features": {
+          "platform": "Vinilo en plataforma",
+          "fairing": "Vinilo en carenado",
+          "design": "Diseño personalizado",
+          "finish": "Acabado profesional"
+        }
       },
       "title": "Opciones Disponibles",
       "noOptions": "No hay opciones disponibles actualmente para este modelo."

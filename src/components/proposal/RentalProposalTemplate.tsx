@@ -37,7 +37,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                             <span className="text-5xl sm:text-7xl font-bold text-white tracking-tight">
                                 {finalTotal.toLocaleString("es-ES")}€
                             </span>
-                            <span className="text-xl text-gray-500 self-end mb-2">+ IVA</span>
+                            <span className="text-xl text-white self-end mb-2">+ IVA</span>
                         </div>
                         {rentalDetails.isVIP && (
                             <span className="inline-block px-3 py-1 bg-red-500/10 text-red-500 text-sm font-medium rounded-full border border-red-500/20">

@@ -191,7 +191,7 @@ export default function PurchaseProposalTemplate({
                                                     <span className="text-3xl lg:text-4xl font-bold text-white">
                                                         {price.toLocaleString("es-ES")}€
                                                     </span>
-                                                    <span className="text-gray-500 text-xs ml-2">+ IVA</span>
+                                                    <span className="text-white text-xs ml-2">+ IVA</span>
                                                 </div>
                                                 <div className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${isSelected
                                                     ? `${model.buttonClass} text-white shadow-lg`

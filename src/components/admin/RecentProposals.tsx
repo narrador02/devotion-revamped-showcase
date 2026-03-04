@@ -34,6 +34,7 @@ interface Proposal {
 interface RecentProposalsProps {
     proposals: Proposal[];
     onDelete?: () => void;
+    onEdit?: (proposalId: string) => void;
 }
 
 function formatDate(dateString: string, locale: string): string {
@@ -149,7 +150,7 @@ function DeleteButton({ proposalId, clientName, onDelete }: { proposalId: string
     );
 }
 
-function ProposalTable({ proposals, onDelete, showAcceptedInfo = false }: { proposals: Proposal[], onDelete?: () => void, showAcceptedInfo?: boolean }) {
+function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }: { proposals: Proposal[], onDelete?: () => void, onEdit?: (id: string) => void, showAcceptedInfo?: boolean }) {
     const { i18n, t } = useTranslation();
 
     return (
@@ -232,6 +233,17 @@ function ProposalTable({ proposals, onDelete, showAcceptedInfo = false }: { prop
                                 )}
                                 <TableCell className="text-right">
                                     <div className="flex justify-end gap-1">
+                                        {!showAcceptedInfo && onEdit && (
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className="h-8 px-2"
+                                                onClick={() => onEdit(proposal.id)}
+                                                title={t("admin.proposals.edit", "Editar")}
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-gray-400"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
+                                            </Button>
+                                        )}
                                         <CopyButton proposalId={proposal.id} />
                                         <Button
                                             variant="ghost"
@@ -299,80 +311,93 @@ function ProposalTable({ proposals, onDelete, showAcceptedInfo = false }: { prop
                                         {proposal.customerDetails.phone && <p className="flex items-center gap-1"><Phone className="w-3 h-3" />{proposal.customerDetails.phone}</p>}
                                     </div>
                                 )}
-                            </div>
-                            <div className="flex gap-1">
-                                <CopyButton proposalId={proposal.id} />
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="h-8 px-2"
-                                    onClick={() => window.open(`/p/${proposal.id}`, '_blank')}
-                                >
-                                    <ExternalLink className="w-4 h-4 text-gray-400" />
-                                </Button>
-                                <DeleteButton
-                                    proposalId={proposal.id}
-                                    clientName={proposal.clientName}
-                                    onDelete={onDelete}
-                                />
+                                <div className="flex flex-col gap-1 mt-3">
+                                    {!showAcceptedInfo && onEdit && (
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className="h-8 px-2 justify-start"
+                                            onClick={() => onEdit(proposal.id)}
+                                            title={t("admin.proposals.edit", "Editar")}
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-gray-400 mr-2"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
+                                            <span className="text-gray-400">Editar</span>
+                                        </Button>
+                                    )}
+                                    <CopyButton proposalId={proposal.id} />
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="h-8 px-2 justify-start"
+                                        onClick={() => window.open(`/p/${proposal.id}`, '_blank')}
+                                        title={t("admin.proposals.openProposal", "Abrir")}
+                                    >
+                                        <ExternalLink className="w-4 h-4 text-gray-400 mr-2" />
+                                        <span className="text-gray-400">Abrir</span>
+                                    </Button>
+                                    <DeleteButton
+                                        proposalId={proposal.id}
+                                        clientName={proposal.clientName}
+                                        onDelete={onDelete}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
                 ))}
-            </div>
+                    </div>
         </>
-    );
+            );
 }
 
-export default function RecentProposals({ proposals, onDelete }: RecentProposalsProps) {
-    const { t } = useTranslation();
+            export default function RecentProposals({proposals, onDelete, onEdit}: RecentProposalsProps) {
+    const {t} = useTranslation();
 
     const pending = proposals.filter(p => !p.accepted);
     const accepted = proposals.filter(p => p.accepted);
 
-    return (
-        <div className="space-y-12">
-            {/* Propuestas Pendientes */}
-            <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-gray-400" />
-                    <h3 className="text-2xl font-semibold text-white">Propuestas Pendientes</h3>
-                    {pending.length > 0 && (
-                        <span className="px-2 py-0.5 text-xs bg-gray-800 text-gray-400 rounded-full border border-gray-700">
-                            {pending.length}
-                        </span>
+            return (
+            <div className="space-y-12">
+                {/* Propuestas Pendientes */}
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                        <Clock className="w-5 h-5 text-gray-400" />
+                        <h3 className="text-2xl font-semibold text-white">Propuestas Pendientes</h3>
+                        {pending.length > 0 && (
+                            <span className="px-2 py-0.5 text-xs bg-gray-800 text-gray-400 rounded-full border border-gray-700">
+                                {pending.length}
+                            </span>
+                        )}
+                    </div>
+                    {pending.length === 0 ? (
+                        <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
+                            <Clock className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                            <p>{t("admin.proposals.noProposals", "No hay propuestas pendientes")}</p>
+                        </div>
+                    ) : (
+                        <ProposalTable proposals={pending} onDelete={onDelete} onEdit={onEdit} showAcceptedInfo={false} />
                     )}
                 </div>
-                {pending.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
-                        <Clock className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                        <p>{t("admin.proposals.noProposals", "No hay propuestas pendientes")}</p>
-                    </div>
-                ) : (
-                    <ProposalTable proposals={pending} onDelete={onDelete} showAcceptedInfo={false} />
-                )}
-            </div>
 
-            {/* Propuestas Aceptadas */}
-            <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <h3 className="text-2xl font-semibold text-white">Propuestas Aceptadas</h3>
-                    {accepted.length > 0 && (
-                        <span className="px-2 py-0.5 text-xs bg-green-900/30 text-green-400 rounded-full border border-green-900/50">
-                            {accepted.length}
-                        </span>
+                {/* Propuestas Aceptadas */}
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        <h3 className="text-2xl font-semibold text-white">Propuestas Aceptadas</h3>
+                        {accepted.length > 0 && (
+                            <span className="px-2 py-0.5 text-xs bg-green-900/30 text-green-400 rounded-full border border-green-900/50">
+                                {accepted.length}
+                            </span>
+                        )}
+                    </div>
+                    {accepted.length === 0 ? (
+                        <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
+                            <CheckCircle2 className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                            <p>No hay propuestas aceptadas aún</p>
+                        </div>
+                    ) : (
+                        <ProposalTable proposals={accepted} onDelete={onDelete} showAcceptedInfo={true} />
                     )}
                 </div>
-                {accepted.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
-                        <CheckCircle2 className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                        <p>No hay propuestas aceptadas aún</p>
-                    </div>
-                ) : (
-                    <ProposalTable proposals={accepted} onDelete={onDelete} showAcceptedInfo={true} />
-                )}
             </div>
-        </div>
-    );
+            );
 }

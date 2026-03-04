@@ -43,10 +43,10 @@ export default function ProposalHero({ clientName, clientLogoUrl }: ProposalHero
             <div
                 className="absolute z-20 pointer-events-none"
                 style={{
-                    right: "9.5%",
+                    right: "10.5%",
                     top: "52%",
                     transform: "translateY(-50%)",
-                    width: "10.8%",
+                    width: "9.7%",
                     aspectRatio: "1 / 1",
                 }}
             >

@@ -7,6 +7,7 @@ import AdminLogin from "@/components/admin/AdminLogin";
 import AdminProposalForm from "@/components/admin/AdminProposalForm";
 import ProposalSuccess from "@/components/admin/ProposalSuccess";
 import RecentProposals from "@/components/admin/RecentProposals";
+import { ProposalListItem, Proposal } from "@/types/proposal";
 
 interface RecentProposal {
     id: string;
@@ -32,6 +33,8 @@ export default function AdminProposals() {
     const [successData, setSuccessData] = useState<{ id: string; clientName: string } | null>(null);
     const [recentProposals, setRecentProposals] = useState<RecentProposal[]>([]);
     const [isLoadingProposals, setIsLoadingProposals] = useState(false);
+    const [editData, setEditData] = useState<Proposal | null>(null);
+    const [isFetchingEdit, setIsFetchingEdit] = useState(false);
 
     // Verify authentication on mount
     // Verify admin authentication
@@ -112,6 +115,28 @@ export default function AdminProposals() {
     const handleCreateAnother = () => {
         setViewState("form");
         setSuccessData(null);
+        setEditData(null);
+    };
+
+    const handleEditProposal = async (proposalId: string) => {
+        setIsFetchingEdit(true);
+        try {
+            const response = await fetch(`/api/proposals/${proposalId}`, {
+                credentials: "include",
+            });
+            if (response.ok) {
+                const { proposal } = await response.json();
+                setEditData(proposal);
+                setViewState("form");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                console.error("Failed to fetch proposal details for edit");
+            }
+        } catch (error) {
+            console.error("Error fetching proposal details:", error);
+        } finally {
+            setIsFetchingEdit(false);
+        }
     };
 
     // Loading state
@@ -184,7 +209,20 @@ export default function AdminProposals() {
                         ) : (
                             <>
                                 <div className="lg:col-span-2">
-                                    <AdminProposalForm onSuccess={handleProposalSuccess} />
+                                    {(isFetchingEdit) ? (
+                                        <div className="flex justify-center items-center py-20 bg-gray-900 border border-gray-800 rounded-xl max-w-2xl mx-auto">
+                                            <div className="flex flex-col items-center gap-4">
+                                                <Loader2 className="w-8 h-8 animate-spin text-red-500" />
+                                                <p className="text-gray-400 font-medium">Cargando propuesta para editar...</p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <AdminProposalForm
+                                            key={editData ? editData.id : 'new'}
+                                            onSuccess={handleProposalSuccess}
+                                            initialData={editData}
+                                        />
+                                    )}
                                 </div>
 
                                 {/* Recent proposals - Full Width */}
@@ -197,6 +235,7 @@ export default function AdminProposals() {
                                         <RecentProposals
                                             proposals={recentProposals}
                                             onDelete={loadRecentProposals}
+                                            onEdit={handleEditProposal}
                                         />
                                     )}
                                 </div>

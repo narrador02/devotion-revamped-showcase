@@ -103,10 +103,10 @@ export default function ProposalBranding({ selected, onSelect, prices = BRANDING
                         <div className="text-center lg:text-left space-y-3">
                             <div className="inline-flex items-center gap-2 text-red-500 font-semibold uppercase tracking-wider text-sm">
                                 <Palette className="w-5 h-5" />
-                                {t("proposal.branding.optional", "Optional Add-on")}
+                                {t("proposal.branding.optional", "ADD-ON OPCIONAL")}
                             </div>
                             <h3 className="text-4xl font-bold text-white">
-                                {t("proposal.branding.title", "Custom Brand Integration")}
+                                {t("proposal.branding.title", "¿Quieres vinilar tu Simulador MotoGp?")}
                             </h3>
                             <p className="text-gray-400 leading-relaxed max-w-2xl">
                                 {t("proposal.branding.description", "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.")}

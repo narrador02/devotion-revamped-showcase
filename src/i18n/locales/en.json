@@ -102,7 +102,35 @@
       },
       "branding": {
         "name": "Custom Branding",
-        "desc": "Custom colors and logos for events."
+        "desc": "Custom colors and logos for events.",
+        "optional": "OPTIONAL ADD-ON",
+        "title": "Do you want to wrap your MotoGp Simulator?",
+        "description": "We maximize your brand's impact by wrapping the fairing and platform with your corporate identity.",
+        "bestValue": "Best value",
+        "added": "Added to proposal",
+        "tiers": {
+          "platform": {
+            "title": "Platform Branding",
+            "description": "We wrap the simulator platform with your corporate identity.",
+            "subtext": "Vinyl wrap, not painted"
+          },
+          "simulator": {
+            "title": "Simulator Branding (vinyl)",
+            "description": "We wrap the complete simulator fairing with your brand.",
+            "subtext": "Vinyl wrap, not painted"
+          },
+          "full": {
+            "title": "Full Branding Pack",
+            "description": "We wrap both the fairing and the platform. Maximum brand impact.",
+            "subtext": "Vinyl wrap, not painted"
+          }
+        },
+        "features": {
+          "platform": "Platform vinyl wrap",
+          "fairing": "Fairing vinyl wrap",
+          "design": "Custom design",
+          "finish": "Professional finish"
+        }
       },
       "title": "Available Options",
       "noOptions": "No options currently available for this model."
