@@ -16,7 +16,7 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
 
     if (!rentalDetails) return null;
 
-    const finalTotal = rentalDetails.total + (showBranding ? brandingPrice : 0) - (rentalDetails.discountAmount || 0);
+    const finalTotal = rentalDetails.total + (showBranding ? brandingPrice : 0);
 
     const features = [
         t("proposal.features.setup", "Instalación y puesta en marcha"),
