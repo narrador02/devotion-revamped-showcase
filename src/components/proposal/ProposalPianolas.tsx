@@ -96,7 +96,7 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
-                                    className="w-full h-auto object-contain scale-110 drop-shadow-[0_0_50px_rgba(239,68,68,0.15)]"
+                                    className="w-full h-auto object-contain scale-[1.15] rounded-2xl drop-shadow-[0_0_50px_rgba(239,68,68,0.15)]"
                                 />
                             </div>
                         </div>
