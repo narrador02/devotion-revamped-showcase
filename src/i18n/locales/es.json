@@ -104,7 +104,7 @@
         "name": "Branding Personalizado",
         "desc": "Personalización de colores y logotipos para eventos.",
         "optional": "ADD-ON OPCIONAL",
-        "title": "¿Quieres vinilar tu Simulador MotoGp?",
+        "title": "¿Quieres vinilar tu Simulador MotoGP?",
         "description": "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.",
         "bestValue": "Mejor valor",
         "added": "Añadido a la propuesta",
@@ -882,7 +882,7 @@
     },
     "branding": {
       "optional": "Add-on Opcional",
-      "title": "Integración de Marca",
+      "title": "¿Quieres vinilar tu Simulador MotoGP?",
       "description": "Maximizamos el impacto de tu marca. Vinilamos el carenado y la plataforma del simulador con tu identidad corporativa.",
       "bestValue": "Mejor valor",
       "added": "Añadido a la propuesta",

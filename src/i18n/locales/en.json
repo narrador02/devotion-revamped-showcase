@@ -104,7 +104,7 @@
         "name": "Custom Branding",
         "desc": "Custom colors and logos for events.",
         "optional": "OPTIONAL ADD-ON",
-        "title": "Do you want to wrap your MotoGp Simulator?",
+        "title": "Do you want to wrap your MotoGP Simulator?",
         "description": "We maximize your brand's impact by wrapping the fairing and platform with your corporate identity.",
         "bestValue": "Best value",
         "added": "Added to proposal",
@@ -861,7 +861,7 @@
     },
     "branding": {
       "optional": "Optional Add-on",
-      "title": "Custom Brand Integration",
+      "title": "Do you want to wrap your MotoGP Simulator?",
       "description": "Maximize your brand impact. We custom wrap the simulator's fairings and platform with your corporate identity.",
       "bestValue": "Best Value",
       "added": "Added to proposal",

@@ -28,8 +28,8 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
                                 {t("proposal.pianolas.optional", "Add-on Opcional")}
                             </div>
 
-                            <h3 className="text-4xl font-bold text-white uppercase tracking-wider">
-                                {t("proposal.pianolas.title", "Pianolas")}
+                            <h3 className="text-4xl font-bold text-white tracking-tight">
+                                {t("proposal.pianolas.title", "Pianos")}
                             </h3>
 
                             <p className="text-gray-400 leading-relaxed max-w-2xl text-lg">
@@ -56,7 +56,19 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
                             </ul>
                         </div>
 
-                        <div className="flex flex-col items-center gap-6 p-8 bg-gray-900/50 rounded-2xl border border-gray-700 min-w-[300px] shadow-2xl">
+                        {/* Image section relocated here */}
+                        <div className="flex-1 w-full max-h-[500px] flex items-center justify-center overflow-hidden rounded-xl">
+                            <motion.img
+                                src={pianoImg}
+                                alt="Pianos"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="max-h-full max-w-full object-contain drop-shadow-[0_0_30px_rgba(239,68,68,0.2)]"
+                            />
+                        </div>
+
+                        <div className="flex flex-col items-center gap-6 p-8 bg-gray-900/50 rounded-2xl border border-gray-700 min-w-[300px] shadow-2xl shrink-0">
                             <div className="text-center">
                                 <span className="text-gray-400 text-xs uppercase tracking-widest block mb-2">
                                     {t("proposal.branding.addToProposal", "Añadir a la Propuesta")}
@@ -85,27 +97,6 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
                                 </motion.div>
                             )}
                         </div>
-                    </div>
-
-                    {/* Singular image with dynamic zoom/pan effect */}
-                    <div className="relative h-[24rem] w-full overflow-hidden mt-8 border-t border-gray-800">
-                        <motion.div
-                            className="absolute inset-0 bg-cover bg-center"
-                            style={{ backgroundImage: `url(${pianoImg})` }}
-                            animate={{
-                                scale: [1, 1.15, 1],
-                                x: ["0%", "-2%", "2%", "0%"],
-                                y: ["0%", "2%", "-2%", "0%"]
-                            }}
-                            transition={{
-                                duration: 25,
-                                ease: "linear",
-                                repeat: Infinity,
-                            }}
-                        />
-                        {/* Gradient overlays to blend with the card */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent opacity-30" />
                     </div>
                 </Card>
             </div>
