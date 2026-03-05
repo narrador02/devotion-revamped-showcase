@@ -21,8 +21,8 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
             <div className="max-w-6xl mx-auto px-4 relative z-10">
                 <Card className={`overflow-hidden transition-all duration-500 border-2 ${isSelected ? 'border-red-600 bg-gray-900' : 'border-gray-800 bg-black'
                     }`}>
-                    <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center">
-                        <div className="flex-1 space-y-6 text-center lg:text-left">
+                    <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-start">
+                        <div className="flex-[1.5] space-y-6 text-center lg:text-left">
                             <div className="inline-flex items-center gap-2 text-red-500 font-semibold uppercase tracking-wider text-sm">
                                 <Flame className="w-5 h-5" />
                                 {t("proposal.pianolas.optional", "Add-on Opcional")}
@@ -56,46 +56,49 @@ export default function ProposalPianolas({ isSelected, onToggle, price }: Propos
                             </ul>
                         </div>
 
-                        {/* Image section relocated here */}
-                        <div className="flex-1 w-full max-h-[500px] flex items-center justify-center overflow-hidden rounded-xl">
-                            <motion.img
-                                src={pianoImg}
-                                alt="Pianos"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="max-h-full max-w-full object-contain drop-shadow-[0_0_30px_rgba(239,68,68,0.2)]"
-                            />
-                        </div>
-
-                        <div className="flex flex-col items-center gap-6 p-8 bg-gray-900/50 rounded-2xl border border-gray-700 min-w-[300px] shadow-2xl shrink-0">
-                            <div className="text-center">
-                                <span className="text-gray-400 text-xs uppercase tracking-widest block mb-2">
-                                    {t("proposal.branding.addToProposal", "Añadir a la Propuesta")}
-                                </span>
-                                <div className="text-5xl font-bold text-white tracking-tight">
-                                    +{price}€
+                        {/* Right column grouping Price/Toggle and Image */}
+                        <div className="flex-1 flex flex-col gap-8 w-full max-w-sm lg:ml-auto">
+                            <div className="flex flex-col items-center gap-6 p-8 bg-gray-900/50 rounded-2xl border border-gray-700 shadow-2xl shrink-0">
+                                <div className="text-center">
+                                    <span className="text-gray-400 text-xs uppercase tracking-widest block mb-2">
+                                        {t("proposal.branding.addToProposal", "Añadir a la Propuesta")}
+                                    </span>
+                                    <div className="text-5xl font-bold text-white tracking-tight">
+                                        +{price}€
+                                    </div>
                                 </div>
+
+                                <div className="scale-150 py-2">
+                                    <Switch
+                                        checked={isSelected}
+                                        onCheckedChange={onToggle}
+                                        className="data-[state=checked]:bg-red-600"
+                                    />
+                                </div>
+
+                                {isSelected && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-[10px] font-bold border border-green-500/30 flex items-center gap-2 uppercase tracking-wide"
+                                    >
+                                        <Check className="w-3 h-3" />
+                                        {t("proposal.pianolas.applied", "Aplicado al Total")}
+                                    </motion.div>
+                                )}
                             </div>
 
-                            <div className="scale-150 py-2">
-                                <Switch
-                                    checked={isSelected}
-                                    onCheckedChange={onToggle}
-                                    className="data-[state=checked]:bg-red-600"
+                            {/* Image section relocated to bottom-right below the card */}
+                            <div className="w-full flex items-center justify-center overflow-hidden rounded-2xl border border-gray-800/50 bg-black/40">
+                                <motion.img
+                                    src={pianoImg}
+                                    alt="Pianos"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="w-full h-auto object-contain scale-110 drop-shadow-[0_0_50px_rgba(239,68,68,0.15)]"
                                 />
                             </div>
-
-                            {isSelected && (
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-[10px] font-bold border border-green-500/30 flex items-center gap-2 uppercase tracking-wide"
-                                >
-                                    <Check className="w-3 h-3" />
-                                    {t("proposal.pianolas.applied", "Aplicado al Total")}
-                                </motion.div>
-                            )}
                         </div>
                     </div>
                 </Card>
