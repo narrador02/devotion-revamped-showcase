@@ -25,6 +25,7 @@ interface AdminSettings {
     brandingPricePack: number;
     flightCasePrice: number;
     pianolaPrice: number;
+    audioSystemPrice: number;
 }
 
 const DEFAULT_SETTINGS: AdminSettings = {
@@ -41,6 +42,7 @@ const DEFAULT_SETTINGS: AdminSettings = {
     brandingPricePack: 600,
     flightCasePrice: 840,
     pianolaPrice: 480,
+    audioSystemPrice: 490,
 };
 
 async function getRateLimitData(ip: string): Promise<RateLimitData | null> {
@@ -94,6 +96,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                     brandingPricePack: body.brandingPricePack || existing.brandingPricePack,
                     flightCasePrice: body.flightCasePrice || existing.flightCasePrice,
                     pianolaPrice: body.pianolaPrice || existing.pianolaPrice,
+                    audioSystemPrice: body.audioSystemPrice || existing.audioSystemPrice,
                 };
                 await kv.set('admin:settings', JSON.stringify(settings));
                 return res.status(200).json({ success: true, settings });

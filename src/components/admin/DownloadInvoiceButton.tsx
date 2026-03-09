@@ -46,8 +46,9 @@ export default function DownloadInvoiceButton({ proposalId, clientName }: Downlo
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error generating invoice:", error);
+            alert(`Error al generar la factura: ${error.message || 'Error desconocido'}`);
         } finally {
             setIsDownloading(false);
         }

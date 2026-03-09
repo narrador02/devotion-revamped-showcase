@@ -1,4 +1,3 @@
-import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
 import { Proposal } from '@/types/proposal';
 
@@ -18,7 +17,7 @@ Font.register({
 // For now, we will use a text header if the image fails, or try to load it from the public directory:
 // '/logo.png' -> https://devotion.com/logo.png for example. We'll use a placeholder URL for the Devotion logo if needed.
 
-const devLogo = "https://raw.githubusercontent.com/jairo110/devotion-revamped-showcase/main/public/logo.png";
+// Removed devLogo since we will use window.location.origin dynamically
 
 const styles = StyleSheet.create({
     page: {
@@ -189,6 +188,7 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
             (pd.packages?.topGun || 0) +
             (proposal.flightCasePrice || 0) +
             (proposal.pianolaPrice || 0) +
+            (proposal.audioSystemPrice || 0) +
             // Branding is complicated but usually either platform, simulator, or full is selected if it's not checked as none
             (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
     }
@@ -210,7 +210,7 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
             <Page size="A4" style={styles.page}>
                 {/* Header */}
                 <View style={styles.header}>
-                    <Image style={styles.logo} src="/logo.png" />
+                    <Image style={styles.logo} src={typeof window !== 'undefined' ? `${window.location.origin}/logo.png` : '/logo.png'} />
                     <Text style={styles.invoiceTitle}>Factura Proforma</Text>
                 </View>
 
@@ -381,6 +381,17 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
                                 </View>
                                 <View style={styles.tableCellAmount}>
                                     <Text style={styles.itemPrice}>{formatCurrency(proposal.pianolaPrice!)}</Text>
+                                </View>
+                            </View>
+                        )}
+                        {proposal.audioSystemPrice! > 0 && (
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableCellDesc}>
+                                    <Text style={styles.itemName}>Sistema de Audio Profesional</Text>
+                                    <Text style={styles.itemDesc}>Mejora acústica premium y respuesta háptica</Text>
+                                </View>
+                                <View style={styles.tableCellAmount}>
+                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.audioSystemPrice!)}</Text>
                                 </View>
                             </View>
                         )}

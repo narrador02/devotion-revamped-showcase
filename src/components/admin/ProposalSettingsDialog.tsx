@@ -28,6 +28,7 @@ interface AdminSettings {
     brandingPricePack: number;
     flightCasePrice: number;
     pianolaPrice: number;
+    audioSystemPrice: number;
 }
 
 interface ProposalSettingsDialogProps {
@@ -53,6 +54,7 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
         brandingPricePack: 600,
         flightCasePrice: 840,
         pianolaPrice: 480,
+        audioSystemPrice: 490,
     });
 
     // Load settings on open
@@ -285,6 +287,18 @@ export default function ProposalSettingsDialog({ onSettingsChange }: ProposalSet
                                 type="number"
                                 value={settings.pianolaPrice}
                                 onChange={(e) => setSettings({ ...settings, pianolaPrice: parseFloat(e.target.value) })}
+                                className="col-span-2 bg-gray-800 border-gray-700 text-white"
+                            />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="audioSystem" className="text-right col-span-2">
+                                Sistema de Audio (€)
+                            </Label>
+                            <Input
+                                id="audioSystem"
+                                type="number"
+                                value={settings.audioSystemPrice}
+                                onChange={(e) => setSettings({ ...settings, audioSystemPrice: parseFloat(e.target.value) })}
                                 className="col-span-2 bg-gray-800 border-gray-700 text-white"
                             />
                         </div>

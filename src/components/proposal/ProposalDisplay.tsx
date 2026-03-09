@@ -7,6 +7,7 @@ import ProposalExperience from "./ProposalExperience";
 import ProposalBranding, { BrandingOption, BRANDING_PRICES, BRANDING_LABELS } from "./ProposalBranding";
 import ProposalFlightCase from "./ProposalFlightCase";
 import ProposalPianolas from "./ProposalPianolas";
+import ProposalAudioSystem from "./ProposalAudioSystem";
 import RentalProposalTemplate from "./RentalProposalTemplate";
 import PurchaseProposalTemplate from "./PurchaseProposalTemplate";
 import ProposalFooter from "./ProposalFooter";
@@ -26,6 +27,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const [brandingOption, setBrandingOption] = useState<BrandingOption>('none');
     const [showFlightCase, setShowFlightCase] = useState(false);
     const [showPianola, setShowPianola] = useState(false);
+    const [showAudioSystem, setShowAudioSystem] = useState(false);
 
     // Make sure we default to an existing simulator when displaying a purchase proposal
     const defaultPurchaseSim = proposal.purchaseDetails?.packages?.slady !== undefined ? 'Slady'
@@ -43,6 +45,7 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const showBranding = brandingOption !== 'none';
     const flightCasePrice = proposal.flightCasePrice ?? 840;
     const pianolaPrice = proposal.pianolaPrice ?? 480;
+    const audioSystemPrice = proposal.audioSystemPrice ?? 490;
     const isPurchase = proposal.proposalType === 'purchase';
 
     // Detect payment success from URL params
@@ -135,6 +138,15 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                         isSelected={showPianola}
                         onToggle={setShowPianola}
                         price={pianolaPrice}
+                    />
+                )}
+
+                {/* 6b. Audio System Add-on (Purchase only) */}
+                {isPurchase && (
+                    <ProposalAudioSystem
+                        isSelected={showAudioSystem}
+                        onToggle={setShowAudioSystem}
+                        price={audioSystemPrice}
                     />
                 )}
 

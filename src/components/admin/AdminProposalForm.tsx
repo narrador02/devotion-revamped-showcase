@@ -92,6 +92,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
         brandingPricePack: 600,
         flightCasePrice: 840,
         pianolaPrice: 480,
+        audioSystemPrice: 490,
     });
 
     // Load saved settings on mount
@@ -116,6 +117,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                             brandingPricePack: data.settings.brandingPricePack ?? 600,
                             flightCasePrice: data.settings.flightCasePrice ?? 840,
                             pianolaPrice: data.settings.pianolaPrice ?? 480,
+                            audioSystemPrice: data.settings.audioSystemPrice ?? 490,
                         };
                         setSettings(loadedSettings);
                         // Update form defaults from loaded settings
@@ -160,6 +162,11 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
             staffHotel: initialData?.rentalDetails?.staff?.hotelExpenses,
             hotelNights: initialData?.rentalDetails?.staff?.numberOfDays,
             paymentTerms: initialData?.purchaseDetails?.paymentTerms || "",
+            selectedPurchaseSimulators: {
+                timeAttack: initialData?.purchaseDetails?.packages?.timeAttack !== undefined,
+                slady: initialData?.purchaseDetails?.packages?.slady !== undefined,
+                topGun: initialData?.purchaseDetails?.packages?.topGun !== undefined,
+            }
         },
     });
 
@@ -254,6 +261,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                 brandingPrices?: { none: number; platform: number; simulator: number; full: number; };
                 flightCasePrice?: number;
                 pianolaPrice?: number;
+                audioSystemPrice?: number;
             }
 
             interface RentalPayload extends BasePayload {
@@ -316,6 +324,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     },
                     flightCasePrice: settings.flightCasePrice,
                     pianolaPrice: settings.pianolaPrice,
+                    audioSystemPrice: settings.audioSystemPrice,
                     rentalDetails: {
                         basePrice: values.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
                         isVIP: values.isVIP,
@@ -343,7 +352,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     }
                 };
             } else {
-                const selectedSimulators = values.selectedPurchaseSimulators || { timeAttack: true, slady: true, topGun: true };
+                const selectedSimulators = values.selectedPurchaseSimulators || { timeAttack: false, slady: false, topGun: false };
 
                 // Validation: Ensure at least one simulator is selected
                 if (!selectedSimulators.timeAttack && !selectedSimulators.slady && !selectedSimulators.topGun) {
@@ -366,6 +375,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     },
                     flightCasePrice: settings.flightCasePrice,
                     pianolaPrice: settings.pianolaPrice,
+                    audioSystemPrice: settings.audioSystemPrice,
                     purchaseDetails: {
                         packages: {
                             ...(selectedSimulators.timeAttack ? { timeAttack: values.purchasePriceTimeAttack } : {}),

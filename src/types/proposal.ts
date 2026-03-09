@@ -57,6 +57,7 @@ export interface Proposal {
     brandingPrices?: { none: number; platform: number; simulator: number; full: number; };
     flightCasePrice?: number;
     pianolaPrice?: number;
+    audioSystemPrice?: number;
 
     notes?: string;
     createdAt: string;
@@ -86,4 +87,5 @@ export interface AdminSettings {
     brandingPricePack: number; // Default: 600
     flightCasePrice: number; // Default: 840
     pianolaPrice: number; // Default: 480
+    audioSystemPrice: number; // Default: 490
 }

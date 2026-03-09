@@ -52,6 +52,8 @@ interface AcceptProposalDialogProps {
     flightCasePrice?: number;
     showPianola?: boolean;
     pianolaPrice?: number;
+    showAudioSystem?: boolean;
+    audioSystemPrice?: number;
     selectedSimulator?: string;
 }
 
@@ -144,6 +146,8 @@ export default function AcceptProposalDialog({
     flightCasePrice = 0,
     showPianola,
     pianolaPrice = 0,
+    showAudioSystem,
+    audioSystemPrice = 0,
     selectedSimulator
 }: AcceptProposalDialogProps) {
     const { t } = useTranslation();
@@ -208,7 +212,8 @@ export default function AcceptProposalDialog({
                 const baseTotal = getProposalTotal(proposal);
                 const addOnsTotal = (showBranding ? brandingPrice : 0) +
                     (showFlightCase ? flightCasePrice : 0) +
-                    (showPianola ? pianolaPrice : 0);
+                    (showPianola ? pianolaPrice : 0) +
+                    (showAudioSystem ? audioSystemPrice : 0);
                 const effectiveTotal = baseTotal + addOnsTotal;
 
                 if (showBranding && brandingPrice > 0) {
@@ -219,6 +224,9 @@ export default function AcceptProposalDialog({
                 }
                 if (showPianola && pianolaPrice > 0) {
                     lineItems.push({ name: 'Pianolas', quantity: 1, unitPrice: pianolaPrice });
+                }
+                if (showAudioSystem && audioSystemPrice > 0) {
+                    lineItems.push({ name: 'Sistema de Audio', quantity: 1, unitPrice: audioSystemPrice });
                 }
 
                 const lang = typeof window !== 'undefined' ? (localStorage.getItem('i18nextLng') || 'es') : 'es';
