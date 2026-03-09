@@ -10,9 +10,10 @@ interface PurchaseFormFieldsProps {
     defaultPriceTimeAttack: number;
     defaultPriceSlady: number;
     defaultPriceTopGun: number;
+    hasError?: boolean;
 }
 
-export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPriceSlady, defaultPriceTopGun }: PurchaseFormFieldsProps) {
+export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPriceSlady, defaultPriceTopGun, hasError }: PurchaseFormFieldsProps) {
     const { t } = useTranslation();
     const { control, watch, setValue } = useFormContext();
 
@@ -120,6 +121,12 @@ export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPric
                             )}
                         />
                     </div>
+
+                    {hasError && (
+                        <p className="text-sm text-red-500 font-medium animate-pulse">
+                            {t("admin.proposals.purchase.selectOneSimulator", "Debes seleccionar al menos un simulador para la propuesta de compra.")}
+                        </p>
+                    )}
 
                     <div className="pt-4">
                         <div className="flex items-center gap-2 text-gray-300 font-medium mb-4">

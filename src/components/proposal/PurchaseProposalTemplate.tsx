@@ -77,15 +77,17 @@ export default function PurchaseProposalTemplate({
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
-            {/* Section Header */}
-            <div className="text-center mb-4">
-                <p className="text-red-500 text-sm font-semibold uppercase tracking-widest mb-2">
-                    Elige tu simulador
-                </p>
-                <p className="text-gray-500 text-sm max-w-xl mx-auto">
-                    Selecciona el modelo que mejor se adapta a tus necesidades. Cada simulador ofrece una experiencia diferente.
-                </p>
-            </div>
+            {/* Section Header: Hide if only 1 simulator */}
+            {simulatorEntries.length > 1 && (
+                <div className="text-center mb-4">
+                    <p className="text-red-500 text-sm font-semibold uppercase tracking-widest mb-2">
+                        Elige tu simulador
+                    </p>
+                    <p className="text-gray-500 text-sm max-w-xl mx-auto">
+                        Selecciona el modelo que mejor se adapta a tus necesidades. Cada simulador ofrece una experiencia diferente.
+                    </p>
+                </div>
+            )}
 
             {/* Simulator Cards */}
             <div className="space-y-6">

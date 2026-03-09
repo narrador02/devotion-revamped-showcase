@@ -75,6 +75,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
     const [logoUrl, setLogoUrl] = useState<string | null>(initialData?.clientLogoUrl || null);
     const [isUploading, setIsUploading] = useState(false);
     const [uploadError, setUploadError] = useState<string | null>(null);
+    const [simSelectionError, setSimSelectionError] = useState<boolean>(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Settings for multipliers
@@ -249,6 +250,8 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
             return;
         }
 
+        setSimSelectionError(false);
+
         setIsSubmitting(true);
 
         try {
@@ -356,7 +359,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
 
                 // Validation: Ensure at least one simulator is selected
                 if (!selectedSimulators.timeAttack && !selectedSimulators.slady && !selectedSimulators.topGun) {
-                    setUploadError(t("admin.proposals.purchase.selectOneSimulator", "Debes seleccionar al menos un simulador para la propuesta de compra."));
+                    setSimSelectionError(true);
                     setIsSubmitting(false);
                     return;
                 }
@@ -617,6 +620,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                                 defaultPriceTimeAttack={settings.purchasePriceTimeAttack}
                                 defaultPriceSlady={settings.purchasePriceSlady}
                                 defaultPriceTopGun={settings.purchasePriceTopGun}
+                                hasError={simSelectionError}
                             />
                         )}
 
@@ -676,9 +680,9 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                                     } : undefined,
                                     purchaseDetails: form.watch("proposalType") === "purchase" ? {
                                         packages: {
-                                            timeAttack: form.watch("purchasePriceTimeAttack") || 23000,
-                                            slady: form.watch("purchasePriceSlady") || 26000,
-                                            topGun: form.watch("purchasePriceTopGun") || 30000,
+                                            ...(form.watch("selectedPurchaseSimulators")?.timeAttack ? { timeAttack: form.watch("purchasePriceTimeAttack") || 23000 } : {}),
+                                            ...(form.watch("selectedPurchaseSimulators")?.slady ? { slady: form.watch("purchasePriceSlady") || 26000 } : {}),
+                                            ...(form.watch("selectedPurchaseSimulators")?.topGun ? { topGun: form.watch("purchasePriceTopGun") || 30000 } : {}),
                                         },
                                         paymentTerms: form.watch("paymentTerms")
                                     } : undefined

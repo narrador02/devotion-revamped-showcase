@@ -83,16 +83,15 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
                         </div>
                     </div>
 
-                    {/* Image section */}
-                    <div className="mt-8 mb-12 relative">
-                        <div className="flex overflow-hidden justify-center px-8">
-                            <div className="relative w-full max-w-2xl aspect-video rounded-xl overflow-hidden border border-gray-800 bg-black/50">
+                    {/* Image section: Removed frame and expanded */}
+                    <div className="mt-8 mb-4 relative">
+                        <div className="flex overflow-hidden justify-center px-4">
+                            <div className="relative w-full max-w-4xl aspect-video overflow-hidden">
                                 <img
                                     src={coverAudio}
                                     alt="Audio System"
-                                    className="w-full h-full object-contain opacity-90"
+                                    className="w-full h-full object-contain"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                             </div>
                         </div>
                     </div>

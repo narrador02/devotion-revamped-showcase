@@ -36,9 +36,9 @@ export interface RentalDetails {
 
 export interface PurchaseDetails {
     packages: {
-        timeAttack: number;
-        slady: number;
-        topGun: number;
+        timeAttack?: number;
+        slady?: number;
+        topGun?: number;
     };
     paymentTerms?: string;
 }
