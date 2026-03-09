@@ -18,6 +18,7 @@ export interface RentalCalculatorResults {
     transportCost: number;
     staffDailyCost: number;
     staffTotalCost: number;
+    totalBeforeDiscount: number;
     grandTotal: number;
     hasOptionalFields: boolean;
 }
@@ -48,7 +49,8 @@ export function useRentalCalculator(inputs: RentalCalculatorInputs): RentalCalcu
 
         // Grand total
         const discount = inputs.discountAmount || 0;
-        const grandTotal = Math.max(0, simulatorSubtotal + transportCost + staffTotalCost - discount);
+        const totalBeforeDiscount = simulatorSubtotal + transportCost + staffTotalCost;
+        const grandTotal = Math.max(0, totalBeforeDiscount - discount);
 
         // Check if any optional fields were provided
         const hasOptionalFields = !!(
@@ -64,6 +66,7 @@ export function useRentalCalculator(inputs: RentalCalculatorInputs): RentalCalcu
             transportCost,
             staffDailyCost,
             staffTotalCost,
+            totalBeforeDiscount,
             grandTotal,
             hasOptionalFields,
         };

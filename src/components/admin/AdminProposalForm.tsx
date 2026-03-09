@@ -347,7 +347,8 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                             hotelExpenses: (values.staffHotel || 0) * (values.hotelNights || values.numberOfDays || 1),
                             totalCost: rentalTotals.staffTotalCost
                         } : undefined,
-                        subtotal: rentalTotals.simulatorSubtotal,
+                        numberOfDays: values.numberOfDays || 1,
+                        subtotal: rentalTotals.totalBeforeDiscount,
                         total: rentalTotals.grandTotal,
                         eventReference: values.eventReference?.trim() || undefined,
                         discountAmount: values.discountAmount || undefined,

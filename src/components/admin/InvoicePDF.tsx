@@ -178,8 +178,12 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
     // Calculate subtotal based on type
     let subtotal = 0;
 
-    if (isRental) {
-        subtotal = proposal.rentalDetails?.subtotal || 0;
+    if (isRental && proposal.rentalDetails) {
+        const rd = proposal.rentalDetails;
+        subtotal = rd.subtotal ||
+            ((rd.basePrice * (rd.numberOfSimulators || 1) * (rd.numberOfDays || 1)) +
+                (rd.transport?.totalCost || 0) +
+                (rd.staff?.totalCost || 0));
     } else if (proposal.purchaseDetails) {
         // Purchase subtotal calculation
         const pd = proposal.purchaseDetails;
@@ -262,7 +266,7 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
                                     Alquiler Simulador MotoGP {proposal.rentalDetails.isVIP ? 'VIP' : 'Estándar'}
                                 </Text>
                                 <Text style={styles.itemDesc}>
-                                    {proposal.rentalDetails.numberOfSimulators} Simulador(es) x {proposal.rentalDetails.numberOfDays} día(s)
+                                    {proposal.rentalDetails.numberOfSimulators} Simulador(es) x {proposal.rentalDetails.numberOfDays || 1} día(s)
                                 </Text>
                             </View>
                             <View style={styles.tableCellAmount}>

@@ -83,10 +83,10 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
                         </div>
                     </div>
 
-                    {/* Image section: Removed frame and expanded */}
-                    <div className="mt-8 mb-4 relative">
+                    {/* Image section: Reduced margin and added styling */}
+                    <div className="mt-4 mb-4 relative">
                         <div className="flex overflow-hidden justify-center px-4">
-                            <div className="relative w-full max-w-4xl aspect-video overflow-hidden">
+                            <div className="relative w-full max-w-4xl aspect-video overflow-hidden rounded-2xl shadow-2xl border border-white/5">
                                 <img
                                     src={coverAudio}
                                     alt="Audio System"
