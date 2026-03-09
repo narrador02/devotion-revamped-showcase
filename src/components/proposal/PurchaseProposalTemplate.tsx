@@ -58,10 +58,10 @@ export default function PurchaseProposalTemplate({
         { name: "Time Attack", popular: false },
         { name: "Slady", popular: true },
         { name: "Top Gun", popular: false },
-    ];
+    ].filter(entry => priceMap[entry.name] !== undefined);
 
     // Calculate total for the selected simulator
-    const selectedPrice = priceMap[selectedSimulator] ?? packages.slady;
+    const selectedPrice = priceMap[selectedSimulator] ?? simulatorEntries[0]?.name ? priceMap[simulatorEntries[0].name] : 0;
     const addOnsTotal = (showBranding ? brandingPrice : 0) +
         (showFlightCase ? flightCasePrice : 0) +
         (showPianola ? pianolaPrice : 0);

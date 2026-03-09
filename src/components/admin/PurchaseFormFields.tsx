@@ -14,7 +14,20 @@ interface PurchaseFormFieldsProps {
 
 export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPriceSlady, defaultPriceTopGun }: PurchaseFormFieldsProps) {
     const { t } = useTranslation();
-    const { control } = useFormContext();
+    const { control, watch, setValue } = useFormContext();
+
+    const selectedSimulators = watch("selectedPurchaseSimulators") || {
+        timeAttack: false,
+        slady: false,
+        topGun: false,
+    };
+
+    const toggleSimulator = (sim: 'timeAttack' | 'slady' | 'topGun') => {
+        setValue("selectedPurchaseSimulators", {
+            ...selectedSimulators,
+            [sim]: !selectedSimulators[sim]
+        });
+    };
 
     return (
         <div className="space-y-6 animate-in fade-in duration-500">
@@ -30,18 +43,20 @@ export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPric
                             control={control}
                             name="purchasePriceTimeAttack"
                             render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel className="text-gray-400 text-sm">
+                                <FormItem className={`transition-all duration-300 ${!selectedSimulators.timeAttack ? 'opacity-50 grayscale cursor-pointer' : ''}`} onClick={() => !selectedSimulators.timeAttack && toggleSimulator('timeAttack')}>
+                                    <FormLabel className="text-gray-400 text-sm flex justify-between items-center cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleSimulator('timeAttack'); }}>
                                         Time Attack
+                                        <div className={`w-3 h-3 rounded-full ${selectedSimulators.timeAttack ? 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]' : 'bg-gray-600'}`} />
                                     </FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
                                                 type="number"
                                                 {...field}
+                                                disabled={!selectedSimulators.timeAttack}
                                                 onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                                                 placeholder={defaultPriceTimeAttack.toLocaleString("es-ES")}
-                                                className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8"
+                                                className={`bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8 ${!selectedSimulators.timeAttack ? 'pointer-events-none' : ''}`}
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">€</span>
                                         </div>
@@ -55,18 +70,20 @@ export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPric
                             control={control}
                             name="purchasePriceSlady"
                             render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel className="text-gray-400 text-sm">
+                                <FormItem className={`transition-all duration-300 ${!selectedSimulators.slady ? 'opacity-50 grayscale cursor-pointer' : ''}`} onClick={() => !selectedSimulators.slady && toggleSimulator('slady')}>
+                                    <FormLabel className="text-gray-400 text-sm flex justify-between items-center cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleSimulator('slady'); }}>
                                         Slady
+                                        <div className={`w-3 h-3 rounded-full ${selectedSimulators.slady ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-gray-600'}`} />
                                     </FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
                                                 type="number"
                                                 {...field}
+                                                disabled={!selectedSimulators.slady}
                                                 onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                                                 placeholder={defaultPriceSlady.toLocaleString("es-ES")}
-                                                className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8"
+                                                className={`bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8 ${!selectedSimulators.slady ? 'pointer-events-none' : ''}`}
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">€</span>
                                         </div>
@@ -80,18 +97,20 @@ export default function PurchaseFormFields({ defaultPriceTimeAttack, defaultPric
                             control={control}
                             name="purchasePriceTopGun"
                             render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel className="text-gray-400 text-sm">
+                                <FormItem className={`transition-all duration-300 ${!selectedSimulators.topGun ? 'opacity-50 grayscale cursor-pointer' : ''}`} onClick={() => !selectedSimulators.topGun && toggleSimulator('topGun')}>
+                                    <FormLabel className="text-gray-400 text-sm flex justify-between items-center cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleSimulator('topGun'); }}>
                                         Top Gun
+                                        <div className={`w-3 h-3 rounded-full ${selectedSimulators.topGun ? 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]' : 'bg-gray-600'}`} />
                                     </FormLabel>
                                     <FormControl>
                                         <div className="relative">
                                             <Input
                                                 type="number"
                                                 {...field}
+                                                disabled={!selectedSimulators.topGun}
                                                 onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                                                 placeholder={defaultPriceTopGun.toLocaleString("es-ES")}
-                                                className="bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8"
+                                                className={`bg-gray-700 border-gray-600 text-white placeholder:text-gray-500 pr-8 ${!selectedSimulators.topGun ? 'pointer-events-none' : ''}`}
                                             />
                                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">€</span>
                                         </div>

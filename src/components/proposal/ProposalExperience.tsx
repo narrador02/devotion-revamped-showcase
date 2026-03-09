@@ -7,10 +7,14 @@ import videoTimeAttack from "@/assets/eje2-wheelie.mp4";
 import videoSlady from "@/assets/eje3-desliz.mp4";
 import videoTopGun from "@/assets/eje4-aceler.mp4";
 
-export default function ProposalExperience() {
+interface ProposalExperienceProps {
+    selectedSimulator?: string;
+}
+
+export default function ProposalExperience({ selectedSimulator }: ProposalExperienceProps) {
     const { t } = useTranslation();
 
-    const experiences = [
+    const allExperiences = [
         {
             id: 1,
             title: t("proposal.experience.realism.title", "Realism"),
@@ -34,6 +38,16 @@ export default function ProposalExperience() {
         },
     ];
 
+    // Filter videos based on the selected simulator for purchase proposals
+    // Time Attack -> 1st video
+    // Slady -> 1st and 2nd video
+    // Top Gun (or undefined/Rental) -> all 3 videos
+    const experiences = allExperiences.filter(exp => {
+        if (selectedSimulator === "Time Attack") return exp.id === 1;
+        if (selectedSimulator === "Slady") return exp.id <= 2;
+        return true; // Top Gun, undefined (Rentals), or others show all
+    });
+
     return (
         <div className="py-24 bg-black relative overflow-hidden">
             {/* Background elements */}
@@ -54,7 +68,10 @@ export default function ProposalExperience() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className={`grid gap-8 ${experiences.length === 1 ? 'max-w-3xl mx-auto' :
+                        experiences.length === 2 ? 'md:grid-cols-2 max-w-5xl mx-auto' :
+                            'md:grid-cols-3'
+                    }`}>
                     {experiences.map((exp, index) => (
                         <motion.div
                             key={exp.id}

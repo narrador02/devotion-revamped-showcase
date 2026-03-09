@@ -56,6 +56,13 @@ const formSchema = z.object({
     paymentTerms: z.string().optional().or(z.literal("")),
 
     notes: z.string().max(2000).optional().or(z.literal("")),
+
+    // Purchase conditional simulators
+    selectedPurchaseSimulators: z.object({
+        timeAttack: z.boolean(),
+        slady: z.boolean(),
+        topGun: z.boolean(),
+    }).optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -282,9 +289,9 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                 proposalType: "purchase";
                 purchaseDetails: {
                     packages: {
-                        timeAttack: number;
-                        slady: number;
-                        topGun: number;
+                        timeAttack?: number;
+                        slady?: number;
+                        topGun?: number;
                     };
                     paymentTerms?: string;
                 };
@@ -336,6 +343,15 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     }
                 };
             } else {
+                const selectedSimulators = values.selectedPurchaseSimulators || { timeAttack: true, slady: true, topGun: true };
+
+                // Validation: Ensure at least one simulator is selected
+                if (!selectedSimulators.timeAttack && !selectedSimulators.slady && !selectedSimulators.topGun) {
+                    setUploadError(t("admin.proposals.purchase.selectOneSimulator", "Debes seleccionar al menos un simulador para la propuesta de compra."));
+                    setIsSubmitting(false);
+                    return;
+                }
+
                 payload = {
                     proposalType: "purchase",
                     clientName: values.clientName,
@@ -352,25 +368,25 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     pianolaPrice: settings.pianolaPrice,
                     purchaseDetails: {
                         packages: {
-                            timeAttack: values.purchasePriceTimeAttack,
-                            slady: values.purchasePriceSlady,
-                            topGun: values.purchasePriceTopGun,
+                            ...(selectedSimulators.timeAttack ? { timeAttack: values.purchasePriceTimeAttack } : {}),
+                            ...(selectedSimulators.slady ? { slady: values.purchasePriceSlady } : {}),
+                            ...(selectedSimulators.topGun ? { topGun: values.purchasePriceTopGun } : {}),
                         },
                         paymentTerms: values.paymentTerms || undefined
                     }
                 };
 
-                // Auto-persist modified prices as new defaults
+                // Auto-persist modified prices as new defaults (only if selected)
                 if (
-                    values.purchasePriceTimeAttack !== settings.purchasePriceTimeAttack ||
-                    values.purchasePriceSlady !== settings.purchasePriceSlady ||
-                    values.purchasePriceTopGun !== settings.purchasePriceTopGun
+                    (selectedSimulators.timeAttack && values.purchasePriceTimeAttack !== settings.purchasePriceTimeAttack) ||
+                    (selectedSimulators.slady && values.purchasePriceSlady !== settings.purchasePriceSlady) ||
+                    (selectedSimulators.topGun && values.purchasePriceTopGun !== settings.purchasePriceTopGun)
                 ) {
                     const updatedSettings = {
                         ...settings,
-                        purchasePriceTimeAttack: values.purchasePriceTimeAttack,
-                        purchasePriceSlady: values.purchasePriceSlady,
-                        purchasePriceTopGun: values.purchasePriceTopGun,
+                        ...(selectedSimulators.timeAttack ? { purchasePriceTimeAttack: values.purchasePriceTimeAttack } : {}),
+                        ...(selectedSimulators.slady ? { purchasePriceSlady: values.purchasePriceSlady } : {}),
+                        ...(selectedSimulators.topGun ? { purchasePriceTopGun: values.purchasePriceTopGun } : {}),
                     };
                     fetch("/api/admin?action=settings", {
                         method: "POST",

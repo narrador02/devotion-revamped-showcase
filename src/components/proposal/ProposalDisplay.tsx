@@ -26,7 +26,14 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const [brandingOption, setBrandingOption] = useState<BrandingOption>('none');
     const [showFlightCase, setShowFlightCase] = useState(false);
     const [showPianola, setShowPianola] = useState(false);
-    const [selectedSimulator, setSelectedSimulator] = useState('Slady');
+
+    // Make sure we default to an existing simulator when displaying a purchase proposal
+    const defaultPurchaseSim = proposal.purchaseDetails?.packages?.slady !== undefined ? 'Slady'
+        : proposal.purchaseDetails?.packages?.timeAttack !== undefined ? 'Time Attack'
+            : proposal.purchaseDetails?.packages?.topGun !== undefined ? 'Top Gun'
+                : 'Slady';
+    const [selectedSimulator, setSelectedSimulator] = useState(defaultPurchaseSim);
+
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
     const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
 
@@ -100,7 +107,9 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
             />
 
             {/* 2. Experience Section (Simulators) */}
-            <ProposalExperience />
+            <ProposalExperience
+                selectedSimulator={isPurchase ? selectedSimulator : undefined}
+            />
 
             <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 space-y-12">
 

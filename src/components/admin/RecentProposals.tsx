@@ -14,6 +14,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import DownloadInvoiceButton from "./DownloadInvoiceButton";
 
 interface Proposal {
     id: string;
@@ -245,6 +246,7 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
                                             </Button>
                                         )}
                                         <CopyButton proposalId={proposal.id} />
+                                        <DownloadInvoiceButton proposalId={proposal.id} clientName={proposal.clientName} />
                                         <Button
                                             variant="ghost"
                                             size="sm"
