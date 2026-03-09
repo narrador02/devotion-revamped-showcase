@@ -6,20 +6,7 @@ import SEO from "@/components/SEO";
 import ProposalDisplay from "@/components/proposal/ProposalDisplay";
 import ExpiredProposal from "@/components/proposal/ExpiredProposal";
 
-interface Proposal {
-    id: string;
-    clientName: string;
-    clientLogoUrl: string;
-    personalMessage?: string;
-    pricing: {
-        basic: string;
-        professional: string;
-        complete: string;
-    };
-    notes?: string;
-    createdAt: string;
-    expiresAt: string;
-}
+import { Proposal as ProposalType } from "@/types/proposal";
 
 type PageState = "loading" | "found" | "expired" | "not_found";
 
@@ -27,7 +14,7 @@ export default function Proposal() {
     const { id } = useParams<{ id: string }>();
     const { t } = useTranslation();
     const [pageState, setPageState] = useState<PageState>("loading");
-    const [proposal, setProposal] = useState<Proposal | null>(null);
+    const [proposalData, setProposalData] = useState<ProposalType | null>(null);
 
     useEffect(() => {
         const fetchProposal = async () => {
@@ -41,7 +28,7 @@ export default function Proposal() {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setProposal(data.proposal);
+                    setProposalData(data.proposal);
                     setPageState("found");
                 } else if (response.status === 410) {
                     setPageState("expired");
@@ -80,7 +67,7 @@ export default function Proposal() {
     }
 
     // Not found (same UI as expired for security)
-    if (pageState === "not_found" || !proposal) {
+    if (pageState === "not_found" || !proposalData) {
         return (
             <>
                 <SEO
@@ -96,11 +83,11 @@ export default function Proposal() {
     return (
         <>
             <SEO
-                title={t("proposal.pageTitle", { clientName: proposal.clientName })}
-                description={t("proposal.pageDescription", { clientName: proposal.clientName })}
+                title={t("proposal.pageTitle", { clientName: proposalData.clientName })}
+                description={t("proposal.pageDescription", { clientName: proposalData.clientName })}
                 noindex={true}
             />
-            <ProposalDisplay proposal={proposal} />
+            <ProposalDisplay proposal={proposalData} />
         </>
     );
 }

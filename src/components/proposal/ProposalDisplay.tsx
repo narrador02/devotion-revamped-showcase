@@ -30,9 +30,10 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
     const [showAudioSystem, setShowAudioSystem] = useState(false);
 
     // Make sure we default to an existing simulator when displaying a purchase proposal
-    const defaultPurchaseSim = proposal.purchaseDetails?.packages?.slady !== undefined ? 'Slady'
-        : proposal.purchaseDetails?.packages?.timeAttack !== undefined ? 'Time Attack'
-            : proposal.purchaseDetails?.packages?.topGun !== undefined ? 'Top Gun'
+    const packages = (proposal.purchaseDetails?.packages || {}) as any;
+    const defaultPurchaseSim = packages.slady !== undefined ? 'Slady'
+        : packages.timeAttack !== undefined ? 'Time Attack'
+            : packages.topGun !== undefined ? 'Top Gun'
                 : 'Slady';
     const [selectedSimulator, setSelectedSimulator] = useState(defaultPurchaseSim);
 
@@ -188,6 +189,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                             flightCasePrice={flightCasePrice}
                             showPianola={showPianola}
                             pianolaPrice={pianolaPrice}
+                            showAudioSystem={showAudioSystem}
+                            audioSystemPrice={audioSystemPrice}
                         />
                     )}
                 </motion.div>
@@ -204,6 +207,8 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     flightCasePrice={flightCasePrice}
                     showPianola={isPurchase ? showPianola : false}
                     pianolaPrice={pianolaPrice}
+                    showAudioSystem={isPurchase ? showAudioSystem : false}
+                    audioSystemPrice={audioSystemPrice}
                     selectedSimulator={isPurchase ? selectedSimulator : undefined}
                 />
             </div>
@@ -214,7 +219,16 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
                     document={
                         <ProposalPDF
                             proposal={proposal}
-                        // Pass branding info to PDF if supported in future, currently PDF might not reflect dynamic state unless updated
+                            selectedSimulator={selectedSimulator}
+                            showBranding={showBranding}
+                            brandingPrice={brandingPrice}
+                            brandingLabel={brandingLabel}
+                            showFlightCase={showFlightCase}
+                            flightCasePrice={flightCasePrice}
+                            showPianola={showPianola}
+                            pianolaPrice={pianolaPrice}
+                            showAudioSystem={showAudioSystem}
+                            audioSystemPrice={audioSystemPrice}
                         />
                     }
                     fileName={`DevotionSim_Proposal_${proposal.clientName.replace(/\s+/g, '_')}.pdf`}

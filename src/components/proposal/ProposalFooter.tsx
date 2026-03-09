@@ -21,17 +21,19 @@ interface ProposalFooterProps {
     flightCasePrice?: number;
     showPianola?: boolean;
     pianolaPrice?: number;
+    showAudioSystem?: boolean;
+    audioSystemPrice?: number;
     selectedSimulator?: string;
 }
 
-export default function ProposalFooter({ proposal, dateRange, setDateRange, showBranding, brandingPrice, brandingLabel, showFlightCase, flightCasePrice, showPianola, pianolaPrice, selectedSimulator }: ProposalFooterProps) {
+export default function ProposalFooter({ proposal, dateRange, setDateRange, showBranding, brandingPrice, brandingLabel, showFlightCase, flightCasePrice, showPianola, pianolaPrice, showAudioSystem, audioSystemPrice, selectedSimulator }: ProposalFooterProps) {
     const { t, i18n } = useTranslation();
     // Local state for dialog only, dateRange is now lifted
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [showUpdateMessage, setShowUpdateMessage] = useState(false);
-    const [busyDates, setBusyDates] = useState<{ start: string; end: string; }[]>([]);
-    const [isLoadingAvailability, setIsLoadingAvailability] = useState(false);
-    const [overlapError, setOverlapError] = useState(false);
+    const [busyDates] = useState<{ start: string; end: string; }[]>([]);
+    const [isLoadingAvailability] = useState(false);
+    const [overlapError] = useState(false);
 
     const isRental = proposal.proposalType === 'rental';
     const requireDownPayment = isRental && proposal.rentalDetails?.requireDownPayment;
@@ -262,6 +264,8 @@ export default function ProposalFooter({ proposal, dateRange, setDateRange, show
                 flightCasePrice={flightCasePrice}
                 showPianola={showPianola}
                 pianolaPrice={pianolaPrice}
+                showAudioSystem={showAudioSystem}
+                audioSystemPrice={audioSystemPrice}
                 selectedSimulator={selectedSimulator}
                 selectedDates={
                     dateRange?.from && dateRange?.to

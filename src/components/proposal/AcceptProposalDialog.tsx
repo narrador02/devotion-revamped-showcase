@@ -188,6 +188,8 @@ export default function AcceptProposalDialog({
                 addOns: [
                     ...(showBranding ? [brandingLabel] : []),
                     ...(showFlightCase ? ['Flight Case'] : []),
+                    ...(showPianola ? ['Pianolas'] : []),
+                    ...(showAudioSystem ? ['Sistema de Audio'] : []),
                 ].join(', ') || 'Ninguno',
             };
 
@@ -480,7 +482,8 @@ export default function AcceptProposalDialog({
                                                 const baseTotal = getProposalTotal(proposal) +
                                                     (showBranding ? brandingPrice : 0) +
                                                     (showFlightCase ? flightCasePrice : 0) +
-                                                    (showPianola ? pianolaPrice : 0);
+                                                    (showPianola ? pianolaPrice : 0) +
+                                                    (showAudioSystem ? audioSystemPrice : 0);
                                                 const dpPercentage = proposal.rentalDetails?.downPaymentPercentage ?? 30;
                                                 const downPaymentAmount = Math.round(baseTotal * (dpPercentage / 100));
                                                 return downPaymentAmount.toLocaleString("es-ES");

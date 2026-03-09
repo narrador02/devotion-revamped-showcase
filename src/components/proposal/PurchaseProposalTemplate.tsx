@@ -47,9 +47,9 @@ export default function PurchaseProposalTemplate({
 
     const packages = purchaseDetails.packages;
     const priceMap: Record<string, number> = {
-        "Time Attack": packages.timeAttack,
-        "Slady": packages.slady,
-        "Top Gun": packages.topGun,
+        "Time Attack": packages.timeAttack || 0,
+        "Slady": packages.slady || 0,
+        "Top Gun": packages.topGun || 0,
     };
 
     const modelMap: Record<string, typeof simulatorsData.models[0]> = {
@@ -62,10 +62,10 @@ export default function PurchaseProposalTemplate({
         { name: "Time Attack", popular: false },
         { name: "Slady", popular: true },
         { name: "Top Gun", popular: false },
-    ].filter(entry => priceMap[entry.name] !== undefined);
+    ].filter(entry => packages[entry.name.toLowerCase().replace(" ", "") as keyof typeof packages] !== undefined);
 
     // Calculate total for the selected simulator
-    const selectedPrice = priceMap[selectedSimulator] ?? simulatorEntries[0]?.name ? priceMap[simulatorEntries[0].name] : 0;
+    const selectedPrice = priceMap[selectedSimulator] || 0;
     const addOnsTotal = (showBranding ? brandingPrice : 0) +
         (showFlightCase ? flightCasePrice : 0) +
         (showPianola ? pianolaPrice : 0) +

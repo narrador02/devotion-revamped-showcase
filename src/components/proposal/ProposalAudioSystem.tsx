@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { CheckCircle2, Speaker } from "lucide-react";
+import { Check, Speaker } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Card } from "@/components/ui/card";
 
 import coverAudio from "@/assets/audio-system.jpg";
 
@@ -21,78 +23,81 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="group relative bg-[#111111] rounded-2xl overflow-hidden cursor-pointer"
-            onClick={() => onToggle(!isSelected)}
-        >
-            <div className={`absolute inset-0 border-2 transition-colors duration-300 rounded-2xl z-10 
-                ${isSelected ? 'border-red-600' : 'border-transparent group-hover:border-gray-700'}`}
-            />
+        <div className="py-6 bg-black relative overflow-hidden">
+            <div className="max-w-6xl mx-auto px-4 relative z-10">
+                <Card className={`overflow-hidden transition-all duration-500 border-2 ${isSelected ? 'border-red-600 bg-gray-900' : 'border-gray-800 bg-black'
+                    }`}>
+                    <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center">
+                        <div className="flex-1 space-y-6 text-center lg:text-left">
+                            <div className="inline-flex items-center gap-2 text-red-500 font-semibold uppercase tracking-wider text-sm">
+                                <Speaker className="w-5 h-5" />
+                                {t("proposal.audioSystem.optional", "Add-on Opcional")}
+                            </div>
 
-            <div className="grid md:grid-cols-2 gap-0 relative z-20">
-                {/* Content */}
-                <div className="p-8 md:p-12 flex flex-col justify-center relative bg-[#111111]">
-                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-red-600 to-transparent opacity-50" />
+                            <h3 className="text-4xl font-bold text-white">
+                                {t("proposal.audioSystem.title", "Sistema de Audio Profesional")}
+                            </h3>
 
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
-                            <Speaker className="w-5 h-5 text-red-500" />
+                            <p className="text-gray-400 leading-relaxed max-w-2xl">
+                                {t("proposal.audioSystem.description", "Mejora radicalmente la inmersión con audio de alta fidelidad. Siente cómo tu cuerpo vibra con las frecuencias emitidas por el audio prerrabado de motos Supersport reales al acelerar y alcanzar las máximas RPM.")}
+                            </p>
+
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left">
+                                {features.map((feature, i) => (
+                                    <li key={i} className="flex items-center gap-2 text-gray-300">
+                                        <Check className="w-4 h-4 text-green-500 shrink-0" />
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                        <h3 className="text-2xl font-bold text-white tracking-tight">
-                            {t("proposal.audioSystem.title", "Sistema de Audio Profesional")}
-                        </h3>
+
+                        <div className="flex flex-col items-center gap-6 p-8 bg-gray-900/50 rounded-2xl border border-gray-700 min-w-[300px] shadow-2xl">
+                            <div className="text-center">
+                                <span className="text-gray-400 text-xs uppercase tracking-widest block mb-2">
+                                    {t("proposal.branding.addToProposal", "Añadir a la Propuesta")}
+                                </span>
+                                <div className="text-5xl font-bold text-white tracking-tight">
+                                    +{price.toLocaleString("es-ES")}€
+                                </div>
+                            </div>
+
+                            <div className="scale-150 py-2">
+                                <Switch
+                                    checked={isSelected}
+                                    onCheckedChange={onToggle}
+                                    className="data-[state=checked]:bg-red-600"
+                                />
+                            </div>
+
+                            {isSelected && (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-[10px] font-bold border border-green-500/30 flex items-center gap-2 uppercase tracking-wide"
+                                >
+                                    <Check className="w-3 h-3" />
+                                    {t("proposal.branding.added", "Añadido a la propuesta")}
+                                </motion.div>
+                            )}
+                        </div>
                     </div>
 
-                    <p className="text-gray-400 mb-8 leading-relaxed max-w-md">
-                        {t("proposal.audioSystem.description", "Mejora radicalmente la inmersión con audio de alta fidelidad. Siente cómo tu cuerpo vibra con las frecuencias emitidas por el audio prerrabado de motos Supersport reales al acelerar y alcanzar las máximas RPM.")}
-                    </p>
-
-                    <ul className="space-y-4 mb-8">
-                        {features.map((feature, i) => (
-                            <li key={i} className="flex items-start gap-3">
-                                <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                                <span className="text-gray-300">{feature}</span>
-                            </li>
-                        ))}
-                    </ul>
-
-                    {/* Price and Selection Toggle */}
-                    <div className="mt-auto pt-8 border-t border-gray-800 flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors
-                                ${isSelected ? 'border-red-600 bg-red-600' : 'border-gray-600 group-hover:border-gray-400'}`}
-                            >
-                                {isSelected && <CheckCircle2 className="w-4 h-4 text-white" />}
-                            </div>
-                            <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">
-                                {isSelected ? t("proposal.branding.selected", "Añadido a la propuesta") : t("proposal.addons.clickToAdd", "Click para añadir")}
-                            </span>
-                        </div>
-                        <div className="text-right">
-                            <div className="text-2xl font-bold text-white">
-                                +{price.toLocaleString("es-ES")}€
-                            </div>
-                            <div className="text-gray-500 text-sm">
-                                {t("proposal.iva", "+ IVA")}
+                    {/* Image section */}
+                    <div className="mt-4 mb-8 relative">
+                        <div className="flex overflow-hidden justify-center px-8">
+                            <div className="relative w-full max-w-4xl h-72 rounded-xl overflow-hidden border border-gray-800 bg-black">
+                                <img
+                                    src={coverAudio}
+                                    alt="Audio System"
+                                    className="w-full h-full object-cover opacity-80"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                             </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Cover Image */}
-                <div className="relative h-64 md:h-auto overflow-hidden bg-black">
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-transparent to-transparent z-10" />
-                    <img
-                        src={coverAudio}
-                        alt="High Quality Audio System"
-                        className={`w-full h-full object-cover transition-transform duration-700 
-                            ${isSelected ? 'scale-105' : 'group-hover:scale-105'}`}
-                    />
-                </div>
+                </Card>
             </div>
-        </motion.div>
+        </div>
     );
 }

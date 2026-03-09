@@ -146,9 +146,31 @@ const styles = StyleSheet.create({
 
 interface ProposalPDFProps {
     proposal: Proposal;
+    selectedSimulator?: string;
+    showBranding?: boolean;
+    brandingPrice?: number;
+    brandingLabel?: string;
+    showFlightCase?: boolean;
+    flightCasePrice?: number;
+    showPianola?: boolean;
+    pianolaPrice?: number;
+    showAudioSystem?: boolean;
+    audioSystemPrice?: number;
 }
 
-export default function ProposalPDF({ proposal }: ProposalPDFProps) {
+export default function ProposalPDF({
+    proposal,
+    selectedSimulator,
+    showBranding,
+    brandingPrice = 0,
+    brandingLabel = "Branding",
+    showFlightCase,
+    flightCasePrice = 0,
+    showPianola,
+    pianolaPrice = 0,
+    showAudioSystem,
+    audioSystemPrice = 0
+}: ProposalPDFProps) {
     const { proposalType, rentalDetails, purchaseDetails } = proposal;
 
     const formatDate = (date: string) => {
@@ -158,6 +180,25 @@ export default function ProposalPDF({ proposal }: ProposalPDFProps) {
             day: "numeric",
         });
     };
+
+    // Calculate total for purchase
+    const calculatePurchaseTotal = () => {
+        if (!purchaseDetails || !selectedSimulator) return 0;
+        const packages = purchaseDetails.packages;
+        const selectedPrice = (selectedSimulator === "Time Attack" ? packages.timeAttack :
+            selectedSimulator === "Slady" ? packages.slady :
+                selectedSimulator === "Top Gun" ? packages.topGun : 0) || 0;
+
+        const addOns = (showBranding ? brandingPrice : 0) +
+            (showFlightCase ? flightCasePrice : 0) +
+            (showPianola ? pianolaPrice : 0) +
+            (showAudioSystem ? audioSystemPrice : 0);
+
+        return selectedPrice + addOns;
+    };
+
+    const purchaseTotal = calculatePurchaseTotal();
+    const purchaseIva = Math.round(purchaseTotal * 0.21);
 
     return (
         <Document>
@@ -226,9 +267,16 @@ export default function ProposalPDF({ proposal }: ProposalPDFProps) {
                             </>
                         )}
 
+                        {showBranding && brandingPrice > 0 && (
+                            <View style={styles.row}>
+                                <Text style={styles.label}>{brandingLabel}</Text>
+                                <Text style={styles.value}>{brandingPrice.toLocaleString()}€</Text>
+                            </View>
+                        )}
+
                         <View style={styles.totalRow}>
                             <Text>TOTAL ESTIMADO (Sin IVA)</Text>
-                            <Text>{rentalDetails.total.toLocaleString("es-ES")}€</Text>
+                            <Text>{(rentalDetails.total + (showBranding ? brandingPrice : 0)).toLocaleString("es-ES")}€</Text>
                         </View>
 
                         {(!rentalDetails.transport || !rentalDetails.staff) && (
@@ -243,20 +291,60 @@ export default function ProposalPDF({ proposal }: ProposalPDFProps) {
                 {proposalType === "purchase" && purchaseDetails && (
                     <>
                         <View style={styles.section}>
-                            <Text style={styles.sectionTitle}>Opciones de Compra</Text>
-                            <View style={styles.grid}>
-                                <View style={styles.card}>
-                                    <Text style={styles.cardTitle}>Time Attack</Text>
-                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.timeAttack.toLocaleString("es-ES")}€</Text>
+                            <Text style={styles.sectionTitle}>Detalles de la Compra</Text>
+
+                            {selectedSimulator && (
+                                <View style={styles.row}>
+                                    <Text style={styles.label}>Simulador {selectedSimulator}</Text>
+                                    <Text style={styles.value}>
+                                        {(selectedSimulator === "Time Attack" ? purchaseDetails.packages.timeAttack :
+                                            selectedSimulator === "Slady" ? purchaseDetails.packages.slady :
+                                                purchaseDetails.packages.topGun).toLocaleString("es-ES")}€
+                                    </Text>
                                 </View>
-                                <View style={[styles.card, { borderColor: "#EF4444", borderWidth: 2 }]}>
-                                    <Text style={[styles.cardTitle, { color: "#EF4444" }]}>Slady</Text>
-                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.slady.toLocaleString("es-ES")}€</Text>
+                            )}
+
+                            {showBranding && brandingPrice > 0 && (
+                                <View style={styles.row}>
+                                    <Text style={styles.label}>{brandingLabel}</Text>
+                                    <Text style={styles.value}>+{brandingPrice.toLocaleString("es-ES")}€</Text>
                                 </View>
-                                <View style={styles.card}>
-                                    <Text style={styles.cardTitle}>Top Gun</Text>
-                                    <Text style={styles.cardPrice}>{purchaseDetails.packages.topGun.toLocaleString("es-ES")}€</Text>
+                            )}
+
+                            {showFlightCase && flightCasePrice > 0 && (
+                                <View style={styles.row}>
+                                    <Text style={styles.label}>Flight Case</Text>
+                                    <Text style={styles.value}>+{flightCasePrice.toLocaleString("es-ES")}€</Text>
                                 </View>
+                            )}
+
+                            {showPianola && pianolaPrice > 0 && (
+                                <View style={styles.row}>
+                                    <Text style={styles.label}>Pianolas</Text>
+                                    <Text style={styles.value}>+{pianolaPrice.toLocaleString("es-ES")}€</Text>
+                                </View>
+                            )}
+
+                            {showAudioSystem && audioSystemPrice > 0 && (
+                                <View style={styles.row}>
+                                    <Text style={styles.label}>Sistema de Audio Profesional</Text>
+                                    <Text style={styles.value}>+{audioSystemPrice.toLocaleString("es-ES")}€</Text>
+                                </View>
+                            )}
+
+                            <View style={[styles.row, { borderTopWidth: 1, borderTopColor: "#E5E7EB", marginTop: 10, paddingTop: 10 }]}>
+                                <Text style={styles.label}>Subtotal</Text>
+                                <Text style={styles.value}>{purchaseTotal.toLocaleString("es-ES")}€</Text>
+                            </View>
+
+                            <View style={styles.row}>
+                                <Text style={styles.label}>IVA (21%)</Text>
+                                <Text style={styles.value}>+{purchaseIva.toLocaleString("es-ES")}€</Text>
+                            </View>
+
+                            <View style={styles.totalRow}>
+                                <Text>TOTAL FINAL</Text>
+                                <Text>{(purchaseTotal + purchaseIva).toLocaleString("es-ES")}€</Text>
                             </View>
                         </View>
 
@@ -286,3 +374,4 @@ export default function ProposalPDF({ proposal }: ProposalPDFProps) {
         </Document>
     );
 }
+
