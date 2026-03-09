@@ -59,10 +59,10 @@ export default function PurchaseProposalTemplate({
     };
 
     const simulatorEntries = [
-        { name: "Time Attack", popular: false },
-        { name: "Slady", popular: true },
-        { name: "Top Gun", popular: false },
-    ].filter(entry => packages[entry.name.toLowerCase().replace(" ", "") as keyof typeof packages] !== undefined);
+        { name: "Time Attack", key: "timeAttack", popular: false },
+        { name: "Slady", key: "slady", popular: true },
+        { name: "Top Gun", key: "topGun", popular: false },
+    ].filter(entry => packages[entry.key as keyof typeof packages] !== undefined && packages[entry.key as keyof typeof packages]! > 0);
 
     // Calculate total for the selected simulator
     const selectedPrice = priceMap[selectedSimulator] || 0;

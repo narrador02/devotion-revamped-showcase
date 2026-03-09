@@ -16,9 +16,9 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
     const { t } = useTranslation();
 
     const features = [
-        t("proposal.audioSystem.specs.speakers", "Doble sistema de altavoces integrados en chasis"),
+        t("proposal.audioSystem.specs.speakers", "Sistema de altavoces 2.1 integrados en la moto"),
         t("proposal.audioSystem.specs.subwoofer", "Subwoofer interno de alta resonancia"),
-        t("proposal.audioSystem.specs.transducer", "Bass Shaker (Transductor Táctil) para vibración del chasis"),
+        t("proposal.audioSystem.specs.transducer", "Bass Shaker para vibración del chasis"),
         t("proposal.audioSystem.specs.quality", "Perfiles de audio de competición pre-cargados"),
     ];
 
@@ -39,7 +39,7 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
                             </h3>
 
                             <p className="text-gray-400 leading-relaxed max-w-2xl">
-                                {t("proposal.audioSystem.description", "Mejora radicalmente la inmersión con audio de alta fidelidad. Siente cómo tu cuerpo vibra con las frecuencias emitidas por el audio prerrabado de motos Supersport reales al acelerar y alcanzar las máximas RPM.")}
+                                {t("proposal.audioSystem.description", "Mejora radicalmente la inmersión con audio de alta fidelidad. Siente cómo tu cuerpo vibra con las frecuencias emitidas por el audio pregrabado de motos Supersport reales al acelerar y alcanzar las máximas RPM.")}
                             </p>
 
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left">
@@ -84,15 +84,15 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
                     </div>
 
                     {/* Image section */}
-                    <div className="mt-4 mb-8 relative">
+                    <div className="mt-8 mb-12 relative">
                         <div className="flex overflow-hidden justify-center px-8">
-                            <div className="relative w-full max-w-4xl h-72 rounded-xl overflow-hidden border border-gray-800 bg-black">
+                            <div className="relative w-full max-w-2xl aspect-video rounded-xl overflow-hidden border border-gray-800 bg-black/50">
                                 <img
                                     src={coverAudio}
                                     alt="Audio System"
-                                    className="w-full h-full object-cover opacity-80"
+                                    className="w-full h-full object-contain opacity-90"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                             </div>
                         </div>
                     </div>

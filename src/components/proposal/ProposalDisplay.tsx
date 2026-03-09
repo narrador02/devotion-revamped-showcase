@@ -31,10 +31,14 @@ export default function ProposalDisplay({ proposal }: ProposalDisplayProps) {
 
     // Make sure we default to an existing simulator when displaying a purchase proposal
     const packages = (proposal.purchaseDetails?.packages || {}) as any;
-    const defaultPurchaseSim = packages.slady !== undefined ? 'Slady'
-        : packages.timeAttack !== undefined ? 'Time Attack'
-            : packages.topGun !== undefined ? 'Top Gun'
-                : 'Slady';
+
+    // Check which simulators have prices set and find the best default
+    const defaultPurchaseSim =
+        packages.topGun !== undefined && packages.topGun > 0 ? 'Top Gun' :
+            packages.slady !== undefined && packages.slady > 0 ? 'Slady' :
+                packages.timeAttack !== undefined && packages.timeAttack > 0 ? 'Time Attack' :
+                    'Slady'; // Fallback
+
     const [selectedSimulator, setSelectedSimulator] = useState(defaultPurchaseSim);
 
     const [dateRange, setDateRange] = useState<DateRange | undefined>();
