@@ -24,6 +24,8 @@ interface RecentProposal {
         email?: string;
         phone?: string;
     } | null;
+    rentalDetails?: any | null;
+    proposalType?: "rental" | "purchase";
 }
 
 type ViewState = "form" | "success";
@@ -290,6 +292,7 @@ export default function AdminProposals() {
                                             proposals={recentProposals}
                                             onDelete={loadRecentProposals}
                                             onEdit={handleEditProposal}
+                                            googleConnected={googleConnected}
                                         />
                                     )}
                                 </div>

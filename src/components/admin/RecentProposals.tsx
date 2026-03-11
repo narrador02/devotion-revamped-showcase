@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Copy, Check, ExternalLink, Clock, AlertTriangle, Trash2, Loader2, CheckCircle2, User, Mail, Phone } from "lucide-react";
+import { Copy, Check, ExternalLink, Clock, AlertTriangle, Trash2, Loader2, CheckCircle2, User, Mail, Phone, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useState } from "react";
@@ -15,6 +15,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import DownloadInvoiceButton from "./DownloadInvoiceButton";
+import { toast } from "sonner";
 
 interface Proposal {
     id: string;
@@ -30,12 +31,16 @@ interface Proposal {
         email?: string;
         phone?: string;
     } | null;
+    rentalDetails?: any | null;
+    proposalType?: "rental" | "purchase";
+    notes?: string;
 }
 
 interface RecentProposalsProps {
     proposals: Proposal[];
     onDelete?: () => void;
     onEdit?: (proposalId: string) => void;
+    googleConnected?: boolean;
 }
 
 function formatDate(dateString: string, locale: string): string {
@@ -152,7 +157,77 @@ function DeleteButton({ proposalId, clientName, onDelete }: { proposalId: string
     );
 }
 
-function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }: { proposals: Proposal[], onDelete?: () => void, onEdit?: (id: string) => void, showAcceptedInfo?: boolean }) {
+function SyncCalendarButton({ proposal, googleConnected }: { proposal: Proposal, googleConnected: boolean }) {
+    const { t } = useTranslation();
+    const [isSyncing, setIsSyncing] = useState(false);
+
+    if (proposal.proposalType !== "rental" || !googleConnected) return null;
+
+    const handleSync = async () => {
+        setIsSyncing(true);
+        try {
+            const rd = proposal.rentalDetails;
+            const startDate = rd?.startDate || proposal.createdAt;
+            const endDate = rd?.endDate || new Date(new Date(startDate).getTime() + (rd?.numberOfDays || 1) * 24 * 60 * 60 * 1000).toISOString();
+
+            const response = await fetch("/api/admin?action=google-calendar-event", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    proposalId: proposal.id,
+                    title: `Devotion Sim: ${proposal.clientName}`,
+                    description: `Event for ${proposal.clientName}. ${proposal.notes || ""}`,
+                    startDate,
+                    endDate,
+                }),
+                credentials: "include",
+            });
+
+            if (response.ok) {
+                toast.success(t("admin.proposals.google.calendarSuccess", "Synced to Google Calendar"));
+            } else {
+                const data = await response.json();
+                toast.error(data.error || "Failed to sync to calendar");
+            }
+        } catch (error) {
+            console.error("Sync error:", error);
+            toast.error("An error occurred during sync");
+        } finally {
+            setIsSyncing(false);
+        }
+    };
+
+    return (
+        <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleSync}
+            disabled={isSyncing}
+            className="h-8 px-2 hover:bg-blue-900/20 hover:text-blue-400"
+            title={t("admin.proposals.google.syncCalendar", "Sync to Calendar")}
+        >
+            {isSyncing ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+                <Calendar className="w-4 h-4" />
+            )}
+        </Button>
+    );
+}
+
+function ProposalTable({ 
+    proposals, 
+    onDelete, 
+    onEdit, 
+    googleConnected = false, 
+    showAcceptedInfo = false 
+}: { 
+    proposals: Proposal[], 
+    onDelete?: () => void, 
+    onEdit?: (id: string) => void, 
+    googleConnected?: boolean, 
+    showAcceptedInfo?: boolean 
+}) {
     const { i18n, t } = useTranslation();
 
     return (
@@ -246,6 +321,7 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-gray-400"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
                                             </Button>
                                         )}
+                                        <SyncCalendarButton proposal={proposal} googleConnected={googleConnected} />
                                         <CopyButton proposalId={proposal.id} />
                                         <DownloadInvoiceButton proposalId={proposal.id} clientName={proposal.clientName} />
                                         <Button
@@ -326,6 +402,7 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
                                         </Button>
                                     )}
+                                    <SyncCalendarButton proposal={proposal} googleConnected={googleConnected} />
                                     <CopyButton proposalId={proposal.id} />
                                     <DownloadInvoiceButton proposalId={proposal.id} clientName={proposal.clientName} />
                                     <Button
@@ -352,7 +429,7 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
     );
 }
 
-export default function RecentProposals({ proposals, onDelete, onEdit }: RecentProposalsProps) {
+export default function RecentProposals({ proposals, onDelete, onEdit, googleConnected = false }: RecentProposalsProps) {
     const { t } = useTranslation();
 
     const pending = proposals.filter(p => !p.accepted);
@@ -377,7 +454,13 @@ export default function RecentProposals({ proposals, onDelete, onEdit }: RecentP
                         <p>{t("admin.proposals.noProposals", "No hay propuestas pendientes")}</p>
                     </div>
                 ) : (
-                    <ProposalTable proposals={pending} onDelete={onDelete} onEdit={onEdit} showAcceptedInfo={false} />
+                    <ProposalTable 
+                        proposals={pending} 
+                        onDelete={onDelete} 
+                        onEdit={onEdit} 
+                        showAcceptedInfo={false} 
+                        googleConnected={googleConnected} 
+                    />
                 )}
             </div>
 
@@ -398,7 +481,13 @@ export default function RecentProposals({ proposals, onDelete, onEdit }: RecentP
                         <p>{t('admin.proposals.noAccepted', 'No hay propuestas aceptadas aún')}</p>
                     </div>
                 ) : (
-                    <ProposalTable proposals={accepted} onDelete={onDelete} showAcceptedInfo={true} />
+                    <ProposalTable 
+                        proposals={accepted} 
+                        onDelete={onDelete} 
+                        onEdit={onEdit}
+                        showAcceptedInfo={true} 
+                        googleConnected={googleConnected} 
+                    />
                 )}
             </div>
         </div>

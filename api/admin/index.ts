@@ -164,7 +164,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         const scopes = [
             'https://www.googleapis.com/auth/drive.readonly',
-            'https://www.googleapis.com/auth/drive.metadata.readonly'
+            'https://www.googleapis.com/auth/drive.metadata.readonly',
+            'https://www.googleapis.com/auth/calendar.events'
         ].join(' ');
         
         const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` + 
@@ -211,31 +212,75 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
     }
 
-    // 5c. Get Access Token
+    // 5c. Get Access Token (Internal use or return to client)
+    const getAccessToken = async () => {
+        const refreshToken = await kv.get<string>('admin:google_refresh_token');
+        if (!refreshToken) throw new Error('No Google account connected');
+
+        const response = await fetch('https://oauth2.googleapis.com/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                client_id: GOOGLE_CLIENT_ID!,
+                client_secret: GOOGLE_CLIENT_SECRET!,
+                refresh_token: refreshToken,
+                grant_type: 'refresh_token',
+            } as any),
+        });
+
+        const data = await response.json();
+        if (data.error) throw new Error(data.error_description || data.error);
+        return data.access_token;
+    };
+
     if (action === 'google-token') {
         try {
-            const refreshToken = await kv.get<string>('admin:google_refresh_token');
-            if (!refreshToken) return res.status(404).json({ error: 'No Google account connected' });
-
-            const response = await fetch('https://oauth2.googleapis.com/token', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({
-                    client_id: GOOGLE_CLIENT_ID!,
-                    client_secret: GOOGLE_CLIENT_SECRET!,
-                    refresh_token: refreshToken,
-                    grant_type: 'refresh_token',
-                } as any),
-            });
-
-            const data = await response.json();
-            if (data.error) throw new Error(data.error_description || data.error);
-
+            const accessToken = await getAccessToken();
             return res.status(200).json({
-                accessToken: data.access_token,
+                accessToken,
                 apiKey: GOOGLE_API_KEY,
                 clientId: GOOGLE_CLIENT_ID
             });
+        } catch (error: any) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
+
+    // 5d. Create Calendar Event
+    if (action === 'google-calendar-event' && req.method === 'POST') {
+        try {
+            const accessToken = await getAccessToken();
+            const { proposalId, title, description, startDate, endDate, location } = req.body || {};
+
+            if (!startDate || !endDate) return res.status(400).json({ error: 'Start and End dates are required' });
+
+            const event = {
+                summary: title || 'Devotion Sim Event',
+                description: description || `Proposal: ${proposalId}`,
+                location: location || '',
+                start: {
+                    dateTime: new Date(startDate).toISOString(),
+                    timeZone: 'Europe/Madrid',
+                },
+                end: {
+                    dateTime: new Date(endDate).toISOString(),
+                    timeZone: 'Europe/Madrid',
+                },
+            };
+
+            const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(event),
+            });
+
+            const data = await response.json();
+            if (data.error) throw new Error(data.error.message || 'Failed to create event');
+
+            return res.status(200).json({ success: true, eventId: data.id });
         } catch (error: any) {
             return res.status(500).json({ error: error.message });
         }

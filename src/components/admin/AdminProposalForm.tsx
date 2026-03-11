@@ -412,29 +412,29 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     pianolaPrice: settings.pianolaPrice,
                     audioSystemPrice: settings.audioSystemPrice,
                     rentalDetails: {
-                        basePrice: values.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
+                        basePrice: Number(values.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice),
                         isVIP: values.isVIP,
-                        numberOfSimulators: values.numberOfSimulators,
+                        numberOfSimulators: Number(values.numberOfSimulators) || 1,
                         requireDownPayment: values.requireDownPayment,
-                        downPaymentPercentage: values.requireDownPayment ? values.downPaymentPercentage : undefined,
+                        downPaymentPercentage: values.requireDownPayment ? Number(values.downPaymentPercentage) : undefined,
                         transport: values.transportKm ? {
-                            kilometers: values.transportKm,
+                            kilometers: Number(values.transportKm),
                             pricePerKm: settings.transportMultiplier,
                             totalCost: rentalTotals.transportCost
                         } : undefined,
                         staff: (values.numberOfStaff || values.numberOfDays) ? {
-                            numberOfStaff: values.numberOfStaff,
-                            numberOfDays: values.numberOfDays,
+                            numberOfStaff: Number(values.numberOfStaff) || 0,
+                            numberOfDays: Math.max(0, Number(values.numberOfDays) || 0),
                             pricePerStaffDay: settings.staffMultiplier,
-                            travelExpenses: values.staffTravel,
-                            hotelExpenses: (values.staffHotel || 0) * (values.hotelNights || values.numberOfDays || 1),
+                            travelExpenses: Number(values.staffTravel) || 0,
+                            hotelExpenses: (Number(values.staffHotel) || 0) * (Number(values.hotelNights) || Number(values.numberOfDays) || 1),
                             totalCost: rentalTotals.staffTotalCost
                         } : undefined,
-                        numberOfDays: values.numberOfDays || 1,
+                        numberOfDays: Math.max(1, Number(values.numberOfDays) || 1),
                         subtotal: rentalTotals.totalBeforeDiscount,
                         total: rentalTotals.grandTotal,
                         eventReference: values.eventReference?.trim() || undefined,
-                        discountAmount: values.discountAmount || undefined,
+                        discountAmount: values.discountAmount ? Number(values.discountAmount) : undefined,
                         discountConcept: values.discountConcept?.trim() || undefined
                     }
                 };

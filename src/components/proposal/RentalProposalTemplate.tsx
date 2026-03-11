@@ -71,9 +71,11 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                         {/* Simulators */}
                         <div className="flex justify-between items-center py-2 border-b border-gray-800">
                             <span className="text-gray-400">
-                                {rentalDetails.numberOfSimulators}x {t("proposal.rental.simulator", "MotoGP Simulator")} ({rentalDetails.basePrice}€ x {rentalDetails.numberOfDays || 1} {t("proposal.days", "días")})
+                                {Number(rentalDetails.numberOfSimulators) || 1}x {t("proposal.rental.simulator", "MotoGP Simulator")} ({rentalDetails.basePrice}€ x {Math.max(1, Number(rentalDetails.numberOfDays) || 1)} {t("proposal.days", "días")})
                             </span>
-                            <span className="text-white font-medium">{(rentalDetails.basePrice * rentalDetails.numberOfSimulators * (rentalDetails.numberOfDays || 1)).toLocaleString()}€</span>
+                            <span className="text-white font-medium">
+                                {(Number(rentalDetails.basePrice) * (Number(rentalDetails.numberOfSimulators) || 1) * Math.max(1, Number(rentalDetails.numberOfDays) || 1)).toLocaleString()}€
+                            </span>
                         </div>
 
                         {/* Transport */}
@@ -96,7 +98,8 @@ export default function RentalProposalTemplate({ proposal, showBranding = false,
                                     <div className="flex items-center gap-2">
                                         <Users className="w-4 h-4" />
                                         <span>
-                                            {t("proposal.rental.staff", "Staff / Alojamiento / Viaje")}
+                                            {rentalDetails.staff.numberOfStaff ? `${rentalDetails.staff.numberOfStaff}x ` : ""}
+                                            {t("proposal.rental.staff", "Staff / Alojamiento")}
                                         </span>
                                     </div>
                                     <span className="text-white font-medium">
