@@ -21,7 +21,7 @@ interface Proposal {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,DELETE,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,DELETE,POST,PUT,OPTIONS');
 
     if (req.method === 'OPTIONS') return res.status(200).end();
 
@@ -60,7 +60,41 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
     }
 
-    // 3. Accept Proposal (POST) - Merged from accept.ts
+    // 3. Update Proposal (PUT)
+    if (req.method === 'PUT') {
+        const rawCookie = req.headers.cookie || '';
+        const parsedCookies: Record<string, string> = {};
+        rawCookie.split(';').forEach(part => {
+            const [key, ...val] = part.trim().split('=');
+            if (key) parsedCookies[key.trim()] = decodeURIComponent(val.join('='));
+        });
+        const adminAuth = parsedCookies.adminAuth || (req.cookies || {}).adminAuth;
+        if (adminAuth !== 'true') return res.status(401).json({ error: 'Unauthorized' });
+
+        try {
+            const newData = req.body || {};
+            const existingData = await kv.get(`proposal:${id}`);
+            if (!existingData) return res.status(404).json({ error: 'Proposal not found' });
+
+            const proposal = typeof existingData === 'string' ? JSON.parse(existingData) : existingData;
+
+            // Update fields but preserve key identifying information
+            const updatedProposal = {
+                ...proposal,
+                ...newData,
+                id, // Ensure ID stays the same
+                createdAt: proposal.createdAt, // Preserve original creation date
+                expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // Refresh 1 month
+            };
+
+            await kv.set(`proposal:${id}`, JSON.stringify(updatedProposal), { ex: 30 * 24 * 60 * 60 });
+            return res.status(200).json({ success: true, proposal: { id, clientName: updatedProposal.clientName } });
+        } catch (error) {
+            return res.status(500).json({ error: 'Failed to update proposal' });
+        }
+    }
+
+    // 4. Accept Proposal (POST) - Merged from accept.ts
     if (req.method === 'POST') {
         try {
             const payload = req.body || {};

@@ -25,6 +25,7 @@ import { Proposal } from "@/types/proposal";
 
 interface AdminProposalFormProps {
     onSuccess: (proposalId: string, clientName: string) => void;
+    onCancel?: () => void;
     initialData?: Proposal | null;
 }
 
@@ -67,7 +68,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function AdminProposalForm({ onSuccess, initialData }: AdminProposalFormProps) {
+export default function AdminProposalForm({ onSuccess, onCancel, initialData }: AdminProposalFormProps) {
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
     // logoFile removed as unused
@@ -117,6 +118,12 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                 .setIncludeFolders(true)
                 .setMimeTypes('image/jpeg,image/png,image/webp');
 
+            // Restore last used folder if available
+            const lastFolderId = localStorage.getItem("lastGoogleFolderId");
+            if (lastFolderId) {
+                docsView.setParent(lastFolderId);
+            }
+
             // @ts-ignore
             const picker = new window.google.picker.PickerBuilder()
                 .addView(docsView)
@@ -127,6 +134,11 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                     if (data.action === window.google.picker.Action.PICKED) {
                         const file = data.docs[0];
                         const fileId = file.id;
+                        
+                        // Store the parent folder ID for persistence if available
+                        if (file.parentId) {
+                            localStorage.setItem("lastGoogleFolderId", file.parentId);
+                        }
                         
                         // Fetch the file blob using the access token
                         setIsUploading(true);
@@ -499,8 +511,11 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                 }
             }
 
-            const response = await fetch("/api/proposals", {
-                method: "POST",
+            const url = initialData ? `/api/proposals/${initialData.id}` : "/api/proposals";
+            const method = initialData ? "PUT" : "POST";
+
+            const response = await fetch(url, {
+                method,
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -510,7 +525,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
 
             if (!response.ok) {
                 const errorData = await response.json();
-                let errorMessage = errorData.error || "Failed to create proposal";
+                let errorMessage = errorData.error || (initialData ? "Failed to update proposal" : "Failed to create proposal");
                 if (errorData.details) {
                     errorMessage += `: ${errorData.details}`;
                 }
@@ -766,26 +781,27 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                                     personalMessage: form.watch("personalMessage"),
                                     notes: form.watch("notes"),
                                     rentalDetails: form.watch("proposalType") === "rental" ? {
-                                        basePrice: rentalValues.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice,
+                                        basePrice: Number(rentalValues.isVIP ? settings.simulatorPriceVIP : settings.simulatorPrice),
                                         isVIP: rentalValues.isVIP,
-                                        numberOfSimulators: rentalValues.numberOfSimulators || 1,
+                                        numberOfSimulators: Number(rentalValues.numberOfSimulators) || 1,
+                                        numberOfDays: Math.max(1, Number(rentalValues.numberOfDays) || 1),
                                         transport: rentalValues.transportKm ? {
-                                            kilometers: rentalValues.transportKm,
+                                            kilometers: Number(rentalValues.transportKm),
                                             pricePerKm: settings.transportMultiplier,
                                             totalCost: rentalTotals.transportCost
                                         } : undefined,
                                         staff: (rentalValues.numberOfStaff || rentalValues.numberOfDays) ? {
-                                            numberOfStaff: rentalValues.numberOfStaff,
-                                            numberOfDays: rentalValues.numberOfDays,
+                                            numberOfStaff: Number(rentalValues.numberOfStaff) || 0,
+                                            numberOfDays: Math.max(0, Number(rentalValues.numberOfDays) || 0),
                                             pricePerStaffDay: settings.staffMultiplier,
-                                            travelExpenses: rentalValues.staffTravel,
-                                            hotelExpenses: (rentalValues.staffHotel || 0) * (rentalValues.hotelNights || rentalValues.numberOfDays || 1),
+                                            travelExpenses: Number(rentalValues.staffTravel) || 0,
+                                            hotelExpenses: (Number(rentalValues.staffHotel) || 0) * (Number(rentalValues.hotelNights) || Number(rentalValues.numberOfDays) || 1),
                                             totalCost: rentalTotals.staffTotalCost
                                         } : undefined,
                                         subtotal: rentalTotals.totalBeforeDiscount,
                                         total: rentalTotals.grandTotal,
                                         eventReference: form.watch("eventReference"),
-                                        discountAmount: form.watch("discountAmount"),
+                                        discountAmount: form.watch("discountAmount") ? Number(form.watch("discountAmount")) : undefined,
                                         discountConcept: form.watch("discountConcept")
                                     } : undefined,
                                     purchaseDetails: form.watch("proposalType") === "purchase" ? {
@@ -800,6 +816,17 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                                 disabled={!form.watch("clientName")}
                             />
 
+                            {initialData && onCancel && (
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    onClick={onCancel}
+                                    className="flex-1 bg-gray-800 border-gray-700 text-gray-400 hover:text-white hover:bg-gray-700"
+                                >
+                                    {t("common.discardChanges", "Descartar cambios")}
+                                </Button>
+                            )}
+
                             <Button
                                 type="submit"
                                 disabled={isSubmitting || isUploading}
@@ -808,10 +835,10 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                                 {isSubmitting ? (
                                     <>
                                         <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                        {t("admin.proposals.creating")}
+                                        {initialData ? t("admin.proposals.updating", "Guardando cambios...") : t("admin.proposals.creating")}
                                     </>
                                 ) : (
-                                    t("admin.proposals.submit")
+                                    initialData ? t("admin.proposals.saveChanges", "Guardar cambios") : t("admin.proposals.submit")
                                 )}
                             </Button>
                         </div>

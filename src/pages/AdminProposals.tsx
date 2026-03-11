@@ -276,6 +276,7 @@ export default function AdminProposals() {
                                         <AdminProposalForm
                                             key={editData ? editData.id : 'new'}
                                             onSuccess={handleProposalSuccess}
+                                            onCancel={handleCreateAnother}
                                             initialData={editData}
                                         />
                                     )}

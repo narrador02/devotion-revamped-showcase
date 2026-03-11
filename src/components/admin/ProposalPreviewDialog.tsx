@@ -37,10 +37,16 @@ export default function ProposalPreviewDialog({ data, disabled }: ProposalPrevie
                     {t("admin.proposals.preview", "Preview")}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="w-[95vw] max-w-[95vw] h-[90vh] p-0 bg-gray-900 border-gray-800 overflow-hidden">
-                <ScrollArea className="h-full w-full">
+            <DialogContent className="w-full sm:w-[95vw] max-w-none sm:max-w-[95vw] h-full sm:h-[90vh] p-0 bg-gray-900 border-none sm:border-gray-800 overflow-hidden flex flex-col">
+                <ScrollArea className="flex-1 w-full">
                     <ProposalDisplay proposal={previewProposal} />
                 </ScrollArea>
+                {/* Visual indicator for mobile users that it's a preview */}
+                <div className="sm:hidden bg-black/80 border-t border-gray-800 p-4 text-center">
+                   <Button onClick={() => setIsOpen(false)} className="w-full bg-red-600 hover:bg-red-700">
+                       {t("common.close", "Cerrar Previsualización")}
+                   </Button>
+                </div>
             </DialogContent>
         </Dialog>
     );
