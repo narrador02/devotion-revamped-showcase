@@ -122,14 +122,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return res.status(401).json({ error: 'Invalid password' });
         }
 
-        const cookieOptions = [`adminAuth=true`, `Max-Age=${7 * 24 * 60 * 60}`, `Path=/`, `HttpOnly`, `SameSite=Strict`, process.env.NODE_ENV === 'production' ? 'Secure' : ''].filter(Boolean).join('; ');
+        const cookieOptions = [`adminAuth=true`, `Max-Age=${7 * 24 * 60 * 60}`, `Path=/`, `HttpOnly`, `SameSite=Lax`, process.env.NODE_ENV === 'production' ? 'Secure' : ''].filter(Boolean).join('; ');
         res.setHeader('Set-Cookie', cookieOptions);
         return res.status(200).json({ success: true });
     }
 
     // 3. Logout (POST)
     if (action === 'logout' && req.method === 'POST') {
-        res.setHeader('Set-Cookie', 'adminAuth=; Max-Age=0; Path=/; HttpOnly; SameSite=Strict');
+        res.setHeader('Set-Cookie', 'adminAuth=; Max-Age=0; Path=/; HttpOnly; SameSite=Lax');
         return res.status(200).json({ success: true });
     }
 

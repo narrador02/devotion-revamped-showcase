@@ -64,17 +64,17 @@
       "title": "SLADY",
       "description": "Master the art of drifting with our 3-axis system that adds rear wheel sliding control.",
       "fullDescription": "The Slady model takes you to another level, applying this third sliding axis, you will manage the sliding dose leaving every single corner. A part from the wheelie and lean axis, the fun will be increased further more.",
-      "features": {
-        "axis": "3-axis movement system",
-        "lean": "Lean up to 54° angles",
-        "drift": "3rd axis: Rear wheel drift",
-        "compatible": "Compatible with all motorcycle games"
-      },
       "specs": {
         "type": "Official MotoGP Simulator",
         "weight": "280kg",
         "dimensions": "2.30m x 80cm (without pedals) 1.50m width with pedals",
         "transport": "4 wheels on the platform for easy transportation"
+      },
+      "features": {
+        "axis": "3-axis movement system",
+        "lean": "Lean up to 54° angles",
+        "drift": "3rd axis: Rear wheel drift",
+        "compatible": "Compatible with all motorcycle games"
       }
     },
     "topGun": {
@@ -887,6 +887,17 @@
         "fairing": "Fairing vinyl",
         "design": "Custom design",
         "finish": "Professional finish"
+      }
+    },
+    "audioSystem": {
+      "optional": "Optional Add-on",
+      "title": "Professional Audio System",
+      "description": "Radically enhance immersion with high-fidelity audio. Feel your body vibrate with the frequencies emitted by the pre-recorded audio of real Supersport motorcycles when accelerating and reaching maximum RPM.",
+      "specs": {
+        "speakers": "2.1 speaker system built into the simulator",
+        "subwoofer": "Internal Subwoofer",
+        "transducer": "Bass Shaker",
+        "quality": "Pre-loaded competition audio presets"
       }
     },
     "pianolas": {
