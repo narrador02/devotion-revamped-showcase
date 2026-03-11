@@ -158,7 +158,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
             discountConcept: initialData?.rentalDetails?.discountConcept || "",
             transportKm: initialData?.rentalDetails?.transport?.kilometers,
             numberOfStaff: initialData?.rentalDetails?.staff?.numberOfStaff,
-            numberOfDays: initialData?.rentalDetails?.staff?.numberOfDays,
+            numberOfDays: initialData?.rentalDetails?.numberOfDays || initialData?.rentalDetails?.staff?.numberOfDays || 1,
             staffTravel: initialData?.rentalDetails?.staff?.travelExpenses,
             staffHotel: initialData?.rentalDetails?.staff?.hotelExpenses,
             hotelNights: initialData?.rentalDetails?.staff?.numberOfDays,
@@ -288,6 +288,7 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                         hotelExpenses?: number;
                         totalCost: number;
                     };
+                    numberOfDays?: number;
                     subtotal: number;
                     total: number;
                     eventReference?: string;

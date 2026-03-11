@@ -180,8 +180,12 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
 
     if (isRental && proposal.rentalDetails) {
         const rd = proposal.rentalDetails;
+        
+        // C3CF3CD2 and older proposals might have days under staff but not root.
+        const simulatorDays = rd.numberOfDays || rd.staff?.numberOfDays || 1;
+
         subtotal = rd.subtotal ||
-            ((rd.basePrice * (rd.numberOfSimulators || 1) * (rd.numberOfDays || 1)) +
+            ((rd.basePrice * (rd.numberOfSimulators || 1) * simulatorDays) +
                 (rd.transport?.totalCost || 0) +
                 (rd.staff?.totalCost || 0));
     } else if (proposal.purchaseDetails) {
@@ -266,12 +270,12 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
                                     Alquiler Simulador MotoGP {proposal.rentalDetails.isVIP ? 'VIP' : 'Estándar'}
                                 </Text>
                                 <Text style={styles.itemDesc}>
-                                    {proposal.rentalDetails.numberOfSimulators} Simulador(es) x {proposal.rentalDetails.numberOfDays || 1} día(s)
+                                    {proposal.rentalDetails.numberOfSimulators} Simulador(es) x {proposal.rentalDetails.numberOfDays || proposal.rentalDetails.staff?.numberOfDays || 1} día(s)
                                 </Text>
                             </View>
                             <View style={styles.tableCellAmount}>
                                 <Text style={styles.itemPrice}>
-                                    {formatCurrency((proposal.rentalDetails.basePrice) * (proposal.rentalDetails.numberOfSimulators || 1) * (proposal.rentalDetails.numberOfDays || 1))}
+                                    {formatCurrency((proposal.rentalDetails.basePrice) * (proposal.rentalDetails.numberOfSimulators || 1) * (proposal.rentalDetails.numberOfDays || proposal.rentalDetails.staff?.numberOfDays || 1))}
                                 </Text>
                             </View>
                         </View>
