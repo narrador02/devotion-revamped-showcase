@@ -144,9 +144,13 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                 })
                 .build();
             picker.setVisible(true);
-        } catch (err) {
+        } catch (err: any) {
             console.error("Picker error:", err);
-            setUploadError("Google Drive is not connected or error opening picker");
+            if (err.message === "Google not connected") {
+                setUploadError("Google Drive is not connected. Please click 'Connect Google Drive' in the header first.");
+            } else {
+                setUploadError("Error opening picker. Check your console for details or ensure popups are allowed.");
+            }
         } finally {
             setIsPickerLoading(false);
         }

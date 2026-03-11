@@ -109,11 +109,14 @@ export default function AdminProposals() {
             const response = await fetch("/api/admin?action=google-auth-url", {
                 credentials: "include",
             });
-            if (response.ok) {
-                const { url } = await response.json();
-                window.location.href = url;
+            const data = await response.json();
+            if (response.ok && data.url) {
+                window.location.href = data.url;
+            } else {
+                toast.error(data.error || "Failed to start Google connection");
             }
         } catch (error) {
+            console.error("Connection error:", error);
             toast.error("Failed to start Google connection");
         }
     };

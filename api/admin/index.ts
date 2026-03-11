@@ -65,9 +65,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
     const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
     const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-    const REDIRECT_URI = typeof window === 'undefined' 
-        ? `https://${req.headers.host}/api/admin?action=google-callback`
-        : ""; // Not used on server but good for safety
+    
+    // Determine the redirect URI dynamically based on the current request
+    const protocol = req.headers['x-forwarded-proto'] || (req.headers.host?.includes('localhost') ? 'http' : 'https');
+    const host = req.headers.host;
+    const REDIRECT_URI = `${protocol}://${host}/api/admin?action=google-callback`;
 
     // 1. Settings (GET/POST) - Special case for settings
     if (action === 'settings') {
@@ -156,6 +158,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 5a. Get Auth URL
     if (action === 'google-auth-url') {
+        if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !GOOGLE_API_KEY) {
+            return res.status(500).json({ error: 'Google OAuth credentials not configured in environment variables' });
+        }
+
         const scopes = [
             'https://www.googleapis.com/auth/drive.readonly',
             'https://www.googleapis.com/auth/drive.metadata.readonly'

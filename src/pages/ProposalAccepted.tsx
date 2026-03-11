@@ -49,13 +49,10 @@ export default function ProposalAccepted() {
                         className="space-y-5"
                     >
                         <h1 className="text-4xl md:text-5xl font-bold text-white font-rajdhani leading-tight">
-                            {t("proposalAccepted.heading", "Gracias por tu confianza")}
+                            {t("proposalAccepted.heading")}
                         </h1>
                         <p className="text-gray-300 text-lg leading-relaxed">
-                            {t(
-                                "proposalAccepted.message",
-                                "Apreciamos profundamente la confianza que has depositado en nosotros. No te defraudaremos. Nuestro equipo se pondrá en contacto contigo en breve para confirmar todos los detalles."
-                            )}
+                            {t("proposalAccepted.message")}
                         </p>
                     </motion.div>
 
@@ -74,7 +71,7 @@ export default function ProposalAccepted() {
                         transition={{ duration: 0.8, delay: 0.7 }}
                         className="text-gray-600 text-sm uppercase tracking-widest"
                     >
-                        {t("proposalAccepted.tagline", "Simuladores de motos de alto rendimiento")}
+                        {t("proposalAccepted.tagline")}
                     </motion.p>
                 </div>
             </div>
