@@ -191,6 +191,13 @@ export default function AcceptProposalDialog({
                     ...(showPianola ? ['Pianolas'] : []),
                     ...(showAudioSystem ? ['Sistema de Audio'] : []),
                 ].join(', ') || 'Ninguno',
+                // Save actual add-on selections for invoice generation
+                selectedAddOns: {
+                    branding: showBranding ? { label: brandingLabel, price: brandingPrice } : null,
+                    flightCase: showFlightCase ? flightCasePrice : null,
+                    pianola: showPianola ? pianolaPrice : null,
+                    audioSystem: showAudioSystem ? audioSystemPrice : null,
+                },
             };
 
             const acceptResponse = await fetch(`/api/proposals/${proposalId}`, {

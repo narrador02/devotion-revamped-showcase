@@ -62,6 +62,23 @@ export interface Proposal {
     notes?: string;
     createdAt: string;
     expiresAt: string;
+
+    // Acceptance data (saved when the client accepts the proposal)
+    accepted?: boolean;
+    acceptedAt?: string;
+    customerDetails?: {
+        fullName?: string;
+        email?: string;
+        phone?: string;
+        comments?: string;
+    } | null;
+    acceptedSimulator?: string;
+    acceptedAddOns?: {
+        branding: { label: string; price: number } | null;
+        flightCase: number | null;
+        pianola: number | null;
+        audioSystem: number | null;
+    } | null;
 }
 
 export interface ProposalListItem {

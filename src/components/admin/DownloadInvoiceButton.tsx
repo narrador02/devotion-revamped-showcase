@@ -32,7 +32,8 @@ export default function DownloadInvoiceButton({ proposalId, clientName }: Downlo
             }
 
             // 2. Generate the PDF Blob using @react-pdf/renderer
-            const blob = await pdf(<InvoicePDF proposal={proposal} />).toBlob();
+            const locale = localStorage.getItem('i18nextLng') || 'es';
+            const blob = await pdf(<InvoicePDF proposal={proposal} locale={locale} />).toBlob();
 
             // 3. Create a download link and trigger it
             const url = URL.createObjectURL(blob);

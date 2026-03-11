@@ -275,7 +275,7 @@ export default function PurchaseProposalTemplate({
                             </div>
 
                             <div className="flex justify-between items-center text-gray-400 text-sm">
-                                <span>IVA (21%)</span>
+                                <span>{t('invoice.vat', 'IVA')} (21%)</span>
                                 <span className="font-mono">+{iva.toLocaleString("es-ES")}€</span>
                             </div>
 

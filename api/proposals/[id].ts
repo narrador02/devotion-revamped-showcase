@@ -76,6 +76,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 phone: payload.phone,
                 comments: payload.comments,
             };
+            // Save the client's actual add-on selections for invoice accuracy
+            if (payload.selectedAddOns) {
+                proposal.acceptedAddOns = payload.selectedAddOns;
+            }
+            if (payload.selectedSimulator) {
+                proposal.acceptedSimulator = payload.selectedSimulator;
+            }
             await kv.set(`proposal:${id}`, JSON.stringify(proposal));
 
             // Send email notification via Formspree

@@ -172,7 +172,9 @@ const formatCurrency = (amount: number) => {
     }).format(amount);
 };
 
-export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
+export default function InvoicePDF({ proposal, locale = 'es' }: { proposal: Proposal; locale?: string }) {
+    const isSpanish = locale === 'es' || locale.startsWith('es-') || locale === 'ca' || locale.startsWith('ca-');
+    const ivaLabel = isSpanish ? 'IVA (21%)' : 'VAT (21%)';
     const isRental = proposal.proposalType === 'rental';
 
     // Calculate subtotal based on type
@@ -180,32 +182,43 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
 
     if (isRental && proposal.rentalDetails) {
         const rd = proposal.rentalDetails;
+        const addOns = proposal.acceptedAddOns;
         
-        // C3CF3CD2 and older proposals might have days under staff but not root.
+        // Use accepted add-ons when available (i.e. client has accepted), otherwise fall back to proposal prices
         const simulatorDays = rd.numberOfDays || rd.staff?.numberOfDays || 1;
-        const brandingTotal = (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
+        const brandingTotal = addOns ? (addOns.branding?.price || 0) : (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
+        const flightCaseAmt = addOns ? (addOns.flightCase || 0) : (proposal.flightCasePrice || 0);
+        const pianolaAmt = addOns ? (addOns.pianola || 0) : (proposal.pianolaPrice || 0);
+        const audioAmt = addOns ? (addOns.audioSystem || 0) : (proposal.audioSystemPrice || 0);
         
         const calcSubtotal = (rd.basePrice * (rd.numberOfSimulators || 1) * simulatorDays) +
             (rd.transport?.totalCost || 0) +
             (rd.staff?.totalCost || 0) +
-            (proposal.flightCasePrice || 0) +
-            (proposal.pianolaPrice || 0) +
-            (proposal.audioSystemPrice || 0) +
+            flightCaseAmt +
+            pianolaAmt +
+            audioAmt +
             brandingTotal;
 
         // ALWAYS use calculated subtotal because old proposals might have saved only simulator cost under 'subtotal'.
         subtotal = calcSubtotal;
     } else if (proposal.purchaseDetails) {
-        // Purchase subtotal calculation
+        // For accepted proposals use the exact add-ons the client selected
+        const addOns = proposal.acceptedAddOns as any;
         const pd = proposal.purchaseDetails;
-        subtotal = (pd.packages?.timeAttack || 0) +
-            (pd.packages?.slady || 0) +
-            (pd.packages?.topGun || 0) +
-            (proposal.flightCasePrice || 0) +
-            (proposal.pianolaPrice || 0) +
-            (proposal.audioSystemPrice || 0) +
-            // Branding is complicated but usually either platform, simulator, or full is selected if it's not checked as none
-            (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
+        // Only include the accepted simulator (if proposal was accepted with one selected)
+        const acceptedSim = proposal.acceptedSimulator as string | undefined;
+        let simTotal = 0;
+        if (acceptedSim) {
+            const simKey = acceptedSim === 'Time Attack' ? 'timeAttack' : acceptedSim === 'Top Gun' ? 'topGun' : 'slady';
+            simTotal = pd.packages?.[simKey] || 0;
+        } else {
+            simTotal = (pd.packages?.timeAttack || 0) + (pd.packages?.slady || 0) + (pd.packages?.topGun || 0);
+        }
+        const flightCaseAmt = addOns ? (addOns.flightCase || 0) : (proposal.flightCasePrice || 0);
+        const pianolaAmt = addOns ? (addOns.pianola || 0) : (proposal.pianolaPrice || 0);
+        const audioAmt = addOns ? (addOns.audioSystem || 0) : (proposal.audioSystemPrice || 0);
+        const brandingAmt = addOns ? (addOns.branding?.price || 0) : (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
+        subtotal = simTotal + flightCaseAmt + pianolaAmt + audioAmt + brandingAmt;
     }
 
     const discountAmount = isRental ? (proposal.rentalDetails?.discountAmount || 0) : 0;
@@ -315,132 +328,158 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
                             </View>
                         )}
 
-                        {/* Explicit Add-ons for Rental */}
-                        {proposal.brandingPrices && proposal.rentalDetails.subtotal > 0 && (
-                            // Note: We don't have the selected branding option in InvoicePDF easily, 
-                            // but if branding prices exist and are included, we should show them.
-                            // In this system, branding is usually added to the total.
-                            null
-                        )}
-                        {(proposal.flightCasePrice || 0) > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Flight Case de transporte profesional</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.flightCasePrice)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {(proposal.pianolaPrice || 0) > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Sistema de Pianolas (Movilidad)</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.pianolaPrice)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {(proposal.audioSystemPrice || 0) > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Sistema de Audio Profesional 2.1</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.audioSystemPrice)}</Text>
-                                </View>
-                            </View>
-                        )}
+                        {/* Add-ons for Rental — use acceptedAddOns when available */}
+                        {(() => {
+                            const addOns = proposal.acceptedAddOns;
+                            const flightCaseAmt: number = addOns ? (addOns.flightCase || 0) : (proposal.flightCasePrice || 0);
+                            const pianolaAmt: number = addOns ? (addOns.pianola || 0) : (proposal.pianolaPrice || 0);
+                            const audioAmt: number = addOns ? (addOns.audioSystem || 0) : (proposal.audioSystemPrice || 0);
+                            const brandingAmt: number = addOns ? (addOns.branding?.price || 0) : 0;
+                            const brandingLabel: string = addOns?.branding?.label || 'Branding';
+                            return (
+                                <>
+                                    {flightCaseAmt > 0 && (
+                                        <View style={styles.tableRow}>
+                                            <View style={styles.tableCellDesc}>
+                                                <Text style={styles.itemName}>Flight Case de transporte profesional</Text>
+                                            </View>
+                                            <View style={styles.tableCellAmount}>
+                                                <Text style={styles.itemPrice}>{formatCurrency(flightCaseAmt)}</Text>
+                                            </View>
+                                        </View>
+                                    )}
+                                    {pianolaAmt > 0 && (
+                                        <View style={styles.tableRow}>
+                                            <View style={styles.tableCellDesc}>
+                                                <Text style={styles.itemName}>Sistema de Pianolas (Movilidad)</Text>
+                                            </View>
+                                            <View style={styles.tableCellAmount}>
+                                                <Text style={styles.itemPrice}>{formatCurrency(pianolaAmt)}</Text>
+                                            </View>
+                                        </View>
+                                    )}
+                                    {audioAmt > 0 && (
+                                        <View style={styles.tableRow}>
+                                            <View style={styles.tableCellDesc}>
+                                                <Text style={styles.itemName}>Sistema de Audio Profesional 2.1</Text>
+                                            </View>
+                                            <View style={styles.tableCellAmount}>
+                                                <Text style={styles.itemPrice}>{formatCurrency(audioAmt)}</Text>
+                                            </View>
+                                        </View>
+                                    )}
+                                    {brandingAmt > 0 && (
+                                        <View style={styles.tableRow}>
+                                            <View style={styles.tableCellDesc}>
+                                                <Text style={styles.itemName}>Branding: {brandingLabel}</Text>
+                                            </View>
+                                            <View style={styles.tableCellAmount}>
+                                                <Text style={styles.itemPrice}>{formatCurrency(brandingAmt)}</Text>
+                                            </View>
+                                        </View>
+                                    )}
+                                </>
+                            );
+                        })()}
                     </>
                 )}
 
                 {/* PURCHASE ITEMS */}
-                {!isRental && proposal.purchaseDetails && (
-                    <>
-                        {proposal.purchaseDetails.packages?.timeAttack > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Simulador MotoGP - Paket Time Attack</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.purchaseDetails.packages.timeAttack)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {proposal.purchaseDetails.packages?.slady > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Simulador MotoGP - Paket Slady</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.purchaseDetails.packages.slady)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {proposal.purchaseDetails.packages?.topGun > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Simulador MotoGP - Paket Top Gun</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.purchaseDetails.packages.topGun)}</Text>
-                                </View>
-                            </View>
-                        )}
+                {!isRental && proposal.purchaseDetails && (() => {
+                    const addOns = proposal.acceptedAddOns as any;
+                    const acceptedSim = proposal.acceptedSimulator as string | undefined;
+                    const pd = proposal.purchaseDetails;
+                    const flightCaseAmt: number = addOns ? (addOns.flightCase || 0) : (proposal.flightCasePrice || 0);
+                    const pianolaAmt: number = addOns ? (addOns.pianola || 0) : (proposal.pianolaPrice || 0);
+                    const audioAmt: number = addOns ? (addOns.audioSystem || 0) : (proposal.audioSystemPrice || 0);
+                    const brandingAmt: number = addOns ? (addOns.branding?.price || 0) : 0;
+                    const brandingLabel: string = addOns?.branding?.label || '';
 
-                        {/* Purchase Add-ons */}
-                        {proposal.flightCasePrice! > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Flight Case</Text>
-                                    <Text style={styles.itemDesc}>Maleta de transporte a medida</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.flightCasePrice!)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {proposal.pianolaPrice! > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Pianos</Text>
-                                    <Text style={styles.itemDesc}>Simulación extrema de paso por curva</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.pianolaPrice!)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {proposal.audioSystemPrice! > 0 && (
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Sistema de Audio Profesional</Text>
-                                    <Text style={styles.itemDesc}>Mejora acústica premium y respuesta háptica</Text>
-                                </View>
-                                <View style={styles.tableCellAmount}>
-                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.audioSystemPrice!)}</Text>
-                                </View>
-                            </View>
-                        )}
-                        {proposal.brandingPrices && Object.entries(proposal.brandingPrices).map(([key, value]) => {
-                            if (key !== 'none' && value > 0) {
-                                // Find which one is active (usually only one)
-                                return (
-                                    <View style={styles.tableRow} key={key}>
-                                        <View style={styles.tableCellDesc}>
-                                            <Text style={styles.itemName}>Branding: Película {key}</Text>
-                                        </View>
-                                        <View style={styles.tableCellAmount}>
-                                            <Text style={styles.itemPrice}>{formatCurrency(value)}</Text>
-                                        </View>
+                    // Determine which simulators to show
+                    const showTimeAttack = !acceptedSim ? pd.packages?.timeAttack > 0 : acceptedSim === 'Time Attack';
+                    const showSlady = !acceptedSim ? pd.packages?.slady > 0 : acceptedSim === 'Slady';
+                    const showTopGun = !acceptedSim ? pd.packages?.topGun > 0 : acceptedSim === 'Top Gun';
+
+                    return (
+                        <>
+                            {showTimeAttack && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Simulador MotoGP - Time Attack</Text>
                                     </View>
-                                );
-                            }
-                            return null;
-                        })}
-                    </>
-                )}
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(pd.packages.timeAttack)}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            {showSlady && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Simulador MotoGP - Slady</Text>
+                                    </View>
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(pd.packages.slady)}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            {showTopGun && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Simulador MotoGP - Top Gun</Text>
+                                    </View>
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(pd.packages.topGun)}</Text>
+                                    </View>
+                                </View>
+                            )}
+
+                            {/* Purchase Add-ons — only those the client selected */}
+                            {flightCaseAmt > 0 && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Flight Case</Text>
+                                        <Text style={styles.itemDesc}>Maleta de transporte a medida</Text>
+                                    </View>
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(flightCaseAmt)}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            {pianolaAmt > 0 && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Pianos</Text>
+                                        <Text style={styles.itemDesc}>Simulación extrema de paso por curva</Text>
+                                    </View>
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(pianolaAmt)}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            {audioAmt > 0 && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Sistema de Audio Profesional</Text>
+                                        <Text style={styles.itemDesc}>Altavoces 2.1 + Bass Shaker</Text>
+                                    </View>
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(audioAmt)}</Text>
+                                    </View>
+                                </View>
+                            )}
+                            {brandingAmt > 0 && (
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCellDesc}>
+                                        <Text style={styles.itemName}>Branding: {brandingLabel}</Text>
+                                    </View>
+                                    <View style={styles.tableCellAmount}>
+                                        <Text style={styles.itemPrice}>{formatCurrency(brandingAmt)}</Text>
+                                    </View>
+                                </View>
+                            )}
+                        </>
+                    );
+                })()}
 
 
                 {/* Summary */}
@@ -464,7 +503,7 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
                         </View>
 
                         <View style={styles.summaryRow}>
-                            <Text style={styles.summaryLabel}>IVA (21%)</Text>
+                            <Text style={styles.summaryLabel}>{ivaLabel}</Text>
                             <Text style={styles.summaryValue}>{formatCurrency(ivaAmount)}</Text>
                         </View>
 

@@ -44,7 +44,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                                 (proposal.pianolaPrice || 0) + 
                                 (proposal.audioSystemPrice || 0) + 
                                 (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
-                            calculatedPrice = subtotal * 1.21;
+                            calculatedPrice = subtotal;
                         }
 
                         proposals.push({
