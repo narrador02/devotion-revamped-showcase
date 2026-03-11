@@ -140,17 +140,31 @@ export default function AdminProposals() {
     const handleProposalSuccess = (id: string, clientName: string) => {
         setSuccessData({ id, clientName });
         setViewState("success");
-        // Add to recent proposals list
-        setRecentProposals(prev => [
-            {
-                id,
-                clientName,
-                createdAt: new Date().toISOString(),
-                expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-                isExpired: false,
-            },
-            ...prev,
-        ].slice(0, 10));
+        
+        // Update or add to recent proposals list
+        setRecentProposals(prev => {
+            const exists = prev.find(p => p.id === id);
+            if (exists) {
+                // Update existing item
+                return prev.map(p => 
+                    p.id === id 
+                        ? { ...p, clientName, expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), isExpired: false } 
+                        : p
+                );
+            } else {
+                // New proposal - Add to front
+                return [
+                    {
+                        id,
+                        clientName,
+                        createdAt: new Date().toISOString(),
+                        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+                        isExpired: false,
+                    },
+                    ...prev,
+                ].slice(0, 10);
+            }
+        });
     };
 
     const handleCreateAnother = () => {
