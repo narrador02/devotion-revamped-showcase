@@ -27,7 +27,7 @@ export default function PhraseGenerator({ clientName, onSelectPhrase, disabled }
         setError(null);
 
         try {
-            const response = await fetch("/api/utils?action=generate-phrase", {
+            const response = await fetch("/api/admin?action=generate-phrase", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

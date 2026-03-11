@@ -37,14 +37,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                         let calculatedPrice = null;
                         if (proposal.proposalType === 'rental') {
                             calculatedPrice = proposal.rentalDetails?.total;
-                        } else if (proposal.purchaseDetails?.packages && Object.keys(proposal.purchaseDetails.packages).length === 1) {
-                            const packagePrice = Object.values(proposal.purchaseDetails.packages)[0] as number;
-                            const subtotal = packagePrice + 
-                                (proposal.flightCasePrice || 0) + 
-                                (proposal.pianolaPrice || 0) + 
-                                (proposal.audioSystemPrice || 0) + 
-                                (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
-                            calculatedPrice = subtotal;
+                        } else if (proposal.purchaseDetails?.packages) {
+                            const packages = proposal.purchaseDetails.packages;
+                            let simPrice = 0;
+
+                            if (proposal.accepted && proposal.acceptedSimulator) {
+                                // Use the simulator the client actually chose
+                                const simKey = proposal.acceptedSimulator === 'Time Attack' ? 'timeAttack'
+                                    : proposal.acceptedSimulator === 'Top Gun' ? 'topGun' : 'slady';
+                                simPrice = packages[simKey] || 0;
+                            } else if (Object.keys(packages).filter(k => packages[k] > 0).length === 1) {
+                                // Only one option offered — use it
+                                simPrice = Object.values(packages).find((v: any) => v > 0) as number || 0;
+                            }
+
+                            if (simPrice > 0) {
+                                const addOns = proposal.acceptedAddOns;
+                                const addOnTotal = addOns
+                                    ? (addOns.branding?.price || 0) + (addOns.flightCase || 0) + (addOns.pianola || 0) + (addOns.audioSystem || 0)
+                                    : (proposal.flightCasePrice || 0) + (proposal.pianolaPrice || 0) + (proposal.audioSystemPrice || 0);
+                                calculatedPrice = simPrice + addOnTotal;
+                            }
                         }
 
                         proposals.push({

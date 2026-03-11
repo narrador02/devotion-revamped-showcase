@@ -790,8 +790,21 @@
       "actions": "Acciones",
       "expired": "Caducada",
       "copyLink": "Copiar enlace",
-      "openProposal": "Abrir propuesta"
+      "openProposal": "Abrir propuesta",
+      "pendingTitle": "Propuestas Pendientes",
+      "acceptedTitle": "Propuestas Aceptadas",
+      "noAccepted": "No hay propuestas aceptadas aún",
+      "acceptedOn": "Aceptado el",
+      "contact": "Contacto",
+      "delete": "Eliminar",
+      "deleteTitle": "Eliminar Propuesta",
+      "deleteConfirm": "¿Estás seguro de que quieres eliminar la propuesta de {{clientName}}? Esta acción no se puede deshacer.",
+      "downloadInvoice": "Descargar Factura",
+      "name": "Nombre"
     }
+  },
+  "invoice": {
+    "vat": "IVA"
   },
   "proposal": {
     "titleFor": "Propuesta para {{clientName}}",

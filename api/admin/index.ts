@@ -139,5 +139,51 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(200).json({ authenticated: cookies.adminAuth === 'true' });
     }
 
+    // 5. Generate Phrase (POST) — admin only
+    if (action === 'generate-phrase' && req.method === 'POST') {
+        const cookies = req.cookies || {};
+        if (cookies.adminAuth !== 'true') {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+        try {
+            const apiKey = process.env.GEMINI_API_KEY;
+            if (!apiKey) {
+                return res.status(500).json({ error: 'Gemini API not configured' });
+            }
+            const { clientName, locale = 'es' } = req.body || {};
+            if (!clientName) {
+                return res.status(400).json({ error: 'Client name is required' });
+            }
+            const isSpanish = locale === 'es' || locale.startsWith('es-');
+            const prompt = isSpanish
+                ? `Eres un copywriter experto que trabaja para una empresa de simuladores de motociclismo de gama premium llamada DevotionSim. Genera una frase de captación personalizada para la empresa: "${clientName}". Max 2-3 oraciones. Tono pro.`
+                : `You are an expert copywriter working for a premium motorcycling simulator company called DevotionSim. Generate a personalized hook phrase for: "${clientName}". Max 2-3 sentences. Pro tone.`;
+
+            const geminiResponse = await fetch(
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        generationConfig: { temperature: 0.8, maxOutputTokens: 150 }
+                    })
+                }
+            );
+            if (!geminiResponse.ok) {
+                const errorData = await geminiResponse.json().catch(() => null);
+                return res.status(geminiResponse.status).json({
+                    error: errorData?.error?.message || `Gemini API error: ${geminiResponse.status}`,
+                    details: errorData
+                });
+            }
+            const data = await geminiResponse.json();
+            const phrase = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+            return res.status(200).json({ phrase });
+        } catch (error: any) {
+            return res.status(500).json({ error: 'Failed to generate phrase', message: error.message });
+        }
+    }
+
     return res.status(400).json({ error: 'Invalid action or method' });
 }

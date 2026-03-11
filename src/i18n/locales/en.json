@@ -762,6 +762,16 @@
       "expired": "Expired",
       "copyLink": "Copy link",
       "openProposal": "Open proposal",
+      "pendingTitle": "Pending Proposals",
+      "acceptedTitle": "Accepted Proposals",
+      "noAccepted": "No accepted proposals yet",
+      "acceptedOn": "Accepted on",
+      "contact": "Contact",
+      "delete": "Delete",
+      "deleteTitle": "Delete Proposal",
+      "deleteConfirm": "Are you sure you want to delete the proposal for {{clientName}}? This action cannot be undone.",
+      "downloadInvoice": "Download Invoice",
+      "name": "Name",
       "type": {
         "rental": "Rental",
         "purchase": "Purchase"

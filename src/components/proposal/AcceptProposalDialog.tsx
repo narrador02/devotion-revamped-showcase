@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Loader2, Check, CreditCard, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -151,6 +152,7 @@ export default function AcceptProposalDialog({
     selectedSimulator
 }: AcceptProposalDialogProps) {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [paymentError, setPaymentError] = useState<string | null>(null);
@@ -274,8 +276,8 @@ export default function AcceptProposalDialog({
                     throw new Error("No checkout URL received");
                 }
             } else {
-                // No Square — just show success
-                setIsSuccess(true);
+                // No Square — navigate to the accepted confirmation page
+                navigate('/proposal-accepted');
             }
 
         } catch (error: any) {

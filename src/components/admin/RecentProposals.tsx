@@ -97,6 +97,7 @@ function DeleteButton({ proposalId, clientName, onDelete }: { proposalId: string
         try {
             const response = await fetch(`/api/proposals/${proposalId}`, {
                 method: 'DELETE',
+                credentials: 'include',
             });
 
             if (response.ok) {
@@ -165,12 +166,12 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
                             <TableHead className="text-gray-400">{t("proposal.price", "Precio")}</TableHead>
                             <TableHead className="text-gray-400">{t("admin.proposals.createdAt", "Creado")}</TableHead>
                             {showAcceptedInfo ? (
-                                <TableHead className="text-gray-400">Aceptado el</TableHead>
+                                <TableHead className="text-gray-400">{t('admin.proposals.acceptedOn', 'Aceptado el')}</TableHead>
                             ) : (
                                 <TableHead className="text-gray-400">{t("admin.proposals.expiresAt", "Expira")}</TableHead>
                             )}
                             {showAcceptedInfo && (
-                                <TableHead className="text-gray-400">Contacto</TableHead>
+                                <TableHead className="text-gray-400">{t('admin.proposals.contact', 'Contacto')}</TableHead>
                             )}
                             <TableHead className="text-gray-400 text-right">{t("admin.proposals.actions", "Acciones")}</TableHead>
                         </TableRow>
@@ -363,7 +364,7 @@ export default function RecentProposals({ proposals, onDelete, onEdit }: RecentP
             <div className="space-y-4">
                 <div className="flex items-center gap-3">
                     <Clock className="w-5 h-5 text-gray-400" />
-                    <h3 className="text-2xl font-semibold text-white">Propuestas Pendientes</h3>
+                    <h3 className="text-2xl font-semibold text-white">{t('admin.proposals.pendingTitle', 'Propuestas Pendientes')}</h3>
                     {pending.length > 0 && (
                         <span className="px-2 py-0.5 text-xs bg-gray-800 text-gray-400 rounded-full border border-gray-700">
                             {pending.length}
@@ -384,7 +385,7 @@ export default function RecentProposals({ proposals, onDelete, onEdit }: RecentP
             <div className="space-y-4">
                 <div className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <h3 className="text-2xl font-semibold text-white">Propuestas Aceptadas</h3>
+                    <h3 className="text-2xl font-semibold text-white">{t('admin.proposals.acceptedTitle', 'Propuestas Aceptadas')}</h3>
                     {accepted.length > 0 && (
                         <span className="px-2 py-0.5 text-xs bg-green-900/30 text-green-400 rounded-full border border-green-900/50">
                             {accepted.length}
@@ -394,7 +395,7 @@ export default function RecentProposals({ proposals, onDelete, onEdit }: RecentP
                 {accepted.length === 0 ? (
                     <div className="text-center py-8 text-gray-500 border border-gray-800 rounded-lg">
                         <CheckCircle2 className="w-10 h-10 mx-auto mb-3 opacity-40" />
-                        <p>No hay propuestas aceptadas aún</p>
+                        <p>{t('admin.proposals.noAccepted', 'No hay propuestas aceptadas aún')}</p>
                     </div>
                 ) : (
                     <ProposalTable proposals={accepted} onDelete={onDelete} showAcceptedInfo={true} />
