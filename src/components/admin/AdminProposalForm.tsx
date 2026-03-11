@@ -111,10 +111,15 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
 
             await loadPicker();
 
+            // Create a view for images but include folders for navigation
+            // @ts-ignore
+            const docsView = new window.google.picker.DocsView(window.google.picker.ViewId.DOCS)
+                .setIncludeFolders(true)
+                .setMimeTypes('image/jpeg,image/png,image/webp');
+
             // @ts-ignore
             const picker = new window.google.picker.PickerBuilder()
-                // @ts-ignore
-                .addView(window.google.picker.ViewId.DOCS_IMAGES)
+                .addView(docsView)
                 .setOAuthToken(accessToken)
                 .setDeveloperKey(apiKey)
                 .setCallback(async (data: any) => {
