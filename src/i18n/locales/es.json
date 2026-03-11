@@ -800,6 +800,13 @@
       "deleteTitle": "Eliminar Propuesta",
       "deleteConfirm": "¿Estás seguro de que quieres eliminar la propuesta de {{clientName}}? Esta acción no se puede deshacer.",
       "downloadInvoice": "Descargar Factura",
+      "google": {
+        "connect": "Conectar Google Drive",
+        "connected": "Google Drive Conectado",
+        "pick": "Seleccionar de Drive",
+        "setupSuccess": "Google Drive configurado correctamente",
+        "setupError": "Error al configurar Google Drive"
+      },
       "name": "Nombre"
     }
   },

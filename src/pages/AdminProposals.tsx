@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { LogOut, Loader2 } from "lucide-react";
+import { LogOut, Loader2, Cloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useSearchParams } from "react-router-dom";
 import SEO from "@/components/SEO";
 import AdminLogin from "@/components/admin/AdminLogin";
 import AdminProposalForm from "@/components/admin/AdminProposalForm";
 import ProposalSuccess from "@/components/admin/ProposalSuccess";
 import RecentProposals from "@/components/admin/RecentProposals";
-import { ProposalListItem, Proposal } from "@/types/proposal";
+import { Proposal } from "@/types/proposal";
 
 interface RecentProposal {
     id: string;
@@ -34,7 +36,9 @@ export default function AdminProposals() {
     const [recentProposals, setRecentProposals] = useState<RecentProposal[]>([]);
     const [isLoadingProposals, setIsLoadingProposals] = useState(false);
     const [editData, setEditData] = useState<Proposal | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
     const [isFetchingEdit, setIsFetchingEdit] = useState(false);
+    const [googleConnected, setGoogleConnected] = useState(false);
 
     // Verify authentication on mount
     // Verify admin authentication
@@ -45,6 +49,14 @@ export default function AdminProposals() {
                     credentials: 'include'
                 });
                 setIsAuthenticated(response.ok);
+
+                if (response.ok) {
+                    // Also check if Google is connected
+                    const tokenRes = await fetch('/api/admin?action=google-token', {
+                        credentials: 'include'
+                    });
+                    setGoogleConnected(tokenRes.ok);
+                }
             } catch (error) {
                 console.error('Auth verification failed:', error);
                 setIsAuthenticated(false);
@@ -52,7 +64,17 @@ export default function AdminProposals() {
         };
 
         verifyAuth();
-    }, []);
+
+        // Handle Google Setup redirect
+        const setup = searchParams.get('google_setup');
+        if (setup === 'success') {
+            toast.success(t("admin.proposals.google.setupSuccess"));
+            setSearchParams({}, { replace: true });
+        } else if (setup === 'error') {
+            toast.error(t("admin.proposals.google.setupError"));
+            setSearchParams({}, { replace: true });
+        }
+    }, [searchParams, setSearchParams, t]);
 
     // Load recent proposals when authenticated
     const loadRecentProposals = useCallback(async () => {
@@ -80,6 +102,20 @@ export default function AdminProposals() {
 
     const handleLoginSuccess = () => {
         setIsAuthenticated(true);
+    };
+
+    const handleConnectGoogle = async () => {
+        try {
+            const response = await fetch("/api/admin?action=google-auth-url", {
+                credentials: "include",
+            });
+            if (response.ok) {
+                const { url } = await response.json();
+                window.location.href = url;
+            }
+        } catch (error) {
+            toast.error("Failed to start Google connection");
+        }
     };
 
     const handleLogout = async () => {
@@ -186,15 +222,29 @@ export default function AdminProposals() {
                                     {t("admin.proposals.title")}
                                 </h1>
                             </div>
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={handleLogout}
-                                className="text-gray-400 hover:text-white hover:bg-gray-800"
-                            >
-                                <LogOut className="w-4 h-4 mr-2" />
-                                {t("admin.logout")}
-                            </Button>
+                            <div className="flex items-center gap-2">
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={handleConnectGoogle}
+                                    className={`
+                                        hidden sm:flex border-gray-800 text-gray-400 hover:text-white transition-colors
+                                        ${googleConnected ? "bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20" : "hover:bg-gray-800"}
+                                    `}
+                                >
+                                    <Cloud className={`w-4 h-4 mr-2 ${googleConnected ? "text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.3)]" : ""}`} />
+                                    {googleConnected ? t("admin.proposals.google.connected") : t("admin.proposals.google.connect")}
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={handleLogout}
+                                    className="text-gray-400 hover:text-white hover:bg-gray-800"
+                                >
+                                    <LogOut className="w-4 h-4 mr-2" />
+                                    {t("admin.logout")}
+                                </Button>
+                            </div>
                         </div>
                     </header>
 

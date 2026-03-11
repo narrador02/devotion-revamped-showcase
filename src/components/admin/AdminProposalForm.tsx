@@ -6,7 +6,7 @@ import * as z from "zod";
 import { upload } from "@vercel/blob/client";
 import {
     Upload, Loader2, Image as ImageIcon, X, FileText,
-    Building2
+    Building2, Cloud
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,6 +73,84 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
     // logoFile removed as unused
     const [logoPreview, setLogoPreview] = useState<string | null>(initialData?.clientLogoUrl || null);
     const [logoUrl, setLogoUrl] = useState<string | null>(initialData?.clientLogoUrl || null);
+    const [isPickerLoading, setIsPickerLoading] = useState(false);
+
+    // Load Google script on mount
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://apis.google.com/js/api.js";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+        
+        const gsiScript = document.createElement("script");
+        gsiScript.src = "https://accounts.google.com/gsi/client";
+        gsiScript.async = true;
+        gsiScript.defer = true;
+        document.body.appendChild(gsiScript);
+
+        return () => {
+            document.body.removeChild(script);
+            document.body.removeChild(gsiScript);
+        };
+    }, []);
+
+    const openGooglePicker = async () => {
+        setIsPickerLoading(true);
+        try {
+            const res = await fetch("/api/admin?action=google-token", { credentials: "include" });
+            if (!res.ok) throw new Error("Google not connected");
+            const { accessToken, apiKey } = await res.json();
+
+            const loadPicker = () => {
+                return new Promise((resolve) => {
+                    // @ts-ignore
+                    window.gapi.load('picker', { callback: resolve });
+                });
+            };
+
+            await loadPicker();
+
+            // @ts-ignore
+            const picker = new window.google.picker.PickerBuilder()
+                // @ts-ignore
+                .addView(window.google.picker.ViewId.DOCS_IMAGES)
+                .setOAuthToken(accessToken)
+                .setDeveloperKey(apiKey)
+                .setCallback(async (data: any) => {
+                    // @ts-ignore
+                    if (data.action === window.google.picker.Action.PICKED) {
+                        const file = data.docs[0];
+                        const fileId = file.id;
+                        
+                        // Fetch the file blob using the access token
+                        setIsUploading(true);
+                        try {
+                            const fileRes = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+                                headers: { Authorization: `Bearer ${accessToken}` }
+                            });
+                            const blob = await fileRes.blob();
+                            
+                            // Create a File object from blob
+                            const logoFile = new File([blob], file.name, { type: file.mimeType });
+                            await handleFileSelect(logoFile);
+                        } catch (err) {
+                            console.error("Error fetching Drive file:", err);
+                            setUploadError("Failed to fetch image from Google Drive");
+                        } finally {
+                            setIsUploading(false);
+                        }
+                    }
+                })
+                .build();
+            picker.setVisible(true);
+        } catch (err) {
+            console.error("Picker error:", err);
+            setUploadError("Google Drive is not connected or error opening picker");
+        } finally {
+            setIsPickerLoading(false);
+        }
+    };
     const [isUploading, setIsUploading] = useState(false);
     const [uploadError, setUploadError] = useState<string | null>(null);
     const [simSelectionError, setSimSelectionError] = useState<boolean>(false);
@@ -550,6 +628,27 @@ export default function AdminProposalForm({ onSuccess, initialData }: AdminPropo
                                     <p className="text-gray-500 text-xs mt-1">
                                         JPG, PNG, WEBP (max 5MB)
                                     </p>
+                                    
+                                    <div className="mt-4 pt-4 border-t border-gray-800 flex justify-center">
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                openGooglePicker();
+                                            }}
+                                            disabled={isPickerLoading}
+                                            className="bg-gray-800/50 border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800"
+                                        >
+                                            {isPickerLoading ? (
+                                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                            ) : (
+                                                <Cloud className="w-4 h-4 mr-2" />
+                                            )}
+                                            {t("admin.proposals.google.pick", "Pick from Drive")}
+                                        </Button>
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="relative inline-block">

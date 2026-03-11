@@ -62,6 +62,13 @@ async function setRateLimitData(ip: string, data: RateLimitData): Promise<void> 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { action } = req.query;
 
+    const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+    const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+    const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+    const REDIRECT_URI = typeof window === 'undefined' 
+        ? `https://${req.headers.host}/api/admin?action=google-callback`
+        : ""; // Not used on server but good for safety
+
     // 1. Settings (GET/POST) - Special case for settings
     if (action === 'settings') {
         if (req.method === 'GET') {
@@ -137,6 +144,95 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (action === 'verify') {
         const cookies = req.cookies || {};
         return res.status(200).json({ authenticated: cookies.adminAuth === 'true' });
+    }
+
+    // 5. Google Drive OAuth (Admin Only)
+    const cookies = req.cookies || {};
+    const isAdmin = cookies.adminAuth === 'true';
+
+    if (action?.toString().startsWith('google-') && !isAdmin) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // 5a. Get Auth URL
+    if (action === 'google-auth-url') {
+        const scopes = [
+            'https://www.googleapis.com/auth/drive.readonly',
+            'https://www.googleapis.com/auth/drive.metadata.readonly'
+        ].join(' ');
+        
+        const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` + 
+            `client_id=${GOOGLE_CLIENT_ID}&` +
+            `redirect_uri=${encodeURIComponent(REDIRECT_URI)}&` +
+            `response_type=code&` +
+            `scope=${encodeURIComponent(scopes)}&` +
+            `access_type=offline&` +
+            `prompt=consent`;
+            
+        return res.status(200).json({ url: authUrl });
+    }
+
+    // 5b. Callback
+    if (action === 'google-callback') {
+        const { code } = req.query;
+        if (!code) return res.status(400).json({ error: 'Code required' });
+
+        try {
+            const response = await fetch('https://oauth2.googleapis.com/token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    code: code.toString(),
+                    client_id: GOOGLE_CLIENT_ID!,
+                    client_secret: GOOGLE_CLIENT_SECRET!,
+                    redirect_uri: REDIRECT_URI,
+                    grant_type: 'authorization_code',
+                } as any),
+            });
+
+            const tokens = await response.json();
+            if (tokens.error) throw new Error(tokens.error_description || tokens.error);
+
+            if (tokens.refresh_token) {
+                await kv.set('admin:google_refresh_token', tokens.refresh_token);
+            }
+
+            // Redirect back to admin proposals with success flag
+            return res.redirect('/admin/proposals?google_setup=success');
+        } catch (error: any) {
+            console.error('Google callback error:', error);
+            return res.redirect(`/admin/proposals?google_setup=error&message=${encodeURIComponent(error.message)}`);
+        }
+    }
+
+    // 5c. Get Access Token
+    if (action === 'google-token') {
+        try {
+            const refreshToken = await kv.get<string>('admin:google_refresh_token');
+            if (!refreshToken) return res.status(404).json({ error: 'No Google account connected' });
+
+            const response = await fetch('https://oauth2.googleapis.com/token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    client_id: GOOGLE_CLIENT_ID!,
+                    client_secret: GOOGLE_CLIENT_SECRET!,
+                    refresh_token: refreshToken,
+                    grant_type: 'refresh_token',
+                } as any),
+            });
+
+            const data = await response.json();
+            if (data.error) throw new Error(data.error_description || data.error);
+
+            return res.status(200).json({
+                accessToken: data.access_token,
+                apiKey: GOOGLE_API_KEY,
+                clientId: GOOGLE_CLIENT_ID
+            });
+        } catch (error: any) {
+            return res.status(500).json({ error: error.message });
+        }
     }
 
     // 5. Generate Phrase (POST) — admin only

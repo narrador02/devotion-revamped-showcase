@@ -769,8 +769,15 @@
       "contact": "Contact",
       "delete": "Delete",
       "deleteTitle": "Delete Proposal",
-      "deleteConfirm": "Are you sure you want to delete the proposal for {{clientName}}? This action cannot be undone.",
+      "deleteConfirm": "Are you sure you want to delete the proposal for {{name}}? This action cannot be undone.",
       "downloadInvoice": "Download Invoice",
+      "google": {
+        "connect": "Connect Google Drive",
+        "connected": "Google Drive Connected",
+        "pick": "Pick from Drive",
+        "setupSuccess": "Google Drive configured successfully",
+        "setupError": "Failed to configure Google Drive"
+      },
       "name": "Name",
       "type": {
         "rental": "Rental",

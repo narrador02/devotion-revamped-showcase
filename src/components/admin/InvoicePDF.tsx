@@ -317,7 +317,7 @@ export default function InvoicePDF({ proposal, locale = 'es' }: { proposal: Prop
                         {proposal.rentalDetails.staff && proposal.rentalDetails.staff.totalCost > 0 && (
                             <View style={styles.tableRow}>
                                 <View style={styles.tableCellDesc}>
-                                    <Text style={styles.itemName}>Personal Técnico</Text>
+                                    <Text style={styles.itemName}>Personal Técnico / Alojamiento / Viaje</Text>
                                     <Text style={styles.itemDesc}>
                                         {proposal.rentalDetails.staff.numberOfStaff} Técnico(s) x {proposal.rentalDetails.staff.numberOfDays} día(s)
                                     </Text>
