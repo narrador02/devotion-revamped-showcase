@@ -42,8 +42,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 2. Delete Proposal (DELETE)
     if (req.method === 'DELETE') {
-        const cookies = req.cookies || {};
-        if (cookies.adminAuth !== 'true') return res.status(401).json({ error: 'Unauthorized' });
+        // Manual cookie parsing as fallback — req.cookies may not be parsed by Vercel in some function contexts
+        const rawCookie = req.headers.cookie || '';
+        const parsedCookies: Record<string, string> = {};
+        rawCookie.split(';').forEach(part => {
+            const [key, ...val] = part.trim().split('=');
+            if (key) parsedCookies[key.trim()] = decodeURIComponent(val.join('='));
+        });
+        const adminAuth = parsedCookies.adminAuth || (req.cookies || {}).adminAuth;
+        if (adminAuth !== 'true') return res.status(401).json({ error: 'Unauthorized' });
         try {
             await kv.del(`proposal:${id}`);
             await kv.lrem('proposals:list', 0, id);
