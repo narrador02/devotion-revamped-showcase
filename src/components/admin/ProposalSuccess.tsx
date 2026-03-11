@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { CheckCircle, Copy, Check, Plus } from "lucide-react";
+import { CheckCircle, Copy, Check, Plus, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -52,32 +52,43 @@ export default function ProposalSuccess({ proposalId, clientName, onCreateAnothe
                         className="bg-gray-800 border-gray-700 text-gray-300 font-mono text-sm"
                     />
                     <Button
-                        onClick={copyToClipboard}
+                        onClick={() => window.open(proposalUrl, '_blank')}
                         variant="outline"
-                        className="shrink-0 border-gray-700 hover:bg-gray-800"
+                        className="shrink-0 border-gray-700 hover:bg-gray-800 whitespace-nowrap"
+                        title={t("admin.proposals.openProposal", "Abrir propuesta")}
                     >
-                        {copied ? (
-                            <>
-                                <Check className="w-4 h-4 mr-2 text-green-500" />
-                                <span className="text-green-500">{t("admin.proposals.copied")}</span>
-                            </>
-                        ) : (
-                            <>
-                                <Copy className="w-4 h-4 mr-2" />
-                                {t("admin.proposals.copy")}
-                            </>
-                        )}
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        {t("admin.proposals.openLink", "Abrir")}
                     </Button>
                 </div>
             </div>
 
-            <Button
-                onClick={onCreateAnother}
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white"
-            >
-                <Plus className="w-4 h-4 mr-2" />
-                {t("admin.proposals.createAnother")}
-            </Button>
+            <div className="flex justify-center gap-3 pt-2">
+                <Button
+                    onClick={onCreateAnother}
+                    className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white"
+                >
+                    <Plus className="w-4 h-4 mr-2" />
+                    {t("admin.proposals.backToGenerator", "Volver al Generador de Propuestas")}
+                </Button>
+                <Button
+                    onClick={copyToClipboard}
+                    variant="outline"
+                    className="border-gray-700 hover:bg-gray-800 bg-gray-900 border"
+                >
+                    {copied ? (
+                        <>
+                            <Check className="w-4 h-4 mr-2 text-green-500" />
+                            <span className="text-green-500">{t("admin.proposals.copied", "Copiado")}</span>
+                        </>
+                    ) : (
+                        <>
+                            <Copy className="w-4 h-4 mr-2" />
+                            {t("admin.proposals.copy", "Copiar")}
+                        </>
+                    )}
+                </Button>
+            </div>
         </div>
     );
 }

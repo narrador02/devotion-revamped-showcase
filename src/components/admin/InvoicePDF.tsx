@@ -183,11 +183,12 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
         
         // C3CF3CD2 and older proposals might have days under staff but not root.
         const simulatorDays = rd.numberOfDays || rd.staff?.numberOfDays || 1;
+        const calcSubtotal = (rd.basePrice * (rd.numberOfSimulators || 1) * simulatorDays) +
+            (rd.transport?.totalCost || 0) +
+            (rd.staff?.totalCost || 0);
 
-        subtotal = rd.subtotal ||
-            ((rd.basePrice * (rd.numberOfSimulators || 1) * simulatorDays) +
-                (rd.transport?.totalCost || 0) +
-                (rd.staff?.totalCost || 0));
+        // ALWAYS use calculated subtotal because old proposals might have saved only simulator cost under 'subtotal'.
+        subtotal = calcSubtotal;
     } else if (proposal.purchaseDetails) {
         // Purchase subtotal calculation
         const pd = proposal.purchaseDetails;

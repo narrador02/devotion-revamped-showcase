@@ -313,29 +313,28 @@ function ProposalTable({ proposals, onDelete, onEdit, showAcceptedInfo = false }
                                         {proposal.customerDetails.phone && <p className="flex items-center gap-1"><Phone className="w-3 h-3" />{proposal.customerDetails.phone}</p>}
                                     </div>
                                 )}
-                                <div className="flex flex-col gap-1 mt-3">
+                                <div className="flex flex-row items-center justify-between w-full mt-4 pt-3 border-t border-gray-700/50">
                                     {!showAcceptedInfo && onEdit && (
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            className="h-8 px-2 justify-start"
+                                            className="h-10 px-3 hover:bg-gray-800"
                                             onClick={() => onEdit(proposal.id)}
                                             title={t("admin.proposals.edit", "Editar")}
                                         >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-gray-400 mr-2"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
-                                            <span className="text-gray-400">Editar</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400"><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
                                         </Button>
                                     )}
                                     <CopyButton proposalId={proposal.id} />
+                                    <DownloadInvoiceButton proposalId={proposal.id} clientName={proposal.clientName} />
                                     <Button
                                         variant="ghost"
                                         size="sm"
-                                        className="h-8 px-2 justify-start"
+                                        className="h-10 px-3 hover:bg-gray-800"
                                         onClick={() => window.open(`/p/${proposal.id}`, '_blank')}
                                         title={t("admin.proposals.openProposal", "Abrir")}
                                     >
-                                        <ExternalLink className="w-4 h-4 text-gray-400 mr-2" />
-                                        <span className="text-gray-400">Abrir</span>
+                                        <ExternalLink className="w-5 h-5 text-gray-400" />
                                     </Button>
                                     <DeleteButton
                                         proposalId={proposal.id}

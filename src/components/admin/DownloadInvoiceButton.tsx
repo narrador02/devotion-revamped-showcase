@@ -38,7 +38,12 @@ export default function DownloadInvoiceButton({ proposalId, clientName }: Downlo
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `Factura_${clientName.replace(/\s+/g, '_')}_${proposalId.substring(0, 8)}.pdf`;
+            // Windows filename sanitization: remove invalid characters (\ / : * ? " < > |)
+            const safeClientName = clientName
+                .replace(/[\\/:*?"<>|]/g, '')
+                .replace(/\s+/g, '_');
+                
+            link.download = `Factura_${safeClientName}_${proposalId.substring(0, 8)}.pdf`;
 
             // Append, click, and cleanup
             document.body.appendChild(link);
