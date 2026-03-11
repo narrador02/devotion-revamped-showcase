@@ -42,15 +42,17 @@ export default function PhraseGenerator({ clientName, onSelectPhrase, disabled }
             if (!response.ok) {
                 const data = await response.json().catch(() => ({}));
                 console.error("API Error details:", data);
+                
                 if (response.status === 429) {
-                    const isQuotaError = data.type === 'insufficient_quota' || data.details?.includes('quota');
-                    if (isQuotaError) {
-                        throw new Error(t("admin.proposals.openaiQuotaError", "OpenAI Quota Exceeded - Check Billing"));
-                    }
-                    throw new Error(t("admin.proposals.openaiRateLimit", "Too many requests - please wait"));
+                    throw new Error(t("admin.proposals.aiRateLimit", "Límite de peticiones alcanzado - por favor espera / Rate limit reached"));
                 }
-                if (data.error === 'OpenAI not configured') {
-                    throw new Error(t("admin.proposals.openaiNotConfigured"));
+                
+                if (data.error === 'Gemini API not configured') {
+                    throw new Error(t("admin.proposals.aiNotConfigured", "La clave de la API de Gemini no está configurada"));
+                }
+                
+                if (data.error?.includes('API key not valid') || response.status === 403) {
+                    throw new Error(t("admin.proposals.aiQuotaError", "Error de cuota o clave API inválida. Revisa tu cuenta de Gemini. / Quota error or invalid API key."));
                 }
                 throw new Error(data.message || data.error || t("admin.proposals.phraseError", "Failed to generate phrase"));
             }
