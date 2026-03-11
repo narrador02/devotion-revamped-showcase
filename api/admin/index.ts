@@ -307,7 +307,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 : `You are an expert copywriter working for a premium motorcycling simulator company called DevotionSim. Generate a personalized hook phrase for: "${clientName}". Max 2-3 sentences. Pro tone.`;
 
             const geminiResponse = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKey}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
