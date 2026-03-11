@@ -17,9 +17,9 @@ export default function ProposalAudioSystem({ isSelected, onToggle, price }: Pro
 
     const features = [
         t("proposal.audioSystem.specs.speakers", "Sistema de altavoces 2.1 integrados en la moto"),
-        t("proposal.audioSystem.specs.subwoofer", "Subwoofer interno de alta resonancia"),
-        t("proposal.audioSystem.specs.transducer", "Bass Shaker para vibración del chasis"),
-        t("proposal.audioSystem.specs.quality", "Perfiles de audio de competición pre-cargados"),
+        t("proposal.audioSystem.specs.subwoofer", "Subwoofer interno"),
+        t("proposal.audioSystem.specs.transducer", "Bass Shaker"),
+        t("proposal.audioSystem.specs.quality", "Presets de audio de competición pre-cargados"),
     ];
 
     return (

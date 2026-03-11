@@ -60,7 +60,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 : `You are an expert copywriter working for a premium motorcycling simulator company called DevotionSim. Generate a personalized hook phrase for: "${clientName}". Max 2-3 sentences. Pro tone.`;
 
             const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -71,7 +71,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 }
             );
 
-            if (!response.ok) throw new Error(`Gemini API error: ${response.status}`);
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                return res.status(response.status).json({ 
+                    error: errorData?.error?.message || `Gemini API error: ${response.status}`, 
+                    details: errorData 
+                });
+            }
+            
             const data = await response.json();
             const phrase = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
             return res.status(200).json({ phrase });

@@ -34,14 +34,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 const data = await kv.get(`proposal:${id}`);
                 if (data) {
                     const proposal = typeof data === 'string' ? JSON.parse(data) : data;
-                    proposals.push({
-                        id: proposal.id,
-                        proposalType: proposal.proposalType || 'purchase',
-                        clientName: proposal.clientName,
-                        createdAt: proposal.createdAt,
-                        expiresAt: proposal.expiresAt,
-                        isExpired: new Date(proposal.expiresAt) < new Date(),
-                        price: proposal.proposalType === 'rental' ? proposal.rentalDetails?.total : null,
+                        let calculatedPrice = null;
+                        if (proposal.proposalType === 'rental') {
+                            calculatedPrice = proposal.rentalDetails?.total;
+                        } else if (proposal.purchaseDetails?.packages && Object.keys(proposal.purchaseDetails.packages).length === 1) {
+                            const packagePrice = Object.values(proposal.purchaseDetails.packages)[0] as number;
+                            const subtotal = packagePrice + 
+                                (proposal.flightCasePrice || 0) + 
+                                (proposal.pianolaPrice || 0) + 
+                                (proposal.audioSystemPrice || 0) + 
+                                (proposal.brandingPrices?.full || proposal.brandingPrices?.simulator || proposal.brandingPrices?.platform || 0);
+                            calculatedPrice = subtotal * 1.21;
+                        }
+
+                        proposals.push({
+                            id: proposal.id,
+                            proposalType: proposal.proposalType || 'purchase',
+                            clientName: proposal.clientName,
+                            createdAt: proposal.createdAt,
+                            expiresAt: proposal.expiresAt,
+                            isExpired: new Date(proposal.expiresAt) < new Date(),
+                            price: calculatedPrice,
                         accepted: proposal.accepted || false,
                         acceptedAt: proposal.acceptedAt || null,
                         customerDetails: proposal.customerDetails || null,
