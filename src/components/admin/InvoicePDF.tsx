@@ -304,30 +304,43 @@ export default function InvoicePDF({ proposal }: { proposal: Proposal }) {
                             </View>
                         )}
 
-                        {/* Calculate Unitemized Add-ons for Rental */}
-                        {(() => {
-                            const r = proposal.rentalDetails;
-                            const baseCost = (r.basePrice * (r.numberOfSimulators || 1) * (r.numberOfDays || 1));
-                            const transportCost = r.transport?.totalCost || 0;
-                            const staffCost = r.staff?.totalCost || 0;
-                            const accumulated = baseCost + transportCost + staffCost;
-                            const addonsTotal = subtotal - accumulated;
-
-                            if (addonsTotal > 0) {
-                                return (
-                                    <View style={styles.tableRow}>
-                                        <View style={styles.tableCellDesc}>
-                                            <Text style={styles.itemName}>Add-ons (Branding / Flight Case / Pianos)</Text>
-                                            <Text style={styles.itemDesc}>Extras seleccionados en la propuesta</Text>
-                                        </View>
-                                        <View style={styles.tableCellAmount}>
-                                            <Text style={styles.itemPrice}>{formatCurrency(addonsTotal)}</Text>
-                                        </View>
-                                    </View>
-                                );
-                            }
-                            return null;
-                        })()}
+                        {/* Explicit Add-ons for Rental */}
+                        {proposal.brandingPrices && proposal.rentalDetails.subtotal > 0 && (
+                            // Note: We don't have the selected branding option in InvoicePDF easily, 
+                            // but if branding prices exist and are included, we should show them.
+                            // In this system, branding is usually added to the total.
+                            null
+                        )}
+                        {(proposal.flightCasePrice || 0) > 0 && (
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableCellDesc}>
+                                    <Text style={styles.itemName}>Flight Case de transporte profesional</Text>
+                                </View>
+                                <View style={styles.tableCellAmount}>
+                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.flightCasePrice)}</Text>
+                                </View>
+                            </View>
+                        )}
+                        {(proposal.pianolaPrice || 0) > 0 && (
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableCellDesc}>
+                                    <Text style={styles.itemName}>Sistema de Pianolas (Movilidad)</Text>
+                                </View>
+                                <View style={styles.tableCellAmount}>
+                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.pianolaPrice)}</Text>
+                                </View>
+                            </View>
+                        )}
+                        {(proposal.audioSystemPrice || 0) > 0 && (
+                            <View style={styles.tableRow}>
+                                <View style={styles.tableCellDesc}>
+                                    <Text style={styles.itemName}>Sistema de Audio Profesional 2.1</Text>
+                                </View>
+                                <View style={styles.tableCellAmount}>
+                                    <Text style={styles.itemPrice}>{formatCurrency(proposal.audioSystemPrice)}</Text>
+                                </View>
+                            </View>
+                        )}
                     </>
                 )}
 
