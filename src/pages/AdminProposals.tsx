@@ -231,12 +231,13 @@ export default function AdminProposals() {
                                     size="sm"
                                     onClick={handleConnectGoogle}
                                     className={`
-                                        hidden sm:flex border-gray-800 text-gray-400 hover:text-white transition-colors
+                                        flex border-gray-800 text-gray-400 hover:text-white transition-colors
                                         ${googleConnected ? "bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20" : "hover:bg-gray-800"}
                                     `}
                                 >
-                                    <Cloud className={`w-4 h-4 mr-2 ${googleConnected ? "text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.3)]" : ""}`} />
-                                    {googleConnected ? t("admin.proposals.google.connected") : t("admin.proposals.google.connect")}
+                                    <Cloud className={`w-4 h-4 mr-1 sm:mr-2 ${googleConnected ? "text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.3)]" : ""}`} />
+                                    <span className="hidden xs:inline">{googleConnected ? t("admin.proposals.google.connected") : t("admin.proposals.google.connect")}</span>
+                                    <span className="xs:hidden">{googleConnected ? "Drive" : t("admin.proposals.google.connect").split(' ')[0]}</span>
                                 </Button>
                                 <Button
                                     variant="ghost"
